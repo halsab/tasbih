@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2002922929657D92004005BE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002922829657D92004005BE /* Log.swift */; };
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46729505D1C00485CE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46629505D1C00485CE9 /* ContentView.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2002922829657D92004005BE /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		2033E46129505D1C00485CE9 /* tasbih.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasbih.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2033E46429505D1C00485CE9 /* tasbihApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasbihApp.swift; sourceTree = "<group>"; };
 		2033E46629505D1C00485CE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		2033E4752950689E00485CE9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				2002922829657D92004005BE /* Log.swift */,
 				207FC74F295105B6008A0335 /* Colors.swift */,
 				207FC74E295105B6008A0335 /* LargeCountButtonTextStyle.swift */,
 				207FC750295105B6008A0335 /* TintButtonTextStyle.swift */,
@@ -244,6 +247,7 @@
 				207FC751295105B6008A0335 /* LargeCountButtonTextStyle.swift in Sources */,
 				207FC752295105B6008A0335 /* Colors.swift in Sources */,
 				207FC76529510673008A0335 /* CalendarView.swift in Sources */,
+				2002922929657D92004005BE /* Log.swift in Sources */,
 				2033E46729505D1C00485CE9 /* ContentView.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
 				207FC756295105CA008A0335 /* Date+Extension.swift in Sources */,

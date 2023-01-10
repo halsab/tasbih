@@ -18,8 +18,9 @@ extension Calendar {
     func monthdays(for date: Date = Date()) -> [Date] {
         let dayOfMonth = component(.day, from: date)
         guard let range = range(of: .day, in: .month, for: date) else { return [] }
-        return range
-            .compactMap { self.date(byAdding: .day, value: $0 - dayOfMonth, to: date) }
+        return range.compactMap {
+            self.date(byAdding: .day, value: $0 - dayOfMonth, to: date)
+        }
     }
     
     func filledMonthdays(for date: Date = Date()) -> [Date] {
