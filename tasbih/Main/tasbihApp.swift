@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct tasbihApp: App {
+    
+    @StateObject var am = AppManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(am.colorScheme.mode)
+                .accentColor(am.tint.color)
+                .environmentObject(am)
         }
     }
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 extension Color {
-    static let base: Color = Color("color/base")
     static let bg = Color("color/bg")
     
     static let systemRed = Color(uiColor: .systemRed)
@@ -29,8 +28,4 @@ extension Color {
     static let gray4 = Color(uiColor: .systemGray4)
     static let gray5 = Color(uiColor: .systemGray5)
     static let gray6 = Color(uiColor: .systemGray6)
-}
-
-extension ShapeStyle where Self == Color {
-    static var base: Color { .base }
 }

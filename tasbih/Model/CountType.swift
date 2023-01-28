@@ -7,8 +7,11 @@
 
 import Foundation
 
-enum CountType: CaseIterable, Identifiable {
-    case first, second, third
+enum CountType: Hashable, Identifiable {
+    case first
+    case second
+    case third
+    case custom(Int)
     
     var id: Self { self }
     
@@ -20,6 +23,8 @@ enum CountType: CaseIterable, Identifiable {
             return 100
         case .third:
             return 1000
+        case .custom(let value):
+            return value
         }
     }
     

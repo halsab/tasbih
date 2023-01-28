@@ -1,15 +1,18 @@
 //
-//  CountViewModel.swift
-//  muslimTools
+//  CountManager.swift
+//  tasbih
 //
-//  Created by halsab on 10.11.2022.
+//  Created by Khalil Sabirov on 28.01.2023.
 //
 
 import SwiftUI
 import Combine
 
-final class CountViewModel: ObservableObject {
+final class CountManager: ObservableObject {
+    
     @Published var count: CountType = .first
+    @Published var counts: [CountType] = [.first, .second, .third]
+    
     @Published private(set) var value: Int = 0
     @Published private(set) var loops: Int = 0
     @Published private(set) var total: Int = 0
@@ -52,13 +55,14 @@ final class CountViewModel: ObservableObject {
     }
     
     func hardReset() {
-        count.save(0)
+        total = 0
     }
     
     func hardResetAll() {
-        CountType.allCases.forEach {
+        counts.forEach {
             $0.save(0)
         }
+        total = 0
     }
     
     private func hapticFeedback() {

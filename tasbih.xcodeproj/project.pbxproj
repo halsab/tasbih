@@ -22,7 +22,11 @@
 		207FC76429510673008A0335 /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76229510673008A0335 /* CalendarMonthView.swift */; };
 		207FC76529510673008A0335 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76329510673008A0335 /* CalendarView.swift */; };
 		207FC76829510686008A0335 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76629510686008A0335 /* CountView.swift */; };
-		207FC76929510686008A0335 /* CountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76729510686008A0335 /* CountViewModel.swift */; };
+		20F3EFB92985633000310414 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFB82985633000310414 /* SettingsView.swift */; };
+		20F3EFBD2985692E00310414 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFBC2985692E00310414 /* AppManager.swift */; };
+		20F3EFC22985701300310414 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC12985701300310414 /* AppColorScheme.swift */; };
+		20F3EFC4298575F800310414 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC3298575F800310414 /* TintColor.swift */; };
+		20F3EFC62985A14400310414 /* CountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC52985A14400310414 /* CountManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +47,11 @@
 		207FC76229510673008A0335 /* CalendarMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMonthView.swift; sourceTree = "<group>"; };
 		207FC76329510673008A0335 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		207FC76629510686008A0335 /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
-		207FC76729510686008A0335 /* CountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountViewModel.swift; sourceTree = "<group>"; };
+		20F3EFB82985633000310414 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		20F3EFBC2985692E00310414 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		20F3EFC12985701300310414 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
+		20F3EFC3298575F800310414 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
+		20F3EFC52985A14400310414 /* CountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 			children = (
 				2033E46A29505D1E00485CE9 /* tasbih.entitlements */,
 				2033E477295068B200485CE9 /* Main */,
+				20F3EFBE2985698C00310414 /* Manager */,
 				2033E4732950688F00485CE9 /* View */,
 				2033E4742950689400485CE9 /* Model */,
 				2033E4752950689E00485CE9 /* Helper */,
@@ -101,6 +110,7 @@
 				2033E46629505D1C00485CE9 /* ContentView.swift */,
 				2033E479295068D500485CE9 /* Calendar */,
 				2033E478295068D200485CE9 /* Count */,
+				20F3EFB72985631900310414 /* Settings */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -110,6 +120,8 @@
 			children = (
 				207FC75E2951065B008A0335 /* CountDay.swift */,
 				207FC75F2951065B008A0335 /* CountType.swift */,
+				20F3EFC12985701300310414 /* AppColorScheme.swift */,
+				20F3EFC3298575F800310414 /* TintColor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				207FC76629510686008A0335 /* CountView.swift */,
-				207FC76729510686008A0335 /* CountViewModel.swift */,
 			);
 			path = Count;
 			sourceTree = "<group>";
@@ -167,6 +178,23 @@
 				207FC754295105CA008A0335 /* Date+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		20F3EFB72985631900310414 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				20F3EFB82985633000310414 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		20F3EFBE2985698C00310414 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				20F3EFBC2985692E00310414 /* AppManager.swift */,
+				20F3EFC52985A14400310414 /* CountManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,20 +267,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F3EFB92985633000310414 /* SettingsView.swift in Sources */,
 				207FC7602951065B008A0335 /* CountDay.swift in Sources */,
 				207FC757295105CA008A0335 /* Calendar+Extension.swift in Sources */,
+				20F3EFBD2985692E00310414 /* AppManager.swift in Sources */,
+				20F3EFC22985701300310414 /* AppColorScheme.swift in Sources */,
 				207FC76829510686008A0335 /* CountView.swift in Sources */,
 				207FC7612951065B008A0335 /* CountType.swift in Sources */,
+				20F3EFC4298575F800310414 /* TintColor.swift in Sources */,
 				207FC753295105B6008A0335 /* TintButtonTextStyle.swift in Sources */,
 				207FC751295105B6008A0335 /* LargeCountButtonTextStyle.swift in Sources */,
 				207FC752295105B6008A0335 /* Colors.swift in Sources */,
 				207FC76529510673008A0335 /* CalendarView.swift in Sources */,
+				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
 				2002922929657D92004005BE /* Log.swift in Sources */,
 				2033E46729505D1C00485CE9 /* ContentView.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
 				207FC756295105CA008A0335 /* Date+Extension.swift in Sources */,
 				207FC76429510673008A0335 /* CalendarMonthView.swift in Sources */,
-				207FC76929510686008A0335 /* CountViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

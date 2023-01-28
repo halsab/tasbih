@@ -9,19 +9,19 @@ import SwiftUI
 
 struct CalendarView: View {
     
-    @State private var count: CountType = .first
+    @EnvironmentObject var cm: CountManager
     
     var body: some View {
         VStack(spacing: 16) {
-            Picker("Count Type", selection: $count) {
-                ForEach(CountType.allCases) {
+            Picker("Count Type", selection: $cm.count) {
+                ForEach(cm.counts) {
                     Text($0.name)
                 }
             }
             .pickerStyle(.segmented)
             .labelsHidden()
             
-            CalendarMonthView(count: count)
+            CalendarMonthView()
             
             Spacer()
         }
@@ -32,5 +32,6 @@ struct CalendarView: View {
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
+            .environmentObject(CountManager())
     }
 }

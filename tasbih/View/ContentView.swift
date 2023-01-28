@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var cm = CountManager()
+    
     var body: some View {
         CountView()
-            .tint(.base)
+            .environmentObject(cm)
     }
 }
 

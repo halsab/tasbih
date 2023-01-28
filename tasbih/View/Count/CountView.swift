@@ -9,8 +9,12 @@ import SwiftUI
 
 struct CountView: View {
     
-    @ObservedObject var vm = CountViewModel()
+    @EnvironmentObject var am: AppManager
+    @EnvironmentObject var cm: CountManager
+    
     @State private var showCalendar = false
+    @State private var showSettings = false
+    @State private var showHardResetAlert = false
     
     var body: some View {
         NavigationView {
@@ -20,32 +24,36 @@ struct CountView: View {
                 
                 VStack {
                     HStack {
-                        Text("Loops: \(vm.loops)")
+                        Text("Loops: \(cm.loops)")
                         Spacer()
-                        Text("Total: \(vm.total)")
+                        Text("Total: \(cm.total)")
                     }
                     .foregroundColor(.secondary)
                     
                     Button {
-                        vm.increment()
+                        cm.increment()
                     } label: {
-                        Text("\(vm.value)")
-                            .modifier(LargeCountButtonTextStyle())
+                        Text("\(cm.value)")
+                            .modifier(LargeCountButtonTextStyle(tint: am.tint.color))
                     }
                     
                     HStack {
-                        Button {
-                            vm.reset()
-                        } label: {
-                            Text("Reset")
-                                .modifier(TintButtonTextStyle())
-                        }
+                        Text("Reset")
+                            .modifier(TintButtonTextStyle(tint: am.tint.color))
+                            .onTapGesture {
+                                cm.reset()
+                            }
+                            .onLongPressGesture(minimumDuration: 0.3) {
+                                let impact = UIImpactFeedbackGenerator(style: .medium)
+                                impact.impactOccurred()
+                                showHardResetAlert = true
+                            }
                         
                         Button {
-                            vm.decrement()
+                            cm.decrement()
                         } label: {
                             Text("Undo")
-                                .modifier(TintButtonTextStyle())
+                                .modifier(TintButtonTextStyle(tint: am.tint.color))
                         }
                     }
                 }
@@ -53,6 +61,13 @@ struct CountView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showSettings.toggle()
+                    } label: {
+                        Image(systemName: "gear")
+                    }
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showCalendar.toggle()
@@ -61,8 +76,8 @@ struct CountView: View {
                     }
                 }
                 ToolbarItem(placement: .principal) {
-                    Picker("Count Type", selection: $vm.count) {
-                        ForEach(CountType.allCases) {
+                    Picker("Count Type", selection: $cm.count) {
+                        ForEach(cm.counts) {
                             Text($0.name)
                         }
                     }
@@ -73,6 +88,15 @@ struct CountView: View {
             .sheet(isPresented: $showCalendar) {
                 CalendarView()
             }
+            .sheet(isPresented: $showSettings) {
+                SettingsView()
+            }
+            .alert("Do you want to hard reset current count?", isPresented: $showHardResetAlert) {
+                Button("Yes", role: .destructive) {
+                    cm.hardReset()
+                }
+                Button("No", role: .cancel) {}
+            }
         }
     }
 }
@@ -80,5 +104,7 @@ struct CountView: View {
 struct CountView_Previews: PreviewProvider {
     static var previews: some View {
         CountView()
+            .environmentObject(AppManager())
+            .environmentObject(CountManager())
     }
 }

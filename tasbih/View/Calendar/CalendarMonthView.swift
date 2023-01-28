@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarMonthView: View {
     
-    let count: CountType
+    @EnvironmentObject var cm: CountManager
     
     @State private var monthdays: [CountDay] = []
     @State private var selectedId: UUID = UUID()
@@ -18,7 +18,7 @@ struct CalendarMonthView: View {
     @State private var shortWeekdaySymbols: [String] = []
     
     private var countGoal: Int {
-        count.loopSize * 3
+        cm.count.loopSize * 3
     }
     
     private let columns = [
@@ -39,13 +39,6 @@ struct CalendarMonthView: View {
                     .font(.system(.headline))
                 
                 LazyVGrid(columns: columns) {
-//                    Text("ПН")
-//                    Text("ВТ")
-//                    Text("СР")
-//                    Text("ЧТ")
-//                    Text("ПТ")
-//                    Text("СБ")
-//                    Text("ВС")
                     ForEach(shortWeekdaySymbols, id: \.self) { weekdaySymbol in
                         Text(weekdaySymbol)
                     }
@@ -60,7 +53,7 @@ struct CalendarMonthView: View {
                                 .font(.largeTitle)
                                 .foregroundStyle(
                                     Color.bg,
-                                    isSelected(day) ? Color.base : day.color(for: countGoal)
+                                    isSelected(day) ? Color.systemGreen : day.color(for: countGoal)
                                 )
                                 .overlay(
                                     Circle()
@@ -119,7 +112,6 @@ struct CalendarMonthView: View {
 struct CalendarMonthView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
-//            .preferredColorScheme(.dark)
-            .preferredColorScheme(.light)
+            .environmentObject(CountManager())
     }
 }

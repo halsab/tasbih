@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct TintButtonTextStyle: ViewModifier {
+    let tint: Color
     func body(content: Content) -> some View {
         content
             .padding()
             .frame(maxWidth: .infinity)
             .lineLimit(1)
             .font(.system(.headline))
-            .background(.base)
+            .background(tint)
             .foregroundColor(.bg)
             .clipShape(Capsule())
     }
