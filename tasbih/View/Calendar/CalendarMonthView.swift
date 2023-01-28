@@ -102,7 +102,6 @@ struct CalendarMonthView: View {
     
     private func setupDays() {
         var calendar = Calendar(identifier: .gregorian)
-        calendar.locale = NSLocale(localeIdentifier: "ru_RU") as Locale
         calendar.firstWeekday = 1
         shortWeekdaySymbols = calendar.shortWeekdaySymbols
         Log.debug(calendar.shortWeekdaySymbols)

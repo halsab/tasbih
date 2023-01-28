@@ -11,7 +11,7 @@ extension Date {
     enum DateFormat: String {
         case type0 = "dd.MM"
         case type1 = "dd"
-        case type2 = "MMMM"
+        case type2 = "LLLL"
     }
     
     var isCurrentMonthday: Bool {
