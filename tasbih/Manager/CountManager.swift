@@ -12,10 +12,11 @@ final class CountManager: ObservableObject {
     
     @Published var count: CountType = .first
     @Published var counts: [CountType] = [.first, .second, .third]
+
+    @Published private(set) var value = 0
+    @Published private(set) var loops = 0
+    @Published private(set) var total = 0
     
-    @Published private(set) var value: Int = 0
-    @Published private(set) var loops: Int = 0
-    @Published private(set) var total: Int = 0
     
     private var anyCancellables = Set<AnyCancellable>()
     
@@ -23,17 +24,17 @@ final class CountManager: ObservableObject {
         total = count.total
         $total
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] total in
-                count.save(total)
-                loops = total / count.loopSize
-                value = total - loops * count.loopSize
+            .sink { [unowned self] _total in
+                count.save(_total)
+                loops = _total / count.loopSize
+                value = _total - loops * count.loopSize
                 hapticFeedback()
             }
             .store(in: &anyCancellables)
         $count
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] count in
-                total = count.total
+            .sink { [unowned self] _count in
+                total = _count.total
             }
             .store(in: &anyCancellables)
     }

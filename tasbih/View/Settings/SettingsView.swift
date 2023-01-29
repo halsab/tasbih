@@ -12,7 +12,6 @@ struct SettingsView: View {
     @EnvironmentObject var am: AppManager
     @EnvironmentObject var cm: CountManager
     
-    @State private var showTintColorSetting = false
     @State private var showAlert = false
     
     var body: some View {
@@ -30,7 +29,10 @@ struct SettingsView: View {
                 Picker("App tint color", selection: $am.tint) {
                     ForEach(TintColor.allCases) {
                         Text($0.name)
-                            .foregroundColor($0.color)
+                            .foregroundColor(.bg)
+                            .frame(maxWidth: .infinity)
+                            .background($0.color)
+                            .cornerRadius(8)
                     }
                 }
                 .pickerStyle(.wheel)
