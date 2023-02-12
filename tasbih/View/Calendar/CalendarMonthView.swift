@@ -18,7 +18,7 @@ struct CalendarMonthView: View {
     @State private var shortWeekdaySymbols: [String] = []
     
     private var countGoal: Int {
-        cm.count.loopSize * 3
+        (cm.loopSize) * 3
     }
     
     private let columns = [

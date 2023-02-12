@@ -13,9 +13,9 @@ struct CalendarView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            Picker("Count Type", selection: $cm.count) {
-                ForEach(cm.counts) {
-                    Text($0.name)
+            Picker("Count Type", selection: $cm.selectedCountId) {
+                ForEach(cm.counts, id: \.id) {
+                    Text("\($0.loopSize)").tag($0.id)
                 }
             }
             .pickerStyle(.segmented)
