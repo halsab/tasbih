@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarMonthView: View {
     
-    @EnvironmentObject var cm: CountManager
+    @EnvironmentObject var countManager: CountManager
     
     @State private var monthdays: [CountDay] = []
     @State private var selectedId: UUID = UUID()
@@ -18,7 +18,7 @@ struct CalendarMonthView: View {
     @State private var shortWeekdaySymbols: [String] = []
     
     private var countGoal: Int {
-        (cm.loopSize) * 3
+        (countManager.loopSize) * 3
     }
     
     private let columns = [

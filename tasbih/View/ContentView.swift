@@ -9,15 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var cm = CountManager()
+    @StateObject var countManager = CountManager()
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         CountView()
-            .environmentObject(cm)
+            .environmentObject(countManager)
             .onChange(of: scenePhase) { newValue in
                 if newValue == .background {
-                    cm.saveAll()
+                    countManager.saveAll()
                 }
             }
     }

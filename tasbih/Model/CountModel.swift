@@ -51,13 +51,13 @@ struct CountModel: Identifiable, Codable, Hashable {
     mutating func hardReset() {
         _total = 0
     }
-
+        
     mutating func setLoopSize(_ newLoopSize: Int) {
-        guard newLoopSize > 1 else {
-            Log.error("Incorrect new loop size")
-            return
+        if newLoopSize > 0 {
+            _loopSize = newLoopSize
+        } else {
+            _loopSize = 1
         }
-        _loopSize = newLoopSize
     }
 
     mutating func setDefaultLoopSize() {

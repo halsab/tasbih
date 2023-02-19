@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CountView: View {
     
-    @EnvironmentObject var am: AppManager
-    @EnvironmentObject var cm: CountManager
+    @EnvironmentObject var appManager: AppManager
+    @EnvironmentObject var countManager: CountManager
     
     @State private var showCalendar = false
     @State private var showSettings = false
@@ -24,24 +24,27 @@ struct CountView: View {
                 
                 VStack {
                     HStack {
-                        Text("Loops: \(cm.loops)")
+                        Text("Loops: ") + Text("\(countManager.loops)")
+                            .font(.system(.footnote, design: .monospaced))
                         Spacer()
-                        Text("Total: \(cm.total)")
+                        Text("Total: ") + Text("\(countManager.total)")
+                            .font(.system(.footnote, design: .monospaced))
                     }
                     .foregroundColor(.secondary)
+                    .font(.system(.footnote, design: .rounded))
                     
                     Button {
-                        cm.increment()
+                        countManager.increment()
                     } label: {
-                        Text("\(cm.value)")
-                            .modifier(LargeCountButtonTextStyle(tint: am.tint.color))
+                        Text("\(countManager.value)")
+                            .modifier(LargeCountButtonTextStyle(tint: appManager.tint.color))
                     }
                     
                     HStack {
                         Text("Reset")
-                            .modifier(TintButtonTextStyle(tint: am.tint.color))
+                            .modifier(TintButtonTextStyle(tint: appManager.tint.color))
                             .onTapGesture {
-                                cm.reset()
+                                countManager.reset()
                             }
                             .onLongPressGesture(minimumDuration: 0.3) {
                                 let impact = UIImpactFeedbackGenerator(style: .medium)
@@ -50,10 +53,10 @@ struct CountView: View {
                             }
                         
                         Button {
-                            cm.decrement()
+                            countManager.decrement()
                         } label: {
                             Text("Undo")
-                                .modifier(TintButtonTextStyle(tint: am.tint.color))
+                                .modifier(TintButtonTextStyle(tint: appManager.tint.color))
                         }
                     }
                 }
@@ -68,16 +71,16 @@ struct CountView: View {
                         Image(systemName: "gear")
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showCalendar.toggle()
-                    } label: {
-                        Image(systemName: "calendar")
-                    }
-                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button {
+//                        showCalendar.toggle()
+//                    } label: {
+//                        Image(systemName: "calendar")
+//                    }
+//                }
                 ToolbarItem(placement: .principal) {
-                    Picker("Count Type", selection: $cm.selectedCountId) {
-                        ForEach(cm.counts, id: \.id) {
+                    Picker("Count Type", selection: $countManager.selectedCountId) {
+                        ForEach(countManager.counts, id: \.id) {
                             Text("\($0.loopSize)").tag($0.id)
                         }
                     }
@@ -93,7 +96,7 @@ struct CountView: View {
             }
             .alert("Do you want to hard reset current count?", isPresented: $showHardResetAlert) {
                 Button("Yes", role: .destructive) {
-                    cm.hardReset()
+                    countManager.hardReset()
                 }
                 Button("No", role: .cancel) {}
             }

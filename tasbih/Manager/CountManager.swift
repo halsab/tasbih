@@ -14,19 +14,19 @@ final class CountManager: ObservableObject {
     @Published private(set) var counts: [CountModel] = .init()
     
     var loops: Int {
-        guard let index = selectedIndex else { return 0 }
+        guard let index = index() else { return 0 }
         return counts[index].loops
     }
     var loopSize: Int {
-        guard let index = selectedIndex else { return 0 }
+        guard let index = index() else { return 0 }
         return counts[index].loopSize
     }
     var value: Int {
-        guard let index = selectedIndex else { return 0 }
+        guard let index = index() else { return 0 }
         return counts[index].value
     }
     var total: Int {
-        guard let index = selectedIndex else { return 0 }
+        guard let index = index() else { return 0 }
         return counts[index].total
     }
     
@@ -36,39 +36,31 @@ final class CountManager: ObservableObject {
         ("countModel2Key", 1000)
     ]
     private var anyCancellables = Set<AnyCancellable>()
-    private var selectedIndex: Int? {
-        counts.enumerated().first(where: { $0.element.id == selectedCountId })?.offset
-    }
     
     init() {
         initCountModels()
         counts.forEach { Log.debug($0.loopSize, $0) }
-        
-        $counts
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] _ in
-                hapticFeedback()
-            }
-            .store(in: &anyCancellables)
     }
     
     func increment() {
-        guard let index = selectedIndex else { return }
+        guard let index = index() else { return }
         counts[index].increment()
+        hapticFeedback()
     }
     
     func decrement() {
-        guard let index = selectedIndex else { return }
+        guard let index = index() else { return }
         counts[index].decrement()
+        hapticFeedback()
     }
     
     func reset() {
-        guard let index = selectedIndex else { return }
+        guard let index = index() else { return }
         counts[index].reset()
     }
     
     func hardReset() {
-        guard let index = selectedIndex else { return }
+        guard let index = index() else { return }
         counts[index].hardReset()
     }
     
@@ -80,12 +72,24 @@ final class CountManager: ObservableObject {
     }
     
     func saveAll() {
+        Log.debug("Save")
         zip(counts, defaultCountsInfo).forEach {
-            Log.debug("Save", $0.1.key)
             if let data = try? JSONEncoder().encode($0.0) {
                 UserDefaults.standard.set(data, forKey: $0.1.key)
             }
         }
+    }
+    
+    func setLoopSize(_ newLoopSize: Int, for id: UUID) {
+        guard let index = index(of: id) else { return }
+        counts[index].setLoopSize(newLoopSize)
+    }
+
+    func setDefaultLoopSizes() {
+        counts.enumerated()
+            .forEach {
+                counts[$0.offset].setDefaultLoopSize()
+            }
     }
 
     private func initCountModels() {
@@ -102,6 +106,11 @@ final class CountManager: ObservableObject {
             }
         }
         selectedCountId = counts.first?.id ?? .init()
+    }
+    
+    private func index(of id: UUID? = nil) -> Int? {
+        let selectedId = id ?? selectedCountId
+        return counts.enumerated().first(where: { $0.element.id == selectedId })?.offset
     }
     
     private func hapticFeedback() {

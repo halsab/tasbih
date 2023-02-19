@@ -8,24 +8,53 @@
 import SwiftUI
 
 enum TintColor: String, CaseIterable, Identifiable, Codable {
-    case green, blue, orange, red, brown, indigo
+    case monochrome
+    case gray
+    case red
+    case green
+    case blue
+    case orange
+    case yellow
+    case pink
+    case purple
+    case teal
+    case indigo
+    case brown
+    case mint
+    case cyan
     
     var id: Self { self }
     
     var color: Color {
         switch self {
+        case .monochrome:
+            return .primary
+        case .gray:
+            return .gray3
+        case .red:
+            return .systemRed
         case .green:
             return .systemGreen
         case .blue:
             return .systemBlue
         case .orange:
             return .systemOrange
-        case .red:
-            return .systemRed
-        case .brown:
-            return .systemBrown
+        case .yellow:
+            return .systemYellow
+        case .pink:
+            return .systemPink
+        case .purple:
+            return .systemPurple
+        case .teal:
+            return .systemTeal
         case .indigo:
             return .systemIndigo
+        case .brown:
+            return .systemBrown
+        case .mint:
+            return .systemMint
+        case .cyan:
+            return .systemCyan
         }
     }
     
