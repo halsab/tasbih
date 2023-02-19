@@ -29,6 +29,10 @@ final class CountManager: ObservableObject {
         guard let index = index() else { return 0 }
         return counts[index].total
     }
+    var goal: Int {
+        guard let index = index() else { return 0 }
+        return counts[index].goal
+    }
     
     private var appManager = AppManager()
     private let defaultCountsInfo: [(id: Int, key: String, loopSize: Int)] = [
@@ -88,6 +92,11 @@ final class CountManager: ObservableObject {
     func setLoopSize(_ newLoopSize: Int, for id: Int) {
         guard let index = index(of: id) else { return }
         counts[index].setLoopSize(newLoopSize)
+    }
+    
+    func setGoal(_ newGoal: Int, for id: Int) {
+        guard let index = index(of: id) else { return }
+        counts[index].setGoal(newGoal)
     }
     
     func value(at date: Date) -> Int {

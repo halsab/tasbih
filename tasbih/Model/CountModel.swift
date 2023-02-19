@@ -22,15 +22,20 @@ struct CountModel: Identifiable, Codable, Hashable {
     var loops: Int {
         total / loopSize
     }
-
+    var goal: Int {
+        _goal
+    }
+    
     private var _loopSize: Int
     private var _total: Int
+    private var _goal: Int
 
     init(id: Int, loopSize: Int) {
         guard loopSize > 1 else { fatalError("Incorrect loop size") }
         self.id = id
         _loopSize = loopSize
         _total = 0
+        _goal = loopSize
     }
 
     mutating func increment() {
@@ -56,5 +61,9 @@ struct CountModel: Identifiable, Codable, Hashable {
         } else {
             _loopSize = 1
         }
+    }
+    
+    mutating func setGoal(_ newGoal: Int) {
+        _goal = newGoal
     }
 }

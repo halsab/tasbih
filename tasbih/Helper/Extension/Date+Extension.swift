@@ -19,8 +19,8 @@ extension Date {
     }
     
     var isCurrentMonthday: Bool {
-        let calendar = Calendar.current
-        let currentMonth = calendar.component(.month, from: Date())
+        let calendar = Calendar.user
+        let currentMonth = calendar.component(.month, from: Date.current())
         let checkMonth = calendar.component(.month, from: self)
         return currentMonth == checkMonth
     }

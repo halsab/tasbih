@@ -18,10 +18,6 @@ struct CalendarMonthView: View {
     @State private var infoTextColor: Color = .primary
     @State private var shortWeekdaySymbols: [String] = []
     
-    private var countGoal: Int {
-        (countManager.loopSize) * 3
-    }
-    
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -55,15 +51,15 @@ struct CalendarMonthView: View {
                             Image(systemName: "\(day.dateString).circle.fill")
                                 .symbolRenderingMode(.palette)
                                 .font(.largeTitle)
-                                .foregroundStyle(Color.bg, day.color(for: countGoal))
+                                .foregroundStyle(Color.bg, day.color(for: countManager.goal))
                                 .overlay(
                                     Circle()
                                         .stroke(isSelected(day) ? Color.primary : .clear, lineWidth: 4)
                                 )
                                 .onTapGesture {
                                     selectedId = day.id
-                                    countInfo = "Total count \(day.count)/\(countGoal)"
-                                    infoTextColor = day.color(for: countGoal)
+                                    countInfo = "Total count \(day.count)/\(countManager.goal)"
+                                    infoTextColor = day.color(for: countManager.goal)
                                 }
                             
                             
@@ -97,6 +93,14 @@ struct CalendarMonthView: View {
         monthdays = days.map {
             let count = countManager.value(at: $0)
             return CountDay(date: $0, count: count)
+        }
+        
+        if let today = monthdays.first(where: {
+            Calendar.user.compare($0.date, to: Date.current(), toGranularity: .day) == .orderedSame
+        }) {
+            selectedId = today.id
+            countInfo = "Total count \(today.count)/\(countManager.goal)"
+            infoTextColor = today.color(for: countManager.goal)
         }
     }
     

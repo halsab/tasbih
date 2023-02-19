@@ -60,6 +60,26 @@ struct SettingsView: View {
                 }
             }
             .listRowSeparator(.hidden)
+            Section("Count goals") {
+                ForEach(countManager.counts) { count in
+                    HStack(spacing: 16) {
+                        Image(systemName: countManager.selectedCountId == count.id ? "circle.fill" : "circle")
+                            .foregroundColor(appManager.tint.color)
+                        Text("Loop \(count.loopSize)")
+                        TextField("Goal", text: Binding(
+                            get: { String(count.goal) },
+                            set: {
+                                guard let goal = Int($0) else { return }
+                                countManager.setGoal(goal, for: count.id)
+                            }
+                        ))
+                        .focused($isFocused)
+                        .textFieldStyle(.roundedBorder)
+                        .keyboardType(.numberPad)
+                    }
+                }
+            }
+            .listRowSeparator(.hidden)
             Section {
                 Button {
                     showAlert = true

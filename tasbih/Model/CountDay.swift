@@ -12,6 +12,7 @@ struct CountDay: Identifiable {
     let date: Date
     let count: Int
     
+    
     var dateString: String {
         date.asString(format: .type1)
     }
