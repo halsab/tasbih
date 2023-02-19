@@ -58,25 +58,6 @@ struct SettingsView: View {
                         .keyboardType(.numberPad)
                     }
                 }
-                if isFocused {
-                    HStack {
-                        Button {
-                            isFocused = false
-                        } label: {
-                            Text("Dismiss keyboard")
-                                .frame(maxWidth: .infinity)
-                        }
-                        Button {
-                            countManager.setDefaultLoopSizes()
-                        } label: {
-                            Text("Default loop sizes")
-                                .frame(maxWidth: .infinity)
-                        }
-                    }
-                    .padding(4)
-                    .buttonStyle(.borderless)
-                    .foregroundColor(appManager.tint.color)
-                }
             }
             .listRowSeparator(.hidden)
             Section {
@@ -96,6 +77,9 @@ struct SettingsView: View {
                 countManager.hardResetAll()
             }
             Button("Cancel", role: .cancel) { }
+        }
+        .onTapGesture {
+            isFocused = false
         }
     }
 }

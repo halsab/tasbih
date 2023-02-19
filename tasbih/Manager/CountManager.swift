@@ -30,7 +30,7 @@ final class CountManager: ObservableObject {
         return counts[index].total
     }
     
-    private let defaultCountsInfo: [(key: String, defaultLoopSize: Int)] = [
+    private let defaultCountsInfo: [(key: String, loopSize: Int)] = [
         ("countModel0Key", 33),
         ("countModel1Key", 100),
         ("countModel2Key", 1000)
@@ -85,20 +85,13 @@ final class CountManager: ObservableObject {
         counts[index].setLoopSize(newLoopSize)
     }
 
-    func setDefaultLoopSizes() {
-        counts.enumerated()
-            .forEach {
-                counts[$0.offset].setDefaultLoopSize()
-            }
-    }
-
     private func initCountModels() {
         defaultCountsInfo.forEach {
             if let data = UserDefaults.standard.data(forKey: $0.key),
                let model = try? JSONDecoder().decode(CountModel.self, from: data) {
                 counts.append(model)
             } else {
-                let model = CountModel(loopSize: $0.defaultLoopSize)
+                let model = CountModel(loopSize: $0.loopSize)
                 counts.append(model)
                 if let data = try? JSONEncoder().encode(model) {
                     UserDefaults.standard.set(data, forKey: $0.key)

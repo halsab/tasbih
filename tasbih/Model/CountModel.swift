@@ -25,12 +25,10 @@ struct CountModel: Identifiable, Codable, Hashable {
 
     private var _loopSize: Int
     private var _total: Int
-    private let defaultLoopSize: Int
 
     init(loopSize: Int) {
         guard loopSize > 1 else { fatalError("Incorrect loop size") }
         id = UUID()
-        defaultLoopSize = loopSize
         _loopSize = loopSize
         _total = 0
     }
@@ -58,9 +56,5 @@ struct CountModel: Identifiable, Codable, Hashable {
         } else {
             _loopSize = 1
         }
-    }
-
-    mutating func setDefaultLoopSize() {
-        _loopSize = defaultLoopSize
     }
 }
