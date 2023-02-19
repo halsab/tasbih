@@ -8,7 +8,7 @@
 import Foundation
 
 struct CountModel: Identifiable, Codable, Hashable {
-    let id: UUID
+    let id: Int
 
     var loopSize: Int {
         _loopSize
@@ -26,9 +26,9 @@ struct CountModel: Identifiable, Codable, Hashable {
     private var _loopSize: Int
     private var _total: Int
 
-    init(loopSize: Int) {
+    init(id: Int, loopSize: Int) {
         guard loopSize > 1 else { fatalError("Incorrect loop size") }
-        id = UUID()
+        self.id = id
         _loopSize = loopSize
         _total = 0
     }

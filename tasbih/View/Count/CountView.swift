@@ -71,13 +71,13 @@ struct CountView: View {
                         Image(systemName: "gear")
                     }
                 }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button {
-//                        showCalendar.toggle()
-//                    } label: {
-//                        Image(systemName: "calendar")
-//                    }
-//                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showCalendar.toggle()
+                    } label: {
+                        Image(systemName: "calendar")
+                    }
+                }
                 ToolbarItem(placement: .principal) {
                     Picker("Count Type", selection: $countManager.selectedCountId) {
                         ForEach(countManager.counts, id: \.id) {

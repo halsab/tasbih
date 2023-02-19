@@ -12,17 +12,8 @@ struct CalendarView: View {
     @EnvironmentObject var countManager: CountManager
     
     var body: some View {
-        VStack(spacing: 16) {
-            Picker("Count Type", selection: $countManager.selectedCountId) {
-                ForEach(countManager.counts, id: \.id) {
-                    Text("\($0.loopSize)").tag($0.id)
-                }
-            }
-            .pickerStyle(.segmented)
-            .labelsHidden()
-            
+        VStack {
             CalendarMonthView()
-            
             Spacer()
         }
         .padding()

@@ -14,6 +14,10 @@ extension Date {
         case type2 = "LLLL"
     }
     
+    static var current: () -> Date = {
+        Date()
+    }
+    
     var isCurrentMonthday: Bool {
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: Date())

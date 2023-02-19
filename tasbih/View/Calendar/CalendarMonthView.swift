@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarMonthView: View {
     
+    @EnvironmentObject var appManager: AppManager
     @EnvironmentObject var countManager: CountManager
     
     @State private var monthdays: [CountDay] = []
@@ -51,13 +52,10 @@ struct CalendarMonthView: View {
                             Image(systemName: "\(day.dateString).circle.fill")
                                 .symbolRenderingMode(.palette)
                                 .font(.largeTitle)
-                                .foregroundStyle(
-                                    Color.bg,
-                                    isSelected(day) ? Color.systemGreen : day.color(for: countGoal)
-                                )
+                                .foregroundStyle(Color.bg, day.color(for: countGoal))
                                 .overlay(
                                     Circle()
-                                        .stroke(isSelected(day) ? Color.secondary : .clear, lineWidth: 4)
+                                        .stroke(isSelected(day) ? Color.primary : .clear, lineWidth: 4)
                                 )
                                 .onTapGesture {
                                     selectedId = day.id
@@ -76,7 +74,7 @@ struct CalendarMonthView: View {
                 .frame(maxWidth: .infinity)
             }
             .padding(12)
-            .background(Color.gray6)
+            .background(appManager.tint.color.opacity(0.15))
             .cornerRadius(10)
             
             Text(countInfo)
@@ -94,13 +92,11 @@ struct CalendarMonthView: View {
     }
     
     private func setupDays() {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.firstWeekday = 1
-        shortWeekdaySymbols = calendar.shortWeekdaySymbols
-        Log.debug(calendar.shortWeekdaySymbols)
-        let days = calendar.monthdays()
+        shortWeekdaySymbols = Calendar.user.shortWeekdaySymbols
+        let days = Calendar.user.monthdays()
         monthdays = days.map {
-            CountDay(date: $0, count: Int.random(in: 0..<countGoal))
+            let count = countManager.value(at: $0)
+            return CountDay(date: $0, count: count)
         }
     }
     
@@ -112,6 +108,7 @@ struct CalendarMonthView: View {
 struct CalendarMonthView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()
+            .environmentObject(AppManager())
             .environmentObject(CountManager())
     }
 }
