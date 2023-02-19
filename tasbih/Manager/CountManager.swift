@@ -10,8 +10,8 @@ import Combine
 
 final class CountManager: ObservableObject {
 
-    @Published var selectedCountId: Int = .init()
-    @Published private(set) var counts: [CountModel] = .init()
+    @Published var selectedCountId: Int = 0
+    @Published private(set) var counts: [CountModel] = []
     
     var loops: Int {
         guard let index = index() else { return 0 }

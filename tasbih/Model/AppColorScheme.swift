@@ -8,18 +8,18 @@
 import SwiftUI
 
 enum AppColorScheme: String, CaseIterable, Identifiable, Codable {
-    case light, dark, system
+    case system, light, dark
     
     var id: Self { self }
     
     var mode: ColorScheme? {
         switch self {
+        case .system:
+            return .none
         case .light:
             return .light
         case .dark:
             return .dark
-        case .system:
-            return .none
         }
     }
     

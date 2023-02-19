@@ -14,8 +14,8 @@ struct CalendarMonthView: View {
     
     @State private var monthdays: [CountDay] = []
     @State private var selectedId: UUID = UUID()
-    @State private var countInfo: String = "No selected date"
-    @State private var infoTextColor: Color = .gray2
+    @State private var countInfo: String = "Select date to see count amount"
+    @State private var infoTextColor: Color = .primary
     @State private var shortWeekdaySymbols: [String] = []
     
     private var countGoal: Int {
@@ -37,11 +37,14 @@ struct CalendarMonthView: View {
             VStack(spacing: 16) {
                 Text(Date().asString(format: .type2))
                     .textCase(.uppercase)
-                    .font(.system(.headline))
+                    .font(.system(.headline, design: .rounded))
+                    .foregroundColor(appManager.tint.color)
                 
                 LazyVGrid(columns: columns) {
                     ForEach(shortWeekdaySymbols, id: \.self) { weekdaySymbol in
                         Text(weekdaySymbol)
+                            .font(.system(.headline, design: .rounded))
+                            .foregroundColor(appManager.tint.color)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -73,15 +76,12 @@ struct CalendarMonthView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .padding(12)
-            .background(appManager.tint.color.opacity(0.15))
-            .cornerRadius(10)
             
             Text(countInfo)
                 .padding()
                 .frame(maxWidth: .infinity)
                 .lineLimit(1)
-                .font(.system(.headline))
+                .font(.system(.headline, design: .rounded))
                 .background(.secondary.opacity(0.3))
                 .foregroundColor(infoTextColor)
                 .clipShape(RoundedRectangle(cornerRadius: 10))

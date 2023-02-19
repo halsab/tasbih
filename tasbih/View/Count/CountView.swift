@@ -90,6 +90,8 @@ struct CountView: View {
             }
             .sheet(isPresented: $showCalendar) {
                 CalendarView()
+                    .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showSettings) {
                 SettingsView()
