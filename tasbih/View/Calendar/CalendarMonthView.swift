@@ -91,8 +91,7 @@ struct CalendarMonthView: View {
         shortWeekdaySymbols = Calendar.user.shortWeekdaySymbols
         let days = Calendar.user.monthdays()
         monthdays = days.map {
-            let count = countManager.value(at: $0)
-            return CountDay(date: $0, count: count)
+            countManager.countDay(at: $0)
         }
         
         if let today = monthdays.first(where: {

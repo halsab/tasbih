@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct CountDay: Identifiable {
+struct CountDay: Identifiable, Codable {
     let id = UUID()
     let date: Date
-    let count: Int
-    
+    var count: Int
+    var goal: Int
     
     var dateString: String {
         date.asString(format: .type1)

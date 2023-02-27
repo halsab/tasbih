@@ -9,9 +9,13 @@ import SwiftUI
 import Combine
 
 final class CountManager: ObservableObject {
-
+    
+    // MARK: Published properties
+    
     @Published var selectedCountId: Int = 0
     @Published private(set) var counts: [CountModel] = []
+    
+    // MARK: Computed properties
     
     var loops: Int {
         guard let index = index() else { return 0 }
@@ -34,6 +38,8 @@ final class CountManager: ObservableObject {
         return counts[index].goal
     }
     
+    // MARK: Private properties
+    
     private var appManager = AppManager()
     private let defaultCountsInfo: [(id: Int, key: String, loopSize: Int)] = [
         (0, "countModel0Key", 33),
@@ -42,10 +48,17 @@ final class CountManager: ObservableObject {
     ]
     private var anyCancellables = Set<AnyCancellable>()
     
+    // MARK: Init
+    
     init() {
         initCountModels()
-        counts.forEach { Log.debug($0.loopSize, $0) }
+        counts.forEach { Log.info($0.loopSize, $0) }
     }
+}
+
+// MARK: - Internal Methods
+ 
+extension CountManager {
     
     func increment() {
         guard let index = index() else { return }
@@ -63,9 +76,7 @@ final class CountManager: ObservableObject {
     
     func reset() {
         guard let index = index() else { return }
-        let resetValue = value - loops * loopSize
         counts[index].reset()
-        saveTodayValue(-resetValue)
     }
     
     func hardReset() {
@@ -83,9 +94,7 @@ final class CountManager: ObservableObject {
     func saveAll() {
         Log.info("Save")
         zip(counts, defaultCountsInfo).forEach { (count, info) in
-            if let data = try? JSONEncoder().encode(count) {
-                UserDefaults.standard.set(data, forKey: info.key)
-            }
+            try? UserDefaults.standard.saveModel(count, forKey: info.key)
         }
     }
     
@@ -99,22 +108,31 @@ final class CountManager: ObservableObject {
         counts[index].setGoal(newGoal)
     }
     
-    func value(at date: Date) -> Int {
-        guard let dateCountKey = countKey(for: date) else { return 0 }
-        return UserDefaults.standard.integer(forKey: dateCountKey)
+    func countDay(at date: Date) -> CountDay {
+        if let dateCountKey = countKey(for: date),
+           let data = UserDefaults.standard.data(forKey: dateCountKey),
+           let countDay = try? JSONDecoder().decode(CountDay.self, from: data) {
+            return countDay
+        } else {
+            return .init(date: date, count: 0, goal: goal)
+        }
     }
+}
 
+
+// MARK: - Private Methods
+ 
+extension CountManager {
+    
     private func initCountModels() {
         defaultCountsInfo.forEach {
-            if let data = UserDefaults.standard.data(forKey: $0.key),
-               let model = try? JSONDecoder().decode(CountModel.self, from: data) {
-                counts.append(model)
-            } else {
-                let model = CountModel(id: $0.id, loopSize: $0.loopSize)
-                counts.append(model)
-                if let data = try? JSONEncoder().encode(model) {
-                    UserDefaults.standard.set(data, forKey: $0.key)
-                }
+            do {
+                let countModel: CountModel = try UserDefaults.standard.getModel(forKey: $0.key)
+                counts.append(countModel)
+            } catch {
+                let countModel = CountModel(id: $0.id, loopSize: $0.loopSize)
+                counts.append(countModel)
+                try? UserDefaults.standard.saveModel(countModel, forKey: $0.key)
             }
         }
         selectedCountId = counts.first?.id ?? .init()
@@ -128,7 +146,7 @@ final class CountManager: ObservableObject {
     private func countKey(for date: Date) -> String? {
         guard let index = index() else { return nil }
         let dateComponents = Calendar.user.dateComponents([.day, .month, .year], from: date)
-        let stringDate = [ dateComponents.day, dateComponents.month, dateComponents.year ]
+        let stringDate = [dateComponents.day, dateComponents.month, dateComponents.year]
             .compactMap { $0 }
             .map { String($0) }
             .joined()
@@ -139,9 +157,10 @@ final class CountManager: ObservableObject {
     private func saveTodayValue(_ value: Int) {
         DispatchQueue(label: "TodayCountSavingQueue", qos: .userInitiated).async {
             guard let todayCountKey = self.countKey(for: Date.current()) else { return }
-            var todayValue = self.value(at: Date.current())
-            todayValue = max(0, todayValue + value)
-            UserDefaults.standard.set(todayValue, forKey: todayCountKey)
+            var countDay = self.countDay(at: Date.current())
+            countDay.count = max(0, countDay.count + value)
+            countDay.goal = self.goal
+            try? UserDefaults.standard.saveModel(countDay, forKey: todayCountKey)
         }
     }
     

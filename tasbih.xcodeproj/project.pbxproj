@@ -22,6 +22,7 @@
 		207FC76429510673008A0335 /* CalendarMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76229510673008A0335 /* CalendarMonthView.swift */; };
 		207FC76529510673008A0335 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76329510673008A0335 /* CalendarView.swift */; };
 		207FC76829510686008A0335 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76629510686008A0335 /* CountView.swift */; };
+		20E0F9B229A6582E00A97780 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0F9B129A6582E00A97780 /* UserDefaults+Extension.swift */; };
 		20F3EFB92985633000310414 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFB82985633000310414 /* SettingsView.swift */; };
 		20F3EFBD2985692E00310414 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFBC2985692E00310414 /* AppManager.swift */; };
 		20F3EFC22985701300310414 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC12985701300310414 /* AppColorScheme.swift */; };
@@ -47,6 +48,7 @@
 		207FC76229510673008A0335 /* CalendarMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMonthView.swift; sourceTree = "<group>"; };
 		207FC76329510673008A0335 /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		207FC76629510686008A0335 /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
+		20E0F9B129A6582E00A97780 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		20F3EFB82985633000310414 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		20F3EFBC2985692E00310414 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		20F3EFC12985701300310414 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				207FC755295105CA008A0335 /* Calendar+Extension.swift */,
 				207FC754295105CA008A0335 /* Date+Extension.swift */,
+				20E0F9B129A6582E00A97780 /* UserDefaults+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				207FC7612951065B008A0335 /* CountModel.swift in Sources */,
 				20F3EFC4298575F800310414 /* TintColor.swift in Sources */,
 				207FC753295105B6008A0335 /* TintButtonTextStyle.swift in Sources */,
+				20E0F9B229A6582E00A97780 /* UserDefaults+Extension.swift in Sources */,
 				207FC751295105B6008A0335 /* LargeCountButtonTextStyle.swift in Sources */,
 				207FC752295105B6008A0335 /* Colors.swift in Sources */,
 				207FC76529510673008A0335 /* CalendarView.swift in Sources */,
