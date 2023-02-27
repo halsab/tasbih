@@ -36,14 +36,14 @@ struct CalendarMonthView: View {
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(appManager.tint.color)
                 
-                LazyVGrid(columns: columns) {
-                    ForEach(shortWeekdaySymbols, id: \.self) { weekdaySymbol in
-                        Text(weekdaySymbol)
-                            .font(.system(.headline, design: .rounded))
-                            .foregroundColor(appManager.tint.color)
-                    }
-                }
-                .frame(maxWidth: .infinity)
+//                LazyVGrid(columns: columns) {
+//                    ForEach(shortWeekdaySymbols, id: \.self) { weekdaySymbol in
+//                        Text(weekdaySymbol)
+//                            .font(.system(.headline, design: .rounded))
+//                            .foregroundColor(appManager.tint.color)
+//                    }
+//                }
+//                .frame(maxWidth: .infinity)
                 
                 LazyVGrid(columns: columns, spacing: 8) {
                     ForEach(monthdays) { day in
@@ -51,7 +51,7 @@ struct CalendarMonthView: View {
                             Image(systemName: "\(day.dateString).circle.fill")
                                 .symbolRenderingMode(.palette)
                                 .font(.largeTitle)
-                                .foregroundStyle(Color.bg, day.color(for: countManager.goal))
+                                .foregroundStyle(Color.bg, day.color)
                                 .overlay(
                                     Circle()
                                         .stroke(isSelected(day) ? Color.primary : .clear, lineWidth: 4)
@@ -59,7 +59,7 @@ struct CalendarMonthView: View {
                                 .onTapGesture {
                                     selectedId = day.id
                                     countInfo = "Total count \(day.count)/\(countManager.goal)"
-                                    infoTextColor = day.color(for: countManager.goal)
+                                    infoTextColor = day.color
                                 }
                             
                             
@@ -99,7 +99,7 @@ struct CalendarMonthView: View {
         }) {
             selectedId = today.id
             countInfo = "Total count \(today.count)/\(countManager.goal)"
-            infoTextColor = today.color(for: countManager.goal)
+            infoTextColor = today.color
         }
     }
     

@@ -21,21 +21,7 @@ struct CountDay: Identifiable, Codable {
         date.isCurrentMonthday
     }
     
-    func percent(for countGoal: Int) -> Double {
-        let doubleCountGoal = Double(countGoal)
-        let result = Double(count) / doubleCountGoal
-        switch result {
-        case let x where x > 0 && x <= 1:
-            return x
-        case let x where x > 1:
-            return 1
-        default:
-            return 0
-        }
-    }
-    
-    func color(for countLimit: Int) -> Color {
-        let percent = percent(for: countLimit)
+    var color: Color {
         let middle = 0.5
         let high = 1.0
         switch percent {
@@ -47,6 +33,19 @@ struct CountDay: Identifiable, Codable {
             return .systemGreen
         default:
             return .gray2
+        }
+    }
+    
+    private var percent: Double {
+        let doubleCountGoal = Double(goal)
+        let result = Double(count) / doubleCountGoal
+        switch result {
+        case let x where x > 0 && x <= 1:
+            return x
+        case let x where x > 1:
+            return 1
+        default:
+            return 0
         }
     }
 }
