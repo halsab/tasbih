@@ -14,19 +14,20 @@ extension Date {
         case type2 = "LLLL"
     }
     
-    static var current: () -> Date = {
+    static var user: () -> Date = {
         Date()
     }
     
     var isCurrentMonthday: Bool {
-        let calendar = Calendar.user
-        let currentMonth = calendar.component(.month, from: Date.current())
+        let calendar = Calendar.user()
+        let currentMonth = calendar.component(.month, from: Date.user())
         let checkMonth = calendar.component(.month, from: self)
         return currentMonth == checkMonth
     }
 
     func asString(format: DateFormat) -> String {
-        let formatter = DateFormatter()
+        let formatter = DateFormatter.user()
+        formatter.locale = .init(identifier: "en_EN")
         formatter.dateFormat = format.rawValue
         return formatter.string(from: self)
     }    

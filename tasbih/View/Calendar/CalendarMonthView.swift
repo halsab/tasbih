@@ -88,14 +88,15 @@ struct CalendarMonthView: View {
     }
     
     private func setupDays() {
-        shortWeekdaySymbols = Calendar.user.shortWeekdaySymbols
-        let days = Calendar.user.monthdays()
+        let calendar = Calendar.user()
+        shortWeekdaySymbols = calendar.shortWeekdaySymbols
+        let days = calendar.monthdays()
         monthdays = days.map {
             countManager.countDay(at: $0)
         }
         
         if let today = monthdays.first(where: {
-            Calendar.user.compare($0.date, to: Date.current(), toGranularity: .day) == .orderedSame
+            Calendar.user().compare($0.date, to: Date.user(), toGranularity: .day) == .orderedSame
         }) {
             selectedId = today.id
             countInfo = "Total count \(today.count)/\(today.goal)"

@@ -8,11 +8,12 @@
 import Foundation
 
 extension Calendar {
-    static var user: Calendar = {
+    static var user: () -> Calendar = {
         var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = .init(identifier: "en_EN")
         calendar.firstWeekday = 1
         return calendar
-    }()
+    }
     
     func weekdays(for date: Date = Date()) -> [Date] {
         let dayOfWeek = component(.weekday, from: date) - 1

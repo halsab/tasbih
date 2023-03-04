@@ -35,7 +35,7 @@ struct CountModel: Identifiable, Codable, Hashable {
         self.id = id
         _loopSize = loopSize
         _total = 0
-        _goal = loopSize
+        _goal = 1
     }
 
     mutating func increment() {

@@ -13,7 +13,7 @@ struct Log {
     }
     
     private static var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
+        let formatter = DateFormatter.user()
         formatter.dateFormat = "[HH:mm:ss.SSS]"
         return formatter
     }()
