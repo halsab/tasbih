@@ -58,7 +58,7 @@ struct CalendarMonthView: View {
                                 )
                                 .onTapGesture {
                                     selectedId = day.id
-                                    countInfo = "Total count \(day.count)/\(countManager.goal)"
+                                    countInfo = "Total count \(day.count)/\(day.goal)"
                                     infoTextColor = day.color
                                 }
                             
@@ -98,7 +98,7 @@ struct CalendarMonthView: View {
             Calendar.user.compare($0.date, to: Date.current(), toGranularity: .day) == .orderedSame
         }) {
             selectedId = today.id
-            countInfo = "Total count \(today.count)/\(countManager.goal)"
+            countInfo = "Total count \(today.count)/\(today.goal)"
             infoTextColor = today.color
         }
     }

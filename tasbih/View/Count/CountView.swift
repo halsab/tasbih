@@ -69,6 +69,7 @@ struct CountView: View {
                         showSettings.toggle()
                     } label: {
                         Image(systemName: "gear")
+                            .tint(appManager.tint.color)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -76,6 +77,7 @@ struct CountView: View {
                         showCalendar.toggle()
                     } label: {
                         Image(systemName: "calendar")
+                            .tint(appManager.tint.color)
                     }
                 }
                 ToolbarItem(placement: .principal) {
