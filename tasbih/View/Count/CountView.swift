@@ -89,9 +89,13 @@ struct CountView: View {
                 }
             }
             .sheet(isPresented: $showCalendar) {
-                CalendarView()
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.hidden)
+                if #available(iOS 16, *) {
+                    CalendarView()
+                        .presentationDetents([.medium])
+                        .presentationDragIndicator(.hidden)
+                } else {
+                    CalendarView()
+                }
             }
             .sheet(isPresented: $showSettings) {
                 SettingsView()
