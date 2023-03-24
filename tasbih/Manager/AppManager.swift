@@ -10,7 +10,7 @@ import Combine
 
 final class AppManager: ObservableObject {
     
-    @Published var tint: TintColor = .green
+    @Published var tint: TintColor = .brown
     @Published var colorScheme: AppColorScheme = .system
     
     private let UD = UserDefaults.standard

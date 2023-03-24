@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum TintColor: String, CaseIterable, Identifiable, Codable {
+    case brown
     case monochrome
     case gray
     case red
@@ -19,7 +20,6 @@ enum TintColor: String, CaseIterable, Identifiable, Codable {
     case purple
     case teal
     case indigo
-    case brown
     case mint
     case cyan
     
