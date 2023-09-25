@@ -52,7 +52,6 @@ final class CountManager: ObservableObject {
     
     init() {
         initCountModels()
-        counts.forEach { Log.info($0.loopSize, $0) }
     }
 }
 
@@ -64,14 +63,14 @@ extension CountManager {
         guard let index = index() else { return }
         counts[index].increment()
         hapticFeedback()
-        saveTodayValue(1)
+        // TODO: Save +1
     }
     
     func decrement() {
         guard let index = index() else { return }
         counts[index].decrement()
         hapticFeedback()
-        saveTodayValue(-1)
+        // TODO: Save -1
     }
     
     func reset() {
@@ -92,7 +91,6 @@ extension CountManager {
     }
     
     func saveAll() {
-        Log.info("Save")
         zip(counts, defaultCountsInfo).forEach { (count, info) in
             try? UserDefaults.standard.saveModel(count, forKey: info.key)
         }
@@ -106,16 +104,6 @@ extension CountManager {
     func setGoal(_ newGoal: Int, for id: Int) {
         guard let index = index(of: id) else { return }
         counts[index].setGoal(newGoal)
-    }
-    
-    func countDay(at date: Date) -> CountDay {
-        if let dateCountKey = countKey(for: date),
-           let data = UserDefaults.standard.data(forKey: dateCountKey),
-           let countDay = try? JSONDecoder().decode(CountDay.self, from: data) {
-            return countDay
-        } else {
-            return .init(date: date, count: 0, goal: goal * loopSize)
-        }
     }
 }
 
@@ -137,31 +125,10 @@ extension CountManager {
         }
         selectedCountId = counts.first?.id ?? .init()
     }
-    
+
     private func index(of id: Int? = nil) -> Int? {
         let selectedId = id ?? selectedCountId
         return counts.enumerated().first(where: { $0.element.id == selectedId })?.offset
-    }
-    
-    private func countKey(for date: Date) -> String? {
-        guard let index = index() else { return nil }
-        let dateComponents = Calendar.user().dateComponents([.day, .month, .year], from: date)
-        let stringDate = [dateComponents.day, dateComponents.month, dateComponents.year]
-            .compactMap { $0 }
-            .map { String($0) }
-            .joined()
-        let key = stringDate + String(counts[index].id) + "todayCountKey"
-        return key
-    }
-    
-    private func saveTodayValue(_ value: Int) {
-        DispatchQueue(label: "TodayCountSavingQueue", qos: .userInitiated).async {
-            guard let todayCountKey = self.countKey(for: Date.user()) else { return }
-            var countDay = self.countDay(at: Date.user())
-            countDay.count = max(0, countDay.count + value)
-            countDay.goal = self.goal * self.loopSize
-            try? UserDefaults.standard.saveModel(countDay, forKey: todayCountKey)
-        }
     }
     
     private func hapticFeedback() {

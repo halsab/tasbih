@@ -8,60 +8,51 @@
 import SwiftUI
 
 struct CountView: View {
-    
+
     @EnvironmentObject var appManager: AppManager
     @EnvironmentObject var countManager: CountManager
-    
-    @State private var showCalendar = false
+
     @State private var showSettings = false
     @State private var showHardResetAlert = false
-    
+
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.bg
-                    .ignoresSafeArea()
-                
-                VStack {
-                    HStack {
-                        Text("Loops: ") + Text("\(countManager.loops)")
-                            .font(.system(.footnote, design: .monospaced))
-                        Spacer()
-                        Text("Total: ") + Text("\(countManager.total)")
-                            .font(.system(.footnote, design: .monospaced))
-                    }
-                    .foregroundColor(.secondary)
-                    .font(.system(.footnote, design: .rounded))
-                    
-                    Button {
-                        countManager.increment()
-                    } label: {
-                        Text("\(countManager.value)")
-                            .modifier(LargeCountButtonTextStyle(tint: appManager.tint.color))
-                    }
-                    
-                    HStack {
-                        Text("Reset")
-                            .modifier(TintButtonTextStyle(tint: appManager.tint.color))
-                            .onTapGesture {
-                                countManager.reset()
-                            }
-                            .onLongPressGesture(minimumDuration: 0.3) {
-                                let impact = UIImpactFeedbackGenerator(style: .medium)
-                                impact.impactOccurred()
-                                showHardResetAlert = true
-                            }
-                        
-                        Button {
-                            countManager.decrement()
-                        } label: {
-                            Text("Undo")
-                                .modifier(TintButtonTextStyle(tint: appManager.tint.color))
+            VStack {
+                HStack {
+                    Text("Loops: ") + Text("\(countManager.loops)")
+                        .font(.system(.footnote, design: .monospaced))
+                    Spacer()
+                    Text("Total: ") + Text("\(countManager.total)")
+                        .font(.system(.footnote, design: .monospaced))
+                }
+                .foregroundColor(.secondary)
+                .font(.system(.footnote, design: .rounded))
+
+                Button {
+                    countManager.increment()
+                } label: {
+                    Text("\(countManager.value)")
+                }
+
+                HStack {
+                    Text("Reset")
+                        .onTapGesture {
+                            countManager.reset()
                         }
+                        .onLongPressGesture(minimumDuration: 0.3) {
+                            let impact = UIImpactFeedbackGenerator(style: .medium)
+                            impact.impactOccurred()
+                            showHardResetAlert = true
+                        }
+
+                    Button {
+                        countManager.decrement()
+                    } label: {
+                        Text("Undo")
                     }
                 }
-                .padding()
             }
+            .padding()
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -69,14 +60,6 @@ struct CountView: View {
                         showSettings.toggle()
                     } label: {
                         Image(systemName: "gear")
-                            .tint(appManager.tint.color)
-                    }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showCalendar.toggle()
-                    } label: {
-                        Image(systemName: "calendar")
                             .tint(appManager.tint.color)
                     }
                 }
@@ -88,15 +71,6 @@ struct CountView: View {
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
-                }
-            }
-            .sheet(isPresented: $showCalendar) {
-                if #available(iOS 16, *) {
-                    CalendarView()
-                        .presentationDetents([.medium])
-                        .presentationDragIndicator(.hidden)
-                } else {
-                    CalendarView()
                 }
             }
             .sheet(isPresented: $showSettings) {

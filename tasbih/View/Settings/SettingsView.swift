@@ -21,118 +21,13 @@ struct SettingsView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 16) {
-                    
-                    // MARK: Color scheme
-                    
-                    VStack {
-                        HStack {
-                            Text("Color scheme")
-                                .font(.headline)
-                            Spacer()
-                        }
-                        Picker("Color scheme", selection: $appManager.colorScheme) {
-                            ForEach(AppColorScheme.allCases) {
-                                Text($0.name)
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                        .labelsHidden()
-                    }
-                    
-                    // MARK: App tint color
-                    
-                    Divider()
-                    VStack {
-                        HStack {
-                            Text("App tint color")
-                                .font(.headline)
-                            Spacer()
-                        }
-                        Picker("App tint color", selection: $appManager.tint) {
-                            ForEach(TintColor.allCases) {
-                                Text($0.name)
-                                    .foregroundColor(.bg)
-                                    .frame(maxWidth: .infinity)
-                                    .background($0.color)
-                                    .cornerRadius(8)
-                            }
-                        }
-                        .pickerStyle(.wheel)
-                        .frame(height: 100)
-                        .clipped()
-                        .labelsHidden()
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(appManager.tint.color, lineWidth: 2)
-                        )
-                    }
-                    
-                    // MARK: Loop sizes
-                    
-                    Divider()
-                    VStack {
-                        HStack {
-                            Text("Loop sizes")
-                                .font(.headline)
-                            Spacer()
-                        }
-                        ForEach(countManager.counts) { count in
-                            HStack(spacing: 16) {
-                                Image(systemName: countManager.selectedCountId == count.id ? "circle.fill" : "circle")
-                                    .foregroundColor(appManager.tint.color)
-                                TextField("Loop", text: Binding(
-                                    get: { String(count.loopSize) },
-                                    set: {
-                                        guard let loopSize = Int($0) else { return }
-                                        countManager.setLoopSize(loopSize, for: count.id)
-                                    }
-                                ))
-                                .focused($isFocused)
-                                .textFieldStyle(.roundedBorder)
-                                .keyboardType(.numberPad)
-                            }
-                        }
-                    }
-                    
-                    // MARK: Count goals
-                    
-                    Divider()
-                    VStack {
-                        HStack {
-                            Text("Count goals")
-                                .font(.headline)
-                            Spacer()
-                        }
-                        ForEach(countManager.counts) { count in
-                            HStack(spacing: 16) {
-                                Image(systemName: countManager.selectedCountId == count.id ? "circle.fill" : "circle")
-                                    .foregroundColor(appManager.tint.color)
-                                HStack(spacing: 8) {
-                                    Text("\(count.loopSize) x")
-                                    TextField("Goal", text: Binding(
-                                        get: { String(count.goal) },
-                                        set: {
-                                            guard let goal = Int($0) else { return }
-                                            countManager.setGoal(goal, for: count.id)
-                                        }
-                                    ))
-                                    .focused($isFocused)
-                                    .textFieldStyle(.roundedBorder)
-                                    .keyboardType(.numberPad)
-                                }
-                            }
-                        }
-                    }
-                    
+
                     // MARK: Hard reset all
-                    
-                    Divider()
+
                     Button {
                         showAlert = true
                     } label: {
                         Text("Hard reset all")
-                            .modifier(TintButtonTextStyle(tint: appManager.tint.color))
                     }
                 }
                 .padding()
@@ -144,9 +39,6 @@ struct SettingsView: View {
                     countManager.hardResetAll()
                 }
                 Button("Cancel", role: .cancel) { }
-            }
-            .onTapGesture {
-                isFocused = false
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
