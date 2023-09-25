@@ -8,27 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
-		2033E46729505D1C00485CE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46629505D1C00485CE9 /* ContentView.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
-		207FC7612951065B008A0335 /* CountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC75F2951065B008A0335 /* CountModel.swift */; };
-		207FC76829510686008A0335 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76629510686008A0335 /* CountView.swift */; };
-		20F3EFB92985633000310414 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFB82985633000310414 /* SettingsView.swift */; };
-		20F3EFBD2985692E00310414 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFBC2985692E00310414 /* AppManager.swift */; };
+		20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */; };
+		20CBA0602AC2278800366DE2 /* CountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA05F2AC2278800366DE2 /* CountScreen.swift */; };
+		20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */; };
 		20F3EFC62985A14400310414 /* CountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC52985A14400310414 /* CountManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2033E46129505D1C00485CE9 /* tasbih.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasbih.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2033E46429505D1C00485CE9 /* tasbihApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasbihApp.swift; sourceTree = "<group>"; };
-		2033E46629505D1C00485CE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2033E46829505D1E00485CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		207FC75F2951065B008A0335 /* CountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountModel.swift; sourceTree = "<group>"; };
-		207FC76629510686008A0335 /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
-		20F3EFB82985633000310414 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		20F3EFBC2985692E00310414 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartParticleModel.swift; sourceTree = "<group>"; };
+		20CBA05F2AC2278800366DE2 /* CountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountScreen.swift; sourceTree = "<group>"; };
+		20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsedHeartView.swift; sourceTree = "<group>"; };
 		20F3EFC52985A14400310414 /* CountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,9 +81,8 @@
 		2033E4732950688F00485CE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2033E46629505D1C00485CE9 /* ContentView.swift */,
-				2033E478295068D200485CE9 /* Count */,
-				20F3EFB72985631900310414 /* Settings */,
+				20CBA05F2AC2278800366DE2 /* CountScreen.swift */,
+				20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -95,7 +90,7 @@
 		2033E4742950689400485CE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				207FC75F2951065B008A0335 /* CountModel.swift */,
+				20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,26 +118,9 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		2033E478295068D200485CE9 /* Count */ = {
-			isa = PBXGroup;
-			children = (
-				207FC76629510686008A0335 /* CountView.swift */,
-			);
-			path = Count;
-			sourceTree = "<group>";
-		};
-		20F3EFB72985631900310414 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				20F3EFB82985633000310414 /* SettingsView.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		20F3EFBE2985698C00310414 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				20F3EFBC2985692E00310414 /* AppManager.swift */,
 				20F3EFC52985A14400310414 /* CountManager.swift */,
 			);
 			path = Manager;
@@ -218,13 +196,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20F3EFB92985633000310414 /* SettingsView.swift in Sources */,
-				20F3EFBD2985692E00310414 /* AppManager.swift in Sources */,
-				207FC76829510686008A0335 /* CountView.swift in Sources */,
-				207FC7612951065B008A0335 /* CountModel.swift in Sources */,
+				20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */,
+				20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
-				2033E46729505D1C00485CE9 /* ContentView.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
+				20CBA0602AC2278800366DE2 /* CountScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

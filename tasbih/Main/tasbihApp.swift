@@ -9,14 +9,10 @@ import SwiftUI
 
 @main
 struct tasbihApp: App {
-    
-    @StateObject var am = AppManager()
-    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CountScreen()
                 .preferredColorScheme(.dark)
-                .environmentObject(am)
         }
     }
 }
