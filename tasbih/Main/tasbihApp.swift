@@ -16,7 +16,6 @@ struct tasbihApp: App {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.dark)
-                .accentColor(am.tint.color)
                 .environmentObject(am)
         }
     }

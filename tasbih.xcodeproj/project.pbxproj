@@ -13,10 +13,8 @@
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
 		207FC7612951065B008A0335 /* CountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC75F2951065B008A0335 /* CountModel.swift */; };
 		207FC76829510686008A0335 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207FC76629510686008A0335 /* CountView.swift */; };
-		20E0F9B229A6582E00A97780 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E0F9B129A6582E00A97780 /* UserDefaults+Extension.swift */; };
 		20F3EFB92985633000310414 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFB82985633000310414 /* SettingsView.swift */; };
 		20F3EFBD2985692E00310414 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFBC2985692E00310414 /* AppManager.swift */; };
-		20F3EFC4298575F800310414 /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC3298575F800310414 /* TintColor.swift */; };
 		20F3EFC62985A14400310414 /* CountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC52985A14400310414 /* CountManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,10 +27,8 @@
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		207FC75F2951065B008A0335 /* CountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountModel.swift; sourceTree = "<group>"; };
 		207FC76629510686008A0335 /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
-		20E0F9B129A6582E00A97780 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		20F3EFB82985633000310414 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		20F3EFBC2985692E00310414 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
-		20F3EFC3298575F800310414 /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
 		20F3EFC52985A14400310414 /* CountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				207FC75F2951065B008A0335 /* CountModel.swift */,
-				20F3EFC3298575F800310414 /* TintColor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,7 +103,6 @@
 		2033E4752950689E00485CE9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2033E47A2950692500485CE9 /* Extension */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -135,14 +129,6 @@
 				207FC76629510686008A0335 /* CountView.swift */,
 			);
 			path = Count;
-			sourceTree = "<group>";
-		};
-		2033E47A2950692500485CE9 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				20E0F9B129A6582E00A97780 /* UserDefaults+Extension.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		20F3EFB72985631900310414 /* Settings */ = {
@@ -236,8 +222,6 @@
 				20F3EFBD2985692E00310414 /* AppManager.swift in Sources */,
 				207FC76829510686008A0335 /* CountView.swift in Sources */,
 				207FC7612951065B008A0335 /* CountModel.swift in Sources */,
-				20F3EFC4298575F800310414 /* TintColor.swift in Sources */,
-				20E0F9B229A6582E00A97780 /* UserDefaults+Extension.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
 				2033E46729505D1C00485CE9 /* ContentView.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
