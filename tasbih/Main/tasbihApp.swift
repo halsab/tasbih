@@ -13,6 +13,8 @@ struct tasbihApp: App {
         WindowGroup {
             CountScreen()
                 .preferredColorScheme(.dark)
+                .persistentSystemOverlays(.hidden)
+                .statusBar(hidden: true)
         }
     }
 }
