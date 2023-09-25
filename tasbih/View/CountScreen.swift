@@ -9,36 +9,27 @@ import SwiftUI
 
 struct CountScreen: View {
 
-    @StateObject var countManager = CountManager()
+    @StateObject var cm = CountManager()
 
-    @State private var beatAnimation = false
-    @State private var showPulses = false
     @State private var pulsedHearts: [HeartParticleModel] = []
 
     var body: some View {
         VStack {
             ZStack {
-                if showPulses {
-                    TimelineView(.animation(minimumInterval: 0.7, paused: false)) { timeline in
-                        Canvas { context, size in
-                            for heart in pulsedHearts {
-                                if let resolvedView = context.resolveSymbol(id: heart.id) {
-                                    let centerX = size.width / 2
-                                    let centerY = size.height / 2
-
-                                    context.draw(resolvedView, at: .init(x: centerX, y: centerY))
-                                }
-                            }
-                        } symbols: {
-                            ForEach(pulsedHearts) {
-                                PulsedHeartView()
-                                    .id($0.id)
+                TimelineView(.animation(minimumInterval: 0.7, paused: false)) { timeline in
+                    Canvas { context, size in
+                        for heart in pulsedHearts {
+                            if let resolvedView = context.resolveSymbol(id: heart.id) {
+                                let centerX = size.width / 2
+                                let centerY = size.height / 2
+                                
+                                context.draw(resolvedView, at: .init(x: centerX, y: centerY))
                             }
                         }
-                        .onChange(of: timeline.date) { oldValue, newValue in
-                            if beatAnimation {
-                                addPulsedHeart()
-                            }
+                    } symbols: {
+                        ForEach(pulsedHearts) {
+                            PulsedHeartView()
+                                .id($0.id)
                         }
                     }
                 }
@@ -46,25 +37,15 @@ struct CountScreen: View {
                 Image(systemName: "suit.heart.fill")
                     .font(.system(size: 100))
                     .foregroundStyle(.red.gradient)
-                    .symbolEffect(.bounce, options: !beatAnimation ? .default : .repeating.speed(1), value: beatAnimation)
+                    .symbolEffect(.bounce, options: .nonRepeating.speed(1.5), value: cm.countValue)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.bar, in: .rect(cornerRadius: 24))
-            .onChange(of: beatAnimation) { oldValue, newValue in
-                if newValue {
-                    showPulses = true
-                    addPulsedHeart()
-                }
+            .onTapGesture {
+                cm.countValue += 1
+                addPulsedHeart()
             }
-
-            Toggle("Beat Animation", isOn: $beatAnimation)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(.bar, in: .rect(cornerRadius: 16))
-                .padding(.top)
         }
-        .environmentObject(countManager)
-        .padding()
+        .environmentObject(cm)
     }
 
     private func addPulsedHeart() {

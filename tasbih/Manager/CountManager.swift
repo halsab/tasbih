@@ -9,7 +9,9 @@ import SwiftUI
 import Combine
 
 final class CountManager: ObservableObject {
-    
+
+    @Published var countValue = 0
+
     // MARK: Init
     
     init() {
