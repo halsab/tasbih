@@ -16,26 +16,24 @@ struct CountScreen: View {
     var body: some View {
         VStack {
             HStack {
-                VStack(alignment: .leading){
+                HStack(spacing: 0) {
                     Text("\(cm.loopSize) / ")
-                        .foregroundStyle(Color.gray) +
-                    Text(String(format: "%.2d", cm.currentLoopCount))
-                        .foregroundStyle(Color.red)
+                        .foregroundStyle(Color.gray)
+                        .font(.system(.body, design: .rounded, weight: .bold))
+                        .monospacedDigit()
+                    RollingText(value: $cm.currentLoopCount,
+                                font: .system(.body, design: .rounded, weight: .bold),
+                                foregroundColor: Color.red)
                 }
-                .multilineTextAlignment(.leading)
-                .font(.system(.body, design: .rounded, weight: .bold))
-                .monospacedDigit()
                 .padding()
                 .background(.ultraThinMaterial)
                 .clipShape(.rect(cornerRadius: 8))
 
                 Spacer()
                 
-                Text("\(cm.totalCounts)")
-                    .multilineTextAlignment(.trailing)
-                    .foregroundStyle(Color.red)
-                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
-                    .monospacedDigit()
+                RollingText(value: $cm.totalCounts,
+                            font: .system(.largeTitle, design: .rounded, weight: .bold),
+                            foregroundColor: Color.red)
             }
             .padding()
 
