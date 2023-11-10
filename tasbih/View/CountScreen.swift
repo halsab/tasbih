@@ -16,7 +16,21 @@ struct CountScreen: View {
     var body: some View {
         VStack {
             HStack {
+                VStack(alignment: .leading){
+                    Text("\(cm.loopSize) / ")
+                        .foregroundStyle(Color.gray) +
+                    Text(String(format: "%.2d", cm.currentLoopCount))
+                        .foregroundStyle(Color.red)
+                }
+                .multilineTextAlignment(.leading)
+                .font(.system(.body, design: .rounded, weight: .bold))
+                .monospacedDigit()
+                .padding()
+                .background(.ultraThinMaterial)
+                .clipShape(.rect(cornerRadius: 8))
+
                 Spacer()
+                
                 Text("\(cm.totalCounts)")
                     .multilineTextAlignment(.trailing)
                     .foregroundStyle(Color.red)
@@ -24,10 +38,6 @@ struct CountScreen: View {
                     .monospacedDigit()
             }
             .padding()
-//            .frame(maxWidth: .infinity)
-//            .background(.ultraThinMaterial)
-//            .clipShape(.rect(cornerRadius: 8))
-//            .padding()
 
             ZStack {
                 TimelineView(.animation(minimumInterval: 0.5, paused: false)) { timeline in
@@ -66,11 +76,11 @@ struct CountScreen: View {
                 cm.totalCounts = 0
             } label: {
                 Text("RESET")
-                    .foregroundStyle(Color.red.gradient)
-                    .font(.system(.body, design: .rounded, weight: .bold))
-                    .padding(.horizontal)
-                    .padding(.bottom)
             }
+            .buttonStyle(CustomButtonStyle())
+            .padding(.horizontal)
+            .padding(.bottom)
+
         }
         .environmentObject(cm)
     }

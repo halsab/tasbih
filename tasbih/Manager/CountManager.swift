@@ -11,25 +11,21 @@ import Combine
 final class CountManager: ObservableObject {
 
     @Published var totalCounts = 0
+    @Published var currentLoopCount = 0
     @Published var loopsCount = 0
     @Published var loopSize = 33
 
-    // MARK: Init
-    
+    private var anyCancellables = Set<AnyCancellable>()
+
     init() {
-        
+        $totalCounts
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] count in
+                currentLoopCount = totalCounts % loopSize
+                if count % loopSize == 0, count != 0 {
+                    loopsCount += 1
+                }
+            }
+            .store(in: &anyCancellables)
     }
-}
-
-// MARK: - Internal Methods
- 
-extension CountManager {
-
-}
-
-
-// MARK: - Private Helpers
-
-private extension CountManager {
-
 }
