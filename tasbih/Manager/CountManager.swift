@@ -10,12 +10,14 @@ import Combine
 
 final class CountManager: ObservableObject {
 
-    @Published var countValue = 0
+    @Published var totalCounts = 0
+    @Published var loopsCount = 0
+    @Published var loopSize = 33
 
     // MARK: Init
     
     init() {
-
+        
     }
 }
 

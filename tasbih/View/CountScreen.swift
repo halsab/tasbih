@@ -15,8 +15,22 @@ struct CountScreen: View {
 
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Text("\(cm.totalCounts)")
+                    .multilineTextAlignment(.trailing)
+                    .foregroundStyle(Color.red)
+                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                    .monospacedDigit()
+            }
+            .padding()
+//            .frame(maxWidth: .infinity)
+//            .background(.ultraThinMaterial)
+//            .clipShape(.rect(cornerRadius: 8))
+//            .padding()
+
             ZStack {
-                TimelineView(.animation(minimumInterval: 0.7, paused: false)) { timeline in
+                TimelineView(.animation(minimumInterval: 0.5, paused: false)) { timeline in
                     Canvas { context, size in
                         for heart in pulsedHearts {
                             if let resolvedView = context.resolveSymbol(id: heart.id) {
@@ -33,16 +47,29 @@ struct CountScreen: View {
                         }
                     }
                 }
+                .blur(radius: 15)
 
                 Image(systemName: "suit.heart.fill")
                     .font(.system(size: 100))
                     .foregroundStyle(.red.gradient)
-                    .symbolEffect(.bounce, options: .nonRepeating.speed(1.5), value: cm.countValue)
+                    .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: cm.totalCounts)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onTapGesture {
-                cm.countValue += 1
+                cm.totalCounts += 1
                 addPulsedHeart()
+            }
+            .sensoryFeedback(.impact(flexibility: .soft, intensity: 1), trigger: cm.totalCounts)
+            .sensoryFeedback(.success, trigger: cm.loopsCount)
+
+            Button {
+                cm.totalCounts = 0
+            } label: {
+                Text("RESET")
+                    .foregroundStyle(Color.red.gradient)
+                    .font(.system(.body, design: .rounded, weight: .bold))
+                    .padding(.horizontal)
+                    .padding(.bottom)
             }
         }
         .environmentObject(cm)
