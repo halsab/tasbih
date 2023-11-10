@@ -28,6 +28,16 @@ final class CountManager: ObservableObject {
                 hapticFeedback()
             }
             .store(in: &anyCancellables)
+
+        $loopSize
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] size in
+                currentLoopCount = totalCounts % size
+                if totalCounts % size == 0, totalCounts != 0 {
+                    loopsCount += 1
+                }
+            }
+            .store(in: &anyCancellables)
     }
 
     private func hapticFeedback() {

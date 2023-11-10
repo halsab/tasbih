@@ -10,24 +10,36 @@ import SwiftUI
 struct CountScreen: View {
 
     @StateObject var cm = CountManager()
-
     @State private var pulsedHearts: [HeartParticleModel] = []
 
     var body: some View {
         VStack {
             HStack {
-                HStack(spacing: 0) {
-                    Text("\(cm.loopSize) / ")
-                        .foregroundStyle(Color.gray)
-                        .font(.system(.body, design: .rounded, weight: .bold))
-                        .monospacedDigit()
-                    RollingText(value: $cm.currentLoopCount,
-                                font: .system(.body, design: .rounded, weight: .bold),
-                                foregroundColor: Color.red)
+                Menu {
+                    ForEach(LoopSize.allCases, id: \.self) { loopSize in
+                        Button {
+                            cm.loopSize = loopSize.rawValue
+                        } label: {
+                            Label(loopSize.title,
+                                  systemImage: cm.loopSize == loopSize.rawValue
+                                  ? loopSize.selectedIconName : "")
+                        }
+                    }
+                } label: {
+                    HStack(spacing: 0) {
+                        Text("\(cm.loopSize) /  ")
+                            .foregroundStyle(Color.gray)
+                            .font(.system(.body, design: .rounded, weight: .bold))
+                            .monospacedDigit()
+                        RollingText(value: $cm.currentLoopCount,
+                                    font: .system(.body, design: .rounded, weight: .bold),
+                                    foregroundColor: Color.red)
+                    }
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .clipShape(.rect(cornerRadius: 8))
                 }
-                .padding()
-                .background(.ultraThinMaterial)
-                .clipShape(.rect(cornerRadius: 8))
+                .animation(.smooth(duration: 0.25, extraBounce: 0.8), value: cm.loopSize)
 
                 Spacer()
                 
