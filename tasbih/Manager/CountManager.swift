@@ -25,7 +25,20 @@ final class CountManager: ObservableObject {
                 if count % loopSize == 0, count != 0 {
                     loopsCount += 1
                 }
+                hapticFeedback()
             }
             .store(in: &anyCancellables)
+    }
+
+    private func hapticFeedback() {
+        if currentLoopCount == 0 {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
+            generator.notificationOccurred(.success)
+        } else {
+            let generator = UIImpactFeedbackGenerator(style: .soft)
+            generator.prepare()
+            generator.impactOccurred()
+        }
     }
 }

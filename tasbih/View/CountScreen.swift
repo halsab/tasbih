@@ -67,8 +67,6 @@ struct CountScreen: View {
                 cm.totalCounts += 1
                 addPulsedHeart()
             }
-            .sensoryFeedback(.impact(flexibility: .soft, intensity: 1), trigger: cm.totalCounts)
-            .sensoryFeedback(.success, trigger: cm.loopsCount)
 
             Button {
                 cm.totalCounts = 0
