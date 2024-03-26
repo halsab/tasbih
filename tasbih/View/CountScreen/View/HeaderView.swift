@@ -49,17 +49,17 @@ struct HeaderView: View {
             Spacer(minLength: 0)
 
             HStack() {
-                Button {
-                    cm.isDesignMode.toggle()
-                } label: {
-                    Image(systemName: "wand.and.rays")
-                        .font(.title)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.red)
-
-                }
-                .padding(8)
-                .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isDesignMode)
+//                Button {
+//                    cm.isDesignMode.toggle()
+//                } label: {
+//                    Image(systemName: "wand.and.rays")
+//                        .font(.title)
+//                        .symbolRenderingMode(.hierarchical)
+//                        .foregroundStyle(.red)
+//
+//                }
+//                .padding(8)
+//                .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isDesignMode)
 
                 Button {
                     cm.isHapticEnabled.toggle()

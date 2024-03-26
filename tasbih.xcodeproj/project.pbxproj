@@ -51,6 +51,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		201892CF2BB2B9F500587796 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		201892D02BB2BA1F00587796 /* CountScreen */ = {
+			isa = PBXGroup;
+			children = (
+				20CBA05F2AC2278800366DE2 /* CountScreen.swift */,
+				201892D12BB2BA2B00587796 /* View */,
+			);
+			path = CountScreen;
+			sourceTree = "<group>";
+		};
+		201892D12BB2BA2B00587796 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				201892C92BB02C9F00587796 /* HeaderView.swift */,
+				201892CD2BB2ACFD00587796 /* CentralView.swift */,
+				201892CB2BB2ABAE00587796 /* FooterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		201892D22BB2BA4A00587796 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				20272DC92AFECA060002C00D /* RollingText.swift */,
+				20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +111,7 @@
 				20F3EFBE2985698C00310414 /* Manager */,
 				2033E4732950688F00485CE9 /* View */,
 				2033E4742950689400485CE9 /* Model */,
+				201892CF2BB2B9F500587796 /* Extension */,
 				2033E476295068A200485CE9 /* Resource */,
 				2033E46B29505D1E00485CE9 /* Preview Content */,
 			);
@@ -92,13 +129,8 @@
 		2033E4732950688F00485CE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				20CBA05F2AC2278800366DE2 /* CountScreen.swift */,
-				201892CD2BB2ACFD00587796 /* CentralView.swift */,
-				201892CB2BB2ABAE00587796 /* FooterView.swift */,
-				201892C92BB02C9F00587796 /* HeaderView.swift */,
-				20272DC92AFECA060002C00D /* RollingText.swift */,
-				20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */,
-				20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */,
+				201892D02BB2BA1F00587796 /* CountScreen */,
+				201892D22BB2BA4A00587796 /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
