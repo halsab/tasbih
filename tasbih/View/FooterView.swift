@@ -11,8 +11,6 @@ struct FooterView: View {
 
     @EnvironmentObject private var cm: CountManager
 
-    @State private var sliderValue: Double = 1
-
     private let buttonWidth: CGFloat = 90
     private let minSpacerLength: CGFloat = 0
 
@@ -20,9 +18,9 @@ struct FooterView: View {
         HStack {
             if cm.isAutoMode {
                 HStack {
-                    Slider(value: $sliderValue, in: 1...10, step: 1)
+                    Slider(value: $cm.autoModeSpeed, in: cm.autoModeSpeedRange, step: 1)
                         .tint(.red)
-                    Text(String(format: "%.0f", sliderValue))
+                    Text(String(format: "%.0f", cm.autoModeSpeed))
                         .foregroundStyle(.red.gradient)
                         .font(.system(.body, design: .rounded, weight: .bold))
                         .padding(.horizontal, 8)

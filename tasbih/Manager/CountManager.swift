@@ -19,10 +19,14 @@ final class CountManager: ObservableObject {
     @Published var isAutoPlay = false
 
     @Published var isDesignMode = false
-    @Published var isHapticEnabled = false
-    @Published var isSoundEnabled = false
 
     @Published var symbolName = ""
+
+    @AppStorage("isHapticEnabled") var isHapticEnabled = false
+    @AppStorage("isSoundEnabled") var isSoundEnabled = false
+    @AppStorage("autoModeSpeed") var autoModeSpeed: Double = 1
+
+    let autoModeSpeedRange: ClosedRange<Double> = 1...10
 
     private let manualSymbolName = "suit.heart.fill"
     private let autoPlaySymbolName = "play.fill"
