@@ -12,16 +12,49 @@ struct CountScreen: View {
     @StateObject var cm = CountManager()
 
     var body: some View {
-        VStack {
-            HeaderView()
-                .padding(.horizontal)
-                .padding(.top)
+        ZStack {
+            VStack {
+                HeaderView()
+                    .padding(.horizontal)
+                    .padding(.top)
 
-            CentralView()
+                CentralView()
+
+                FooterView()
+                    .padding(.horizontal)
+            }
             
-            FooterView()
-                .padding(.horizontal)
+            if cm.isDesignMode {
+                ZStack {
+                    Rectangle()
+                        .ignoresSafeArea()
+                        .background(.ultraThinMaterial)
 
+                    VStack {
+                        HStack {
+                            Spacer()
+
+                            Button {
+                                withAnimation {
+                                    cm.isDesignMode.toggle()
+                                }
+                            } label: {
+                                Image(systemName: "xmark.circle")
+                                    .font(.title)
+                                    .symbolRenderingMode(.hierarchical)
+                                    .foregroundStyle(Color.primary)
+
+                            }
+                            .padding(8)
+                            .background(.red)
+                            .clipShape(.rect(cornerRadius: 8))
+                        }
+
+                        Spacer()
+                    }
+                    .padding()
+                }
+            }
         }
         .environmentObject(cm)
     }

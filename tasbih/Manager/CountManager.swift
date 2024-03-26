@@ -43,6 +43,7 @@ final class CountManager: ObservableObject {
                     loopsCount += 1
                 }
                 hapticFeedback()
+                soundFeedback()
             }
             .store(in: &anyCancellables)
 
@@ -62,7 +63,6 @@ final class CountManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] isEnabled in
                 isAutoPlay = false
-                symbolName = isEnabled ? autoPlaySymbolName : manualSymbolName
             }
             .store(in: &anyCancellables)
 
@@ -87,8 +87,12 @@ final class CountManager: ObservableObject {
             totalCounts -= 1
         }
     }
+}
 
-    private func hapticFeedback() {
+// MARK: - Feedback methods
+
+private extension CountManager {
+    func hapticFeedback() {
         guard isHapticEnabled else { return }
         if currentLoopCount == 0 {
             let generator = UINotificationFeedbackGenerator()
@@ -99,5 +103,10 @@ final class CountManager: ObservableObject {
             generator.prepare()
             generator.impactOccurred()
         }
+    }
+
+    func soundFeedback() {
+        guard isSoundEnabled else { return }
+        // TODO: play sound
     }
 }
