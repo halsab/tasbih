@@ -8,6 +8,7 @@
 import Foundation
 
 enum LoopSize: Int, CaseIterable {
+    case xs = 7
     case s = 33
     case m = 100
     case l = 1000

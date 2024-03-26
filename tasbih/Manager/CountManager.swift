@@ -15,6 +15,19 @@ final class CountManager: ObservableObject {
     @Published var loopsCount = 0
     @Published var loopSize = 33
 
+    @Published var isAutoMode = false
+    @Published var isAutoPlay = false
+
+    @Published var isDesignMode = false
+    @Published var isHapticEnabled = false
+    @Published var isSoundEnabled = false
+
+    @Published var symbolName = ""
+
+    private let manualSymbolName = "suit.heart.fill"
+    private let autoPlaySymbolName = "play.fill"
+    private let autoStopSymbolName = "pause.fill"
+
     private var anyCancellables = Set<AnyCancellable>()
 
     init() {
@@ -38,9 +51,41 @@ final class CountManager: ObservableObject {
                 }
             }
             .store(in: &anyCancellables)
+
+        symbolName = manualSymbolName
+
+        $isAutoMode
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] isEnabled in
+                isAutoPlay = false
+                symbolName = isEnabled ? autoPlaySymbolName : manualSymbolName
+            }
+            .store(in: &anyCancellables)
+
+        $isAutoPlay
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] isPlay in
+                if isAutoMode {
+                    symbolName = isPlay ? autoStopSymbolName : autoPlaySymbolName
+                } else {
+                    symbolName = manualSymbolName
+                }
+            }
+            .store(in: &anyCancellables)
+    }
+
+    func reset() {
+        totalCounts = 0
+    }
+
+    func undo() {
+        if totalCounts > 0 {
+            totalCounts -= 1
+        }
     }
 
     private func hapticFeedback() {
+        guard isHapticEnabled else { return }
         if currentLoopCount == 0 {
             let generator = UINotificationFeedbackGenerator()
             generator.prepare()

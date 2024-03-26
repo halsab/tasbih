@@ -12,6 +12,6 @@ struct CustomButtonStyle: ButtonStyle {
         configuration.label
             .foregroundStyle(Color.red.gradient)
             .font(.system(.body, design: .rounded, weight: .bold))
-            .scaleEffect(configuration.isPressed ? 1.2 : 1.0)
+            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
     }
 }

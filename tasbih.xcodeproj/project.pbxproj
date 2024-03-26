@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892C92BB02C9F00587796 /* HeaderView.swift */; };
+		201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CB2BB2ABAE00587796 /* FooterView.swift */; };
+		201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CD2BB2ACFD00587796 /* CentralView.swift */; };
 		20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */; };
 		20272DCA2AFECA060002C00D /* RollingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DC92AFECA060002C00D /* RollingText.swift */; };
 		20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DCB2AFEDAFB0002C00D /* LoopSize.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		201892C92BB02C9F00587796 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		201892CB2BB2ABAE00587796 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		201892CD2BB2ACFD00587796 /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
 		20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		20272DC92AFECA060002C00D /* RollingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingText.swift; sourceTree = "<group>"; };
 		20272DCB2AFEDAFB0002C00D /* LoopSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSize.swift; sourceTree = "<group>"; };
@@ -87,6 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				20CBA05F2AC2278800366DE2 /* CountScreen.swift */,
+				201892CD2BB2ACFD00587796 /* CentralView.swift */,
+				201892CB2BB2ABAE00587796 /* FooterView.swift */,
+				201892C92BB02C9F00587796 /* HeaderView.swift */,
 				20272DC92AFECA060002C00D /* RollingText.swift */,
 				20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */,
 				20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */,
@@ -198,7 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */,
+				201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */,
+				201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */,
 				20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */,
+				201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */,
 				20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
 				20272DCA2AFECA060002C00D /* RollingText.swift in Sources */,
@@ -331,7 +343,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tasbih/Preview Content\"";
-				DEVELOPMENT_TEAM = F23Y362U6M;
+				DEVELOPMENT_TEAM = 8Q8RA4X8M6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -352,7 +364,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tatar.tasbih;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tatar.counter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -373,7 +385,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tasbih/Preview Content\"";
-				DEVELOPMENT_TEAM = F23Y362U6M;
+				DEVELOPMENT_TEAM = 8Q8RA4X8M6;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -394,7 +406,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tatar.tasbih;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tatar.counter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
