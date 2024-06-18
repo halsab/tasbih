@@ -15,22 +15,8 @@ final class CountManager: ObservableObject {
     @Published var loopsCount = 0
     @Published var loopSize = 33
 
-    @Published var isAutoMode = false
-    @Published var isAutoPlay = false
-
-    @Published var isDesignMode = false
-
-    @Published var symbolName = ""
-
     @AppStorage("isHapticEnabled") var isHapticEnabled = false
     @AppStorage("isSoundEnabled") var isSoundEnabled = false
-    @AppStorage("autoModeSpeed") var autoModeSpeed: Double = 1
-
-    let autoModeSpeedRange: ClosedRange<Double> = 1...10
-
-    private let manualSymbolName = "suit.heart.fill"
-    private let autoPlaySymbolName = "play.fill"
-    private let autoStopSymbolName = "pause.fill"
 
     private var anyCancellables = Set<AnyCancellable>()
 
@@ -53,26 +39,6 @@ final class CountManager: ObservableObject {
                 currentLoopCount = totalCounts % size
                 if totalCounts % size == 0, totalCounts != 0 {
                     loopsCount += 1
-                }
-            }
-            .store(in: &anyCancellables)
-
-        symbolName = manualSymbolName
-
-        $isAutoMode
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] isEnabled in
-                isAutoPlay = false
-            }
-            .store(in: &anyCancellables)
-
-        $isAutoPlay
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] isPlay in
-                if isAutoMode {
-                    symbolName = isPlay ? autoStopSymbolName : autoPlaySymbolName
-                } else {
-                    symbolName = manualSymbolName
                 }
             }
             .store(in: &anyCancellables)

@@ -23,38 +23,6 @@ struct CountScreen: View {
                 FooterView()
                     .padding(.horizontal)
             }
-            
-            if cm.isDesignMode {
-                ZStack {
-                    Rectangle()
-                        .ignoresSafeArea()
-                        .background(.ultraThinMaterial)
-
-                    VStack {
-                        HStack {
-                            Spacer()
-
-                            Button {
-                                withAnimation {
-                                    cm.isDesignMode.toggle()
-                                }
-                            } label: {
-                                Image(systemName: "xmark.circle")
-                                    .font(.title)
-                                    .symbolRenderingMode(.hierarchical)
-                                    .foregroundStyle(Color.primary)
-
-                            }
-                            .padding(8)
-                            .background(.red)
-                            .clipShape(.rect(cornerRadius: 8))
-                        }
-
-                        Spacer()
-                    }
-                    .padding()
-                }
-            }
         }
         .environmentObject(cm)
     }

@@ -27,26 +27,22 @@ struct CentralView: View {
                     }
                 } symbols: {
                     ForEach(pulsedHearts) {
-                        PulsedHeartView(symbolName: $cm.symbolName)
+                        PulsedHeartView()
                             .id($0.id)
                     }
                 }
             }
             .blur(radius: 15)
 
-            Image(systemName: cm.symbolName)
+            Image(systemName: "suit.heart.fill")
                 .font(.system(size: 100))
                 .foregroundStyle(.red.gradient)
                 .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: cm.totalCounts)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
-            if cm.isAutoMode {
-                cm.isAutoPlay.toggle()
-            } else {
-                cm.totalCounts += 1
-                addPulsedHeart()
-            }
+            cm.totalCounts += 1
+            addPulsedHeart()
         }
     }
 

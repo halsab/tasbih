@@ -9,12 +9,10 @@ import SwiftUI
 
 struct PulsedHeartView: View {
 
-    @Binding var symbolName: String
-
     @State private var startAnimation = false
     
     var body: some View {
-        Image(systemName: symbolName)
+        Image(systemName: "suit.heart.fill")
             .font(.system(size: 100))
             .foregroundStyle(.red)
             .background(content: {
@@ -36,6 +34,6 @@ struct PulsedHeartView: View {
 }
 
 #Preview {
-    PulsedHeartView(symbolName: .constant("suit.heart.fill"))
+    PulsedHeartView()
         .preferredColorScheme(.dark)
 }
