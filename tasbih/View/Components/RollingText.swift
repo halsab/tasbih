@@ -29,7 +29,6 @@ struct RollingText: View {
 
                             VStack(spacing: 0) {
                                 ForEach(0...9, id: \.self) { number in
-//                                    Text(String(format: "%.\(2)d", number))
                                     Text("\(number)")
                                         .foregroundStyle(foregroundColor)
                                         .font(font)
@@ -53,17 +52,9 @@ struct RollingText: View {
         }
         .onChange(of: value) { _, _ in
             let extra = "\(value)".count - animationRange.count
-            if extra > 0 {
-                for _ in 0..<extra {
-                    withAnimation(.easeIn(duration: 0.1)) {
-                        animationRange.append(0)
-                    }
-                }
-            } else {
-                for _ in 0..<(-extra) {
-                    withAnimation(.easeIn(duration: 0.1)) {
-                        animationRange.removeLast()
-                    }
+            for _ in 0..<extra {
+                withAnimation(.easeIn(duration: 0.1)) {
+                    animationRange.append(0)
                 }
             }
             

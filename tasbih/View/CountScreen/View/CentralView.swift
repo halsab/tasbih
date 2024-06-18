@@ -34,7 +34,7 @@ struct CentralView: View {
             }
             .blur(radius: 15)
 
-            Image(systemName: "suit.heart.fill")
+            Image(systemName: .image.button.count)
                 .font(.system(size: 100))
                 .foregroundStyle(.red.gradient)
                 .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: cm.totalCounts)

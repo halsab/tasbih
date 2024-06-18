@@ -13,10 +13,10 @@ final class CountManager: ObservableObject {
     @Published var totalCounts = 0
     @Published var currentLoopCount = 0
     @Published var loopsCount = 0
-    @Published var loopSize = 33
+    @Published var loopSize: LoopSize = .m
 
-    @AppStorage("isHapticEnabled") var isHapticEnabled = false
-    @AppStorage("isSoundEnabled") var isSoundEnabled = false
+    @AppStorage(.storageKey.haptic) var isHapticEnabled = false
+    @AppStorage(.storageKey.sound) var isSoundEnabled = false
 
     private var anyCancellables = Set<AnyCancellable>()
 
@@ -24,8 +24,8 @@ final class CountManager: ObservableObject {
         $totalCounts
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] count in
-                currentLoopCount = totalCounts % loopSize
-                if count % loopSize == 0, count != 0 {
+                currentLoopCount = totalCounts % loopSize.rawValue
+                if count % loopSize.rawValue == 0, count != 0 {
                     loopsCount += 1
                 }
                 hapticFeedback()
@@ -36,8 +36,8 @@ final class CountManager: ObservableObject {
         $loopSize
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] size in
-                currentLoopCount = totalCounts % size
-                if totalCounts % size == 0, totalCounts != 0 {
+                currentLoopCount = totalCounts % size.rawValue
+                if totalCounts % size.rawValue == 0, totalCounts != 0 {
                     loopsCount += 1
                 }
             }

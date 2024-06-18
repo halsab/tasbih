@@ -11,8 +11,6 @@ struct FooterView: View {
 
     @EnvironmentObject private var cm: CountManager
 
-    private let buttonWidth: CGFloat = 90
-    private let minSpacerLength: CGFloat = 0
     private let bounceAnimationSpeed: Double = 1.3
 
     var body: some View {
@@ -20,25 +18,21 @@ struct FooterView: View {
             Button {
                 cm.reset()
             } label: {
-                Text("RESET")
+                Text(String.text.button.reset)
             }
             .padding()
-            .frame(width: buttonWidth)
             .buttonStyle(CustomButtonStyle())
 
-            Spacer(minLength: minSpacerLength)
+            Spacer()
 
             HStack() {
                 Button {
                     cm.isHapticEnabled.toggle()
                 } label: {
-                    Image(systemName: cm.isHapticEnabled
-                          ? "iphone.radiowaves.left.and.right.circle.fill"
-                          : "iphone.radiowaves.left.and.right.circle"
-                    )
-                    .font(.title)
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(.red)
+                    Image(systemName: cm.isHapticEnabled ? .image.haptic.on : .image.haptic.off)
+                        .font(.title)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(.red)
 
                 }
                 .padding(8)
@@ -48,13 +42,10 @@ struct FooterView: View {
                 Button {
                     cm.isSoundEnabled.toggle()
                 } label: {
-                    Image(systemName: cm.isSoundEnabled
-                          ? "speaker.wave.2.circle.fill"
-                          : "speaker.wave.2.circle"
-                    )
-                    .font(.title)
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(.red)
+                    Image(systemName: cm.isSoundEnabled ? .image.sound.on : .image.sound.off)
+                        .font(.title)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(.red)
 
                 }
                 .padding(8)
@@ -62,15 +53,14 @@ struct FooterView: View {
                 .contentTransition(.symbolEffect(.replace))
             }
 
-            Spacer(minLength: minSpacerLength)
-
+            Spacer()
+            
             Button {
                 cm.undo()
             } label: {
-                Text("UNDO")
+                Text(String.text.button.undo)
             }
             .padding()
-            .frame(width: buttonWidth)
             .buttonStyle(CustomButtonStyle())
         }
     }
@@ -80,4 +70,5 @@ struct FooterView: View {
     FooterView()
         .environmentObject(CountManager())
         .padding()
+        .preferredColorScheme(.dark)
 }

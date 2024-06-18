@@ -10,6 +10,9 @@
 		200888B82C2179430053930F /* Font+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888B72C2179430053930F /* Font+extension.swift */; };
 		200888BA2C2179650053930F /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888B92C2179650053930F /* Color+extension.swift */; };
 		200888BC2C2179CF0053930F /* ShapeStyle+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */; };
+		200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BD2C2182FC0053930F /* String+Image+Extension.swift */; };
+		200888C02C2184160053930F /* String+Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BF2C2184160053930F /* String+Text+Extension.swift */; };
+		200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888C12C218DED0053930F /* String+AppStorage+Extension.swift */; };
 		201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892C92BB02C9F00587796 /* HeaderView.swift */; };
 		201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CB2BB2ABAE00587796 /* FooterView.swift */; };
 		201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CD2BB2ACFD00587796 /* CentralView.swift */; };
@@ -29,6 +32,9 @@
 		200888B72C2179430053930F /* Font+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+extension.swift"; sourceTree = "<group>"; };
 		200888B92C2179650053930F /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
 		200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+extension.swift"; sourceTree = "<group>"; };
+		200888BD2C2182FC0053930F /* String+Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Image+Extension.swift"; sourceTree = "<group>"; };
+		200888BF2C2184160053930F /* String+Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Text+Extension.swift"; sourceTree = "<group>"; };
+		200888C12C218DED0053930F /* String+AppStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AppStorage+Extension.swift"; sourceTree = "<group>"; };
 		201892C92BB02C9F00587796 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		201892CB2BB2ABAE00587796 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		201892CD2BB2ACFD00587796 /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
@@ -64,6 +70,9 @@
 				200888B72C2179430053930F /* Font+extension.swift */,
 				200888B92C2179650053930F /* Color+extension.swift */,
 				200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */,
+				200888BD2C2182FC0053930F /* String+Image+Extension.swift */,
+				200888BF2C2184160053930F /* String+Text+Extension.swift */,
+				200888C12C218DED0053930F /* String+AppStorage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -253,6 +262,8 @@
 				201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */,
 				20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */,
 				201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */,
+				200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */,
+				200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */,
 				200888B82C2179430053930F /* Font+extension.swift in Sources */,
 				20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
@@ -260,6 +271,7 @@
 				20272DCA2AFECA060002C00D /* RollingText.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
 				20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */,
+				200888C02C2184160053930F /* String+Text+Extension.swift in Sources */,
 				20CBA0602AC2278800366DE2 /* CountScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

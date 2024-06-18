@@ -12,12 +12,27 @@ enum LoopSize: Int, CaseIterable {
     case s = 33
     case m = 100
     case l = 1000
+    case infinity = 999999
 
     var title: String {
-        "Mode \(rawValue)"
+        switch self {
+        case .infinity:
+            "Mode " + .text.icon.infinity
+        default:
+            "Mode \(rawValue)"
+        }
+    }
+
+    var shortTitle: String {
+        switch self {
+        case .infinity:
+            .text.icon.infinity
+        default:
+            "\(rawValue)"
+        }
     }
 
     var selectedIconName: String {
-        "checkmark"
+        .image.icon.selected
     }
 }

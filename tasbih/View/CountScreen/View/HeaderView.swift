@@ -23,15 +23,15 @@ struct HeaderView: View {
                 Menu {
                     ForEach(LoopSize.allCases, id: \.self) { loopSize in
                         Button {
-                            cm.loopSize = loopSize.rawValue
+                            cm.loopSize = loopSize
                         } label: {
                             Label(loopSize.title,
-                                  systemImage: cm.loopSize == loopSize.rawValue
+                                  systemImage: cm.loopSize == loopSize
                                   ? loopSize.selectedIconName : "")
                         }
                     }
                 } label: {
-                    Text("\(cm.loopSize)")
+                    Text(cm.loopSize.shortTitle)
                         .foregroundStyle(Color.app.tint)
                         .font(.app.mTitle)
                         .padding(.vertical, 6)
@@ -41,9 +41,14 @@ struct HeaderView: View {
                 }
             }
 
-            ProgressView(value: Double(cm.currentLoopCount), total: Double(cm.loopSize))
-                .tint(.app.tint)
-                .animation(.easeInOut, value: cm.currentLoopCount)
+            switch cm.loopSize {
+            case .infinity:
+                EmptyView()
+            default:
+                ProgressView(value: Double(cm.currentLoopCount), total: Double(cm.loopSize.rawValue))
+                    .tint(.app.tint)
+                    .animation(.easeInOut, value: cm.currentLoopCount)
+            }
         }
     }
 }
