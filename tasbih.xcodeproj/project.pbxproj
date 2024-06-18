@@ -13,6 +13,7 @@
 		200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BD2C2182FC0053930F /* String+Image+Extension.swift */; };
 		200888C02C2184160053930F /* String+Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BF2C2184160053930F /* String+Text+Extension.swift */; };
 		200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888C12C218DED0053930F /* String+AppStorage+Extension.swift */; };
+		200888CA2C2197140053930F /* click-tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 200888C92C2197140053930F /* click-tick.wav */; };
 		201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892C92BB02C9F00587796 /* HeaderView.swift */; };
 		201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CB2BB2ABAE00587796 /* FooterView.swift */; };
 		201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CD2BB2ACFD00587796 /* CentralView.swift */; };
@@ -35,6 +36,7 @@
 		200888BD2C2182FC0053930F /* String+Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Image+Extension.swift"; sourceTree = "<group>"; };
 		200888BF2C2184160053930F /* String+Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Text+Extension.swift"; sourceTree = "<group>"; };
 		200888C12C218DED0053930F /* String+AppStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AppStorage+Extension.swift"; sourceTree = "<group>"; };
+		200888C92C2197140053930F /* click-tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "click-tick.wav"; sourceTree = "<group>"; };
 		201892C92BB02C9F00587796 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		201892CB2BB2ABAE00587796 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		201892CD2BB2ACFD00587796 /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		2033E46329505D1C00485CE9 /* tasbih */ = {
 			isa = PBXGroup;
 			children = (
+				200888C92C2197140053930F /* click-tick.wav */,
 				2033E46A29505D1E00485CE9 /* tasbih.entitlements */,
 				2033E477295068B200485CE9 /* Main */,
 				20F3EFBE2985698C00310414 /* Manager */,
@@ -244,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				200888CA2C2197140053930F /* click-tick.wav in Resources */,
 				2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */,
 				2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */,
 			);

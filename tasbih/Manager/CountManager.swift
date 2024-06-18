@@ -7,17 +7,19 @@
 
 import SwiftUI
 import Combine
+import AVFoundation
 
 final class CountManager: ObservableObject {
 
     @Published var totalCounts = 0
     @Published var currentLoopCount = 0
     @Published var loopsCount = 0
-    @Published var loopSize: LoopSize = .m
+    @Published var loopSize: LoopSize = .s
 
     @AppStorage(.storageKey.haptic) var isHapticEnabled = false
     @AppStorage(.storageKey.sound) var isSoundEnabled = false
 
+    private var player: AVAudioPlayer?
     private var anyCancellables = Set<AnyCancellable>()
 
     init() {
@@ -73,6 +75,23 @@ private extension CountManager {
 
     func soundFeedback() {
         guard isSoundEnabled else { return }
-        // TODO: play sound
+        playSound()
+    }
+}
+
+// MARK: - Sound Effect
+
+private extension CountManager {
+    func playSound() {
+        guard let soundURL = Bundle.main.url(forResource: "click-tick", withExtension: "wav") else {
+            return
+        }
+
+        do {
+            player = try AVAudioPlayer(contentsOf: soundURL)
+        } catch {
+            print("Failed to load the sound: \(error)")
+        }
+        player?.play()
     }
 }
