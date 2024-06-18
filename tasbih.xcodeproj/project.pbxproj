@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200888B82C2179430053930F /* Font+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888B72C2179430053930F /* Font+extension.swift */; };
+		200888BA2C2179650053930F /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888B92C2179650053930F /* Color+extension.swift */; };
+		200888BC2C2179CF0053930F /* ShapeStyle+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */; };
 		201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892C92BB02C9F00587796 /* HeaderView.swift */; };
 		201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CB2BB2ABAE00587796 /* FooterView.swift */; };
 		201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CD2BB2ACFD00587796 /* CentralView.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		200888B72C2179430053930F /* Font+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+extension.swift"; sourceTree = "<group>"; };
+		200888B92C2179650053930F /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
+		200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+extension.swift"; sourceTree = "<group>"; };
 		201892C92BB02C9F00587796 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		201892CB2BB2ABAE00587796 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		201892CD2BB2ACFD00587796 /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
@@ -55,6 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */,
+				200888B72C2179430053930F /* Font+extension.swift */,
+				200888B92C2179650053930F /* Color+extension.swift */,
+				200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -239,12 +248,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */,
+				200888BA2C2179650053930F /* Color+extension.swift in Sources */,
 				201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */,
 				201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */,
 				20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */,
 				201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */,
+				200888B82C2179430053930F /* Font+extension.swift in Sources */,
 				20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
+				200888BC2C2179CF0053930F /* ShapeStyle+extension.swift in Sources */,
 				20272DCA2AFECA060002C00D /* RollingText.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
 				20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */,
