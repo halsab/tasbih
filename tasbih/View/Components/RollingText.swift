@@ -52,9 +52,18 @@ struct RollingText: View {
         }
         .onChange(of: value) { _, _ in
             let extra = "\(value)".count - animationRange.count
-            for _ in 0..<extra {
-                withAnimation(.easeIn(duration: 0.1)) {
-                    animationRange.append(0)
+
+            if extra > 0 {
+                for _ in 0..<extra {
+                    withAnimation(.easeIn(duration: 0.1)) {
+                        animationRange.append(0)
+                    }
+                }
+            } else {
+                for _ in 0..<(-extra) {
+                    withAnimation(.easeIn(duration: 0.1)) {
+                        animationRange.removeLast()
+                    }
                 }
             }
             
