@@ -44,6 +44,14 @@ final class CountManager: ObservableObject {
                 }
             }
             .store(in: &anyCancellables)
+
+        if let soundURL = Bundle.main.url(forResource: "click-tick", withExtension: "wav") {
+            do {
+                player = try AVAudioPlayer(contentsOf: soundURL)
+            } catch {
+                print("Failed to load the sound: \(error)")
+            }
+        }
     }
 
     func reset() {
@@ -83,15 +91,9 @@ private extension CountManager {
 
 private extension CountManager {
     func playSound() {
-        guard let soundURL = Bundle.main.url(forResource: "click-tick", withExtension: "wav") else {
-            return
+        #warning("Fix bug. Sound playing only in headphones")
+        DispatchQueue.global().async {
+            self.player?.play()
         }
-
-        do {
-            player = try AVAudioPlayer(contentsOf: soundURL)
-        } catch {
-            print("Failed to load the sound: \(error)")
-        }
-        player?.play()
     }
 }
