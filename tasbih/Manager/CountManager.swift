@@ -27,21 +27,9 @@ final class CountManager: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] count in
                 currentLoopCount = totalCounts % loopSize.rawValue
-                if count % loopSize.rawValue == 0, count != 0 {
-                    loopsCount += 1
-                }
+                loopsCount = totalCounts / loopSize.rawValue
                 hapticFeedback()
                 soundFeedback()
-            }
-            .store(in: &anyCancellables)
-
-        $loopSize
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] size in
-                currentLoopCount = totalCounts % size.rawValue
-                if totalCounts % size.rawValue == 0, totalCounts != 0 {
-                    loopsCount += 1
-                }
             }
             .store(in: &anyCancellables)
 
@@ -82,8 +70,8 @@ private extension CountManager {
     }
 
     func soundFeedback() {
-        guard isSoundEnabled else { return }
-        playSound()
+//        guard isSoundEnabled else { return }
+//        playSound()
     }
 }
 

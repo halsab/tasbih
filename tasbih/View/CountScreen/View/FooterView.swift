@@ -39,18 +39,18 @@ struct FooterView: View {
                 .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isHapticEnabled)
                 .contentTransition(.symbolEffect(.replace))
 
-                Button {
-                    cm.isSoundEnabled.toggle()
-                } label: {
-                    Image(systemName: cm.isSoundEnabled ? .image.sound.on : .image.sound.off)
-                        .font(.title)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.red)
-
-                }
-                .padding(8)
-                .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isSoundEnabled)
-                .contentTransition(.symbolEffect(.replace))
+//                Button {
+//                    cm.isSoundEnabled.toggle()
+//                } label: {
+//                    Image(systemName: cm.isSoundEnabled ? .image.sound.on : .image.sound.off)
+//                        .font(.title)
+//                        .symbolRenderingMode(.hierarchical)
+//                        .foregroundStyle(.red)
+//
+//                }
+//                .padding(8)
+//                .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isSoundEnabled)
+//                .contentTransition(.symbolEffect(.replace))
             }
 
             Spacer()

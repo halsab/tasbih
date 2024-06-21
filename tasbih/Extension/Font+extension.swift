@@ -11,5 +11,6 @@ extension Font {
     enum app {
         static let mTitle: Font = .system(.body, design: .rounded, weight: .bold)
         static let lTitle: Font = .system(.largeTitle, design: .rounded, weight: .bold)
+        static let footnote: Font = .system(.footnote, design: .rounded, weight: .light)
     }
 }

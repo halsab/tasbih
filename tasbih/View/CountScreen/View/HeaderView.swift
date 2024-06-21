@@ -13,6 +13,24 @@ struct HeaderView: View {
 
     var body: some View {
         VStack(spacing: 6) {
+            switch cm.loopSize {
+            case .infinity:
+                EmptyView()
+            default:
+                ProgressView(value: Double(cm.currentLoopCount), total: Double(cm.loopSize.rawValue)) {
+                    HStack {
+                        Text("\(cm.currentLoopCount)")
+                        Spacer()
+                        Text("x\(cm.loopsCount)")
+                    }
+                    .font(.app.footnote)
+                    .foregroundStyle(Color.app.tint)
+                    .monospaced()
+                }
+                .tint(.app.tint)
+                .animation(.easeInOut, value: cm.currentLoopCount)
+            }
+
             HStack {
                 RollingText(value: $cm.totalCounts,
                             font: .app.lTitle,
@@ -24,6 +42,7 @@ struct HeaderView: View {
                     ForEach(LoopSize.allCases, id: \.self) { loopSize in
                         Button {
                             cm.loopSize = loopSize
+                            cm.totalCounts = cm.totalCounts
                         } label: {
                             Label(loopSize.title,
                                   systemImage: cm.loopSize == loopSize
@@ -39,15 +58,6 @@ struct HeaderView: View {
                         .background(.ultraThinMaterial)
                         .clipShape(.capsule)
                 }
-            }
-
-            switch cm.loopSize {
-            case .infinity:
-                EmptyView()
-            default:
-                ProgressView(value: Double(cm.currentLoopCount), total: Double(cm.loopSize.rawValue))
-                    .tint(.app.tint)
-                    .animation(.easeInOut, value: cm.currentLoopCount)
             }
         }
     }
