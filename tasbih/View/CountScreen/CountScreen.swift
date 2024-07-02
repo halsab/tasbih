@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CountScreen: View {
 
     @StateObject var cm = CountManager()
+    @Environment(\.modelContext) var modelContext
+    @Query var counts: [CountModel]
 
     var body: some View {
         ZStack {
@@ -25,6 +28,17 @@ struct CountScreen: View {
             }
         }
         .environmentObject(cm)
+    }
+
+    private func addNewCount(_ model: CountModel) {
+        modelContext.insert(model)
+    }
+
+    private func deleteCounts(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let count = counts[index]
+            modelContext.delete(count)
+        }
     }
 }
 

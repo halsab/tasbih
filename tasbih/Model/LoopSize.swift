@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoopSize: Int, CaseIterable {
+enum LoopSize: Int, CaseIterable, Codable {
     case xs = 7
     case s = 33
     case m = 100

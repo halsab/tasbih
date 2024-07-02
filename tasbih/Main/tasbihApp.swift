@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct tasbihApp: App {
@@ -16,5 +17,6 @@ struct tasbihApp: App {
                 .persistentSystemOverlays(.hidden)
                 .statusBar(hidden: true)
         }
+        .modelContainer(for: CountModel.self)
     }
 }

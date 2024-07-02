@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Combine
-import AVFoundation
+import SwiftData
 
 final class CountManager: ObservableObject {
 
@@ -17,10 +17,11 @@ final class CountManager: ObservableObject {
     @Published var loopSize: LoopSize = .s
 
     @AppStorage(.storageKey.haptic) var isHapticEnabled = false
-    @AppStorage(.storageKey.sound) var isSoundEnabled = false
 
-    private var player: AVAudioPlayer?
     private var anyCancellables = Set<AnyCancellable>()
+
+    private let hardHapticFeedback = UINotificationFeedbackGenerator()
+    private let softHapticFeedback = UIImpactFeedbackGenerator(style: .soft)
 
     init() {
         $totalCounts
@@ -29,17 +30,8 @@ final class CountManager: ObservableObject {
                 currentLoopCount = totalCounts % loopSize.rawValue
                 loopsCount = totalCounts / loopSize.rawValue
                 hapticFeedback()
-                soundFeedback()
             }
             .store(in: &anyCancellables)
-
-        if let soundURL = Bundle.main.url(forResource: "click-tick", withExtension: "wav") {
-            do {
-                player = try AVAudioPlayer(contentsOf: soundURL)
-            } catch {
-                print("Failed to load the sound: \(error)")
-            }
-        }
     }
 
     func reset() {
@@ -59,29 +51,10 @@ private extension CountManager {
     func hapticFeedback() {
         guard isHapticEnabled else { return }
         if currentLoopCount == 0 {
-            let generator = UINotificationFeedbackGenerator()
-            generator.prepare()
-            generator.notificationOccurred(.success)
+            hardHapticFeedback.notificationOccurred(.success)
         } else {
-            let generator = UIImpactFeedbackGenerator(style: .soft)
-            generator.prepare()
-            generator.impactOccurred()
-        }
-    }
-
-    func soundFeedback() {
-//        guard isSoundEnabled else { return }
-//        playSound()
-    }
-}
-
-// MARK: - Sound Effect
-
-private extension CountManager {
-    func playSound() {
-        #warning("Fix bug. Sound playing only in headphones")
-        DispatchQueue.global().async {
-            self.player?.play()
+            softHapticFeedback.impactOccurred()
+            softHapticFeedback.prepare()
         }
     }
 }
