@@ -23,8 +23,6 @@
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
-		208B2E102C33DA0B00560CE2 /* ModeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208B2E0F2C33DA0B00560CE2 /* ModeSelectorView.swift */; };
-		208B2E122C33DB2B00560CE2 /* CountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208B2E112C33DB2B00560CE2 /* CountModel.swift */; };
 		20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */; };
 		20CBA0602AC2278800366DE2 /* CountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA05F2AC2278800366DE2 /* CountScreen.swift */; };
 		20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */; };
@@ -50,8 +48,6 @@
 		2033E46829505D1E00485CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		208B2E0F2C33DA0B00560CE2 /* ModeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectorView.swift; sourceTree = "<group>"; };
-		208B2E112C33DB2B00560CE2 /* CountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountModel.swift; sourceTree = "<group>"; };
 		20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartParticleModel.swift; sourceTree = "<group>"; };
 		20CBA05F2AC2278800366DE2 /* CountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountScreen.swift; sourceTree = "<group>"; };
 		20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsedHeartView.swift; sourceTree = "<group>"; };
@@ -107,7 +103,6 @@
 			children = (
 				20272DC92AFECA060002C00D /* RollingText.swift */,
 				20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */,
-				208B2E0F2C33DA0B00560CE2 /* ModeSelectorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -166,7 +161,6 @@
 			children = (
 				20272DCB2AFEDAFB0002C00D /* LoopSize.swift */,
 				20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */,
-				208B2E112C33DB2B00560CE2 /* CountModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,13 +269,11 @@
 				200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */,
 				200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */,
 				200888B82C2179430053930F /* Font+extension.swift in Sources */,
-				208B2E122C33DB2B00560CE2 /* CountModel.swift in Sources */,
 				20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
 				200888BC2C2179CF0053930F /* ShapeStyle+extension.swift in Sources */,
 				20272DCA2AFECA060002C00D /* RollingText.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
-				208B2E102C33DA0B00560CE2 /* ModeSelectorView.swift in Sources */,
 				20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */,
 				200888C02C2184160053930F /* String+Text+Extension.swift in Sources */,
 				20CBA0602AC2278800366DE2 /* CountScreen.swift in Sources */,

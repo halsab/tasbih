@@ -17,6 +17,5 @@ struct tasbihApp: App {
                 .persistentSystemOverlays(.hidden)
                 .statusBar(hidden: true)
         }
-        .modelContainer(for: CountModel.self)
     }
 }

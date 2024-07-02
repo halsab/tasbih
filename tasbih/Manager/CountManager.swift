@@ -17,6 +17,7 @@ final class CountManager: ObservableObject {
     @Published var loopSize: LoopSize = .s
 
     @AppStorage(.storageKey.haptic) var isHapticEnabled = false
+    @AppStorage(.storageKey.totalCount) var storedTotalCounts = 0
 
     private var anyCancellables = Set<AnyCancellable>()
 
@@ -24,9 +25,11 @@ final class CountManager: ObservableObject {
     private let softHapticFeedback = UIImpactFeedbackGenerator(style: .soft)
 
     init() {
+        totalCounts = storedTotalCounts
         $totalCounts
             .receive(on: DispatchQueue.main)
             .sink { [unowned self] count in
+                storedTotalCounts = totalCounts
                 currentLoopCount = totalCounts % loopSize.rawValue
                 loopsCount = totalCounts / loopSize.rawValue
                 hapticFeedback()

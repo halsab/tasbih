@@ -11,5 +11,6 @@ extension String {
     enum storageKey {
         static let haptic = "isHapticEnabled"
         static let sound = "isSoundEnabled"
+        static let totalCount = "totalCount"
     }
 }
