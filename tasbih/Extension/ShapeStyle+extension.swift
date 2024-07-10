@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension ShapeStyle where Self == Color {
-    static var tint: Color {
-        .app.tint
+    static func shape(_ color: Color) -> Color {
+        color
     }
 }

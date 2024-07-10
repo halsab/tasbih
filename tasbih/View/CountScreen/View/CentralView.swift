@@ -36,7 +36,7 @@ struct CentralView: View {
 
             Image(systemName: .image.button.count)
                 .font(.system(size: 100))
-                .foregroundStyle(.red.gradient)
+                .foregroundStyle(Color.shape(.app.tint))
                 .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: cm.totalCounts)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

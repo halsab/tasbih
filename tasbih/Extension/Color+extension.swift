@@ -9,6 +9,6 @@ import SwiftUI
 
 extension Color {
     enum app {
-        static let tint: Color = .red
+        static let tint: Color = Color("color/tint")
     }
 }

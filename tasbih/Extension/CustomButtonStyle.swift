@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundStyle(Color.red.gradient)
+            .foregroundStyle(Color.shape(.app.tint).gradient)
             .font(.system(.body, design: .rounded, weight: .bold))
             .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
     }

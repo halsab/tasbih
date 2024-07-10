@@ -22,36 +22,21 @@ struct FooterView: View {
             }
             .padding()
             .buttonStyle(CustomButtonStyle())
-
+            
             Spacer()
 
-            HStack() {
-                Button {
-                    cm.isHapticEnabled.toggle()
-                } label: {
-                    Image(systemName: cm.isHapticEnabled ? .image.haptic.on : .image.haptic.off)
-                        .font(.title)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.red)
+            Button {
+                cm.isHapticEnabled.toggle()
+            } label: {
+                Image(systemName: cm.isHapticEnabled ? .image.haptic.on : .image.haptic.off)
+                    .font(.title)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(Color.shape(.app.tint))
 
-                }
-                .padding(8)
-                .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isHapticEnabled)
-                .contentTransition(.symbolEffect(.replace))
-
-//                Button {
-//                    cm.isSoundEnabled.toggle()
-//                } label: {
-//                    Image(systemName: cm.isSoundEnabled ? .image.sound.on : .image.sound.off)
-//                        .font(.title)
-//                        .symbolRenderingMode(.hierarchical)
-//                        .foregroundStyle(.red)
-//
-//                }
-//                .padding(8)
-//                .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isSoundEnabled)
-//                .contentTransition(.symbolEffect(.replace))
             }
+            .padding(8)
+            .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isHapticEnabled)
+            .contentTransition(.symbolEffect(.replace))
 
             Spacer()
             
