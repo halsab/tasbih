@@ -18,7 +18,6 @@
 		201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CB2BB2ABAE00587796 /* FooterView.swift */; };
 		201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CD2BB2ACFD00587796 /* CentralView.swift */; };
 		20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */; };
-		20272DCA2AFECA060002C00D /* RollingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DC92AFECA060002C00D /* RollingText.swift */; };
 		20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DCB2AFEDAFB0002C00D /* LoopSize.swift */; };
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
@@ -41,7 +40,6 @@
 		201892CB2BB2ABAE00587796 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		201892CD2BB2ACFD00587796 /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
 		20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
-		20272DC92AFECA060002C00D /* RollingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingText.swift; sourceTree = "<group>"; };
 		20272DCB2AFEDAFB0002C00D /* LoopSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSize.swift; sourceTree = "<group>"; };
 		2033E46129505D1C00485CE9 /* tasbih.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasbih.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2033E46429505D1C00485CE9 /* tasbihApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasbihApp.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 		201892D22BB2BA4A00587796 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				20272DC92AFECA060002C00D /* RollingText.swift */,
 				20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */,
 			);
 			path = Components;
@@ -272,7 +269,6 @@
 				20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
 				200888BC2C2179CF0053930F /* ShapeStyle+extension.swift in Sources */,
-				20272DCA2AFECA060002C00D /* RollingText.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
 				20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */,
 				200888C02C2184160053930F /* String+Text+Extension.swift in Sources */,

@@ -32,9 +32,10 @@ struct HeaderView: View {
             }
 
             HStack {
-                RollingText(value: $cm.totalCounts,
-                            font: .app.lTitle,
-                            foregroundColor: Color.app.tint)
+                Text(String(cm.totalCounts))
+                    .animation(.easeInOut, value: cm.totalCounts)
+                    .font(.app.lTitle)
+                    .foregroundStyle(Color.app.tint)
 
                 Spacer()
 
