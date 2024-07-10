@@ -17,18 +17,31 @@ struct HeaderView: View {
             case .infinity:
                 EmptyView()
             default:
-                ProgressView(value: Double(cm.currentLoopCount), total: Double(cm.loopSize.rawValue)) {
+                Gauge(value: Double(cm.currentLoopCount), in: 0...Double(cm.loopSize.rawValue)) {
                     HStack {
                         Text("\(cm.currentLoopCount)")
                         Spacer()
                         Text("x\(cm.loopsCount)")
                     }
-                    .font(.app.footnote)
+                    .font(.app.mBody)
                     .foregroundStyle(Color.app.tint)
                     .monospaced()
                 }
                 .tint(.app.tint)
                 .animation(.easeInOut, value: cm.currentLoopCount)
+
+//                ProgressView(value: Double(cm.currentLoopCount), total: Double(cm.loopSize.rawValue)) {
+//                    HStack {
+//                        Text("\(cm.currentLoopCount)")
+//                        Spacer()
+//                        Text("x\(cm.loopsCount)")
+//                    }
+//                    .font(.app.footnote)
+//                    .foregroundStyle(Color.app.tint)
+//                    .monospaced()
+//                }
+//                .tint(.app.tint)
+//                .animation(.easeInOut, value: cm.currentLoopCount)
             }
 
             HStack {
