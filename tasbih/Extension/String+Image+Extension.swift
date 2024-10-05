@@ -18,6 +18,11 @@ extension String {
             static let on = "speaker.wave.2.circle.fill"
             static let off = "speaker.wave.2.circle"
         }
+        
+        enum prayerTimes {
+            static let on = "gauge.with.needle.fill"
+            static let off = "gauge.with.needle"
+        }
 
         enum button {
             static let count = "suit.heart.fill"

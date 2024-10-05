@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,6 +51,10 @@
 		20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsedHeartView.swift; sourceTree = "<group>"; };
 		20F3EFC52985A14400310414 /* CountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		206DDE4E2CB0818800A034A9 /* PrayerTimes */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PrayerTimes; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2033E45E29505D1C00485CE9 /* Frameworks */ = {
@@ -147,6 +151,7 @@
 		2033E4732950688F00485CE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				206DDE4E2CB0818800A034A9 /* PrayerTimes */,
 				201892D02BB2BA1F00587796 /* CountScreen */,
 				201892D22BB2BA4A00587796 /* Components */,
 			);
@@ -200,6 +205,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				206DDE4E2CB0818800A034A9 /* PrayerTimes */,
 			);
 			name = tasbih;
 			productName = tasbih;
