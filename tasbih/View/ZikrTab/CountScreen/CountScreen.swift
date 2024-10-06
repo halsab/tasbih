@@ -22,7 +22,7 @@ struct CountScreen: View {
                 CentralView()
 
                 FooterView()
-                    .padding(.horizontal)
+                    .padding()
             }
         }
         .environmentObject(cm)

@@ -12,10 +12,11 @@ import SwiftData
 struct tasbihApp: App {
     var body: some Scene {
         WindowGroup {
-            CountScreen()
+            MainTabView()
                 .preferredColorScheme(.dark)
                 .persistentSystemOverlays(.hidden)
                 .statusBar(hidden: true)
+                .tint(.app.tint)
         }
     }
 }

@@ -14,16 +14,13 @@
 		200888C02C2184160053930F /* String+Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BF2C2184160053930F /* String+Text+Extension.swift */; };
 		200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888C12C218DED0053930F /* String+AppStorage+Extension.swift */; };
 		200888CA2C2197140053930F /* click-tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 200888C92C2197140053930F /* click-tick.wav */; };
-		201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892C92BB02C9F00587796 /* HeaderView.swift */; };
-		201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CB2BB2ABAE00587796 /* FooterView.swift */; };
-		201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201892CD2BB2ACFD00587796 /* CentralView.swift */; };
+		201BC73B2CB2FC0B004225D9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BC73A2CB2FC0B004225D9 /* MainTabView.swift */; };
 		20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */; };
 		20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DCB2AFEDAFB0002C00D /* LoopSize.swift */; };
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
 		20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */; };
-		20CBA0602AC2278800366DE2 /* CountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA05F2AC2278800366DE2 /* CountScreen.swift */; };
 		20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */; };
 		20F3EFC62985A14400310414 /* CountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC52985A14400310414 /* CountManager.swift */; };
 /* End PBXBuildFile section */
@@ -36,9 +33,7 @@
 		200888BF2C2184160053930F /* String+Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Text+Extension.swift"; sourceTree = "<group>"; };
 		200888C12C218DED0053930F /* String+AppStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AppStorage+Extension.swift"; sourceTree = "<group>"; };
 		200888C92C2197140053930F /* click-tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "click-tick.wav"; sourceTree = "<group>"; };
-		201892C92BB02C9F00587796 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		201892CB2BB2ABAE00587796 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
-		201892CD2BB2ACFD00587796 /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
+		201BC73A2CB2FC0B004225D9 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		20272DCB2AFEDAFB0002C00D /* LoopSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSize.swift; sourceTree = "<group>"; };
 		2033E46129505D1C00485CE9 /* tasbih.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasbih.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,13 +42,14 @@
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartParticleModel.swift; sourceTree = "<group>"; };
-		20CBA05F2AC2278800366DE2 /* CountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountScreen.swift; sourceTree = "<group>"; };
 		20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsedHeartView.swift; sourceTree = "<group>"; };
 		20F3EFC52985A14400310414 /* CountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		206DDE4E2CB0818800A034A9 /* PrayerTimes */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PrayerTimes; sourceTree = "<group>"; };
+		201BC73C2CB2FE2A004225D9 /* VirdTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VirdTab; sourceTree = "<group>"; };
+		201BC73D2CB2FE58004225D9 /* ZikrTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZikrTab; sourceTree = "<group>"; };
+		206DDE4E2CB0818800A034A9 /* SalahTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SalahTab; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,25 +75,6 @@
 				200888C12C218DED0053930F /* String+AppStorage+Extension.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		201892D02BB2BA1F00587796 /* CountScreen */ = {
-			isa = PBXGroup;
-			children = (
-				20CBA05F2AC2278800366DE2 /* CountScreen.swift */,
-				201892D12BB2BA2B00587796 /* View */,
-			);
-			path = CountScreen;
-			sourceTree = "<group>";
-		};
-		201892D12BB2BA2B00587796 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				201892C92BB02C9F00587796 /* HeaderView.swift */,
-				201892CD2BB2ACFD00587796 /* CentralView.swift */,
-				201892CB2BB2ABAE00587796 /* FooterView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		201892D22BB2BA4A00587796 /* Components */ = {
@@ -151,8 +128,9 @@
 		2033E4732950688F00485CE9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				206DDE4E2CB0818800A034A9 /* PrayerTimes */,
-				201892D02BB2BA1F00587796 /* CountScreen */,
+				201BC73D2CB2FE58004225D9 /* ZikrTab */,
+				201BC73C2CB2FE2A004225D9 /* VirdTab */,
+				206DDE4E2CB0818800A034A9 /* SalahTab */,
 				201892D22BB2BA4A00587796 /* Components */,
 			);
 			path = View;
@@ -179,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				2033E46429505D1C00485CE9 /* tasbihApp.swift */,
+				201BC73A2CB2FC0B004225D9 /* MainTabView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -207,7 +186,9 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				206DDE4E2CB0818800A034A9 /* PrayerTimes */,
+				201BC73C2CB2FE2A004225D9 /* VirdTab */,
+				201BC73D2CB2FE58004225D9 /* ZikrTab */,
+				206DDE4E2CB0818800A034A9 /* SalahTab */,
 			);
 			name = tasbih;
 			productName = tasbih;
@@ -267,10 +248,7 @@
 			files = (
 				20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */,
 				200888BA2C2179650053930F /* Color+extension.swift in Sources */,
-				201892CE2BB2ACFD00587796 /* CentralView.swift in Sources */,
-				201892CA2BB02C9F00587796 /* HeaderView.swift in Sources */,
 				20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */,
-				201892CC2BB2ABAE00587796 /* FooterView.swift in Sources */,
 				200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */,
 				200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */,
 				200888B82C2179430053930F /* Font+extension.swift in Sources */,
@@ -280,7 +258,7 @@
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
 				20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */,
 				200888C02C2184160053930F /* String+Text+Extension.swift in Sources */,
-				20CBA0602AC2278800366DE2 /* CountScreen.swift in Sources */,
+				201BC73B2CB2FC0B004225D9 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +401,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -465,7 +443,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;

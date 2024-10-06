@@ -10,7 +10,6 @@ import SwiftUI
 struct FooterView: View {
 
     @EnvironmentObject private var cm: CountManager
-    @State private var showPrayerTimes = false
 
     private let bounceAnimationSpeed: Double = 1.3
 
@@ -38,19 +37,6 @@ struct FooterView: View {
             .padding(8)
             .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: cm.isHapticEnabled)
             .contentTransition(.symbolEffect(.replace))
-            
-            Button {
-                showPrayerTimes = true
-            } label: {
-                Image(systemName: showPrayerTimes ? .image.prayerTimes.on : .image.prayerTimes.off)
-                    .font(.title)
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(Color.shape(.app.tint))
-
-            }
-            .padding(8)
-            .symbolEffect(.bounce.down, options: .speed(bounceAnimationSpeed), value: showPrayerTimes)
-            .contentTransition(.symbolEffect(.replace))
 
             Spacer()
             
@@ -61,10 +47,6 @@ struct FooterView: View {
             }
             .padding()
             .buttonStyle(CustomButtonStyle())
-        }
-        .sheet(isPresented: $showPrayerTimes) {
-            PrayerTimesView()
-                .presentationDetents([.height(300)])
         }
     }
 }

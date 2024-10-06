@@ -16,8 +16,8 @@ final class CountManager: ObservableObject {
     @Published var loopsCount = 0
     @Published var loopSize: LoopSize = .s
 
-    @AppStorage(.storageKey.haptic) var isHapticEnabled = false
-    @AppStorage(.storageKey.totalCount) var storedTotalCounts = 0
+    @AppStorage(.storageKey.common.haptic) var isHapticEnabled = false
+    @AppStorage(.storageKey.vird.zikr) var storedTotalCounts = 0
 
     private var anyCancellables = Set<AnyCancellable>()
 
