@@ -12,6 +12,7 @@ extension String {
         enum common {
             static let haptic = "isHapticEnabled"
             static let sound = "isSoundEnabled"
+            static let selectedTab = "selectedTab-key"
         }
         
         enum vird {

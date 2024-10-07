@@ -8,18 +8,27 @@
 import SwiftUI
 
 struct MainTabView: View {
+    
+    @AppStorage(.storageKey.common.selectedTab) private var selectedTab = 0
+    
     var body: some View {
-        TabView {
-            Tab("Zikr", systemImage: "numbers") {
+        TabView(selection: $selectedTab) {
+            Tab(value: 0) {
                 CountScreen()
+            } label: {
+                Label("Zikr", systemImage: "numbers")
             }
             
-            Tab("Salah", systemImage: "moon") {
+            Tab(value: 1) {
                 PrayerTimesView()
+            } label: {
+                Label("Salah", systemImage: "moon")
             }
             
-            Tab("Vird", systemImage: "fireworks") {
+            Tab(value: 2) {
                 VirdTabScreen()
+            } label: {
+                Label("Vird", systemImage: "fireworks")
             }
         }
     }
