@@ -10,5 +10,6 @@ import SwiftUI
 extension Color {
     enum app {
         static let tint: Color = Color("color/tint")
+        static let highlight: Color = Color("color/highlight")
     }
 }

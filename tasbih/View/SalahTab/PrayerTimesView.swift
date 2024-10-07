@@ -10,21 +10,25 @@ import SwiftUI
 struct PrayerTimesView: View {
     
     @State private var times: [PrayerTime] = []
+    @State private var currentTime: PrayerTimeType = .fajr
     
     private let calculator = PrayerTimesCalculator(coordinate: .init(
         latitude: 55.7887, longitude: 49.1221
     ))
     
     var body: some View {
-        VStack(alignment: .leading) {
-            ForEach(times) { time in
-                timeView(time: time)
-            }
-        }
-        .padding(.vertical)
-        .padding(.horizontal, 96)
+        timesView(times: times)
+        .padding(.horizontal, 72)
         .onAppear {
             times = calculator.prayerTimes()
+            
+            for time in times {
+                if time.date <= .now {
+                    currentTime = time.type
+                } else {
+                    break
+                }
+            }
         }
     }
     
@@ -37,11 +41,23 @@ struct PrayerTimesView: View {
                 Text(time.date, style: .time)
                     .monospaced()
             }
-            .foregroundStyle(.primary)
+            .foregroundStyle(time.type == currentTime ? Color.app.highlight : .primary)
             .font(.headline)
-            
-            Divider()
         }
+    }
+    
+    @ViewBuilder
+    private func timesView(times: [PrayerTime]) -> some View {
+        VStack {
+            ForEach(times) { time in
+                timeView(time: time)
+                    .padding(.vertical, 8)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(.background.secondary)
+        .clipShape(.rect(cornerRadius: 16))
     }
 }
 

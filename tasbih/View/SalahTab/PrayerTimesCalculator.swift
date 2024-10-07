@@ -129,10 +129,15 @@ private extension PrayerTimesCalculator {
     /// Convert float hours to NSDate
     func floatToDate(_ time: Double) -> Date? {
         if let (hours, minutes) = floatToHourMinute(time) {
-            var components = gregorianCalendar.dateComponents([.hour, .minute], from: calcDate)
+            var components = gregorianCalendar.dateComponents([.hour, .minute, .day, .year, .month], from: calcDate)
             components.hour = hours
             components.minute = minutes
-            return gregorianCalendar.date(from: components)
+            guard var date = gregorianCalendar.date(from: components) else { return nil }
+            let recalculatedComponents = gregorianCalendar.dateComponents([.hour, .minute], from: date)
+            components.hour = recalculatedComponents.hour
+            components.minute = recalculatedComponents.minute
+            date = gregorianCalendar.date(from: components)!
+            return date
         } else {
             return nil
         }
