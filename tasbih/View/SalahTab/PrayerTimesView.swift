@@ -9,50 +9,37 @@ import SwiftUI
 
 struct PrayerTimesView: View {
     
-    @State private var times: [AKPrayerTime.TimeNames : Any]? = nil
+    @State private var times: [PrayerTime] = []
     
-    let prayerKit = AKPrayerTime(lat: 55.7887, lng: 49.1221)
-    
-    init() {
-        prayerKit.calculationMethod = .DUMRT
-        prayerKit.asrJuristic = .Hanafi
-        prayerKit.outputFormat = .Time24
-        prayerKit.highLatitudeAdjustment = .AngleBased
-    }
+    private let calculator = PrayerTimesCalculator(coordinate: .init(
+        latitude: 55.7887, longitude: 49.1221
+    ))
     
     var body: some View {
-        Group {
-            if let times {
-                VStack(alignment: .leading) {
-                    timeView(name: "Fajr", value: times[.Fajr]!)
-                    timeView(name: "Sunrise", value: times[.Sunrise]!)
-                    timeView(name: "Dhuhr", value: times[.Dhuhr]!)
-                    timeView(name: "Asr", value: times[.Asr]!)
-                    timeView(name: "Maghrib", value: times[.Maghrib]!)
-                    timeView(name: "Isha", value: times[.Isha]!)
-                }
-            } else {
-                ProgressView()
+        VStack(alignment: .leading) {
+            ForEach(times) { time in
+                timeView(time: time)
             }
         }
         .padding(.vertical)
         .padding(.horizontal, 96)
         .onAppear {
-            times = prayerKit.getPrayerTimes()
+            times = calculator.prayerTimes()
         }
     }
     
     @ViewBuilder
-    private func timeView(name: String, value: Any) -> some View {
+    private func timeView(time: PrayerTime) -> some View {
         VStack {
             HStack {
-                Text(name)
+                Text(time.type.name(.russian))
                 Spacer()
-                Text("\(value)")
+                Text(time.date, style: .time)
                     .monospaced()
             }
             .foregroundStyle(.primary)
             .font(.headline)
+            
             Divider()
         }
     }
