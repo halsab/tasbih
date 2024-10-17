@@ -41,6 +41,8 @@
 		2033E46829505D1E00485CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		20B1C0882CC139A8008E5462 /* HelperKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HelperKit; sourceTree = "<group>"; };
+		20B1C0892CC139CA008E5462 /* VirdKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = VirdKit; sourceTree = "<group>"; };
 		20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartParticleModel.swift; sourceTree = "<group>"; };
 		20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsedHeartView.swift; sourceTree = "<group>"; };
 		20F3EFC52985A14400310414 /* CountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountManager.swift; sourceTree = "<group>"; };
@@ -88,6 +90,8 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
+				20B1C0892CC139CA008E5462 /* VirdKit */,
+				20B1C0882CC139A8008E5462 /* HelperKit */,
 				2033E46329505D1C00485CE9 /* tasbih */,
 				2033E46229505D1C00485CE9 /* Products */,
 			);
