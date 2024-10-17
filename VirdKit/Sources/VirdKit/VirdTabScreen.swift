@@ -8,7 +8,7 @@
 import SwiftUI
 import HelperKit
 
-struct VirdTabScreen: View {
+public struct VirdTabScreen: View {
     
     @AppStorage(.storageKey.vird.book) private var book = 0
     @AppStorage(.storageKey.vird.tafsir) private var tafsir = 0
@@ -22,7 +22,9 @@ struct VirdTabScreen: View {
     @AppStorage(.storageKey.vird.shukurVudu) private var shukurVudu = 0
     @AppStorage(.storageKey.vird.quranAfterNamaz) private var quranAfterNamaz = 0
     
-    var body: some View {
+    public init () {}
+    
+    public var body: some View {
         List {
             activityView(name: "Book", value: $book)
             activityView(name: "Tafsir", value: $tafsir)

@@ -9,10 +9,10 @@ import Foundation
 
 public extension String {
     enum storageKey {
-        enum common {
-            static let haptic = "isHapticEnabled"
-            static let sound = "isSoundEnabled"
-            static let selectedTab = "selectedTab-key"
+        public enum common {
+            public static let haptic = "isHapticEnabled"
+            public static let sound = "isSoundEnabled"
+            public static let selectedTab = "selectedTab-key"
         }
         
         public enum vird {

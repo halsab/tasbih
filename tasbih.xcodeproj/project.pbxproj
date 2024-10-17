@@ -12,7 +12,6 @@
 		200888BC2C2179CF0053930F /* ShapeStyle+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */; };
 		200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BD2C2182FC0053930F /* String+Image+Extension.swift */; };
 		200888C02C2184160053930F /* String+Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BF2C2184160053930F /* String+Text+Extension.swift */; };
-		200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888C12C218DED0053930F /* String+AppStorage+Extension.swift */; };
 		200888CA2C2197140053930F /* click-tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 200888C92C2197140053930F /* click-tick.wav */; };
 		201BC73B2CB2FC0B004225D9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BC73A2CB2FC0B004225D9 /* MainTabView.swift */; };
 		20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */; };
@@ -20,6 +19,7 @@
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
+		20B1C08C2CC13BDB008E5462 /* VirdKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20B1C08B2CC13BDB008E5462 /* VirdKit */; };
 		20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA05D2AC226C900366DE2 /* HeartParticleModel.swift */; };
 		20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CBA0612AC22BFF00366DE2 /* PulsedHeartView.swift */; };
 		20F3EFC62985A14400310414 /* CountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3EFC52985A14400310414 /* CountManager.swift */; };
@@ -31,7 +31,6 @@
 		200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+extension.swift"; sourceTree = "<group>"; };
 		200888BD2C2182FC0053930F /* String+Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Image+Extension.swift"; sourceTree = "<group>"; };
 		200888BF2C2184160053930F /* String+Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Text+Extension.swift"; sourceTree = "<group>"; };
-		200888C12C218DED0053930F /* String+AppStorage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AppStorage+Extension.swift"; sourceTree = "<group>"; };
 		200888C92C2197140053930F /* click-tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "click-tick.wav"; sourceTree = "<group>"; };
 		201BC73A2CB2FC0B004225D9 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
@@ -49,7 +48,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		201BC73C2CB2FE2A004225D9 /* VirdTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = VirdTab; sourceTree = "<group>"; };
 		201BC73D2CB2FE58004225D9 /* ZikrTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZikrTab; sourceTree = "<group>"; };
 		206DDE4E2CB0818800A034A9 /* SalahTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SalahTab; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -59,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B1C08C2CC13BDB008E5462 /* VirdKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +73,6 @@
 				200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */,
 				200888BD2C2182FC0053930F /* String+Image+Extension.swift */,
 				200888BF2C2184160053930F /* String+Text+Extension.swift */,
-				200888C12C218DED0053930F /* String+AppStorage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -93,6 +91,7 @@
 				20B1C0892CC139CA008E5462 /* VirdKit */,
 				20B1C0882CC139A8008E5462 /* HelperKit */,
 				2033E46329505D1C00485CE9 /* tasbih */,
+				20B1C08A2CC13BDB008E5462 /* Frameworks */,
 				2033E46229505D1C00485CE9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -133,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				201BC73D2CB2FE58004225D9 /* ZikrTab */,
-				201BC73C2CB2FE2A004225D9 /* VirdTab */,
 				206DDE4E2CB0818800A034A9 /* SalahTab */,
 				201892D22BB2BA4A00587796 /* Components */,
 			);
@@ -166,6 +164,13 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		20B1C08A2CC13BDB008E5462 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		20F3EFBE2985698C00310414 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +195,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				201BC73C2CB2FE2A004225D9 /* VirdTab */,
 				201BC73D2CB2FE58004225D9 /* ZikrTab */,
 				206DDE4E2CB0818800A034A9 /* SalahTab */,
 			);
@@ -254,7 +258,6 @@
 				200888BA2C2179650053930F /* Color+extension.swift in Sources */,
 				20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */,
 				200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */,
-				200888C22C218DED0053930F /* String+AppStorage+Extension.swift in Sources */,
 				200888B82C2179430053930F /* Font+extension.swift in Sources */,
 				20CBA0622AC22BFF00366DE2 /* PulsedHeartView.swift in Sources */,
 				20F3EFC62985A14400310414 /* CountManager.swift in Sources */,
@@ -486,6 +489,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20B1C08B2CC13BDB008E5462 /* VirdKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VirdKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2033E45929505D1C00485CE9 /* Project object */;
 }
