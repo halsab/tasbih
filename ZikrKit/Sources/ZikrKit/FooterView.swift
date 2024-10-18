@@ -29,7 +29,7 @@ struct FooterView: View {
             Button {
                 cm.isHapticEnabled.toggle()
             } label: {
-                Image(systemName: cm.isHapticEnabled ? .image.haptic.on : .image.haptic.off)
+                (cm.isHapticEnabled ? Image.app.haptic.on : Image.app.haptic.off)
                     .font(.title)
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(Color.shape(.app.tint))

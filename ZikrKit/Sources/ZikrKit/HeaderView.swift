@@ -45,9 +45,11 @@ struct HeaderView: View {
                             cm.loopSize = loopSize
                             cm.totalCounts = cm.totalCounts
                         } label: {
-                            Label(loopSize.title,
-                                  systemImage: cm.loopSize == loopSize
-                                  ? loopSize.selectedIconName : "")
+                            Label {
+                                Text(loopSize.title)
+                            } icon: {
+                                cm.loopSize == loopSize ? loopSize.selectedIcon : Image("")
+                            }
                         }
                     }
                 } label: {

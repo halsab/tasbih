@@ -12,7 +12,7 @@ struct PulsedHeartView: View {
     @State private var startAnimation = false
     
     var body: some View {
-        Image(systemName: .image.button.count)
+        Image.app.button.count
             .font(.system(size: 100))
             .foregroundStyle(Color.shape(.app.tint))
             .scaleEffect(startAnimation ? 4 : 1)

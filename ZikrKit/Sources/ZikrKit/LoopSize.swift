@@ -5,7 +5,7 @@
 //  Created by Khalil Sabirov on 11.11.2023.
 //
 
-import Foundation
+import SwiftUI
 
 enum LoopSize: Int, CaseIterable, Codable {
     case xs = 7
@@ -32,7 +32,7 @@ enum LoopSize: Int, CaseIterable, Codable {
         }
     }
 
-    var selectedIconName: String {
-        .image.icon.selected
+    var selectedIcon: Image {
+        Image.app.icon.selected
     }
 }

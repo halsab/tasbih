@@ -34,7 +34,7 @@ struct CentralView: View {
             }
             .blur(radius: 15)
 
-            Image(systemName: .image.button.count)
+            Image.app.button.count
                 .font(.system(size: 100))
                 .foregroundStyle(Color.shape(.app.tint))
                 .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: cm.totalCounts)
