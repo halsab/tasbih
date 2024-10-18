@@ -8,6 +8,7 @@
 import SwiftUI
 import VirdKit
 import SalahKit
+import ZikrKit
 
 struct MainTabView: View {
     

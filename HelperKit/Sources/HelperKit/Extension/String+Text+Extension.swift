@@ -7,15 +7,15 @@
 
 import Foundation
 
-extension String {
+public extension String {
     enum text {
-        enum button {
-            static let undo = "UNDO"
-            static let reset = "RESET"
+        public enum button {
+            public static let undo = "UNDO"
+            public static let reset = "RESET"
         }
 
-        enum icon {
-            static let infinity = "∞"
+        public enum icon {
+            public static let infinity = "∞"
         }
     }
 }

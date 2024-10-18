@@ -7,29 +7,19 @@
 
 import Foundation
 
-extension String {
+public extension String {
     enum image {
-        enum haptic {
-            static let on = "iphone.radiowaves.left.and.right.circle.fill"
-            static let off = "iphone.radiowaves.left.and.right.circle"
+        public enum haptic {
+            public static let on = "iphone.radiowaves.left.and.right.circle.fill"
+            public static let off = "iphone.radiowaves.left.and.right.circle"
         }
 
-        enum sound {
-            static let on = "speaker.wave.2.circle.fill"
-            static let off = "speaker.wave.2.circle"
-        }
-        
-        enum prayerTimes {
-            static let on = "gauge.with.needle.fill"
-            static let off = "gauge.with.needle"
+        public enum button {
+            public static let count = "suit.heart.fill"
         }
 
-        enum button {
-            static let count = "suit.heart.fill"
-        }
-
-        enum icon {
-            static let selected = "checkmark"
+        public enum icon {
+            public static let selected = "checkmark"
         }
     }
 }

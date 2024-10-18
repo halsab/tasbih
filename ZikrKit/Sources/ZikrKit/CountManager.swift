@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import SwiftData
 
+@MainActor
 final class CountManager: ObservableObject {
 
     @Published var totalCounts = 0

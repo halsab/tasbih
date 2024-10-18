@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension ShapeStyle where Self == Color {
+public extension ShapeStyle where Self == Color {
     static func shape(_ color: Color) -> Color {
         color
     }

@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import HelperKit
 
-struct CountScreen: View {
+public struct CountScreen: View {
 
     @StateObject var cm = CountManager()
     @Environment(\.modelContext) var modelContext
 
-    var body: some View {
+    public init() {}
+    
+    public var body: some View {
         ZStack {
             VStack {
                 HeaderView()
