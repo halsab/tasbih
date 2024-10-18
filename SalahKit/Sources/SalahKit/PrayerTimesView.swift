@@ -7,6 +7,7 @@
 
 import SwiftUI
 import HelperKit
+import AppUIKit
 
 public struct PrayerTimesView: View {
     

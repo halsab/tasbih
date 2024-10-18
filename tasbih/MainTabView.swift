@@ -34,6 +34,7 @@ struct MainTabView: View {
                 Label("Vird", systemImage: "fireworks")
             }
         }
+        .tint(.app.tint)
     }
 }
 

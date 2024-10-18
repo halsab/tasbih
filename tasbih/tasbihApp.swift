@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @main
 struct tasbihApp: App {
@@ -14,9 +13,7 @@ struct tasbihApp: App {
         WindowGroup {
             MainTabView()
                 .preferredColorScheme(.dark)
-                .persistentSystemOverlays(.hidden)
                 .statusBar(hidden: true)
-                .tint(.app.tint)
         }
     }
 }

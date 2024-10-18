@@ -70,8 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				2033E46A29505D1E00485CE9 /* tasbih.entitlements */,
-				2033E477295068B200485CE9 /* Main */,
-				2033E476295068A200485CE9 /* Resource */,
+				2033E46429505D1C00485CE9 /* tasbihApp.swift */,
+				201BC73A2CB2FC0B004225D9 /* MainTabView.swift */,
+				2033E46829505D1E00485CE9 /* Assets.xcassets */,
 				2033E46B29505D1E00485CE9 /* Preview Content */,
 			);
 			path = tasbih;
@@ -83,23 +84,6 @@
 				2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		2033E476295068A200485CE9 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				2033E46829505D1E00485CE9 /* Assets.xcassets */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		2033E477295068B200485CE9 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				2033E46429505D1C00485CE9 /* tasbihApp.swift */,
-				201BC73A2CB2FC0B004225D9 /* MainTabView.swift */,
-			);
-			path = Main;
 			sourceTree = "<group>";
 		};
 		20B1C08A2CC13BDB008E5462 /* Frameworks */ = {
