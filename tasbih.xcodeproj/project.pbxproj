@@ -8,14 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		200888B82C2179430053930F /* Font+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888B72C2179430053930F /* Font+extension.swift */; };
-		200888BA2C2179650053930F /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888B92C2179650053930F /* Color+extension.swift */; };
 		200888BC2C2179CF0053930F /* ShapeStyle+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */; };
 		200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BD2C2182FC0053930F /* String+Image+Extension.swift */; };
 		200888C02C2184160053930F /* String+Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200888BF2C2184160053930F /* String+Text+Extension.swift */; };
-		200888CA2C2197140053930F /* click-tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 200888C92C2197140053930F /* click-tick.wav */; };
 		201BC73B2CB2FC0B004225D9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BC73A2CB2FC0B004225D9 /* MainTabView.swift */; };
 		20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */; };
 		20272DCC2AFEDAFB0002C00D /* LoopSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20272DCB2AFEDAFB0002C00D /* LoopSize.swift */; };
+		2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2033D37A2CC24C3300909E05 /* SalahKit */; };
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
@@ -27,14 +26,13 @@
 
 /* Begin PBXFileReference section */
 		200888B72C2179430053930F /* Font+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+extension.swift"; sourceTree = "<group>"; };
-		200888B92C2179650053930F /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
 		200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+extension.swift"; sourceTree = "<group>"; };
 		200888BD2C2182FC0053930F /* String+Image+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Image+Extension.swift"; sourceTree = "<group>"; };
 		200888BF2C2184160053930F /* String+Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Text+Extension.swift"; sourceTree = "<group>"; };
-		200888C92C2197140053930F /* click-tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "click-tick.wav"; sourceTree = "<group>"; };
 		201BC73A2CB2FC0B004225D9 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		20272DCB2AFEDAFB0002C00D /* LoopSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSize.swift; sourceTree = "<group>"; };
+		2033D3792CC23FCA00909E05 /* SalahKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SalahKit; sourceTree = "<group>"; };
 		2033E46129505D1C00485CE9 /* tasbih.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasbih.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2033E46429505D1C00485CE9 /* tasbihApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasbihApp.swift; sourceTree = "<group>"; };
 		2033E46829505D1E00485CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,7 +47,6 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		201BC73D2CB2FE58004225D9 /* ZikrTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ZikrTab; sourceTree = "<group>"; };
-		206DDE4E2CB0818800A034A9 /* SalahTab */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SalahTab; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +55,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20B1C08C2CC13BDB008E5462 /* VirdKit in Frameworks */,
+				2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +67,6 @@
 			children = (
 				20272DC72AFEC8810002C00D /* CustomButtonStyle.swift */,
 				200888B72C2179430053930F /* Font+extension.swift */,
-				200888B92C2179650053930F /* Color+extension.swift */,
 				200888BB2C2179CF0053930F /* ShapeStyle+extension.swift */,
 				200888BD2C2182FC0053930F /* String+Image+Extension.swift */,
 				200888BF2C2184160053930F /* String+Text+Extension.swift */,
@@ -88,6 +85,7 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
+				2033D3792CC23FCA00909E05 /* SalahKit */,
 				20B1C0892CC139CA008E5462 /* VirdKit */,
 				20B1C0882CC139A8008E5462 /* HelperKit */,
 				2033E46329505D1C00485CE9 /* tasbih */,
@@ -107,7 +105,6 @@
 		2033E46329505D1C00485CE9 /* tasbih */ = {
 			isa = PBXGroup;
 			children = (
-				200888C92C2197140053930F /* click-tick.wav */,
 				2033E46A29505D1E00485CE9 /* tasbih.entitlements */,
 				2033E477295068B200485CE9 /* Main */,
 				20F3EFBE2985698C00310414 /* Manager */,
@@ -132,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				201BC73D2CB2FE58004225D9 /* ZikrTab */,
-				206DDE4E2CB0818800A034A9 /* SalahTab */,
 				201892D22BB2BA4A00587796 /* Components */,
 			);
 			path = View;
@@ -196,7 +192,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				201BC73D2CB2FE58004225D9 /* ZikrTab */,
-				206DDE4E2CB0818800A034A9 /* SalahTab */,
 			);
 			name = tasbih;
 			productName = tasbih;
@@ -241,7 +236,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				200888CA2C2197140053930F /* click-tick.wav in Resources */,
 				2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */,
 				2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */,
 			);
@@ -255,7 +249,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				20272DC82AFEC8810002C00D /* CustomButtonStyle.swift in Sources */,
-				200888BA2C2179650053930F /* Color+extension.swift in Sources */,
 				20CBA05E2AC226C900366DE2 /* HeartParticleModel.swift in Sources */,
 				200888BE2C2182FC0053930F /* String+Image+Extension.swift in Sources */,
 				200888B82C2179430053930F /* Font+extension.swift in Sources */,
@@ -491,6 +484,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2033D37A2CC24C3300909E05 /* SalahKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SalahKit;
+		};
 		20B1C08B2CC13BDB008E5462 /* VirdKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = VirdKit;

@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-extension Color {
+public extension Color {
     enum app {
-        static let tint: Color = Color("color/tint")
-        static let highlight: Color = Color("color/highlight")
+        public static let tint: Color = Color("color/tint")
+        public static let highlight: Color = Color("color/highlight")
     }
 }

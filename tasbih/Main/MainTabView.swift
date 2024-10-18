@@ -7,6 +7,7 @@
 
 import SwiftUI
 import VirdKit
+import SalahKit
 
 struct MainTabView: View {
     
