@@ -12,7 +12,7 @@ import AppUIKit
 public struct PrayerTimesView: View {
     
     @StateObject private var timeManager = PrayerTimerManager()
-
+    @Environment(\.scenePhase) var scenePhase
     @State private var times: [PrayerTime] = []
 
     private let calculator = PrayerTimesCalculator(coordinate: .init(
@@ -33,9 +33,18 @@ public struct PrayerTimesView: View {
         }
         .padding(.horizontal, 72)
         .onAppear {
-            times = calculator.prayerTimes()
-            timeManager.setTimes(times)
+            updateTimes()
         }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                updateTimes()
+            }
+        }
+    }
+    
+    private func updateTimes() {
+        times = calculator.prayerTimes()
+        timeManager.setTimes(times)
     }
     
     @ViewBuilder
