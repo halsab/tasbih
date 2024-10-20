@@ -8,43 +8,52 @@
 import SwiftUI
 import HelperKit
 import AppUIKit
+import CoreLocationUI
 
 public struct PrayerTimesView: View {
     
-    @StateObject private var timeManager = PrayerTimerManager()
+    @ObservedObject private var vm = PrayerTimesViewModel()
     @Environment(\.scenePhase) var scenePhase
-    @State private var times: [PrayerTime] = []
-
-    private let calculator = PrayerTimesCalculator(coordinate: .init(
-        latitude: 55.7887, longitude: 49.1221
-    ))
     
     public init() {}
         
     public var body: some View {
-        VStack(alignment: .trailing) {
-            timesView(times: times)
-                .overlay(alignment: .bottomTrailing) {
-                    Text(timeManager.remainingTime)
-                        .monospaced()
-                        .offset(.init(width: -16, height: 32))
-                }
-            
-        }
-        .padding(.horizontal, 72)
-        .onAppear {
-            updateTimes()
-        }
-        .onChange(of: scenePhase) { _, newPhase in
-            if newPhase == .active {
-                updateTimes()
+        NavigationStack {
+            VStack(alignment: .trailing) {
+                timesView(times: vm.times)
+                    .overlay(alignment: .bottomTrailing) {
+                        Text(vm.remainingTime)
+                            .monospaced()
+                            .offset(.init(width: -16, height: 32))
+                    }
+                
             }
+            .padding(.horizontal, 72)
+            .onAppear {
+                vm.updateTimes()
+            }
+            .onChange(of: scenePhase) { _, newPhase in
+                if newPhase == .active {
+                    vm.updateTimes()
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        Button(action: vm.requestLocation) {
+                            Text(vm.localeAddress)
+                        }
+                        .buttonStyle(CustomButtonStyle())
+                        
+                        if vm.isLoadingLocation {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                        }
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
         }
-    }
-    
-    private func updateTimes() {
-        times = calculator.prayerTimes()
-        timeManager.setTimes(times)
     }
     
     @ViewBuilder
@@ -52,11 +61,13 @@ public struct PrayerTimesView: View {
         VStack {
             HStack {
                 Text(time.type.name(.russian))
+                    .font(.app.mTitle)
                 Spacer()
                 Text(time.date, style: .time)
+                    .font(.app.mBody)
                     .monospaced()
             }
-            .foregroundStyle(time.type == timeManager.currentTimeType ? Color.app.highlight : .primary)
+            .foregroundStyle(time.type == vm.currentTimeType ? Color.app.highlight : .primary)
             .font(.headline)
         }
     }
