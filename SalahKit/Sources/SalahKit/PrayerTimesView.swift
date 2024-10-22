@@ -18,35 +18,32 @@ public struct PrayerTimesView: View {
     public init() {}
         
     public var body: some View {
-        NavigationStack {
-            ZStack {
-                GeometryReader { geometry in
-                    bgView(size: geometry.size)
-                }
-                .ignoresSafeArea()
+        ZStack {
+            GeometryReader { geometry in
+                bgView(size: geometry.size)
+            }
+            .ignoresSafeArea()
+            
+            VStack {
+                locationView()
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 timesView(times: vm.times)
-                    .frame(width: 235)
-                    .overlay(alignment: .bottomTrailing) {
-                        Text(vm.remainingTime)
-                            .monospaced()
-                            .offset(.init(width: -16, height: 32))
-                    }
+                
+                Text(vm.remainingTime)
+                    .monospaced()
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            .onAppear {
+            .frame(width: 235)
+        }
+        .onAppear {
+            vm.updateTimes()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
                 vm.updateTimes()
             }
-            .onChange(of: scenePhase) { _, newPhase in
-                if newPhase == .active {
-                    vm.updateTimes()
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    locationView()
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
     
@@ -54,19 +51,31 @@ public struct PrayerTimesView: View {
     private func locationView() -> some View {
         HStack {
             Button(action: vm.requestLocation) {
-                Text(vm.localeAddress)
+                VStack(alignment: .leading) {
+                    if let city = vm.address.city {
+                        Text(city)
+                            .foregroundStyle(Color.primary)
+                            .font(.app.mBody)
+                    }
+                    
+                    if let street = vm.address.street {
+                        Text(street)
+                            .foregroundStyle(Color.secondary)
+                            .font(.app.footnote)
+                    }
+                }
+                .lineLimit(1)
             }
-            .buttonStyle(CustomButtonStyle())
+            
             
             if vm.isLoadingLocation {
+                Spacer()
                 ProgressView()
                     .progressViewStyle(.circular)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal)
-        .padding(.vertical, 8)
-        .background(.thinMaterial)
-        .clipShape(.rect(cornerRadius: 12))
     }
     
     @ViewBuilder
@@ -103,7 +112,7 @@ public struct PrayerTimesView: View {
     private func bgView(size: CGSize) -> some View {
         Group {
             Circle()
-                .fill(Color.blue)
+                .fill(Color.app.highlight)
                 .frame(width: 200, height: 200)
                 .position(
                     .init(
@@ -115,7 +124,7 @@ public struct PrayerTimesView: View {
                 .blur(radius: 20)
             
             Circle()
-                .fill(Color.red)
+                .fill(Color.secondary)
                 .frame(width: 200, height: 200)
                 .position(
                     .init(
@@ -127,7 +136,7 @@ public struct PrayerTimesView: View {
                 .blur(radius: 20)
             
             Circle()
-                .fill(Color.purple)
+                .fill(Color.app.tint)
                 .frame(width: 200, height: 200)
                 .position(
                     .init(
@@ -143,4 +152,5 @@ public struct PrayerTimesView: View {
 
 #Preview {
     PrayerTimesView()
+        .tint(.app.tint)
 }

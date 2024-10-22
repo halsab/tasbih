@@ -14,7 +14,7 @@ final class PrayerTimesViewModel: ObservableObject {
     @Published var times: [PrayerTime] = []
     @Published var remainingTime = ""
     @Published var currentTimeType: PrayerTimeType = .fajr
-    @Published var localeAddress = ""
+    @Published var address: LocationManager.Address = .init(city: nil, street: nil)
     @Published var isLoadingLocation = false
     
     private let calculator = PrayerTimesCalculator(coordinate: .init(
@@ -28,7 +28,7 @@ final class PrayerTimesViewModel: ObservableObject {
     init() {
         timeManager.$currentTimeType.assign(to: &$currentTimeType)
         timeManager.$remainingTime.assign(to: &$remainingTime)
-        locationManager.$address.assign(to: &$localeAddress)
+        locationManager.$address.assign(to: &$address)
         
         locationManager.$location.sink { [unowned self] location in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

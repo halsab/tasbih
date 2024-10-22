@@ -14,7 +14,7 @@ final class LocationManager: NSObject, ObservableObject {
         latitude: 55.7887,
         longitude: 49.1221
     )
-    @Published var address = ""
+    @Published var address: Address = .init(city: nil, street: nil)
     
     private let manager = CLLocationManager()
     private let geocoder = CLGeocoder()
@@ -26,12 +26,12 @@ final class LocationManager: NSObject, ObservableObject {
         
         cancellable = $location.sink { [unowned self] location in
             getAddress(from: location) { address in
-                if let address {
+                if address.isValid {
                     self.address = address
                 } else {
                     let latitude = String(format: "%.4f", location.coordinate.latitude)
                     let longitude = String(format: "%.4f", location.coordinate.longitude)
-                    self.address = "\(latitude), \(longitude)"
+                    self.address = .init(city: nil, street: "\(latitude), \(longitude)")
                 }
             }
         }
@@ -49,14 +49,14 @@ final class LocationManager: NSObject, ObservableObject {
 // MARK: - Helpers
 
 private extension LocationManager {
-    func getAddress(from location: CLLocation, completion: @escaping (String?) -> Void) {
+    func getAddress(from location: CLLocation, completion: @escaping (Address) -> Void) {
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             guard error == nil, let placemark = placemarks?.first else {
                 print("Reverse geocoding error: \(error!)")
-                completion(nil)
+                completion(.init(city: nil, street: nil))
                 return
             }
-            completion(placemark.locality)
+            completion(.init(city: placemark.locality, street: placemark.thoroughfare))
         }
     }
 
@@ -67,6 +67,7 @@ private extension LocationManager {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
+        print(1)
         self.location = location
     }
     
@@ -81,5 +82,18 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
         print("locationManager didFailWithError: \(error)")
+    }
+}
+
+// MARK: - Address
+
+extension LocationManager {
+    struct Address {
+        let city: String?
+        let street: String?
+        
+        var isValid: Bool {
+            city != nil || street != nil
+        }
     }
 }
