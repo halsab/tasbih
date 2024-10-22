@@ -19,16 +19,20 @@ public struct PrayerTimesView: View {
         
     public var body: some View {
         NavigationStack {
-            VStack(alignment: .trailing) {
+            ZStack {
+                GeometryReader { geometry in
+                    bgView(size: geometry.size)
+                }
+                .ignoresSafeArea()
+                
                 timesView(times: vm.times)
+                    .frame(width: 235)
                     .overlay(alignment: .bottomTrailing) {
                         Text(vm.remainingTime)
                             .monospaced()
                             .offset(.init(width: -16, height: 32))
                     }
-                
             }
-            .padding(.horizontal, 72)
             .onAppear {
                 vm.updateTimes()
             }
@@ -39,21 +43,30 @@ public struct PrayerTimesView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    HStack {
-                        Button(action: vm.requestLocation) {
-                            Text(vm.localeAddress)
-                        }
-                        .buttonStyle(CustomButtonStyle())
-                        
-                        if vm.isLoadingLocation {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                        }
-                    }
+                    locationView()
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
         }
+    }
+    
+    @ViewBuilder
+    private func locationView() -> some View {
+        HStack {
+            Button(action: vm.requestLocation) {
+                Text(vm.localeAddress)
+            }
+            .buttonStyle(CustomButtonStyle())
+            
+            if vm.isLoadingLocation {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
+        .background(.thinMaterial)
+        .clipShape(.rect(cornerRadius: 12))
     }
     
     @ViewBuilder
@@ -82,8 +95,49 @@ public struct PrayerTimesView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 8)
-        .background(.background.secondary)
+        .background(.ultraThinMaterial)
         .clipShape(.rect(cornerRadius: 16))
+    }
+    
+    @ViewBuilder
+    private func bgView(size: CGSize) -> some View {
+        Group {
+            Circle()
+                .fill(Color.blue)
+                .frame(width: 200, height: 200)
+                .position(
+                    .init(
+                        x: 50,
+                        y: 170
+                    )
+                )
+                .opacity(0.5)
+                .blur(radius: 20)
+            
+            Circle()
+                .fill(Color.red)
+                .frame(width: 200, height: 200)
+                .position(
+                    .init(
+                        x: (size.width / 2) + 100,
+                        y: (size.height / 2) - 50
+                    )
+                )
+                .opacity(0.5)
+                .blur(radius: 20)
+            
+            Circle()
+                .fill(Color.purple)
+                .frame(width: 200, height: 200)
+                .position(
+                    .init(
+                        x: (size.width / 2) - 80,
+                        y: (size.height / 2) + 170
+                    )
+                )
+                .opacity(0.5)
+                .blur(radius: 20)
+        }
     }
 }
 

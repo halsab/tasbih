@@ -51,14 +51,16 @@ final class PrayerTimerManager: ObservableObject {
             }
         }
         
-        if currentTimeType == times.last?.type {
-            nextTime = times.first!
+        var interval = Double(nextTime.date.timeIntervalSince(.now))
+        
+        if currentTimeType == times.last?.type,
+           let firstTime = times.first,
+           let nextTimeDate = Calendar.current.date(byAdding: .day, value: 1, to: firstTime.date) {
+            interval = Double(nextTimeDate.timeIntervalSince(.now))
         }
         
-        let interval = Double(nextTime.date.timeIntervalSince(.now))
-        
         guard interval > 0 else {
-            remainingTime = "00:00:00"
+            remainingTime = ""
             return
         }
         
