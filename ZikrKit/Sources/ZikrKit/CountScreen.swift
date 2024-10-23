@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 import HelperKit
 
 public struct CountScreen: View {
@@ -29,6 +30,7 @@ public struct CountScreen: View {
             }
         }
         .environmentObject(cm)
+        .modelContainer(for: ZikrModel.self)
     }
 }
 
