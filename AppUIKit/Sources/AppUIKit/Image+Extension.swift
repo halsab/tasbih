@@ -20,6 +20,7 @@ public extension Image {
 
         public enum icon {
             public static let selected = Image(systemName: "checkmark")
+            public static let list = Image(systemName: "list.bullet.circle")
         }
     }
 }

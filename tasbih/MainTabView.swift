@@ -18,6 +18,7 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             Tab(value: 0) {
                 CountScreen()
+                    .modelContainer(for: ZikrModel.self)
             } label: {
                 Label("Zikr", systemImage: "numbers")
             }

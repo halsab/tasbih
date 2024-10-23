@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class ZikrModel {
+final public class ZikrModel {
     @Attribute(.unique)
     var name: String
     var count: Int

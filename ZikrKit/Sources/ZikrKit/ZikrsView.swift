@@ -51,7 +51,9 @@ struct ZikrsView: View {
             .alert("Create your new zikr", isPresented: $showZikrCreateForm) {
                 TextField("Zikr name", text: $newZirkName)
                 Button("Create", action: createZikr)
-                Button("Cancel", role: .cancel) {}
+                Button("Cancel", role: .cancel) {
+                    newZirkName = ""
+                }
             }
             .navigationDestination(for: ZikrModel.self) { zikr in
                 ZikrEditView(zikr: zikr)
@@ -61,6 +63,7 @@ struct ZikrsView: View {
     
     private func createZikr() {
         let zikr = ZikrModel(name: newZirkName)
+        newZirkName = ""
         modelContext.insert(zikr)
     }
     

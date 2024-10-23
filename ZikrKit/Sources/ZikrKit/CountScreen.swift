@@ -11,26 +11,23 @@ import HelperKit
 
 public struct CountScreen: View {
 
-    @StateObject var cm = CountManager()
-    @Environment(\.modelContext) var modelContext
+    @StateObject private var cm = CountManager()
+    @Query private var zikrs: [ZikrModel]
 
     public init() {}
     
     public var body: some View {
-        ZStack {
-            VStack {
-                HeaderView()
-                    .padding(.horizontal)
-                    .padding(.top)
-
-                CentralView()
-
-                FooterView()
-                    .padding()
-            }
+        VStack(spacing: 0) {
+            HeaderView()
+            
+            CentralView()
+            
+            FooterView()
         }
+        .padding()
+        .padding(.top)
         .environmentObject(cm)
-        .modelContainer(for: ZikrModel.self)
+        .ignoresSafeArea(edges: [.top])
     }
 }
 
