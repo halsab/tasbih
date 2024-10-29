@@ -85,7 +85,6 @@ struct FooterView: View {
 
 #Preview {
     FooterView(zikr: .init(name: "Zikr"))
-        .environmentObject(CountManager())
         .padding()
         .preferredColorScheme(.dark)
 }

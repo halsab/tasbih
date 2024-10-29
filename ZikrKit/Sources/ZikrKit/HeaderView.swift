@@ -28,7 +28,7 @@ struct HeaderView: View {
                     .monospaced()
                     .overlay(alignment: .centerFirstTextBaseline) {
                         Text(zikr.name)
-                            .font(.app.mBody)
+                            .font(.app.mTitle)
                             .foregroundStyle(Color.secondary)
                             .lineLimit(1)
                     }
@@ -73,7 +73,6 @@ struct HeaderView: View {
 
 #Preview {
     HeaderView(zikr: .init(name: "Zikr"))
-        .environmentObject(CountManager())
         .padding()
         .preferredColorScheme(.dark)
 }

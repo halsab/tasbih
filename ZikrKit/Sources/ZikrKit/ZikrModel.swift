@@ -17,6 +17,7 @@ final public class ZikrModel: Identifiable {
     var count: Int
     var loopSize: LoopSize
     var date: Date
+    var isSelected: Bool
     
     @Transient
     var currentLoopCount: Int {
@@ -33,5 +34,6 @@ final public class ZikrModel: Identifiable {
         self.count = 0
         self.loopSize = .s
         self.date = .now
+        self.isSelected = true
     }
 }

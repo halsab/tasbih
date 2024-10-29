@@ -12,7 +12,7 @@ import HelperKit
 public struct CountScreen: View {
 
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \ZikrModel.date, order: .reverse) private var zikrs: [ZikrModel]
+    @Query private var zikrs: [ZikrModel]
     @State private var newZirkName = ""
     @State private var showZikrCreateForm = false
 
@@ -20,7 +20,7 @@ public struct CountScreen: View {
     
     public var body: some View {
         VStack(spacing: 0) {
-            if let zikr = zikrs.first {
+            if let zikr = zikrs.first(where: \.isSelected) {
                 HeaderView(zikr: zikr)
                 
                 CentralView(zikr: zikr)                
@@ -45,12 +45,15 @@ public struct CountScreen: View {
     private func createZikr() {
         let zikr = ZikrModel(name: newZirkName)
         newZirkName = ""
+        zikrs.forEach {
+            $0.isSelected = false
+        }
         modelContext.insert(zikr)
+        try? modelContext.save()
     }
 }
 
 #Preview {
     CountScreen()
-        .environmentObject(CountManager())
         .preferredColorScheme(.dark)
 }

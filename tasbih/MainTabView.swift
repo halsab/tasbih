@@ -30,11 +30,11 @@ struct MainTabView: View {
                 Label("Salah", systemImage: "moon")
             }
             
-            Tab(value: 2) {
-                VirdTabScreen()
-            } label: {
-                Label("Vird", systemImage: "fireworks")
-            }
+//            Tab(value: 2) {
+//                VirdTabScreen()
+//            } label: {
+//                Label("Vird", systemImage: "fireworks")
+//            }
         }
         .tint(.app.tint)
     }
