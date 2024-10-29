@@ -19,6 +19,7 @@ struct MainTabView: View {
             Tab(value: 0) {
                 CountScreen()
                     .modelContainer(for: ZikrModel.self)
+                    .statusBar(hidden: true)
             } label: {
                 Label("Zikr", systemImage: "numbers")
             }

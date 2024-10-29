@@ -9,9 +9,13 @@ import SwiftUI
 
 struct CentralView: View {
 
-    @EnvironmentObject private var cm: CountManager
-    
+    @Bindable var zikr: ZikrModel
     @State private var pulsedHearts: [HeartParticleModel] = []
+    @Environment(\.modelContext) private var modelContext
+    @AppStorage(.storageKey.common.haptic) var isHapticEnabled = false
+    
+    private let hardHapticFeedback = UINotificationFeedbackGenerator()
+    private let softHapticFeedback = UIImpactFeedbackGenerator(style: .soft)
 
     var body: some View {
         ZStack {
@@ -37,12 +41,14 @@ struct CentralView: View {
             Image.app.button.count
                 .font(.system(size: 100))
                 .foregroundStyle(Color.shape(.app.tint))
-                .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: cm.totalCounts)
+                .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: zikr.count)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
-            cm.totalCounts += 1
+            zikr.count += 1
+            hapticFeedback()
             addPulsedHeart()
+            try? modelContext.save()
         }
     }
 
@@ -54,10 +60,20 @@ struct CentralView: View {
             pulsedHearts.removeAll(where: { $0.id == pulsedHeart.id })
         }
     }
+    
+    private func hapticFeedback() {
+        guard isHapticEnabled else { return }
+        if zikr.currentLoopCount == 0 {
+            hardHapticFeedback.notificationOccurred(.success)
+        } else {
+            softHapticFeedback.impactOccurred()
+            softHapticFeedback.prepare()
+        }
+    }
 }
 
 #Preview {
-    CentralView()
+    CentralView(zikr: .init(name: "Zikr"))
         .environmentObject(CountManager())
         .padding()
 }

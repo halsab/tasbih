@@ -13,7 +13,6 @@ struct tasbihApp: App {
         WindowGroup {
             MainTabView()
                 .preferredColorScheme(.dark)
-                .statusBar(hidden: true)
         }
     }
 }

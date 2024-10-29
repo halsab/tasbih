@@ -28,5 +28,9 @@ public extension String {
             public static let shukurVudu = "vird-shukurVudu-key"
             public static let quranAfterNamaz = "vird-quranAfterNamaz-key"
         }
+        
+        public enum zikr {
+            public static let selectedZikrName = "zikr-selectedZikrName-key"
+        }
     }
 }

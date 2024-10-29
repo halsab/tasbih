@@ -11,7 +11,7 @@ import SwiftData
 struct ZikrsView: View {
     
     @Environment(\.modelContext) private var modelContext
-    @Query private var zikrs: [ZikrModel]
+    @Query(sort: \ZikrModel.date, order: .reverse) private var zikrs: [ZikrModel]
     @State private var newZirkName = ""
     @State private var showZikrCreateForm = false
     
@@ -19,27 +19,21 @@ struct ZikrsView: View {
         NavigationStack {
             List {
                 ForEach(zikrs) { zikr in
-                    NavigationLink(value: zikr) {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(zikr.name)
-                                    .font(.app.mTitle)
-                                    .foregroundStyle(Color.primary)
-                                
-                                Text(zikr.date.formatted(date: .long, time: .shortened))
-                                    .font(.app.footnote)
-                                    .foregroundStyle(Color.secondary)
+                    zikrView(zikr: zikr)
+                        .swipeActions(edge: .leading) {
+                            Button("Select") {
+                                print("Awesome!")
                             }
-                            
-                            Spacer()
-                            
-                            Text("\(zikr.count)")
-                                .font(.app.lTitle)
-                                .foregroundStyle(Color.secondary)
+                            .tint(.app.highlight)
                         }
-                    }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                deleteZikr(zikr)
+                            } label: {
+                                Label("Delete", systemImage: "trash.fill")
+                            }
+                        }
                 }
-                .onDelete(perform: deleteZikrs)
             }
             .navigationTitle("Zikrs")
             .navigationBarTitleDisplayMode(.inline)
@@ -55,9 +49,27 @@ struct ZikrsView: View {
                     newZirkName = ""
                 }
             }
-            .navigationDestination(for: ZikrModel.self) { zikr in
-                ZikrEditView(zikr: zikr)
+        }
+    }
+    
+    @ViewBuilder
+    private func zikrView(zikr: ZikrModel) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(zikr.name)
+                    .font(.app.mTitle)
+                    .foregroundStyle(Color.primary)
+                
+                Text(zikr.date.formatted(date: .numeric, time: .omitted))
+                    .font(.app.footnote)
+                    .foregroundStyle(Color.secondary)
             }
+            
+            Spacer()
+            
+            Text("\(zikr.count)")
+                .font(.app.lTitle)
+                .foregroundStyle(Color.secondary)
         }
     }
     
@@ -67,11 +79,8 @@ struct ZikrsView: View {
         modelContext.insert(zikr)
     }
     
-    private func deleteZikrs(_ indexSet: IndexSet) {
-        for index in indexSet {
-            let zikr = zikrs[index]
-            modelContext.delete(zikr)
-        }
+    private func deleteZikr(_ zikr: ZikrModel) {
+        modelContext.delete(zikr)
     }
 }
 

@@ -9,31 +9,37 @@ import SwiftUI
 
 struct HeaderView: View {
 
-    @EnvironmentObject private var cm: CountManager
+    @Bindable var zikr: ZikrModel
 
     var body: some View {
         VStack(spacing: 6) {
-            switch cm.loopSize {
+            switch zikr.loopSize {
             case .infinity:
                 EmptyView()
             default:
-                Gauge(value: Double(cm.currentLoopCount), in: 0...Double(cm.loopSize.rawValue)) {
+                Gauge(value: Double(zikr.currentLoopCount), in: 0...Double(zikr.loopSize.rawValue)) {
                     HStack {
-                        Text("\(cm.currentLoopCount)")
+                        Text("\(zikr.currentLoopCount)")
                         Spacer()
-                        Text("x\(cm.loopsCount)")
+                        Text("x\(zikr.loopsCount)")
                     }
                     .font(.app.mBody)
                     .foregroundStyle(Color.app.tint)
                     .monospaced()
+                    .overlay(alignment: .centerFirstTextBaseline) {
+                        Text(zikr.name)
+                            .font(.app.mBody)
+                            .foregroundStyle(Color.secondary)
+                            .lineLimit(1)
+                    }
                 }
                 .tint(.app.tint)
-                .animation(.easeInOut, value: cm.currentLoopCount)
+                .animation(.easeInOut, value: zikr.currentLoopCount)
             }
 
             HStack {
-                Text(String(cm.totalCounts))
-                    .animation(.easeInOut, value: cm.totalCounts)
+                Text(String(zikr.count))
+                    .animation(.easeInOut, value: zikr.count)
                     .font(.app.lTitle)
                     .foregroundStyle(Color.app.tint)
 
@@ -42,18 +48,17 @@ struct HeaderView: View {
                 Menu {
                     ForEach(LoopSize.allCases, id: \.self) { loopSize in
                         Button {
-                            cm.loopSize = loopSize
-                            cm.totalCounts = cm.totalCounts
+                            zikr.loopSize = loopSize
                         } label: {
                             Label {
                                 Text(loopSize.title)
                             } icon: {
-                                cm.loopSize == loopSize ? loopSize.selectedIcon : Image("")
+                                zikr.loopSize == loopSize ? loopSize.selectedIcon : Image("")
                             }
                         }
                     }
                 } label: {
-                    Text(cm.loopSize.shortTitle)
+                    Text(zikr.loopSize.shortTitle)
                         .foregroundStyle(Color.app.tint)
                         .font(.app.mTitle)
                         .padding(.vertical, 6)
@@ -67,7 +72,7 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView()
+    HeaderView(zikr: .init(name: "Zikr"))
         .environmentObject(CountManager())
         .padding()
         .preferredColorScheme(.dark)
