@@ -39,8 +39,9 @@ struct ZikrsView: View {
             .navigationTitle("Zikrs")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add", systemImage: "plus") {
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Spacer()
+                    Button("Add", systemImage: "plus.circle") {
                         showZikrCreateForm.toggle()
                     }
                 }
@@ -48,6 +49,7 @@ struct ZikrsView: View {
             .alert("Create your new zikr", isPresented: $showZikrCreateForm) {
                 TextField("Zikr name", text: $newZirkName)
                 Button("Create", action: createZikr)
+                    .disabled(newZirkName.isEmpty || zikrs.contains(where: { $0.name == newZirkName }))
                 Button("Cancel", role: .cancel) {
                     newZirkName = ""
                 }
@@ -87,7 +89,11 @@ struct ZikrsView: View {
     }
     
     private func deleteZikr(_ zikr: ZikrModel) {
+        if zikr.isSelected, let newSelectedZikr = zikrs.first(where: { $0.id != zikr.id }) {
+            newSelectedZikr.isSelected = true
+        }
         modelContext.delete(zikr)
+        try? modelContext.save()
     }
     
     private func selectZikr(_ zikr: ZikrModel) {

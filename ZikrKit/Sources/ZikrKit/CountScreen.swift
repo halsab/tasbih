@@ -27,13 +27,13 @@ public struct CountScreen: View {
             
                 FooterView(zikr: zikr)
             } else {
-                Button("Add", systemImage: "plus") {
+                Button("Create first zikr", systemImage: "plus") {
                     showZikrCreateForm.toggle()
                 }
             }
         }
         .padding([.bottom, .leading, .trailing])
-        .alert("Create your new zikr", isPresented: $showZikrCreateForm) {
+        .alert("Create your first zikr", isPresented: $showZikrCreateForm) {
             TextField("Zikr name", text: $newZirkName)
             Button("Create", action: createZikr)
             Button("Cancel", role: .cancel) {
