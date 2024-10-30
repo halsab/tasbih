@@ -31,6 +31,7 @@ public struct PrayerTimesView: View {
                 timesView(times: vm.times)
                 
                 Text(vm.remainingTime)
+                    .contentTransition(.numericText())
                     .monospaced()
                     .padding(.horizontal)
                     .frame(maxWidth: .infinity, alignment: .trailing)

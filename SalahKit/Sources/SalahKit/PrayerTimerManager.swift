@@ -5,7 +5,7 @@
 //  Created by Khalil Sabirov on 18.10.2024.
 //
 
-import Foundation
+import SwiftUI
 
 @MainActor
 final class PrayerTimerManager: ObservableObject {
@@ -68,6 +68,8 @@ final class PrayerTimerManager: ObservableObject {
         let hours = (rawMinutes / 60).rounded(.down)
         let minutes = rawMinutes.truncatingRemainder(dividingBy: 60).rounded(.down)
         let seconds = interval.truncatingRemainder(dividingBy: 60).rounded(.down)
-        remainingTime = String(format: "%02.0f:%02.0f:%02.0f", hours, minutes, seconds)
+        withAnimation {
+            remainingTime = String(format: "%02.0f:%02.0f:%02.0f", hours, minutes, seconds)
+        }
     }
 }
