@@ -17,7 +17,10 @@ struct HeaderView: View {
             case .infinity:
                 EmptyView()
             default:
-                Gauge(value: Double(zikr.currentLoopCount), in: 0...Double(zikr.loopSize.rawValue)) {
+                Gauge(
+                    value: Double(zikr.currentLoopCount),
+                    in: 0...Double(zikr.loopSize.rawValue)
+                ) {
                     HStack {
                         Text("\(zikr.currentLoopCount)")
                             .contentTransition(.numericText())
@@ -28,10 +31,7 @@ struct HeaderView: View {
                     .foregroundStyle(Color.app.tint)
                     .monospaced()
                     .overlay(alignment: .centerFirstTextBaseline) {
-                        Text(zikr.name)
-                            .font(.app.mTitle)
-                            .foregroundStyle(Color.secondary)
-                            .lineLimit(1)
+                        zikrNameView(zikr)
                     }
                 }
                 .tint(.app.tint)
@@ -41,12 +41,11 @@ struct HeaderView: View {
             HStack {
                 Text(String(zikr.count))
                     .contentTransition(.numericText())
-//                    .animation(.easeInOut, value: zikr.count)
                     .font(.app.lTitle)
                     .foregroundStyle(Color.app.tint)
 
                 Spacer()
-
+                
                 Menu {
                     ForEach(LoopSize.allCases, id: \.self) { loopSize in
                         Button {
@@ -55,7 +54,9 @@ struct HeaderView: View {
                             Label {
                                 Text(loopSize.title)
                             } icon: {
-                                zikr.loopSize == loopSize ? loopSize.selectedIcon : Image("")
+                                zikr.loopSize == loopSize
+                                ? Image(systemName: "checkmark.circle")
+                                : Image(systemName: "circle")
                             }
                         }
                     }
@@ -69,7 +70,20 @@ struct HeaderView: View {
                         .clipShape(.capsule)
                 }
             }
+            
+            if zikr.loopSize == .infinity {
+                zikrNameView(zikr)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
+    }
+    
+    @ViewBuilder
+    private func zikrNameView(_ zikr: ZikrModel) -> some View {
+        Text(zikr.name)
+            .font(.app.mTitle)
+            .foregroundStyle(Color.secondary)
+            .lineLimit(1)
     }
 }
 
