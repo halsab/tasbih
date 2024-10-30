@@ -65,7 +65,7 @@ struct ZikrsView: View {
                     .font(.app.mTitle)
                     .foregroundStyle(zikr.isSelected ? Color.app.tint : Color.primary)
                 
-                Text(zikr.date.formatted(date: .numeric, time: .omitted))
+                Text(zikr.date.formatted(date: .numeric, time: .shortened))
                     .font(.app.footnote)
                     .foregroundStyle(Color.secondary)
             }

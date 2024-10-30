@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import VirdKit
 import SalahKit
 import ZikrKit
 
@@ -29,12 +28,6 @@ struct MainTabView: View {
             } label: {
                 Label("Salah", systemImage: "moon")
             }
-            
-//            Tab(value: 2) {
-//                VirdTabScreen()
-//            } label: {
-//                Label("Vird", systemImage: "fireworks")
-//            }
         }
         .tint(.app.tint)
     }
