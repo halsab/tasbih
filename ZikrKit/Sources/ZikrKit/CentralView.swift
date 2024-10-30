@@ -45,11 +45,13 @@ struct CentralView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
-            zikr.count += 1
-            zikr.date = .now
-            hapticFeedback()
-            addPulsedHeart()
-            try? modelContext.save()
+            withAnimation {
+                zikr.count += 1
+                zikr.date = .now
+                hapticFeedback()
+                addPulsedHeart()
+                try? modelContext.save()
+            }
         }
     }
 

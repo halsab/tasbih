@@ -20,6 +20,7 @@ struct HeaderView: View {
                 Gauge(value: Double(zikr.currentLoopCount), in: 0...Double(zikr.loopSize.rawValue)) {
                     HStack {
                         Text("\(zikr.currentLoopCount)")
+                            .contentTransition(.numericText())
                         Spacer()
                         Text("x\(zikr.loopsCount)")
                     }
@@ -39,7 +40,8 @@ struct HeaderView: View {
 
             HStack {
                 Text(String(zikr.count))
-                    .animation(.easeInOut, value: zikr.count)
+                    .contentTransition(.numericText())
+//                    .animation(.easeInOut, value: zikr.count)
                     .font(.app.lTitle)
                     .foregroundStyle(Color.app.tint)
 

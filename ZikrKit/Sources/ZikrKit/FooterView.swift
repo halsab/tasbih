@@ -14,18 +14,29 @@ struct FooterView: View {
     @Environment(\.modelContext) private var modelContext
     @AppStorage(.storageKey.common.haptic) var isHapticEnabled = false
     @State private var showZikrs = false
+    @State private var showZikrResettingAlert = false
     
     private let bounceAnimationSpeed: Double = 1.3
 
     var body: some View {
         HStack {
-            Button {
-                reset()
-            } label: {
+            Button {} label: {
                 Text(String.text.button.reset)
             }
             .padding()
             .buttonStyle(CustomButtonStyle())
+            .simultaneousGesture(
+                LongPressGesture()
+                    .onEnded { _ in
+                        showZikrResettingAlert.toggle()
+                    }
+            )
+            .highPriorityGesture(
+                TapGesture()
+                    .onEnded {
+                        resetLoop()
+                    }
+            )
             
             Spacer()
             
@@ -68,9 +79,18 @@ struct FooterView: View {
             ZikrsView()
                 .presentationDetents([.large])
         }
+        .alert("Reset this zikr completely?", isPresented: $showZikrResettingAlert) {
+            Button("Reset", role: .destructive, action: resetAll)
+            Button("Cancel", role: .cancel) {}
+        }
     }
     
-    private func reset() {
+    private func resetLoop() {
+        zikr.count = zikr.loopsCount * zikr.loopSize.rawValue
+        try? modelContext.save()
+    }
+    
+    private func resetAll() {
         zikr.count = 0
         try? modelContext.save()
     }
