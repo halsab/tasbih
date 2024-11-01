@@ -41,7 +41,7 @@ struct ZikrsView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Button(String.text.button.add, systemImage: .text.systemName.plus_circle) {
+                    Button(String.text.button.add, systemImage: .text.systemName.plus_circle_fill) {
                         showZikrCreateForm.toggle()
                     }
                 }

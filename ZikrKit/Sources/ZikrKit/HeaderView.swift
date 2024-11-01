@@ -49,7 +49,9 @@ struct HeaderView: View {
                 Menu {
                     ForEach(LoopSize.allCases, id: \.self) { loopSize in
                         Button {
-                            zikr.loopSize = loopSize
+                            withAnimation {
+                                zikr.loopSize = loopSize
+                            }
                         } label: {
                             Label {
                                 Text(loopSize.title)

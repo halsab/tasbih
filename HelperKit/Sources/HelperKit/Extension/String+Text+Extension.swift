@@ -40,7 +40,7 @@ public extension String {
         
         public enum systemName {
             public static let plus = "plus"
-            public static let plus_circle = "plus.circle"
+            public static let plus_circle_fill = "plus.circle.fill"
             public static let trash_fill = "trash.fill"
         }
         
