@@ -21,7 +21,7 @@ struct FooterView: View {
     var body: some View {
         HStack {
             Button {} label: {
-                Text(String.text.button.reset)
+                Text(String.text.button.reset.uppercased())
             }
             .padding()
             .buttonStyle(CustomButtonStyle())
@@ -70,7 +70,7 @@ struct FooterView: View {
             Button {
                 undo()
             } label: {
-                Text(String.text.button.undo)
+                Text(String.text.button.undo.uppercased())
             }
             .padding()
             .buttonStyle(CustomButtonStyle())
@@ -79,9 +79,9 @@ struct FooterView: View {
             ZikrsView()
                 .presentationDetents([.large])
         }
-        .alert("Reset this zikr completely?", isPresented: $showZikrResettingAlert) {
-            Button("Reset", role: .destructive, action: resetAll)
-            Button("Cancel", role: .cancel) {}
+        .alert(String.text.alert.resetZikrCompletely, isPresented: $showZikrResettingAlert) {
+            Button(String.text.button.reset, role: .destructive, action: resetAll)
+            Button(String.text.button.cancel, role: .cancel) {}
         }
     }
     

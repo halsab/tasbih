@@ -54,9 +54,7 @@ struct HeaderView: View {
                             Label {
                                 Text(loopSize.title)
                             } icon: {
-                                zikr.loopSize == loopSize
-                                ? Image(systemName: "checkmark.circle")
-                                : Image(systemName: "circle")
+                                zikr.loopSize == loopSize ? Image.app.selection.on : Image.app.selection.off
                             }
                         }
                     }

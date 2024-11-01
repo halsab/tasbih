@@ -21,6 +21,12 @@ public extension Image {
         public enum icon {
             public static let selected = Image(systemName: "checkmark")
             public static let list = Image(systemName: "list.bullet.circle")
+            public static let plus = Image(systemName: "plus")
+        }
+        
+        public enum selection {
+            public static let on = Image(systemName: "checkmark.circle.fill")
+            public static let off = Image(systemName: "circle")
         }
     }
 }

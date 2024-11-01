@@ -9,13 +9,43 @@ import Foundation
 
 public extension String {
     enum text {
+        public static let empty = ""
+        
         public enum button {
-            public static let undo = "UNDO"
-            public static let reset = "RESET"
+            public static let undo = "Undo"
+            public static let reset = "Reset"
+            public static let create = "Create"
+            public static let cancel = "Cancel"
+            public static let select = "Select"
+            public static let delete = "Delete"
+            public static let add = "Add"
+            public static let createFirstZikr = "Create first zikr"
         }
 
         public enum icon {
             public static let infinity = "∞"
+        }
+        
+        public enum alert {
+            public static let createFirstZikr = "Create your first zikr"
+            public static let createNewZikr = "Create your new zikr"
+            public static let resetZikrCompletely = "Reset this zikr completely?"
+        }
+        
+        public enum textField {
+            public enum placeholder {
+                public static let zikrName = "Zikr name"
+            }
+        }
+        
+        public enum systemName {
+            public static let plus = "plus"
+            public static let plus_circle = "plus.circle"
+            public static let trash_fill = "trash.fill"
+        }
+        
+        public enum title {
+            public static let zikrs = "Zikrs"
         }
     }
 }

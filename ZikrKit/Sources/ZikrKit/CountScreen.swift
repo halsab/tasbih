@@ -13,7 +13,7 @@ public struct CountScreen: View {
 
     @Environment(\.modelContext) private var modelContext
     @Query private var zikrs: [ZikrModel]
-    @State private var newZirkName = ""
+    @State private var newZirkName = String.text.empty
     @State private var showZikrCreateForm = false
 
     public init() {}
@@ -27,24 +27,24 @@ public struct CountScreen: View {
             
                 FooterView(zikr: zikr)
             } else {
-                Button("Create first zikr", systemImage: "plus") {
+                Button(String.text.button.createFirstZikr, systemImage: .text.systemName.plus) {
                     showZikrCreateForm.toggle()
                 }
             }
         }
         .padding([.bottom, .leading, .trailing])
-        .alert("Create your first zikr", isPresented: $showZikrCreateForm) {
-            TextField("Zikr name", text: $newZirkName)
-            Button("Create", action: createZikr)
-            Button("Cancel", role: .cancel) {
-                newZirkName = ""
+        .alert(String.text.alert.createFirstZikr, isPresented: $showZikrCreateForm) {
+            TextField(String.text.textField.placeholder.zikrName, text: $newZirkName)
+            Button(String.text.button.create, action: createZikr)
+            Button(String.text.button.cancel, role: .cancel) {
+                newZirkName = .text.empty
             }
         }
     }
     
     private func createZikr() {
         let zikr = ZikrModel(name: newZirkName)
-        newZirkName = ""
+        newZirkName = .text.empty
         zikrs.forEach {
             $0.isSelected = false
         }

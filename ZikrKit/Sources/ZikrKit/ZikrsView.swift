@@ -22,7 +22,7 @@ struct ZikrsView: View {
                 ForEach(zikrs) { zikr in
                     zikrView(zikr: zikr)
                         .swipeActions(edge: .leading) {
-                            Button("Select") {
+                            Button(String.text.button.select) {
                                 selectZikr(zikr)
                             }
                             .tint(.app.highlight)
@@ -31,27 +31,27 @@ struct ZikrsView: View {
                             Button(role: .destructive) {
                                 deleteZikr(zikr)
                             } label: {
-                                Label("Delete", systemImage: "trash.fill")
+                                Label(String.text.button.delete, systemImage: .text.systemName.trash_fill)
                             }
                         }
                 }
             }
-            .navigationTitle("Zikrs")
+            .navigationTitle(String.text.title.zikrs)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Button("Add", systemImage: "plus.circle") {
+                    Button(String.text.button.add, systemImage: .text.systemName.plus_circle) {
                         showZikrCreateForm.toggle()
                     }
                 }
             }
-            .alert("Create your new zikr", isPresented: $showZikrCreateForm) {
-                TextField("Zikr name", text: $newZirkName)
-                Button("Create", action: createZikr)
+            .alert(String.text.alert.createNewZikr, isPresented: $showZikrCreateForm) {
+                TextField(String.text.textField.placeholder.zikrName, text: $newZirkName)
+                Button(String.text.button.create, action: createZikr)
                     .disabled(newZirkName.isEmpty || zikrs.contains(where: { $0.name == newZirkName }))
-                Button("Cancel", role: .cancel) {
-                    newZirkName = ""
+                Button(String.text.button.cancel, role: .cancel) {
+                    newZirkName = .text.empty
                 }
             }
         }
@@ -80,7 +80,7 @@ struct ZikrsView: View {
     
     private func createZikr() {
         let zikr = ZikrModel(name: newZirkName)
-        newZirkName = ""
+        newZirkName = .text.empty
         zikrs.forEach {
             $0.isSelected = false
         }
