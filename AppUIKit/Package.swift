@@ -12,11 +12,15 @@ let package = Package(
             name: "AppUIKit",
             targets: ["AppUIKit"]),
     ],
+    dependencies: [
+        .package(path: "../HelperKit"),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "AppUIKit"),
+            name: "AppUIKit",
+            dependencies: ["HelperKit"]),
         .testTarget(
             name: "AppUIKitTests",
             dependencies: ["AppUIKit"]
