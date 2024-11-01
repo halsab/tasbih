@@ -86,19 +86,28 @@ struct FooterView: View {
     }
     
     private func resetLoop() {
-        zikr.count = zikr.loopsCount * zikr.loopSize.rawValue
-        try? modelContext.save()
+        withAnimation {
+            zikr.count = zikr.loopsCount * zikr.loopSize.rawValue
+            zikr.date = .now
+            try? modelContext.save()
+        }
     }
     
     private func resetAll() {
-        zikr.count = 0
-        try? modelContext.save()
+        withAnimation {
+            zikr.count = 0
+            zikr.date = .now
+            try? modelContext.save()
+        }
     }
     
     private func undo() {
-        if zikr.count > 0 {
-            zikr.count -= 1
-            try? modelContext.save()
+        withAnimation {
+            if zikr.count > 0 {
+                zikr.count -= 1
+                zikr.date = .now
+                try? modelContext.save()
+            }
         }
     }
 }

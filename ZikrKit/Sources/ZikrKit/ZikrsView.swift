@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import AppUIKit
 
 struct ZikrsView: View {
     
@@ -20,7 +21,7 @@ struct ZikrsView: View {
         NavigationStack {
             List(selection: $selectedZikr) {
                 ForEach(zikrs) { zikr in
-                    zikrView(zikr: zikr)
+                    ZikrView(zikr: zikr)
                         .swipeActions(edge: .leading) {
                             Button(String.text.button.select) {
                                 selectZikr(zikr)
@@ -41,8 +42,29 @@ struct ZikrsView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Spacer()
-                    Button(String.text.button.add, systemImage: .text.systemName.plus_circle_fill) {
+                    Button {
                         showZikrCreateForm.toggle()
+                    } label: {
+                        Text(String.text.button.create.uppercased())
+                    }
+                    .buttonStyle(CustomButtonStyle())
+                }
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        decreaseCount()
+                    } label: {
+                        Image(systemName: "minus.square.fill")
+                            .font(.app.mTitle)
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        increaseCount()
+                    } label: {
+                        Image(systemName: "plus.square.fill")
+                            .font(.app.mTitle)
                     }
                 }
             }
@@ -54,27 +76,6 @@ struct ZikrsView: View {
                     newZirkName = .text.empty
                 }
             }
-        }
-    }
-    
-    @ViewBuilder
-    private func zikrView(zikr: ZikrModel) -> some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(zikr.name)
-                    .font(.app.mTitle)
-                    .foregroundStyle(zikr.isSelected ? Color.app.tint : Color.primary)
-                
-                Text(zikr.date.formatted(date: .numeric, time: .shortened))
-                    .font(.app.footnote)
-                    .foregroundStyle(Color.secondary)
-            }
-            
-            Spacer()
-            
-            Text("\(zikr.count)")
-                .font(.app.lTitle)
-                .foregroundStyle(Color.secondary)
         }
     }
     
@@ -103,9 +104,30 @@ struct ZikrsView: View {
         zikr.isSelected = true
         try? modelContext.save()
     }
+    
+    private func increaseCount() {
+        guard let zikr = zikrs.first(where: \.isSelected) else { return }
+        withAnimation {
+            zikr.count += 1
+            zikr.date = .now
+            try? modelContext.save()
+        }
+    }
+    
+    private func decreaseCount() {
+        guard let zikr = zikrs.first(where: \.isSelected) else { return }
+        withAnimation {
+            if zikr.count > 0 {
+                zikr.count -= 1
+                zikr.date = .now
+                try? modelContext.save()
+            }
+        }
+    }
 }
 
 #Preview {
     ZikrsView()
         .tint(.app.tint)
+        .preferredColorScheme(.dark)
 }
