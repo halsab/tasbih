@@ -15,11 +15,10 @@ struct ZikrsView: View {
     @Query(sort: \ZikrModel.date, order: .reverse) private var zikrs: [ZikrModel]
     @State private var newZirkName = ""
     @State private var showZikrCreateForm = false
-    @State private var selectedZikr: ZikrModel?
     
     var body: some View {
         NavigationStack {
-            List(selection: $selectedZikr) {
+            List {
                 ForEach(zikrs) { zikr in
                     ZikrView(zikr: zikr)
                         .swipeActions(edge: .leading) {
@@ -37,7 +36,6 @@ struct ZikrsView: View {
                         }
                 }
             }
-            .navigationTitle(String.text.title.zikrs)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
@@ -54,7 +52,7 @@ struct ZikrsView: View {
                     Button {
                         decreaseCount()
                     } label: {
-                        Image(systemName: "minus.square.fill")
+                        Image.app.button.decrease
                             .font(.app.mTitle)
                     }
                 }
@@ -63,9 +61,14 @@ struct ZikrsView: View {
                     Button {
                         increaseCount()
                     } label: {
-                        Image(systemName: "plus.square.fill")
+                        Image.app.button.increase
                             .font(.app.mTitle)
                     }
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    Text(zikrs.first(where: \.isSelected)?.name ?? String.text.title.zikrs)
+                        .font(.app.mTitle)
                 }
             }
             .alert(String.text.alert.createNewZikr, isPresented: $showZikrCreateForm) {
@@ -98,11 +101,13 @@ struct ZikrsView: View {
     }
     
     private func selectZikr(_ zikr: ZikrModel) {
-        zikrs.forEach {
-            $0.isSelected = false
+        withAnimation {
+            zikrs.forEach {
+                $0.isSelected = false
+            }
+            zikr.isSelected = true
+            try? modelContext.save()
         }
-        zikr.isSelected = true
-        try? modelContext.save()
     }
     
     private func increaseCount() {
