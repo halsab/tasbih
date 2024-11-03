@@ -58,6 +58,9 @@ struct SentenceView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
+        .padding(8)
+        .background(.background.secondary)
+        .clipShape(.rect(cornerRadius: 8))
     }
     
     @ViewBuilder

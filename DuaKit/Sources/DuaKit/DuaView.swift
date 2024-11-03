@@ -25,7 +25,7 @@ struct DuaView: View {
                     isTranscriptionVisible: $isTranscriptionVisible
                 )
             }
-            .padding()
+            .padding(8)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -54,26 +54,12 @@ struct DuaView: View {
     DuaView(dua: _1_Fatiha)
 }
 
-struct CheckToggleStyle: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        Button {
-            configuration.isOn.toggle()
-        } label: {
-            HStack {
-                configuration.isOn ? Image.app.selection.on : Image.app.selection.off
-                configuration.label
-            }
-            .font(.app.font(.m))
-            .foregroundStyle(Color.secondary)
-        }
-        .buttonStyle(.plain)
-    }
-}
-
 struct ButtonToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {
         Button {
-            configuration.isOn.toggle()
+            withAnimation {
+                configuration.isOn.toggle()
+            }
         } label: {
             configuration.label
                 .font(.app.font(.s))
