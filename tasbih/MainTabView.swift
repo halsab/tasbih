@@ -8,6 +8,7 @@
 import SwiftUI
 import SalahKit
 import ZikrKit
+import DuaKit
 
 struct MainTabView: View {
     
@@ -27,6 +28,12 @@ struct MainTabView: View {
                 PrayerTimesView()
             } label: {
                 Label("Salah", systemImage: "moon")
+            }
+            
+            Tab(value: 2) {
+                DuaHomeScreen()
+            } label: {
+                Label("Dua", systemImage: "book.fill")
             }
         }
         .tint(.app.tint)

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		201BC73B2CB2FC0B004225D9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BC73A2CB2FC0B004225D9 /* MainTabView.swift */; };
+		20246B9A2CD6270C006AA96D /* DuaKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20246B992CD6270C006AA96D /* DuaKit */; };
 		2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2033D37A2CC24C3300909E05 /* SalahKit */; };
 		2033D37E2CC27AF700909E05 /* ZikrKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2033D37D2CC27AF700909E05 /* ZikrKit */; };
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		201BC73A2CB2FC0B004225D9 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		20246B982CD626F2006AA96D /* DuaKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DuaKit; sourceTree = "<group>"; };
 		2033D3792CC23FCA00909E05 /* SalahKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SalahKit; sourceTree = "<group>"; };
 		2033D37C2CC27A9100909E05 /* ZikrKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ZikrKit; sourceTree = "<group>"; };
 		2033D37F2CC27CDE00909E05 /* AppUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppUIKit; sourceTree = "<group>"; };
@@ -35,6 +37,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2033D37E2CC27AF700909E05 /* ZikrKit in Frameworks */,
+				20246B9A2CD6270C006AA96D /* DuaKit in Frameworks */,
 				2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +48,7 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
+				20246B982CD626F2006AA96D /* DuaKit */,
 				2033D37F2CC27CDE00909E05 /* AppUIKit */,
 				2033D37C2CC27A9100909E05 /* ZikrKit */,
 				2033D3792CC23FCA00909E05 /* SalahKit */,
@@ -392,6 +396,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		20246B992CD6270C006AA96D /* DuaKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DuaKit;
+		};
 		2033D37A2CC24C3300909E05 /* SalahKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SalahKit;

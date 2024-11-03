@@ -12,7 +12,6 @@ struct tasbihApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                .preferredColorScheme(.dark)
         }
     }
 }
