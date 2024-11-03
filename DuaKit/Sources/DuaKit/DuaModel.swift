@@ -11,22 +11,19 @@ struct DuaModel: Identifiable, Hashable {
     let id = UUID()
     let name: Name
     let number: Int?
-    let firstSentenceNumber: Int
     let sentences: [Sentence]
     
     var sentencesRange: String {
-        "\(firstSentenceNumber)-\(sentences.count + firstSentenceNumber - 1)"
+        "\(sentences.first!.number)-\(sentences.last!.number)"
     }
     
     init(
         name: Name,
         number: Int? = nil,
-        firstSentenceNumber: Int = 1,
         sentences: [Sentence]
     ) {
         self.name = name
         self.number = number
-        self.firstSentenceNumber = firstSentenceNumber
         self.sentences = sentences
     }
 }
@@ -59,17 +56,20 @@ extension DuaModel {
 extension DuaModel {
     struct Sentence: Identifiable, Hashable {
         let id = UUID()
+        let number: Int
         let arabic: String
         let translation: String
         let transcription: String
         let tafsir: [Tafsir]?
         
         init(
+            number: Int,
             arabic: String,
             translation: String,
             transcription: String,
             tafsir: [Tafsir]? = nil
         ) {
+            self.number = number
             self.arabic = arabic
             self.translation = translation
             self.transcription = transcription

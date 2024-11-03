@@ -12,47 +12,20 @@ struct DuaView: View {
     let dua: DuaModel
     
     @State private var isArabicVisible = true
-    @State private var isTranslationVisible = false
+    @State private var isTranslationVisible = true
     @State private var isTranscriptionVisible = false
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
-                if isArabicVisible {
-                    SentencesView(
-                        sentances: dua.sentences.map(\.arabic),
-                        firstSentenceNumber: dua.firstSentenceNumber,
-                        lineSpacing: 8,
-                        textFont: .system(.largeTitle, design: .rounded, weight: .light),
-                        dotFont: .system(.title2, design: .rounded, weight: .bold),
-                        alignment: .trailing
-                    )
-                }
-                
-                if isTranslationVisible {
-                    SentencesView(
-                        sentances: dua.sentences.map(\.translation),
-                        firstSentenceNumber: dua.firstSentenceNumber,
-                        lineSpacing: 4,
-                        textFont: .system(.title3, design: .rounded, weight: .light),
-                        dotFont: .system(.body, design: .rounded, weight: .bold),
-                        alignment: .leading
-                    )
-                }
-                
-                if isTranscriptionVisible {
-                    SentencesView(
-                        sentances: dua.sentences.map(\.transcription),
-                        firstSentenceNumber: dua.firstSentenceNumber,
-                        lineSpacing: 4,
-                        textFont: .system(.title3, design: .rounded, weight: .light),
-                        dotFont: .system(.body, design: .rounded, weight: .bold),
-                        alignment: .leading
-                    )
-                }
+            ForEach(dua.sentences) { sentence in
+                SentenceView(
+                    sentence: sentence,
+                    isArabicVisible: $isArabicVisible,
+                    isTranslationVisible: $isTranslationVisible,
+                    isTranscriptionVisible: $isTranscriptionVisible
+                )
             }
-            .padding(8)
-            .frame(maxWidth: .infinity)
+            .padding()
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -66,13 +39,11 @@ struct DuaView: View {
                 
                 ToolbarItemGroup(placement: .bottomBar) {
                     HStack {
-                        Toggle("Arabic", isOn: $isArabicVisible)
-                            .toggleStyle(CheckToggleStyle())
-                        Toggle("Translation", isOn: $isTranslationVisible)
-                            .toggleStyle(CheckToggleStyle())
-                        Toggle("Transcription", isOn: $isTranscriptionVisible)
-                            .toggleStyle(CheckToggleStyle())
+                        Toggle("arabic", isOn: $isArabicVisible)
+                        Toggle("transcription", isOn: $isTranscriptionVisible)
+                        Toggle("translation", isOn: $isTranslationVisible)
                     }
+                    .toggleStyle(ButtonToggleStyle())
                 }
             }
         }
@@ -96,5 +67,21 @@ struct CheckToggleStyle: ToggleStyle {
             .foregroundStyle(Color.secondary)
         }
         .buttonStyle(.plain)
+    }
+}
+
+struct ButtonToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button {
+            configuration.isOn.toggle()
+        } label: {
+            configuration.label
+                .font(.app.font(.s))
+                .foregroundStyle(Color.app.tint)
+        }
+        .padding(.vertical, 2)
+        .padding(.horizontal, 4)
+        .background(Color.app.tint.opacity(configuration.isOn ? 0.15 : 0))
+        .clipShape(.capsule)
     }
 }
