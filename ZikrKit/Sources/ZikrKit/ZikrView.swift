@@ -15,11 +15,11 @@ struct ZikrView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(zikr.name)
-                    .font(.app.mTitle)
+                    .font(.app.font(.m, .bold))
                     .foregroundStyle(zikr.isSelected ? Color.app.tint : Color.primary)
                 
                 Text(zikr.date.formatted(date: .numeric, time: .shortened))
-                    .font(.app.footnote)
+                    .font(.app.font(.xs))
                     .foregroundStyle(Color.secondary)
             }
             
@@ -27,7 +27,7 @@ struct ZikrView: View {
             
             Text("\(zikr.count)")
                 .contentTransition(.numericText())
-                .font(.app.lTitle)
+                .font(.app.font(.xxxl, .bold))
                 .foregroundStyle(Color.secondary)
         }
     }

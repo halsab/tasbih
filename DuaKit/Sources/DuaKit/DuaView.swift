@@ -60,7 +60,7 @@ struct DuaView: View {
                         Text(dua.name.translation)
                         Text(dua.sentencesRange)
                     }
-                    .font(.app.mTitle)
+                    .font(.app.font(.m, .bold))
                     .foregroundStyle(Color.secondary)
                 }
                 
@@ -92,7 +92,7 @@ struct CheckToggleStyle: ToggleStyle {
                 configuration.isOn ? Image.app.selection.on : Image.app.selection.off
                 configuration.label
             }
-            .font(.app.mBody)
+            .font(.app.font(.m))
             .foregroundStyle(Color.secondary)
         }
         .buttonStyle(.plain)

@@ -17,7 +17,7 @@ public struct DuaHomeScreen: View {
         NavigationStack {
             List {
                 Section(header: Text("Sura")
-                    .font(.app.mTitle)
+                    .font(.app.font(.m, .bold))
                     .foregroundStyle(Color.app.highlight.gradient)
                 ) {
                     ForEach(suras) { sura in
@@ -28,7 +28,7 @@ public struct DuaHomeScreen: View {
                                 Text(sura.sentencesRange)
                                     .foregroundStyle(Color.secondary)
                             }
-                            .font(.app.mTitle)
+                            .font(.app.font(.m, .bold))
                         }
                     }
                 }

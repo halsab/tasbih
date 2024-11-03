@@ -9,9 +9,35 @@ import SwiftUI
 
 public extension Font {
     enum app {
-        public static let mBody: Font = .system(.body, design: .rounded, weight: .regular)
-        public static let mTitle: Font = .system(.body, design: .rounded, weight: .bold)
-        public static let lTitle: Font = .system(.largeTitle, design: .rounded, weight: .bold)
-        public static let footnote: Font = .system(.footnote, design: .rounded, weight: .light)
+        public enum SizeType {
+            case xs, s, m, l, xl, xxl, xxxl
+            
+            var size: Font.TextStyle {
+                switch self {
+                case .xs: return .subheadline
+                case .s: return .callout
+                case .m: return .body
+                case .l: return .title3
+                case .xl: return .title2
+                case .xxl: return .title
+                case .xxxl: return .largeTitle
+                }
+            }
+        }
+        
+        public enum WeightType {
+            case regular, bold
+            
+            var wight: Font.Weight {
+                switch self {
+                case .regular: return .regular
+                case .bold: return .bold
+                }
+            }
+        }
+        
+        public static func font(_ sizeType: SizeType, _ weightType: WeightType = .regular) -> Font {
+            .system(sizeType.size, design: .rounded, weight: weightType.wight)
+        }
     }
 }

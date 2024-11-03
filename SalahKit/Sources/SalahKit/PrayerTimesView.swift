@@ -56,13 +56,13 @@ public struct PrayerTimesView: View {
                     if let city = vm.address.city {
                         Text(city)
                             .foregroundStyle(Color.primary)
-                            .font(.app.mBody)
+                            .font(.app.font(.m))
                     }
                     
                     if let street = vm.address.street {
                         Text(street)
                             .foregroundStyle(Color.secondary)
-                            .font(.app.footnote)
+                            .font(.app.font(.xs))
                     }
                 }
                 .lineLimit(1)
@@ -84,10 +84,10 @@ public struct PrayerTimesView: View {
         VStack {
             HStack {
                 Text(time.type.name(.russian))
-                    .font(.app.mTitle)
+                    .font(.app.font(.m, .bold))
                 Spacer()
                 Text(time.date, style: .time)
-                    .font(.app.mBody)
+                    .font(.app.font(.m))
                     .monospaced()
             }
             .foregroundStyle(time.type == vm.currentTimeType ? Color.app.highlight : .primary)

@@ -53,7 +53,7 @@ struct ZikrsView: View {
                         decreaseCount()
                     } label: {
                         Image.app.button.decrease
-                            .font(.app.mTitle)
+                            .font(.app.font(.m, .bold))
                     }
                 }
                 
@@ -62,13 +62,13 @@ struct ZikrsView: View {
                         increaseCount()
                     } label: {
                         Image.app.button.increase
-                            .font(.app.mTitle)
+                            .font(.app.font(.m, .bold))
                     }
                 }
                 
                 ToolbarItem(placement: .principal) {
                     Text(zikrs.first(where: \.isSelected)?.name ?? String.text.title.zikrs)
-                        .font(.app.mTitle)
+                        .font(.app.font(.m, .bold))
                 }
             }
             .alert(String.text.alert.createNewZikr, isPresented: $showZikrCreateForm) {

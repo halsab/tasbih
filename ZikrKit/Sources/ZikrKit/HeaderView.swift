@@ -27,7 +27,7 @@ struct HeaderView: View {
                         Spacer()
                         Text("x\(zikr.loopsCount)")
                     }
-                    .font(.app.mBody)
+                    .font(.app.font(.m))
                     .foregroundStyle(Color.app.tint)
                     .monospaced()
                     .overlay(alignment: .centerFirstTextBaseline) {
@@ -41,7 +41,7 @@ struct HeaderView: View {
             HStack {
                 Text(String(zikr.count))
                     .contentTransition(.numericText())
-                    .font(.app.lTitle)
+                    .font(.app.font(.xxxl, .bold))
                     .foregroundStyle(Color.app.tint)
 
                 Spacer()
@@ -63,7 +63,7 @@ struct HeaderView: View {
                 } label: {
                     Text(zikr.loopSize.shortTitle)
                         .foregroundStyle(Color.app.tint)
-                        .font(.app.mTitle)
+                        .font(.app.font(.m, .bold))
                         .padding(.vertical, 6)
                         .padding(.horizontal, 12)
                         .background(.ultraThinMaterial)
@@ -81,7 +81,7 @@ struct HeaderView: View {
     @ViewBuilder
     private func zikrNameView(_ zikr: ZikrModel) -> some View {
         Text(zikr.name)
-            .font(.app.mTitle)
+            .font(.app.font(.m, .bold))
             .foregroundStyle(Color.secondary)
             .lineLimit(1)
     }

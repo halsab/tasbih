@@ -31,7 +31,7 @@ public struct CountScreen: View {
                     showZikrCreateForm.toggle()
                 }
                 .foregroundStyle(Color.primary)
-                .font(.app.mBody)
+                .font(.app.font(.m))
                 .padding()
                 .background(Color.app.tint)
                 .clipShape(.capsule)
