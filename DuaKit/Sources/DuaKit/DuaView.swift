@@ -52,6 +52,7 @@ struct DuaView: View {
                     .toggleStyle(ButtonToggleStyle())
                 }
             }
+            .hideNavBarOnSwipe(true)
         }
     }
 }
