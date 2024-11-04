@@ -30,8 +30,14 @@ struct DuaView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Text(dua.name.translation)
-                        Text(dua.sentencesRange)
+                        if let alternativeName = dua.name.alternative {
+                            Text(alternativeName)
+                        } else {
+                            Text(dua.name.translation)
+                            if !dua.isFull {
+                                Text(dua.sentencesRange)
+                            }
+                        }
                     }
                     .font(.app.font(.m, .bold))
                     .foregroundStyle(Color.secondary)

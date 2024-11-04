@@ -11,4 +11,6 @@ let suras: [DuaModel] = [
     _1_Fatiha,
     _2_Bakara,
     _3_Bakara,
+    _4_Bakara,
+    _5_Bakara,
 ]

@@ -10,7 +10,8 @@ import Foundation
 let _2_Bakara: DuaModel = .init(
     name: .init(
         arabic: "",
-        translation: "Бәкара"
+        translation: "Бәкара",
+        alternative: "الم"
     ),
     number: 2,
     sentences: [

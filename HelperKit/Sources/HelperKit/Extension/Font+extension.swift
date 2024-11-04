@@ -10,10 +10,12 @@ import SwiftUI
 public extension Font {
     enum app {
         public enum SizeType {
-            case xs, s, m, l, xl, xxl, xxxl
+            case xxxs, xxs, xs, s, m, l, xl, xxl, xxxl
             
             var size: Font.TextStyle {
                 switch self {
+                case .xxxs: return .footnote
+                case .xxs: return .callout
                 case .xs: return .subheadline
                 case .s: return .callout
                 case .m: return .body

@@ -22,33 +22,26 @@ public struct DuaHomeScreen: View {
                 ) {
                     ForEach(suras) { sura in
                         NavigationLink(value: sura) {
-                            HStack {
-                                Text(sura.name.translation)
-                                    .foregroundStyle(Color.primary)
-                                Text(sura.sentencesRange)
-                                    .foregroundStyle(Color.secondary)
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(sura.name.translation)
+                                        .foregroundStyle(Color.system.label)
+                                    if !sura.isFull {
+                                        Text(sura.sentencesRange)
+                                            .foregroundStyle(Color.system.secondaryLabel)
+                                    }
+                                }
+                                .font(.app.font(.m, .bold))
+                                
+                                if let alternativeName = sura.name.alternative {
+                                    Text(alternativeName)
+                                        .foregroundStyle(Color.system.tertiaryLabel)
+                                        .font(.app.font(.xxs))
+                                }
                             }
-                            .font(.app.font(.m, .bold))
                         }
                     }
                 }
-                
-//                Section(header: Text("Dua")
-//                    .font(.app.mTitle)
-//                    .foregroundStyle(Color.app.highlight.gradient)
-//                ) {
-//                    ForEach(duas) { dua in
-//                        NavigationLink(value: dua) {
-//                            HStack {
-//                                Text(dua.name.translation)
-//                                    .foregroundStyle(Color.primary)
-//                                Text(dua.sentencesRange)
-//                                    .foregroundStyle(Color.secondary)
-//                            }
-//                            .font(.app.mTitle)
-//                        }
-//                    }
-//                }
             }
             .navigationTitle("Home")
             .navigationDestination(for: DuaModel.self) { dua in

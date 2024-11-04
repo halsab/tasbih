@@ -28,9 +28,10 @@ struct SentenceView: View {
             
             if isArabicVisible {
                 Text(sentence.arabic)
-                    .font(.app.font(.xl))
+                    .font(.app.font(.xxl))
                     .foregroundStyle(Color.primary)
                     .multilineTextAlignment(.trailing)
+                    .lineSpacing(8)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 if isTranslationVisible || isTranscriptionVisible {
@@ -53,7 +54,7 @@ struct SentenceView: View {
             if isTranslationVisible {
                 Text(sentence.translation)
                     .font(.app.font(.m))
-                    .foregroundStyle(Color.primary)
+                    .foregroundStyle(isArabicVisible || isTranscriptionVisible ? Color.secondary : Color.primary)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -71,7 +72,7 @@ struct SentenceView: View {
 
 #Preview {
     SentenceView(
-        sentence: _1_Fatiha.sentences.first!,
+        sentence: _1_Fatiha.sentences.last!,
         isArabicVisible: .constant(true),
         isTranslationVisible: .constant(true),
         isTranscriptionVisible: .constant(true)

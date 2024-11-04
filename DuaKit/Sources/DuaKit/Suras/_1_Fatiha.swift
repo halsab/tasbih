@@ -13,6 +13,7 @@ let _1_Fatiha: DuaModel = .init(
         translation: "Фатиха"
     ),
     number: 1,
+    isFull: true,
     sentences: [
         .init(
             number: 1,

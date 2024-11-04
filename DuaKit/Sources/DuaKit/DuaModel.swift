@@ -11,6 +11,7 @@ struct DuaModel: Identifiable, Hashable {
     let id = UUID()
     let name: Name
     let number: Int?
+    let isFull: Bool
     let sentences: [Sentence]
     
     var sentencesRange: String {
@@ -20,10 +21,12 @@ struct DuaModel: Identifiable, Hashable {
     init(
         name: Name,
         number: Int? = nil,
+        isFull: Bool = false,
         sentences: [Sentence]
     ) {
         self.name = name
         self.number = number
+        self.isFull = isFull
         self.sentences = sentences
     }
 }
@@ -34,17 +37,20 @@ extension DuaModel {
     struct Name: Hashable {
         let arabic: String
         let translation: String
+        let alternative: String?
         let meaning: String?
         let honor: String?
         
         init(
             arabic: String,
             translation: String,
+            alternative: String? = nil,
             meaning: String? = nil,
             honor: String? = nil
         ) {
             self.arabic = arabic
             self.translation = translation
+            self.alternative = alternative
             self.meaning = meaning
             self.honor = honor
         }
