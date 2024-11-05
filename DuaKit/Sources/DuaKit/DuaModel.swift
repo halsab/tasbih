@@ -66,14 +66,14 @@ extension DuaModel {
         let arabic: String
         let translation: String
         let transcription: String
-        let tafsir: [Tafsir]?
+        let tafsir: Tafsir?
         
         init(
             number: Int,
             arabic: String,
             translation: String,
             transcription: String,
-            tafsir: [Tafsir]? = nil
+            tafsir: Tafsir? = nil
         ) {
             self.number = number
             self.arabic = arabic
@@ -89,15 +89,15 @@ extension DuaModel {
 extension DuaModel.Sentence {
     struct Tafsir: Identifiable, Hashable {
         let id = UUID()
-        let author: String?
-        let texts: [String]
+        let author: String
+        let text: String
         
         init(
-            author: String? = nil,
-            texts: [String]
+            author: String,
+            text: String
         ) {
             self.author = author
-            self.texts = texts
+            self.text = text
         }
     }
 }

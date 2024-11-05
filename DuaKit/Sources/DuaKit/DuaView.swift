@@ -19,6 +19,7 @@ struct DuaView: View {
         ScrollView {
             ForEach(dua.sentences) { sentence in
                 SentenceView(
+                    duaName: dua.name.translation,
                     sentence: sentence,
                     isArabicVisible: $isArabicVisible,
                     isTranslationVisible: $isTranslationVisible,
@@ -58,7 +59,7 @@ struct DuaView: View {
 }
 
 #Preview {
-    DuaView(dua: _1_Fatiha)
+    DuaView(dua: _5_Bakara)
 }
 
 struct ButtonToggleStyle: ToggleStyle {

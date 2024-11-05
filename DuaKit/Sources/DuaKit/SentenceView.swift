@@ -9,11 +9,14 @@ import SwiftUI
 
 struct SentenceView: View {
     
+    let duaName: String
     let sentence: DuaModel.Sentence
     
     @Binding var isArabicVisible: Bool
     @Binding var isTranslationVisible: Bool
     @Binding var isTranscriptionVisible: Bool
+    
+    @State private var showTafsir = false
     
     private let separatorColor: Color = .system.gray4
     
@@ -62,6 +65,18 @@ struct SentenceView: View {
         .padding(8)
         .background(.background.secondary)
         .clipShape(.rect(cornerRadius: 8))
+        .onTapGesture {
+            showTafsir.toggle()
+        }
+        .sheet(isPresented: $showTafsir) {
+            if let tafsir = sentence.tafsir {
+                TafsirView(
+                    duaName: duaName,
+                    sentenceNumber: sentence.number,
+                    tafsir: tafsir
+                )
+            }
+        }
     }
     
     @ViewBuilder
@@ -72,6 +87,7 @@ struct SentenceView: View {
 
 #Preview {
     SentenceView(
+        duaName: "Fatiha",
         sentence: _1_Fatiha.sentences.last!,
         isArabicVisible: .constant(true),
         isTranslationVisible: .constant(true),
