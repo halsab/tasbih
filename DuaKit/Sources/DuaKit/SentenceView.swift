@@ -26,6 +26,13 @@ struct SentenceView: View {
                 Text("\(sentence.number)")
                     .font(.app.font(.s, .bold))
                     .foregroundStyle(Color.app.tint)
+                
+                if let _ = sentence.tafsir {
+                    Circle()
+                        .frame(width: 5, height: 5)
+                        .foregroundStyle(Color.app.highlight)
+                }
+                
                 hSeparator(color: .app.tint)
             }
             
@@ -66,7 +73,9 @@ struct SentenceView: View {
         .background(.background.secondary)
         .clipShape(.rect(cornerRadius: 8))
         .onTapGesture {
-            showTafsir.toggle()
+            if let _ = sentence.tafsir {
+                showTafsir.toggle()
+            }
         }
         .sheet(isPresented: $showTafsir) {
             if let tafsir = sentence.tafsir {
