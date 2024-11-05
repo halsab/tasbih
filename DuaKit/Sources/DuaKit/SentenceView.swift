@@ -22,18 +22,22 @@ struct SentenceView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("\(sentence.number)")
-                    .font(.app.font(.s, .bold))
-                    .foregroundStyle(Color.app.tint)
-                
-                if let _ = sentence.tafsir {
-                    Circle()
-                        .frame(width: 5, height: 5)
-                        .foregroundStyle(Color.app.highlight)
+            if sentence.number != nil || sentence.tafsir != nil {
+                HStack {
+                    if let number = sentence.number {
+                        Text("\(number)")
+                            .font(.app.font(.s, .bold))
+                            .foregroundStyle(Color.app.tint)
+                    }
+                    
+                    if let _ = sentence.tafsir {
+                        Circle()
+                            .frame(width: 5, height: 5)
+                            .foregroundStyle(Color.app.highlight)
+                    }
+                    
+                    hSeparator(color: .app.tint)
                 }
-                
-                hSeparator(color: .app.tint)
             }
             
             if isArabicVisible {

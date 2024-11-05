@@ -42,6 +42,19 @@ public struct DuaHomeScreen: View {
                         }
                     }
                 }
+                
+                Section(header: Text("Dua")
+                    .font(.app.font(.m, .bold))
+                    .foregroundStyle(Color.app.highlight.gradient)
+                ) {
+                    ForEach(duas) { sura in
+                        NavigationLink(value: sura) {
+                            Text(sura.name.translation)
+                                .font(.app.font(.m, .bold))
+                                .foregroundStyle(Color.system.label)
+                        }
+                    }
+                }
             }
             .navigationTitle("Home")
             .navigationDestination(for: DuaModel.self) { dua in

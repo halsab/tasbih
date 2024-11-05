@@ -15,7 +15,12 @@ struct DuaModel: Identifiable, Hashable {
     let sentences: [Sentence]
     
     var sentencesRange: String {
-        "\(sentences.first!.number)-\(sentences.last!.number)"
+        if let firstNumber = sentences.first?.number,
+           let lastNumber = sentences.last?.number {
+            return "\(firstNumber)-\(lastNumber)"
+        } else {
+            return ""
+        }
     }
     
     init(
@@ -35,14 +40,14 @@ struct DuaModel: Identifiable, Hashable {
 
 extension DuaModel {
     struct Name: Hashable {
-        let arabic: String
+        let arabic: String?
         let translation: String
         let alternative: String?
         let meaning: String?
         let honor: String?
         
         init(
-            arabic: String,
+            arabic: String? = nil,
             translation: String,
             alternative: String? = nil,
             meaning: String? = nil,
@@ -62,14 +67,14 @@ extension DuaModel {
 extension DuaModel {
     struct Sentence: Identifiable, Hashable {
         let id = UUID()
-        let number: Int
+        let number: Int?
         let arabic: String
         let translation: String
         let transcription: String
         let tafsir: Tafsir?
         
         init(
-            number: Int,
+            number: Int? = nil,
             arabic: String,
             translation: String,
             transcription: String,

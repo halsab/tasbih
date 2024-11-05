@@ -8,5 +8,5 @@
 import Foundation
 
 let duas: [DuaModel] = [
-    
+    _1_Dua,
 ]

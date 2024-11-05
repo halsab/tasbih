@@ -26,7 +26,7 @@ struct DuaView: View {
                     isTranscriptionVisible: $isTranscriptionVisible
                 )
             }
-            .padding(8)
+            .padding()
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -53,7 +53,6 @@ struct DuaView: View {
                     .toggleStyle(ButtonToggleStyle())
                 }
             }
-            .hideNavBarOnSwipe(true)
         }
     }
 }

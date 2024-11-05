@@ -10,7 +10,7 @@ import SwiftUI
 struct TafsirView: View {
     
     let duaName: String
-    let sentenceNumber: Int
+    let sentenceNumber: Int?
     let tafsir: DuaModel.Sentence.Tafsir
     
     var body: some View {
@@ -25,9 +25,16 @@ struct TafsirView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .principal) {
                     VStack {
-                        Text("\(duaName) - \(sentenceNumber)")
-                            .font(.app.font(.m, .bold))
-                            .foregroundStyle(Color.system.secondaryLabel)
+                        HStack {
+                            Text(duaName)
+                            Text("-")
+                            if let sentenceNumber {
+                                Text("\(sentenceNumber)")                                
+                            }
+                        }
+                        .font(.app.font(.m, .bold))
+                        .foregroundStyle(Color.system.secondaryLabel)
+
                         Text(tafsir.author)
                             .font(.app.font(.xs))
                             .foregroundStyle(Color.system.tertiaryLabel)
