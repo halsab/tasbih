@@ -13,4 +13,7 @@ let suras: [DuaModel] = [
     _3_Bakara,
     _4_Bakara,
     _5_Bakara,
+    _6_Bakara,
+    _7_Bakara,
+    _8_Bakara,
 ]
