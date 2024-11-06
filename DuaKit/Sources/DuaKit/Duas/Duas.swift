@@ -9,4 +9,8 @@ import Foundation
 
 let duas: [DuaModel] = [
     _1_Dua,
+    _2_Dua,
+    _3_Dua,
+    _4_Dua,
+    _5_Dua,
 ]

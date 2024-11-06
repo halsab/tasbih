@@ -16,47 +16,11 @@ public struct DuaHomeScreen: View {
     public var body: some View {
         NavigationStack {
             List {
-                Section(header: Text("Sura")
-                    .font(.app.font(.m, .bold))
-                    .foregroundStyle(Color.app.highlight.gradient)
-                ) {
-                    ForEach(suras) { sura in
-                        NavigationLink(value: sura) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text(sura.name.translation)
-                                        .foregroundStyle(Color.system.label)
-                                    if !sura.isFull {
-                                        Text(sura.sentencesRange)
-                                            .foregroundStyle(Color.system.secondaryLabel)
-                                    }
-                                }
-                                .font(.app.font(.m, .bold))
-                                
-                                if let alternativeName = sura.name.alternative {
-                                    Text(alternativeName)
-                                        .foregroundStyle(Color.system.tertiaryLabel)
-                                        .font(.app.font(.xxs))
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                Section(header: Text("Dua")
-                    .font(.app.font(.m, .bold))
-                    .foregroundStyle(Color.app.highlight.gradient)
-                ) {
-                    ForEach(duas) { sura in
-                        NavigationLink(value: sura) {
-                            Text(sura.name.translation)
-                                .font(.app.font(.m, .bold))
-                                .foregroundStyle(Color.system.label)
-                        }
-                    }
-                }
+                suraSection()
+                duaSection()
             }
-            .navigationTitle("Home")
+            .navigationTitle("Sura and Dua")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: DuaModel.self) { dua in
                 DuaView(dua: dua)
             }
@@ -64,21 +28,49 @@ public struct DuaHomeScreen: View {
     }
     
     @ViewBuilder
-    private func qwe(sentences: [String]) -> some View {
-        Group {
-            sentences.enumerated().reduce(Text("")) { text, sentence in
-                text
-                + Text(sentence.element)
-                + Text(" -\(sentence.offset + 1)- ")
-                    .font(.system(.title2, design: .rounded, weight: .bold))
-                    .foregroundStyle(Color.app.tint)
+    private func suraSection() -> some View {
+        Section(header: Text("Sura")
+            .font(.app.font(.m, .bold))
+            .foregroundStyle(Color.app.highlight.gradient)
+        ) {
+            ForEach(suras) { sura in
+                NavigationLink(value: sura) {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(sura.name.translation)
+                                .foregroundStyle(Color.system.label)
+                            if !sura.isFull {
+                                Text(sura.sentencesRange)
+                                    .foregroundStyle(Color.system.secondaryLabel)
+                            }
+                        }
+                        .font(.app.font(.m, .bold))
+                        
+                        if let alternativeName = sura.name.alternative {
+                            Text(alternativeName)
+                                .foregroundStyle(Color.system.tertiaryLabel)
+                                .font(.app.font(.xxs))
+                        }
+                    }
+                }
             }
         }
-        .font(.system(.largeTitle, design: .rounded, weight: .light))
-        .foregroundStyle(Color.system.gray)
-        .multilineTextAlignment(.trailing)
-        .lineSpacing(8)
-        .padding(8)
+    }
+    
+    @ViewBuilder
+    private func duaSection() -> some View {
+        Section(header: Text("Dua")
+            .font(.app.font(.m, .bold))
+            .foregroundStyle(Color.app.highlight.gradient)
+        ) {
+            ForEach(duas) { sura in
+                NavigationLink(value: sura) {
+                    Text(sura.name.translation)
+                        .font(.app.font(.m, .bold))
+                        .foregroundStyle(Color.system.label)
+                }
+            }
+        }
     }
 }
 

@@ -17,5 +17,11 @@ public extension String {
         public enum zikr {
             public static let selectedZikrName = "zikr-selectedZikrName-key"
         }
+        
+        public enum dua {
+            public static let isArabicVisible = "dua-isArabicVisible-key"
+            public static let isTranslationVisible = "dua-isTranslationVisible-key"
+            public static let isTranscriptionVisible = "dua-isTranscriptionVisible-key"
+        }
     }
 }
