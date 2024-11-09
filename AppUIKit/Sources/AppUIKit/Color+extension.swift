@@ -13,8 +13,12 @@ public extension Color {
     }
     
     enum app {
-        public static let tint: Color = moduleColor("tint")
-        public static let highlight: Color = moduleColor("highlight")
+        public static let tint = moduleColor("tint")
+        public static let highlight = moduleColor("highlight")
+        
+        public enum bg {
+            public static let sura = moduleColor("bg/sura")
+        }
     }
     
     enum system {

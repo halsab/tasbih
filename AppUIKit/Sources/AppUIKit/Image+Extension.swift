@@ -8,6 +8,10 @@
 import SwiftUI
 
 public extension Image {
+    static func moduleImage(_ name: String) -> Image {
+        Image(name, bundle: .module)
+    }
+    
     enum app {
         public enum haptic {
             public static let on = Image(systemName: "iphone.radiowaves.left.and.right.circle.fill")
@@ -18,6 +22,7 @@ public extension Image {
             public static let count = Image(systemName: "suit.heart.fill")
             public static let increase = Image(systemName: "plus.square.fill")
             public static let decrease = Image(systemName: "minus.square.fill")
+            public static let book = Image(systemName: "book")
         }
 
         public enum icon {
@@ -29,6 +34,10 @@ public extension Image {
         public enum selection {
             public static let on = Image(systemName: "checkmark.circle.fill")
             public static let off = Image(systemName: "circle")
+        }
+        
+        public enum sura {
+            public static let _1 = moduleImage("sura/fatiha/0")
         }
     }
 }

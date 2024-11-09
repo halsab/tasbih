@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppUIKit
 
 struct DuaView: View {
     
@@ -27,54 +28,49 @@ struct DuaView: View {
                 )
             }
             .padding()
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        if let alternativeName = dua.name.alternative {
-                            Text(alternativeName)
-                        } else {
-                            Text(dua.name.translation)
-                            if !dua.isFull {
-                                Text(dua.sentencesRange)
-                            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    if let alternativeName = dua.name.alternative {
+                        Text(alternativeName)
+                    } else {
+                        Text(dua.name.translation)
+                        if !dua.isFull {
+                            Text(dua.sentencesRange)
                         }
                     }
-                    .font(.app.font(.m, .bold))
-                    .foregroundStyle(Color.secondary)
                 }
-                
-                ToolbarItemGroup(placement: .bottomBar) {
-                    HStack {
-                        Toggle("arabic", isOn: $isArabicVisible)
-                        Toggle("transcription", isOn: $isTranscriptionVisible)
-                        Toggle("translation", isOn: $isTranslationVisible)
+                .font(.app.font(.m, .bold))
+                .foregroundStyle(Color.secondary)
+            }
+            
+            ToolbarItemGroup(placement: .bottomBar) {
+                HStack {
+                    Toggle("arabic", isOn: $isArabicVisible)
+                    Toggle("transcription", isOn: $isTranscriptionVisible)
+                    Toggle("translation", isOn: $isTranslationVisible)
+                }
+                .toggleStyle(FilterToggleStyle())
+            }
+            
+            if dua.isImagesExist {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(value: dua.imageNames) {
+                        Image.app.button.book
                     }
-                    .toggleStyle(ButtonToggleStyle())
                 }
             }
+        }
+        .navigationDestination(for: [String].self) { imageNames in
+            BookView(imageNames: imageNames)
         }
     }
 }
 
 #Preview {
-    DuaView(dua: _5_Bakara)
-}
-
-struct ButtonToggleStyle: ToggleStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        Button {
-            withAnimation {
-                configuration.isOn.toggle()
-            }
-        } label: {
-            configuration.label
-                .font(.app.font(.s))
-                .foregroundStyle(Color.app.tint)
-        }
-        .padding(.vertical, 2)
-        .padding(.horizontal, 4)
-        .background(Color.app.tint.opacity(configuration.isOn ? 0.15 : 0))
-        .clipShape(.capsule)
+    NavigationStack {
+        DuaView(dua: _1_Fatiha)
     }
 }

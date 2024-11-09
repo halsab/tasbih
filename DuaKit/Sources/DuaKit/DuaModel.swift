@@ -13,6 +13,7 @@ struct DuaModel: Identifiable, Hashable {
     let number: Int?
     let isFull: Bool
     let sentences: [Sentence]
+    let imageNames: [String]
     
     var sentencesRange: String {
         if let firstNumber = sentences.first?.number,
@@ -23,16 +24,22 @@ struct DuaModel: Identifiable, Hashable {
         }
     }
     
+    var isImagesExist: Bool {
+        !imageNames.isEmpty
+    }
+    
     init(
         name: Name,
         number: Int? = nil,
         isFull: Bool = false,
-        sentences: [Sentence]
+        sentences: [Sentence],
+        imageNames: [String] = []
     ) {
         self.name = name
         self.number = number
         self.isFull = isFull
         self.sentences = sentences
+        self.imageNames = imageNames
     }
 }
 

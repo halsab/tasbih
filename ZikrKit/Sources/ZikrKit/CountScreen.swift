@@ -30,7 +30,7 @@ public struct CountScreen: View {
                 Button(String.text.button.createFirstZikr, systemImage: .text.systemName.plus) {
                     showZikrCreateForm.toggle()
                 }
-                .foregroundStyle(Color.primary)
+                .foregroundStyle(Color.white)
                 .font(.app.font(.m))
                 .padding()
                 .background(Color.app.tint)
