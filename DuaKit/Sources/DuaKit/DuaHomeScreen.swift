@@ -11,29 +11,55 @@ import AppUIKit
 
 public struct DuaHomeScreen: View {
     
+    @State private var searchText = ""
+    
+    private var surasSearchResults: [DuaModel] {
+        if searchText.isEmpty {
+            return suras
+        } else {
+            return suras.filter { $0.searchKey.contains(searchText) }
+        }
+    }
+    private var duasSearchResults: [DuaModel] {
+        if searchText.isEmpty {
+            return duas
+        } else {
+            return duas.filter { $0.searchKey.contains(searchText) }
+        }
+    }
+    
     public init() {}
     
     public var body: some View {
         NavigationStack {
             List {
-                suraSection()
-                duaSection()
+                if !surasSearchResults.isEmpty {
+                    suraSection()
+                }
+                if !duasSearchResults.isEmpty {
+                    duaSection()
+                }
             }
-            .navigationTitle("Sura and Dua")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: DuaModel.self) { dua in
                 DuaView(dua: dua)
             }
+            .scrollDismissesKeyboard(.interactively)
         }
+        .searchable(text: $searchText)
+    }
+    
+    @ViewBuilder
+    private func sectionHeader(name: String) -> some View {
+        Text(name)
+            .font(.app.font(.m, .bold))
+            .foregroundStyle(Color.app.tint.gradient)
     }
     
     @ViewBuilder
     private func suraSection() -> some View {
-        Section(header: Text("Sura")
-            .font(.app.font(.m, .bold))
-            .foregroundStyle(Color.app.highlight.gradient)
-        ) {
-            ForEach(suras) { sura in
+        Section(header: sectionHeader(name: "sura")) {
+            ForEach(surasSearchResults) { sura in
                 NavigationLink(value: sura) {
                     row(for: sura)
                 }
@@ -43,11 +69,8 @@ public struct DuaHomeScreen: View {
     
     @ViewBuilder
     private func duaSection() -> some View {
-        Section(header: Text("Dua")
-            .font(.app.font(.m, .bold))
-            .foregroundStyle(Color.app.highlight.gradient)
-        ) {
-            ForEach(duas) { dua in
+        Section(header: sectionHeader(name: "dua")) {
+            ForEach(duasSearchResults) { dua in
                 NavigationLink(value: dua) {
                     row(for: dua)
                 }

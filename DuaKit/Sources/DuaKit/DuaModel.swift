@@ -36,6 +36,12 @@ struct DuaModel: Identifiable, Hashable {
         }
     }
     
+    var searchKey: String {
+        [name.arabic, name.translation, name.alternative, name.meaning, name.honor]
+            .compactMap(\.self)
+            .joined(separator: " ")
+    }
+    
     init(
         name: Name,
         number: Int? = nil,
