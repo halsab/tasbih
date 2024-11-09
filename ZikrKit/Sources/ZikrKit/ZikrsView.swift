@@ -12,29 +12,21 @@ import AppUIKit
 struct ZikrsView: View {
     
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \ZikrModel.date, order: .reverse) private var zikrs: [ZikrModel]
+    @Query(sort: \ZikrModel.name) private var zikrs: [ZikrModel]
     @State private var newZirkName = ""
     @State private var showZikrCreateForm = false
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(zikrs) { zikr in
-                    ZikrView(zikr: zikr)
-                        .swipeActions(edge: .leading) {
-                            Button(String.text.button.select) {
-                                selectZikr(zikr)
-                            }
-                            .tint(.app.highlight)
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(zikrs) { zikr in
+                        ZikrView(zikr: zikr) { id in
+                            selectZikr(id: id)
                         }
-                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                            Button(role: .destructive) {
-                                deleteZikr(zikr)
-                            } label: {
-                                Label(String.text.button.delete, systemImage: .text.systemName.trash_fill)
-                            }
-                        }
+                    }
                 }
+                .padding()
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -48,26 +40,8 @@ struct ZikrsView: View {
                     .buttonStyle(CustomButtonStyle())
                 }
                 
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        decreaseCount()
-                    } label: {
-                        Image.app.button.decrease
-                            .font(.app.font(.m, .bold))
-                    }
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        increaseCount()
-                    } label: {
-                        Image.app.button.increase
-                            .font(.app.font(.m, .bold))
-                    }
-                }
-                
                 ToolbarItem(placement: .principal) {
-                    Text(zikrs.first(where: \.isSelected)?.name ?? String.text.title.zikrs)
+                    Text(String.text.title.zikrs)
                         .font(.app.font(.m, .bold))
                 }
             }
@@ -92,41 +66,12 @@ struct ZikrsView: View {
         try? modelContext.save()
     }
     
-    private func deleteZikr(_ zikr: ZikrModel) {
-        if zikr.isSelected, let newSelectedZikr = zikrs.first(where: { $0.id != zikr.id }) {
-            newSelectedZikr.isSelected = true
-        }
-        modelContext.delete(zikr)
-        try? modelContext.save()
-    }
-    
-    private func selectZikr(_ zikr: ZikrModel) {
+    private func selectZikr(id: UUID) {
         withAnimation {
             zikrs.forEach {
-                $0.isSelected = false
+                $0.isSelected = $0.id == id
             }
-            zikr.isSelected = true
             try? modelContext.save()
-        }
-    }
-    
-    private func increaseCount() {
-        guard let zikr = zikrs.first(where: \.isSelected) else { return }
-        withAnimation {
-            zikr.count += 1
-            zikr.date = .now
-            try? modelContext.save()
-        }
-    }
-    
-    private func decreaseCount() {
-        guard let zikr = zikrs.first(where: \.isSelected) else { return }
-        withAnimation {
-            if zikr.count > 0 {
-                zikr.count -= 1
-                zikr.date = .now
-                try? modelContext.save()
-            }
         }
     }
 }

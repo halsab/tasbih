@@ -30,6 +30,7 @@ public extension String {
             public static let createFirstZikr = "Create your first zikr"
             public static let createNewZikr = "Create your new zikr"
             public static let resetZikrCompletely = "Reset this zikr completely?"
+            public static let delelteZikr = "Delete zikr"
         }
         
         public enum textField {
