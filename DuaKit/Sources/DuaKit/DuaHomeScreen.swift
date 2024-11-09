@@ -35,23 +35,7 @@ public struct DuaHomeScreen: View {
         ) {
             ForEach(suras) { sura in
                 NavigationLink(value: sura) {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(sura.name.translation)
-                                .foregroundStyle(Color.system.label)
-                            if !sura.isFull {
-                                Text(sura.sentencesRange)
-                                    .foregroundStyle(Color.system.secondaryLabel)
-                            }
-                        }
-                        .font(.app.font(.m, .bold))
-                        
-                        if let alternativeName = sura.name.alternative {
-                            Text(alternativeName)
-                                .foregroundStyle(Color.system.tertiaryLabel)
-                                .font(.app.font(.xxs))
-                        }
-                    }
+                    row(for: sura)
                 }
             }
         }
@@ -63,13 +47,47 @@ public struct DuaHomeScreen: View {
             .font(.app.font(.m, .bold))
             .foregroundStyle(Color.app.highlight.gradient)
         ) {
-            ForEach(duas) { sura in
-                NavigationLink(value: sura) {
-                    Text(sura.name.translation)
-                        .font(.app.font(.m, .bold))
-                        .foregroundStyle(Color.system.label)
+            ForEach(duas) { dua in
+                NavigationLink(value: dua) {
+                    row(for: dua)
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func row(for model: DuaModel) -> some View {
+        var translationNameColor: Color {
+            if model.isAlternativeNameExist {
+                .system.secondaryLabel
+            } else {
+                .system.label
+            }
+        }
+        var translationNameFont: Font {
+            if model.isAlternativeNameExist {
+                .app.font(.xxs)
+            } else {
+                .app.font(.m, .bold)
+            }
+        }
+        
+        VStack(alignment: .leading) {
+            if let alternativeName = model.name.alternative {
+                Text(alternativeName)
+                    .foregroundStyle(Color.system.label)
+                    .font(.app.font(.m, .bold))
+            }
+            
+            HStack {
+                Text(model.name.translation)
+                    .foregroundStyle(translationNameColor)
+                if !model.isFull {
+                    Text(model.sentencesRange)
+                        .foregroundStyle(Color.system.secondaryLabel)
+                }
+            }
+            .font(translationNameFont)
         }
     }
 }

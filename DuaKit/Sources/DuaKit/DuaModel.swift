@@ -28,6 +28,14 @@ struct DuaModel: Identifiable, Hashable {
         !imageNames.isEmpty
     }
     
+    var isAlternativeNameExist: Bool {
+        if let alternativeName = name.alternative {
+            return !alternativeName.isEmpty
+        } else {
+            return false
+        }
+    }
+    
     init(
         name: Name,
         number: Int? = nil,

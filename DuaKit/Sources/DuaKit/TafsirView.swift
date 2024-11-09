@@ -18,6 +18,7 @@ struct TafsirView: View {
             ScrollView {
                 Text(tafsir.text)
                     .font(.app.font(.m))
+                    .foregroundStyle(Color.system.secondaryLabel)
                     .multilineTextAlignment(.leading)
                     .padding()
             }
@@ -51,4 +52,5 @@ struct TafsirView: View {
         sentenceNumber: 183,
         tafsir: _5_Bakara.sentences.first!.tafsir!
     )
+    .tint(.app.tint)
 }

@@ -35,9 +35,5 @@ public extension Image {
             public static let on = Image(systemName: "checkmark.circle.fill")
             public static let off = Image(systemName: "circle")
         }
-        
-        public enum sura {
-            public static let _1 = moduleImage("sura/fatiha/0")
-        }
     }
 }
