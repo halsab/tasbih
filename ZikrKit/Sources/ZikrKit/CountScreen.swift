@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import HelperKit
+import AppUIKit
 
 public struct CountScreen: View {
 
@@ -30,11 +31,7 @@ public struct CountScreen: View {
                 Button(String.text.button.createFirstZikr, systemImage: .text.systemName.plus) {
                     showZikrCreateForm.toggle()
                 }
-                .foregroundStyle(Color.white)
-                .font(.app.font(.m))
-                .padding()
-                .background(Color.app.tint)
-                .clipShape(.capsule)
+                .buttonStyle(CapsuleButtonStyle())
             }
         }
         .padding([.bottom, .leading, .trailing])

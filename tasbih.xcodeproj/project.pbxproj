@@ -14,6 +14,7 @@
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
+		20E275AF2CE1041A005BDFB3 /* SettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20E275AE2CE1041A005BDFB3 /* SettingsKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20B1C0882CC139A8008E5462 /* HelperKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HelperKit; sourceTree = "<group>"; };
+		20E275AD2CE103A5005BDFB3 /* SettingsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SettingsKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E275AF2CE1041A005BDFB3 /* SettingsKit in Frameworks */,
 				2033D37E2CC27AF700909E05 /* ZikrKit in Frameworks */,
 				20246B9A2CD6270C006AA96D /* DuaKit in Frameworks */,
 				2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */,
@@ -48,6 +51,7 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
+				20E275AD2CE103A5005BDFB3 /* SettingsKit */,
 				20246B982CD626F2006AA96D /* DuaKit */,
 				2033D37F2CC27CDE00909E05 /* AppUIKit */,
 				2033D37C2CC27A9100909E05 /* ZikrKit */,
@@ -407,6 +411,10 @@
 		2033D37D2CC27AF700909E05 /* ZikrKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ZikrKit;
+		};
+		20E275AE2CE1041A005BDFB3 /* SettingsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SettingsKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

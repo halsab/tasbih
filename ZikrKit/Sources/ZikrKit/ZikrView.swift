@@ -23,7 +23,7 @@ struct ZikrView: View {
         HStack {            
             Button {} label: {
                 ZStack {
-                    Color.system.tertiaryBackground
+                    Color.system.secondaryFill
                         .frame(width: 48)
                     Image.app.button.decrease
                         .tint(.secondary)
@@ -70,7 +70,7 @@ struct ZikrView: View {
                 increaseCount()
             } label: {
                 ZStack {
-                    Color.system.tertiaryBackground
+                    Color.system.secondaryFill
                         .frame(width: 48)
                     Image.app.button.increase
                         .tint(.secondary)

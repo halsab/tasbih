@@ -9,6 +9,7 @@ import SwiftUI
 import SalahKit
 import ZikrKit
 import DuaKit
+import SettingsKit
 
 struct MainTabView: View {
     
@@ -21,7 +22,7 @@ struct MainTabView: View {
                     .modelContainer(for: ZikrModel.self)
                     .statusBar(hidden: true)
             } label: {
-                Label("Zikr", systemImage: "numbers")
+                Label("Zikr", systemImage: "aqi.medium")
             }
             
             Tab(value: 1) {
@@ -34,6 +35,12 @@ struct MainTabView: View {
                 DuaHomeScreen()
             } label: {
                 Label("Dua", systemImage: "book.fill")
+            }
+            
+            Tab(value: 3) {
+                SettingsScreen()
+            } label: {
+                Label("Settings", systemImage: "gearshape.fill")
             }
         }
         .tint(.app.tint)

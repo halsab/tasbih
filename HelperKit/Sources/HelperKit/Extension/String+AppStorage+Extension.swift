@@ -12,6 +12,7 @@ public extension String {
         public enum common {
             public static let haptic = "common-isHapticEnabled-key"
             public static let selectedTab = "common-selectedTab-key"
+            public static let appScheme = "common-appScheme-key"
         }
         
         public enum zikr {
