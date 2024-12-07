@@ -34,8 +34,9 @@ final class PrayerTimesCalculator {
     
     // MARK: Init
     
-    init(coordinate: CLLocationCoordinate2D, date: Date = .now, method: Method = .dumRT) {
-        self.coordinate = coordinate
+    init(coordinate: CLLocationCoordinate2D, date: Date = .now, method: Method = .ummAlQura) {
+//        self.coordinate = coordinate
+        self.coordinate = .init(latitude: 21.42052379343408, longitude: 39.820214260512685)
         calcDate = date
         self.method = method
     }
@@ -268,7 +269,7 @@ private extension PrayerTimesCalculator {
             case .dhuhr:
                 time.dateNumeric = computeMidDay(time.dateNumeric)
             case .asr:
-                time.dateNumeric = computeAsr(step: 2, t: time.dateNumeric)
+                time.dateNumeric = computeAsr(step: method.asrParameter, t: time.dateNumeric)
             case .sunset:
                 time.dateNumeric = computeTime(0.833, t: time.dateNumeric)
             case .maghrib:
@@ -357,13 +358,24 @@ private extension PrayerTimesCalculator {
 // MARK: - Method
 
 extension PrayerTimesCalculator {
-    enum Method {
+    enum Method: CaseIterable, Hashable, Identifiable {
         case dumRT
+        case ummAlQura
+        
+        var id: Self { self }
+        
+        var name: String {
+            switch self {
+            case .dumRT: "Dum RT"
+            case .ummAlQura: "Umm Al-Qura"
+            }
+        }
         
         /// fajr angle
         var fajrAngle: Double {
             switch self {
             case .dumRT: 18
+            case .ummAlQura: 18.5
             }
         }
         
@@ -371,6 +383,7 @@ extension PrayerTimesCalculator {
         var maghribSelector: Double {
             switch self {
             case .dumRT: 0
+            case .ummAlQura: 1
             }
         }
         
@@ -378,6 +391,7 @@ extension PrayerTimesCalculator {
         var maghribParameter: Double {
             switch self {
             case .dumRT: 1
+            case .ummAlQura: 1
             }
         }
         
@@ -385,6 +399,7 @@ extension PrayerTimesCalculator {
         var ishaSelector: Double {
             switch self {
             case .dumRT: 0
+            case .ummAlQura: 1
             }
         }
         
@@ -392,6 +407,14 @@ extension PrayerTimesCalculator {
         var ishaParameter: Double {
             switch self {
             case .dumRT: 15
+            case .ummAlQura: 90
+            }
+        }
+        
+        var asrParameter: Double {
+            switch self {
+            case .dumRT: 2
+            case .ummAlQura: 1
             }
         }
     }

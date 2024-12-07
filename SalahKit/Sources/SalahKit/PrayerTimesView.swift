@@ -24,19 +24,37 @@ public struct PrayerTimesView: View {
             }
             .ignoresSafeArea()
             
-            VStack {
-                locationView()
-                    .frame(maxWidth: .infinity, alignment: .leading)
+            GeometryReader { geometry in
+                VStack(spacing: 0) {
+                    Picker("Location", selection: $vm.calculationMethod) {
+                        ForEach(PrayerTimesCalculator.Method.allCases) {
+                            Text($0.name)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .padding()
+                    
+                    Spacer()
+                    
+                    VStack {
+                        locationView()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        timesView(times: vm.times)
+                        
+                        Text(vm.remainingTime)
+                            .contentTransition(.numericText())
+                            .monospaced()
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                    .padding(geometry.size.width / 3 / 2)
+    
+                    Spacer()
+                }
                 
-                timesView(times: vm.times)
-                
-                Text(vm.remainingTime)
-                    .contentTransition(.numericText())
-                    .monospaced()
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
-            .frame(width: 235)
+            .frame(maxWidth: .infinity)
         }
         .onAppear {
             vm.updateTimes()
@@ -83,7 +101,7 @@ public struct PrayerTimesView: View {
     private func timeView(time: PrayerTime) -> some View {
         VStack {
             HStack {
-                Text(time.type.name(.russian))
+                Text(time.type.name(.english))
                     .font(.app.font(.m, .bold))
                 Spacer()
                 Text(time.date, style: .time)

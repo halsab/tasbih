@@ -16,8 +16,9 @@ final class PrayerTimesViewModel: ObservableObject {
     @Published var currentTimeType: PrayerTimeType = .fajr
     @Published var address: LocationManager.Address = .init(city: nil, street: nil)
     @Published var isLoadingLocation = false
+    @Published var calculationMethod: PrayerTimesCalculator.Method = .dumRT
     
-    private let calculator = PrayerTimesCalculator(coordinate: .init(
+    private var calculator = PrayerTimesCalculator(coordinate: .init(
         latitude: 55.7887, longitude: 49.1221
     ))
     
@@ -34,7 +35,13 @@ final class PrayerTimesViewModel: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.isLoadingLocation = false                
             }
-            updateTimes(coordinate: location.coordinate)
+//            updateTimes(coordinate: location.coordinate)
+        }
+        .store(in: &cancellables)
+        
+        $calculationMethod.sink { [unowned self] method in
+            calculator = .init(coordinate: locationManager.location.coordinate, method: method)
+            updateTimes()
         }
         .store(in: &cancellables)
     }

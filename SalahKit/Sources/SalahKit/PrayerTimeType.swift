@@ -20,13 +20,13 @@ enum PrayerTimeType {
         switch language {
         case .english:
             switch self {
-            case .fajr: "fajr"
-            case .sunrise: "sunrise"
-            case .dhuhr: "dhuhr"
-            case .asr: "asr"
-            case .sunset: "sunset"
-            case .maghrib: "maghrib"
-            case .isha: "isha"
+            case .fajr: "Fajr"
+            case .sunrise: "Sunrise"
+            case .dhuhr: "Dhuhr"
+            case .asr: "Asr"
+            case .sunset: "Sunset"
+            case .maghrib: "Maghrib"
+            case .isha: "Isha"
             }
         case .russian:
             switch self {
