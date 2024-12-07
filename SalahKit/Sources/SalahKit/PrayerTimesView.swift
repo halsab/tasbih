@@ -48,7 +48,7 @@ public struct PrayerTimesView: View {
                             .padding(.horizontal)
                             .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .padding(geometry.size.width / 3 / 2)
+                    .padding(geometry.size.width / 2.5 / 2)
     
                     Spacer()
                 }

@@ -34,9 +34,10 @@ final class PrayerTimesCalculator {
     
     // MARK: Init
     
-    init(coordinate: CLLocationCoordinate2D, date: Date = .now, method: Method = .ummAlQura) {
+    init(coordinate: CLLocationCoordinate2D, date: Date = .now, method: Method = .dumRT) {
 //        self.coordinate = coordinate
-        self.coordinate = .init(latitude: 21.42052379343408, longitude: 39.820214260512685)
+//        self.coordinate = .init(latitude: 21.42052379343408, longitude: 39.820214260512685) // Makkah
+        self.coordinate = .init(latitude: 36.893429351303325, longitude: 30.71133912270379) // Antalya
         calcDate = date
         self.method = method
     }
@@ -361,6 +362,7 @@ extension PrayerTimesCalculator {
     enum Method: CaseIterable, Hashable, Identifiable {
         case dumRT
         case ummAlQura
+        case turkeyDiyanet
         
         var id: Self { self }
         
@@ -368,6 +370,7 @@ extension PrayerTimesCalculator {
             switch self {
             case .dumRT: "Dum RT"
             case .ummAlQura: "Umm Al-Qura"
+            case .turkeyDiyanet: "Turkey Diyanet"
             }
         }
         
@@ -376,6 +379,7 @@ extension PrayerTimesCalculator {
             switch self {
             case .dumRT: 18
             case .ummAlQura: 18.5
+            case .turkeyDiyanet: 18
             }
         }
         
@@ -384,6 +388,7 @@ extension PrayerTimesCalculator {
             switch self {
             case .dumRT: 0
             case .ummAlQura: 1
+            case .turkeyDiyanet: 1
             }
         }
         
@@ -392,6 +397,7 @@ extension PrayerTimesCalculator {
             switch self {
             case .dumRT: 1
             case .ummAlQura: 1
+            case .turkeyDiyanet: 1
             }
         }
         
@@ -400,6 +406,7 @@ extension PrayerTimesCalculator {
             switch self {
             case .dumRT: 0
             case .ummAlQura: 1
+            case .turkeyDiyanet: 0
             }
         }
         
@@ -408,6 +415,7 @@ extension PrayerTimesCalculator {
             switch self {
             case .dumRT: 15
             case .ummAlQura: 90
+            case .turkeyDiyanet: 17
             }
         }
         
@@ -415,6 +423,7 @@ extension PrayerTimesCalculator {
             switch self {
             case .dumRT: 2
             case .ummAlQura: 1
+            case .turkeyDiyanet: 1
             }
         }
     }
