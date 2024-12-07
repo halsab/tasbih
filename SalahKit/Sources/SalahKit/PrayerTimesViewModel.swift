@@ -7,6 +7,8 @@
 
 import Combine
 import CoreLocation
+import HelperKit
+import SwiftUI
 
 @MainActor
 final class PrayerTimesViewModel: ObservableObject {
@@ -17,6 +19,8 @@ final class PrayerTimesViewModel: ObservableObject {
     @Published var address: LocationManager.Address = .init(city: nil, street: nil)
     @Published var isLoadingLocation = false
     @Published var calculationMethod: PrayerTimesCalculator.Method = .dumRT
+    
+    @AppStorage(.storageKey.salah.calculationMethod) var storedCalculationMethod: PrayerTimesCalculator.Method = .dumRT
     
     private var calculator = PrayerTimesCalculator(coordinate: .init(
         latitude: 55.7887, longitude: 49.1221
@@ -35,11 +39,13 @@ final class PrayerTimesViewModel: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.isLoadingLocation = false                
             }
-//            updateTimes(coordinate: location.coordinate)
+            updateTimes(coordinate: location.coordinate)
         }
         .store(in: &cancellables)
         
+        calculationMethod = storedCalculationMethod
         $calculationMethod.sink { [unowned self] method in
+            storedCalculationMethod = method
             calculator = .init(coordinate: locationManager.location.coordinate, method: method)
             updateTimes()
         }

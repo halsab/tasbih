@@ -24,5 +24,9 @@ public extension String {
             public static let isTranslationVisible = "dua-isTranslationVisible-key"
             public static let isTranscriptionVisible = "dua-isTranscriptionVisible-key"
         }
+        
+        public enum salah {
+            public static let calculationMethod = "salah-calculationMethod-key"
+        }
     }
 }

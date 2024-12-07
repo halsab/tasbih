@@ -43,7 +43,7 @@ struct MainTabView: View {
                 Label("Settings", systemImage: "gearshape.fill")
             }
         }
-        .tint(.app.tint)
+        .tint(.app.highlight)
     }
 }
 

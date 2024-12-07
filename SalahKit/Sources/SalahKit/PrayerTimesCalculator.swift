@@ -359,7 +359,7 @@ private extension PrayerTimesCalculator {
 // MARK: - Method
 
 extension PrayerTimesCalculator {
-    enum Method: CaseIterable, Hashable, Identifiable {
+    enum Method: String, CaseIterable, Hashable, Identifiable {
         case dumRT
         case ummAlQura
         case turkeyDiyanet
