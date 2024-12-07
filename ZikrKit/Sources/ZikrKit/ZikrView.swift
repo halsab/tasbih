@@ -46,7 +46,7 @@ struct ZikrView: View {
                 VStack(alignment: .leading) {
                     Text(zikr.name)
                         .font(.app.font(.m, .bold))
-                        .foregroundStyle(zikr.isSelected ? Color.app.tint : Color.primary)
+                        .foregroundStyle(zikr.isSelected ? Color.app.highlight : Color.primary)
                     
                     Text(zikr.date.formatted(date: .numeric, time: .shortened))
                         .font(.app.font(.xs))
