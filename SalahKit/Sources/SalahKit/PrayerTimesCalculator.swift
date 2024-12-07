@@ -35,9 +35,9 @@ final class PrayerTimesCalculator {
     // MARK: Init
     
     init(coordinate: CLLocationCoordinate2D, date: Date = .now, method: Method = .dumRT) {
-//        self.coordinate = coordinate
+        self.coordinate = coordinate
 //        self.coordinate = .init(latitude: 21.42052379343408, longitude: 39.820214260512685) // Makkah
-        self.coordinate = .init(latitude: 36.893429351303325, longitude: 30.71133912270379) // Antalya
+//        self.coordinate = .init(latitude: 36.893429351303325, longitude: 30.71133912270379) // Antalya
         calcDate = date
         self.method = method
     }
