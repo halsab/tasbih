@@ -20,8 +20,10 @@ struct ZikrView: View {
     @State private var showZikrDeleteAlert = false
     
     var body: some View {
-        HStack {            
-            Button {} label: {
+        HStack(spacing: 0) {
+            Button {
+                decreaseCount()
+            } label: {
                 ZStack {
                     Color.system.secondaryFill
                         .frame(width: 48)
@@ -29,18 +31,6 @@ struct ZikrView: View {
                         .tint(.secondary)
                 }
             }
-            .simultaneousGesture(
-                LongPressGesture()
-                    .onEnded { _ in
-                        showZikrDeleteAlert.toggle()
-                    }
-            )
-            .highPriorityGesture(
-                TapGesture()
-                    .onEnded {
-                        decreaseCount()
-                    }
-            )
             
             HStack {
                 VStack(alignment: .leading) {
@@ -52,9 +42,6 @@ struct ZikrView: View {
                         .font(.app.font(.xs))
                         .foregroundStyle(Color.secondary)
                 }
-                .onTapGesture {
-                    onTap(zikr.id)
-                }
                 
                 Spacer()
                 
@@ -63,8 +50,20 @@ struct ZikrView: View {
                     .font(.app.font(.xxxl, .bold))
                     .foregroundStyle(Color.secondary)
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal, 4)
+            .padding(8)
+            .background(.background.secondary)
+            .simultaneousGesture(
+                LongPressGesture()
+                    .onEnded { _ in
+                        showZikrDeleteAlert.toggle()
+                    }
+            )
+            .highPriorityGesture(
+                TapGesture()
+                    .onEnded {
+                        onTap(zikr.id)
+                    }
+            )
             
             Button {
                 increaseCount()
@@ -78,7 +77,6 @@ struct ZikrView: View {
             }
         }
         .fixedSize(horizontal: false, vertical: true)
-        .background(.background.secondary)
         .clipShape(.rect(cornerRadius: 16))
         .alert(String.text.alert.delelteZikr + " \(zikr.name)?", isPresented: $showZikrDeleteAlert) {
             Button(String.text.button.delete, role: .destructive, action: deleteZikr)
@@ -110,8 +108,10 @@ struct ZikrView: View {
         if zikr.isSelected, let newSelectedZikr = zikrs.first(where: { $0.id != zikr.id }) {
             newSelectedZikr.isSelected = true
         }
-        modelContext.delete(zikr)
-        try? modelContext.save()
+        withAnimation {
+            modelContext.delete(zikr)
+            try? modelContext.save()
+        }
     }
 }
 
