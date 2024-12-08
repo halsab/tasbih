@@ -22,9 +22,8 @@ final class PrayerTimesViewModel: ObservableObject {
     
     @AppStorage(.storageKey.salah.calculationMethod) var storedCalculationMethod: PrayerTimesCalculator.Method = .dumRT
     
-    private var calculator = PrayerTimesCalculator(coordinate: .init(
-        latitude: 55.7887, longitude: 49.1221
-    ))
+    private var calculator: PrayerTimesCalculator?
+    // latitude: 55.7887, longitude: 49.1221
     
     private var timeManager = PrayerTimerManager()
     private var locationManager = LocationManager()
@@ -54,9 +53,9 @@ final class PrayerTimesViewModel: ObservableObject {
     
     func updateTimes(coordinate: CLLocationCoordinate2D? = nil) {
         if let coordinate {
-            times = calculator.prayerTimes(coordinate: coordinate)
+            times = calculator?.prayerTimes(coordinate: coordinate) ?? []
         } else {
-            times = calculator.prayerTimes()
+            times = calculator?.prayerTimes() ?? []
         }
         timeManager.setTimes(times)
     }
