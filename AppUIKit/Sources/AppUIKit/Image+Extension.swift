@@ -29,6 +29,8 @@ public extension Image {
             public static let selected = Image(systemName: "checkmark")
             public static let list = Image(systemName: "list.bullet.circle")
             public static let plus = Image(systemName: "plus")
+            public static let location = Image(systemName: "location.circle")
+            public static let settings = Image(systemName: "gearshape")
         }
         
         public enum selection {

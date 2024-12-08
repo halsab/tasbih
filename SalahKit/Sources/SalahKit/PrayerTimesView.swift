@@ -14,6 +14,8 @@ public struct PrayerTimesView: View {
     
     @ObservedObject private var vm = PrayerTimesViewModel()
     @Environment(\.scenePhase) var scenePhase
+    @State private var showMethodSelection = false
+    @State private var showLocationSelection = false
     
     public init() {}
         
@@ -38,20 +40,22 @@ public struct PrayerTimesView: View {
                 vm.updateTimes()
             }
         }
+        .sheet(isPresented: $showMethodSelection) {
+            Picker("Location", selection: $vm.calculationMethod) {
+                ForEach(PrayerTimesCalculator.Method.allCases) {
+                    Text($0.name)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding()
+            .presentationDetents([.height(110)])
+        }
     }
     
     @ViewBuilder
     private func contentView() -> some View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
-                Picker("Location", selection: $vm.calculationMethod) {
-                    ForEach(PrayerTimesCalculator.Method.allCases) {
-                        Text($0.name)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .padding()
-                
                 Spacer()
                 
                 VStack {
@@ -69,6 +73,36 @@ public struct PrayerTimesView: View {
                 .padding(geometry.size.width / 2.5 / 2)
                 
                 Spacer()
+                
+                HStack {
+                    Button {
+                        showMethodSelection.toggle()
+                    } label: {
+                        Image.app.icon.settings
+                            .font(.title)
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(Color.shape(.app.tint))
+                        
+                    }
+                    .padding(8)
+                    .scaleEffect(showMethodSelection ? 0.8 : 1.0)
+                    
+                    Spacer()
+                    
+                    Button {
+//                        showLocationSelection.toggle()
+                        vm.requestLocation()
+                    } label: {
+                        Image.app.icon.location
+                            .font(.title)
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(Color.shape(.app.tint))
+                        
+                    }
+                    .padding(8)
+                    .scaleEffect(showLocationSelection ? 0.8 : 1.0)
+                }
+                .padding()
             }
         }
         .frame(maxWidth: .infinity)
