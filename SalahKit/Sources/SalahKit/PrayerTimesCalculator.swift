@@ -361,6 +361,7 @@ private extension PrayerTimesCalculator {
 extension PrayerTimesCalculator {
     enum Method: String, CaseIterable, Hashable, Identifiable {
         case dumRT
+        case dumRF
         case ummAlQura
         case turkeyDiyanet
         
@@ -369,6 +370,7 @@ extension PrayerTimesCalculator {
         var name: String {
             switch self {
             case .dumRT: "Dum RT"
+            case .dumRF: "Dum RF"
             case .ummAlQura: "Umm Al-Qura"
             case .turkeyDiyanet: "Turkey Diyanet"
             }
@@ -378,6 +380,7 @@ extension PrayerTimesCalculator {
         var fajrAngle: Double {
             switch self {
             case .dumRT: 18
+            case .dumRF: 16
             case .ummAlQura: 18.5
             case .turkeyDiyanet: 18
             }
@@ -387,6 +390,7 @@ extension PrayerTimesCalculator {
         var maghribSelector: Double {
             switch self {
             case .dumRT: 0
+            case .dumRF: 1
             case .ummAlQura: 1
             case .turkeyDiyanet: 1
             }
@@ -396,6 +400,7 @@ extension PrayerTimesCalculator {
         var maghribParameter: Double {
             switch self {
             case .dumRT: 1
+            case .dumRF: 1
             case .ummAlQura: 1
             case .turkeyDiyanet: 1
             }
@@ -405,6 +410,7 @@ extension PrayerTimesCalculator {
         var ishaSelector: Double {
             switch self {
             case .dumRT: 0
+            case .dumRF: 0
             case .ummAlQura: 1
             case .turkeyDiyanet: 0
             }
@@ -414,6 +420,7 @@ extension PrayerTimesCalculator {
         var ishaParameter: Double {
             switch self {
             case .dumRT: 15
+            case .dumRF: 15
             case .ummAlQura: 90
             case .turkeyDiyanet: 17
             }
@@ -422,6 +429,7 @@ extension PrayerTimesCalculator {
         var asrParameter: Double {
             switch self {
             case .dumRT: 2
+            case .dumRF: 1
             case .ummAlQura: 1
             case .turkeyDiyanet: 1
             }

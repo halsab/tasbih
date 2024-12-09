@@ -41,14 +41,8 @@ public struct PrayerTimesView: View {
             }
         }
         .sheet(isPresented: $showMethodSelection) {
-            Picker("Location", selection: $vm.calculationMethod) {
-                ForEach(PrayerTimesCalculator.Method.allCases) {
-                    Text($0.name)
-                }
-            }
-            .pickerStyle(.segmented)
-            .padding()
-            .presentationDetents([.height(110)])
+            PTSettingsScreen(vm: vm)
+                .presentationDetents([.medium, .large])
         }
     }
     
@@ -173,7 +167,7 @@ public struct PrayerTimesView: View {
     private func bgView(size: CGSize) -> some View {
         Group {
             Circle()
-                .fill(Color.app.highlight)
+                .fill(Color.app.tint)
                 .frame(width: 200, height: 200)
                 .position(
                     .init(
@@ -197,7 +191,7 @@ public struct PrayerTimesView: View {
                 .blur(radius: 20)
             
             Circle()
-                .fill(Color.app.tint)
+                .fill(Color.app.highlight)
                 .frame(width: 200, height: 200)
                 .position(
                     .init(
