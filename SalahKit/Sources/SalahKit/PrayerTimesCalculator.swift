@@ -38,6 +38,7 @@ final class PrayerTimesCalculator {
         self.coordinate = coordinate
 //        self.coordinate = .init(latitude: 21.42052379343408, longitude: 39.820214260512685) // Makkah
 //        self.coordinate = .init(latitude: 36.893429351303325, longitude: 30.71133912270379) // Antalya
+//        self.coordinate = .init(latitude: 55.7887, longitude: 49.1221) // Kazan
         calcDate = date
         self.method = method
     }
@@ -54,35 +55,17 @@ final class PrayerTimesCalculator {
 
 // MARK: - Public Methods
 
-extension PrayerTimesCalculator {
+extension PrayerTimesCalculator {    
     func prayerTimes(
-        coordinate: CLLocationCoordinate2D,
+        coordinate: CLLocationCoordinate2D? = nil,
         date: Date = .now,
         timeTypes: [PrayerTimeType] = PrayerTimesCalculator.defaultTimeTypes
     ) -> [PrayerTime] {
         reset()
-        self.coordinate = coordinate
+        if let coordinate {
+            self.coordinate = coordinate
+        }
         calcDate = date
-        computeDayTimes()
-        return filtered(times: prayerTimes, by: timeTypes)
-    }
-    
-    func prayerTimes(
-        date: Date = .now,
-        timeTypes: [PrayerTimeType] = PrayerTimesCalculator.defaultTimeTypes
-    ) -> [PrayerTime] {
-        reset()
-        calcDate = date
-        computeDayTimes()
-        return filtered(times: prayerTimes, by: timeTypes)
-    }
-    
-    func prayerTimes(
-        coordinate: CLLocationCoordinate2D,
-        timeTypes: [PrayerTimeType] = PrayerTimesCalculator.defaultTimeTypes
-    ) -> [PrayerTime] {
-        reset()
-        self.coordinate = coordinate
         computeDayTimes()
         return filtered(times: prayerTimes, by: timeTypes)
     }

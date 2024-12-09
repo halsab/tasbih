@@ -10,10 +10,7 @@ import Combine
 
 final class LocationManager: NSObject, ObservableObject {
     
-    @Published var location: CLLocation = .init(
-        latitude: 55.7887,
-        longitude: 49.1221
-    )
+    @Published var location: CLLocation?
     @Published var address: Address = .init(city: nil, street: nil)
     
     private let manager = CLLocationManager()
@@ -25,6 +22,7 @@ final class LocationManager: NSObject, ObservableObject {
         super.init()
         
         cancellable = $location.sink { [unowned self] location in
+            guard let location else { return }
             getAddress(from: location) { address in
                 if address.isValid {
                     self.address = address

@@ -23,8 +23,6 @@ final class PrayerTimesViewModel: ObservableObject {
     @AppStorage(.storageKey.salah.calculationMethod) var storedCalculationMethod: PrayerTimesCalculator.Method = .dumRT
     
     private var calculator: PrayerTimesCalculator?
-    // latitude: 55.7887, longitude: 49.1221
-    
     private var timeManager = PrayerTimerManager()
     private var locationManager = LocationManager()
     private var cancellables: Set<AnyCancellable> = []
@@ -35,6 +33,7 @@ final class PrayerTimesViewModel: ObservableObject {
         locationManager.$address.assign(to: &$address)
         
         locationManager.$location.sink { [unowned self] location in
+            guard let location else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.isLoadingLocation = false                
             }
@@ -44,8 +43,9 @@ final class PrayerTimesViewModel: ObservableObject {
         
         calculationMethod = storedCalculationMethod
         $calculationMethod.sink { [unowned self] method in
+            guard let coordinate = locationManager.location?.coordinate else { return }
             storedCalculationMethod = method
-            calculator = .init(coordinate: locationManager.location.coordinate, method: method)
+            calculator = .init(coordinate: coordinate, method: method)
             updateTimes()
         }
         .store(in: &cancellables)
@@ -53,6 +53,7 @@ final class PrayerTimesViewModel: ObservableObject {
     
     func updateTimes(coordinate: CLLocationCoordinate2D? = nil) {
         if let coordinate {
+            calculator = .init(coordinate: coordinate, method: calculationMethod)
             times = calculator?.prayerTimes(coordinate: coordinate) ?? []
         } else {
             times = calculator?.prayerTimes() ?? []
