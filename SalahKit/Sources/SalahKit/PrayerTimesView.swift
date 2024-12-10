@@ -12,15 +12,12 @@ import CoreLocationUI
 
 public struct PrayerTimesView: View {
     
-    @ObservedObject private var vm: PrayerTimesViewModel
+    @ObservedObject private var vm = PrayerTimesViewModel()
     @Environment(\.scenePhase) var scenePhase
-    @Environment(\.modelContext) private var modelContext
     @State private var showMethodSelection = false
     @State private var showLocationSelection = false
     
-    public init() {
-        vm = .init(modelContext: modelContext)
-    }
+    public init() {}
         
     public var body: some View {
         ZStack {

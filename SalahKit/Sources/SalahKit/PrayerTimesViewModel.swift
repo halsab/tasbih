@@ -23,17 +23,12 @@ final class PrayerTimesViewModel: ObservableObject {
     
     @AppStorage(.storageKey.salah.calculationMethod) var storedCalculationMethod: PrayerTimesCalculator.Method = .dumRT
     
-    private let modelContext: ModelContext
-    
     private var calculator: PrayerTimesCalculator?
     private var timeManager = PrayerTimerManager()
-    private var locationManager: LocationManager
+    private var locationManager = LocationManager()
     private var cancellables: Set<AnyCancellable> = []
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        locationManager = .init(modelContext: modelContext)
-        
+    init() {
         timeManager.$currentTimeType.assign(to: &$currentTimeType)
         timeManager.$remainingTime.assign(to: &$remainingTime)
         locationManager.$address.assign(to: &$address)

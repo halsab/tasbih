@@ -27,6 +27,8 @@ public extension String {
         
         public enum salah {
             public static let calculationMethod = "salah-calculationMethod-key"
+            public static let lastLatitude = "salah-lastLatitude-key"
+            public static let lastLongitude = "salah-lastLongitude-key"
         }
     }
 }

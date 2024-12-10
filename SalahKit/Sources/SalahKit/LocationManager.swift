@@ -7,7 +7,7 @@
 
 import CoreLocation
 import Combine
-import SwiftData
+import HelperKit
 import SwiftUI
 
 final class LocationManager: NSObject, ObservableObject {
@@ -15,17 +15,17 @@ final class LocationManager: NSObject, ObservableObject {
     @Published var location: CLLocation?
     @Published var address: Address = .init(city: nil, street: nil)
     
-    private let modelContext: ModelContext
+    @AppStorage(.storageKey.salah.lastLatitude) private var lastLatitude: Double?
+    @AppStorage(.storageKey.salah.lastLongitude) private var lastLongitude: Double?
+    
     private let manager = CLLocationManager()
     private let geocoder = CLGeocoder()
     
     private var cancellable: AnyCancellable?
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        
+    override init() {
         super.init()
-        
+                
         cancellable = $location.sink { [unowned self] location in
             guard let location else { return }
             getAddress(from: location) { address in
@@ -39,63 +39,17 @@ final class LocationManager: NSObject, ObservableObject {
             }
         }
         
+        if let lastLatitude, let lastLongitude {
+            location = CLLocation(latitude: lastLatitude, longitude: lastLongitude)
+        }
+        
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         manager.requestWhenInUseAuthorization()
     }
     
-//    override init() {
-//        super.init()
-//        
-//        cancellable = $location.sink { [unowned self] location in
-//            guard let location else { return }
-//            getAddress(from: location) { address in
-//                if address.isValid {
-//                    self.address = address
-//                } else {
-//                    let latitude = String(format: "%.4f", location.coordinate.latitude)
-//                    let longitude = String(format: "%.4f", location.coordinate.longitude)
-//                    self.address = .init(city: nil, street: "\(latitude), \(longitude)")
-//                }
-//            }
-//        }
-//        
-//        manager.delegate = self
-//        manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-//        manager.requestWhenInUseAuthorization()
-//    }
-    
     func requestLocation() {
         manager.requestLocation()
-    }
-    
-//    func fetchLastLocation(completion: @escaping (UserLocationModel?) -> Void) {
-//        DispatchQueue.global(qos: .background).async {
-//            let descriptor = FetchDescriptor<UserLocationModel>(sortBy: [SortDescriptor(\.date, order: .reverse)])
-//            do {
-//                let locations = try self.modelContext.fetch(descriptor)
-//                print(locations.count)
-//                DispatchQueue.main.async {
-//                    completion(locations.first)
-//                }
-//            } catch {
-//                print("Error fetching user locations: \(error)")
-//                DispatchQueue.main.async {
-//                    completion(nil)
-//                }
-//            }
-//        }
-//    }
-    
-    func fetchUserLocation() async throws -> UserLocationModel? {
-        do {
-            let descriptor = FetchDescriptor<UserLocationModel>(sortBy: [SortDescriptor(\.date, order: .reverse)])
-            let locations = try await modelContext.
-            return locations.first
-        } catch {
-            print("Error fetching data: \(error)")
-            return nil
-        }
     }
 }
 
@@ -120,6 +74,8 @@ private extension LocationManager {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
+        lastLatitude = location.coordinate.latitude
+        lastLongitude = location.coordinate.longitude
         self.location = location
     }
     
