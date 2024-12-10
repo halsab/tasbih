@@ -57,7 +57,7 @@ final class LocationManager: NSObject, ObservableObject {
 
 private extension LocationManager {
     func getAddress(from location: CLLocation, completion: @escaping (Address) -> Void) {
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+        geocoder.reverseGeocodeLocation(location, preferredLocale: Locale(identifier: "en_US")) { (placemarks, error) in
             guard error == nil, let placemark = placemarks?.first else {
                 print("Reverse geocoding error: \(error!)")
                 completion(.init(city: nil, street: nil))
