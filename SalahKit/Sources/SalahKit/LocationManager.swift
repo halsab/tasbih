@@ -28,6 +28,8 @@ final class LocationManager: NSObject, ObservableObject {
                 
         cancellable = $location.sink { [unowned self] location in
             guard let location else { return }
+            lastLatitude = location.coordinate.latitude
+            lastLongitude = location.coordinate.longitude
             getAddress(from: location) { address in
                 if address.isValid {
                     self.address = address
@@ -74,8 +76,6 @@ private extension LocationManager {
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        lastLatitude = location.coordinate.latitude
-        lastLongitude = location.coordinate.longitude
         self.location = location
     }
     

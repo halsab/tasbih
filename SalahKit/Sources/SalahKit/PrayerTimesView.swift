@@ -44,6 +44,10 @@ public struct PrayerTimesView: View {
             PTSettingsScreen(vm: vm)
                 .presentationDetents([.medium, .large])
         }
+        .sheet(isPresented: $showLocationSelection) {
+            LocationPickerView()
+                .presentationDetents([.large])
+        }
     }
     
     @ViewBuilder
@@ -68,38 +72,43 @@ public struct PrayerTimesView: View {
                 
                 Spacer()
                 
-                HStack {
-                    Button {
-                        showMethodSelection.toggle()
-                    } label: {
-                        Image.app.icon.settings
-                            .font(.title)
-                            .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(Color.shape(.app.tint))
-                        
-                    }
-                    .padding(8)
-                    .scaleEffect(showMethodSelection ? 0.8 : 1.0)
-                    
-                    Spacer()
-                    
-                    Button {
-//                        showLocationSelection.toggle()
-                        vm.requestLocation()
-                    } label: {
-                        Image.app.icon.location
-                            .font(.title)
-                            .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(Color.shape(.app.tint))
-                        
-                    }
-                    .padding(8)
-                    .scaleEffect(showLocationSelection ? 0.8 : 1.0)
-                }
-                .padding()
+                footerView()
+                    .padding()
             }
         }
         .frame(maxWidth: .infinity)
+    }
+    
+    @ViewBuilder
+    private func footerView() -> some View {
+        HStack {
+            Button {
+                showMethodSelection.toggle()
+            } label: {
+                Image.app.icon.settings
+                    .font(.title)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(Color.shape(.app.tint))
+                
+            }
+            .padding(8)
+            .scaleEffect(showMethodSelection ? 0.8 : 1.0)
+            
+            Spacer()
+            
+            Button {
+                showLocationSelection.toggle()
+//                vm.requestLocation()
+            } label: {
+                Image.app.icon.location
+                    .font(.title)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(Color.shape(.app.tint))
+                
+            }
+            .padding(8)
+            .scaleEffect(showLocationSelection ? 0.8 : 1.0)
+        }
     }
     
     @ViewBuilder
