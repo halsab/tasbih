@@ -31,17 +31,17 @@ struct MainTabView: View {
                 Label("Salah", systemImage: "moon")
             }
             
-            Tab(value: 2) {
-                DuaHomeScreen()
-            } label: {
-                Label("Dua", systemImage: "book.fill")
-            }
-            
-            Tab(value: 3) {
-                SettingsScreen()
-            } label: {
-                Label("Settings", systemImage: "gearshape.fill")
-            }
+//            Tab(value: 2) {
+//                DuaHomeScreen()
+//            } label: {
+//                Label("Dua", systemImage: "book.fill")
+//            }
+//            
+//            Tab(value: 3) {
+//                SettingsScreen()
+//            } label: {
+//                Label("Settings", systemImage: "gearshape.fill")
+//            }
         }
         .tint(.app.highlight)
     }
