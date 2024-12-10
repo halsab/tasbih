@@ -45,7 +45,7 @@ public struct PrayerTimesView: View {
                 .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $showLocationSelection) {
-            LocationPickerView()
+            LocationPickerView(vm: vm)
                 .presentationDetents([.large])
         }
     }

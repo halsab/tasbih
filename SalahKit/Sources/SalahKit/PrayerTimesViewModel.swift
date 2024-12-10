@@ -20,6 +20,7 @@ final class PrayerTimesViewModel: ObservableObject {
     @Published var address: LocationManager.Address = .init(city: nil, street: nil)
     @Published var isLoadingLocation = false
     @Published var calculationMethod: PrayerTimesCalculator.Method = .dumRT
+    @Published var selectedLocation: SearchResult?
     
     @AppStorage(.storageKey.salah.calculationMethod) var storedCalculationMethod: PrayerTimesCalculator.Method = .dumRT
     
@@ -48,6 +49,13 @@ final class PrayerTimesViewModel: ObservableObject {
             storedCalculationMethod = method
             calculator = .init(coordinate: coordinate, method: method)
             updateTimes()
+        }
+        .store(in: &cancellables)
+        
+        $selectedLocation.sink { [unowned self] searchResult in
+            guard let location = searchResult?.location else { return }
+            locationManager.location = location
+            updateTimes(coordinate: location.coordinate)
         }
         .store(in: &cancellables)
     }

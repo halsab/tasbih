@@ -9,14 +9,19 @@ import SwiftUI
 import MapKit
 
 struct LocationPickerView: View {
+    
+    @ObservedObject private var vm: PrayerTimesViewModel
     @State private var position = MapCameraPosition.automatic
     @State private var searchResults = [SearchResult]()
-    @State private var selectedLocation: SearchResult?
     @State private var isSheetPresented: Bool = true
+    
+    init(vm: PrayerTimesViewModel) {
+        self.vm = vm
+    }
     
     var body: some View {
         NavigationStack {
-            Map(position: $position, selection: $selectedLocation) {
+            Map(position: $position, selection: $vm.selectedLocation) {
                 ForEach(searchResults) { result in
                     Marker(coordinate: result.location.coordinate) {
                         Image(systemName: "mappin")
@@ -24,15 +29,15 @@ struct LocationPickerView: View {
                     .tag(result)
                 }
             }
-            .navigationTitle("Location")
+            .navigationTitle("Select location")
             .navigationBarTitleDisplayMode(.inline)
             .ignoresSafeArea()
-            .onChange(of: selectedLocation) {
-                isSheetPresented = selectedLocation == nil
+            .onChange(of: vm.selectedLocation) {
+                isSheetPresented = vm.selectedLocation == nil
             }
             .onChange(of: searchResults) {
                 if let firstResult = searchResults.first, searchResults.count == 1 {
-                    selectedLocation = firstResult
+                    vm.selectedLocation = firstResult
                 }
             }
             .sheet(isPresented: $isSheetPresented) {
@@ -43,7 +48,7 @@ struct LocationPickerView: View {
 }
 
 #Preview {
-    LocationPickerView()
+    LocationPickerView(vm: PrayerTimesViewModel())
 }
 
 struct SheetView: View {
@@ -56,7 +61,7 @@ struct SheetView: View {
         VStack {
             HStack {
                 Image(systemName: "magnifyingglass")
-                TextField("Search for a restaurant", text: $search)
+                TextField("Search", text: $search)
                     .autocorrectionDisabled()
                 // 2
                     .onSubmit {
