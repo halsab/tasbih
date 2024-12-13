@@ -97,8 +97,8 @@ public struct PrayerTimesView: View {
             Spacer()
             
             Button {
-                showLocationSelection.toggle()
-//                vm.requestLocation()
+//                showLocationSelection.toggle()
+                vm.requestLocation()
             } label: {
                 Image.app.icon.location
                     .font(.title)
