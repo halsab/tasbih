@@ -16,12 +16,13 @@ struct BookView: View {
     var body: some View {
         TabView {
             ForEach(imageNames, id: \.self) { imageName in
-                Tab {
-                    Image.moduleImage(imageName)
-                        .resizable()
-                        .scaledToFit()
-                        .padding()
-                }
+                Image.moduleImage(imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                    .tabItem {
+                        EmptyView()
+                    }
             }
         }
         .tabViewStyle(.page)

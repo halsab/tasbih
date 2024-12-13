@@ -17,19 +17,19 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            Tab(value: 0) {
-                CountScreen()
-                    .modelContainer(for: ZikrModel.self)
-                    .statusBar(hidden: true)
-            } label: {
-                Label("Zikr", systemImage: "aqi.medium")
-            }
+            CountScreen()
+                .modelContainer(for: ZikrModel.self)
+                .statusBar(hidden: true)
+                .tabItem {
+                    Label("Zikr", systemImage: "aqi.medium")
+                }
+                .tag(0)
             
-            Tab(value: 1) {
-                PrayerTimesView()
-            } label: {
-                Label("Salah", systemImage: "moon")
-            }
+            PrayerTimesView()
+                .tabItem {
+                    Label("Salah", systemImage: "moon")
+                }
+                .tag(1)
             
 //            Tab(value: 2) {
 //                DuaHomeScreen()
