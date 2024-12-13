@@ -46,7 +46,12 @@ final class LocationManager: NSObject, ObservableObject {
         }
         
         manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        switch manager.accuracyAuthorization {
+        case .fullAccuracy:
+            manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        default:
+            manager.desiredAccuracy = kCLLocationAccuracyReduced
+        }
         manager.requestWhenInUseAuthorization()
     }
     
