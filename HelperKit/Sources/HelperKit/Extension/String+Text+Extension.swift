@@ -12,14 +12,14 @@ public extension String {
         public static let empty = ""
         
         public enum button {
-            public static let undo = "Undo"
-            public static let reset = "Reset"
-            public static let create = "Create"
-            public static let cancel = "Cancel"
-            public static let select = "Select"
-            public static let delete = "Delete"
-            public static let add = "Add"
-            public static let createFirstZikr = "Create first zikr"
+            public static let undo = "Отмена"//"Undo"
+            public static let reset = "Сброс"//"Reset"
+            public static let create = "Создать"//"Create"
+            public static let cancel = "Отменить"//"Cancel"
+            public static let select = "Выбрать"//"Select"
+            public static let delete = "Удалить"//"Delete"
+            public static let add = "Добавить"//"Add"
+            public static let createFirstZikr = "Создать первый зикр"//"Create first zikr"
         }
 
         public enum icon {
@@ -27,26 +27,25 @@ public extension String {
         }
         
         public enum alert {
-            public static let createFirstZikr = "Create your first zikr"
-            public static let createNewZikr = "Create your new zikr"
-            public static let resetZikrCompletely = "Reset this zikr completely?"
-            public static let delelteZikr = "Delete zikr"
+            public static let createFirstZikr = "Создать ваш первый зикр"//"Create your first zikr"
+            public static let createNewZikr = "Создать ваш новый зикр"//"Create your new zikr"
+            public static let resetZikrCompletely = "Сбросить зикр полностью?"//"Reset this zikr completely?"
+            public static let delelteZikr = "Удилть зикр"//"Delete zikr"
         }
         
         public enum textField {
             public enum placeholder {
-                public static let zikrName = "Zikr name"
+                public static let zikrName = "Название зикра"//"Zikr name"
             }
         }
         
-        public enum systemName {
-            public static let plus = "plus"
-            public static let plus_circle_fill = "plus.circle.fill"
-            public static let trash_fill = "trash.fill"
+        public enum title {
+            public static let zikrs = "Зикры"//"Zikrs"
         }
         
-        public enum title {
-            public static let zikrs = "Zikrs"
+        public enum tab {
+            public static let zikr = "Зикр"//"Zikr"
+            public static let salah = "Намаз"//"Salah"
         }
     }
 }

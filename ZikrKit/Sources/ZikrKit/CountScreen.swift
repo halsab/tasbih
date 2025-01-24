@@ -28,8 +28,15 @@ public struct CountScreen: View {
             
                 FooterView(zikr: zikr)
             } else {
-                Button(String.text.button.createFirstZikr, systemImage: .text.systemName.plus) {
+                Button {
                     showZikrCreateForm.toggle()
+                } label: {
+                    Label {
+                        Text(String.text.button.createFirstZikr)
+                    } icon: {
+                        Image.app.icon.plus
+                    }
+
                 }
                 .buttonStyle(CapsuleButtonStyle())
             }

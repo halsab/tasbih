@@ -37,5 +37,10 @@ public extension Image {
             public static let on = Image(systemName: "checkmark.circle.fill")
             public static let off = Image(systemName: "circle")
         }
+        
+        public enum tab {
+            public static let zikr = Image(systemName: "aqi.medium")
+            public static let salah = Image(systemName: "moon")
+        }
     }
 }

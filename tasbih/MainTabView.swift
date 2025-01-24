@@ -10,6 +10,8 @@ import SalahKit
 import ZikrKit
 import DuaKit
 import SettingsKit
+import HelperKit
+import AppUIKit
 
 struct MainTabView: View {
     
@@ -21,13 +23,21 @@ struct MainTabView: View {
                 .modelContainer(for: ZikrModel.self)
                 .statusBar(hidden: true)
                 .tabItem {
-                    Label("Zikr", systemImage: "aqi.medium")
+                    Label {
+                        Text(String.text.tab.zikr)
+                    } icon: {
+                        Image.app.tab.zikr
+                    }
                 }
                 .tag(0)
             
             PrayerTimesView()
                 .tabItem {
-                    Label("Salah", systemImage: "moon")
+                    Label {
+                        Text(String.text.tab.salah)
+                    } icon: {
+                        Image.app.tab.salah
+                    }
                 }
                 .tag(1)
             

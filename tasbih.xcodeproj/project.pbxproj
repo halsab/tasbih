@@ -14,6 +14,8 @@
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
+		20A1E60B2D43BD97007250AF /* AppUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20A1E60A2D43BD97007250AF /* AppUIKit */; };
+		20A1E60D2D43BD97007250AF /* HelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20A1E60C2D43BD97007250AF /* HelperKit */; };
 		20E275AF2CE1041A005BDFB3 /* SettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20E275AE2CE1041A005BDFB3 /* SettingsKit */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +43,9 @@
 				20E275AF2CE1041A005BDFB3 /* SettingsKit in Frameworks */,
 				2033D37E2CC27AF700909E05 /* ZikrKit in Frameworks */,
 				20246B9A2CD6270C006AA96D /* DuaKit in Frameworks */,
+				20A1E60D2D43BD97007250AF /* HelperKit in Frameworks */,
 				2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */,
+				20A1E60B2D43BD97007250AF /* AppUIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +423,14 @@
 		2033D37D2CC27AF700909E05 /* ZikrKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ZikrKit;
+		};
+		20A1E60A2D43BD97007250AF /* AppUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppUIKit;
+		};
+		20A1E60C2D43BD97007250AF /* HelperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HelperKit;
 		};
 		20E275AE2CE1041A005BDFB3 /* SettingsKit */ = {
 			isa = XCSwiftPackageProductDependency;
