@@ -19,27 +19,27 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            CountScreen()
-                .modelContainer(for: ZikrModel.self)
-                .statusBar(hidden: true)
-                .tabItem {
-                    Label {
-                        Text(String.text.tab.zikr)
-                    } icon: {
-                        Image.app.tab.zikr
-                    }
+            Tab(value: 0) {
+                CountScreen()
+                    .modelContainer(for: ZikrModel.self)
+                    .statusBar(hidden: true)
+            } label: {
+                Label {
+                    Text(String.text.tab.zikr)
+                } icon: {
+                    Image.app.tab.zikr
                 }
-                .tag(0)
+            }
             
-            PrayerTimesView()
-                .tabItem {
-                    Label {
-                        Text(String.text.tab.salah)
-                    } icon: {
-                        Image.app.tab.salah
-                    }
+            Tab(value: 1) {
+                PrayerTimesView()
+            } label: {
+                Label {
+                    Text(String.text.tab.salah)
+                } icon: {
+                    Image.app.tab.salah
                 }
-                .tag(1)
+            }
             
 //            Tab(value: 2) {
 //                DuaHomeScreen()

@@ -14,6 +14,7 @@ final class LocationManager: NSObject, ObservableObject {
     
     @Published var location: CLLocation?
     @Published var address: Address = .init(city: nil, street: nil)
+    @Published var authorizationEnabled = false
     
     @AppStorage(.storageKey.salah.lastLatitude) private var lastLatitude: Double?
     @AppStorage(.storageKey.salah.lastLongitude) private var lastLongitude: Double?
@@ -46,17 +47,13 @@ final class LocationManager: NSObject, ObservableObject {
         }
         
         manager.delegate = self
-        switch manager.accuracyAuthorization {
-        case .fullAccuracy:
-            manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        default:
-            manager.desiredAccuracy = kCLLocationAccuracyReduced
-        }
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         manager.requestWhenInUseAuthorization()
     }
     
     func requestLocation() {
         manager.requestLocation()
+        authorizationEnabled = false
     }
 }
 
@@ -82,15 +79,18 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         self.location = location
+        authorizationEnabled = true
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        switch manager.authorizationStatus {
-            case .authorizedAlways, .authorizedWhenInUse:
-                manager.requestLocation()
-            default:
-                print("locationManagerDidChangeAuthorization \(manager.authorizationStatus)")
-        }
+        print("locationManagerDidChangeAuthorization \(manager.authorizationStatus)")
+//        switch manager.authorizationStatus {
+//        case .authorizedAlways, .authorizedWhenInUse:
+//            manager.requestLocation()
+//        default:
+//            authorizationEnabled = false
+//        }
+        manager.requestLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {

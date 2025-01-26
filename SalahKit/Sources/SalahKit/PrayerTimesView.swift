@@ -15,7 +15,6 @@ public struct PrayerTimesView: View {
     @ObservedObject private var vm = PrayerTimesViewModel()
     @Environment(\.scenePhase) var scenePhase
     @State private var showMethodSelection = false
-    @State private var showLocationSelection = false
     
     public init() {}
         
@@ -25,6 +24,8 @@ public struct PrayerTimesView: View {
                 bgView(size: geometry.size)
             }
             .ignoresSafeArea()
+            
+            
             
             if vm.times.isEmpty {
                 ProgressView()
@@ -43,10 +44,6 @@ public struct PrayerTimesView: View {
         .sheet(isPresented: $showMethodSelection) {
             PTSettingsScreen(vm: vm)
                 .presentationDetents([.medium, .large])
-        }
-        .sheet(isPresented: $showLocationSelection) {
-            LocationPickerView(vm: vm)
-                .presentationDetents([.large])
         }
     }
     
@@ -97,7 +94,6 @@ public struct PrayerTimesView: View {
             Spacer()
             
             Button {
-//                showLocationSelection.toggle()
                 vm.requestLocation()
             } label: {
                 Image.app.icon.location
@@ -107,29 +103,26 @@ public struct PrayerTimesView: View {
                 
             }
             .padding(8)
-            .scaleEffect(showLocationSelection ? 0.8 : 1.0)
         }
     }
     
     @ViewBuilder
     private func locationView() -> some View {
         HStack {
-            Button(action: vm.requestLocation) {
-                VStack(alignment: .leading) {
-                    if let city = vm.address.city {
-                        Text(city)
-                            .foregroundStyle(Color.primary)
-                            .font(.app.font(.m))
-                    }
-                    
-                    if let street = vm.address.street {
-                        Text(street)
-                            .foregroundStyle(Color.secondary)
-                            .font(.app.font(.xs))
-                    }
+            VStack(alignment: .leading) {
+                if let city = vm.address.city {
+                    Text(city)
+                        .foregroundStyle(Color.primary)
+                        .font(.app.font(.m))
                 }
-                .lineLimit(1)
+                
+                if let street = vm.address.street {
+                    Text(street)
+                        .foregroundStyle(Color.secondary)
+                        .font(.app.font(.xs))
+                }
             }
+            .lineLimit(1)
             
             
             if vm.isLoadingLocation {
