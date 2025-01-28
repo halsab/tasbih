@@ -1,5 +1,5 @@
 //
-//  Color+extension.swift
+//  Color+Extension.swift
 //  tasbih
 //
 //  Created by Khalil Sabirov on 18.06.2024.

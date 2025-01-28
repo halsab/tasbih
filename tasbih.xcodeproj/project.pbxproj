@@ -16,7 +16,6 @@
 
 /* Begin PBXFileReference section */
 		2033D37C2CC27A9100909E05 /* ZikrKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ZikrKit; sourceTree = "<group>"; };
-		2033D37F2CC27CDE00909E05 /* AppUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppUIKit; sourceTree = "<group>"; };
 		2033D3802CC5468600909E05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2033E46129505D1C00485CE9 /* tasbih.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasbih.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2033E46429505D1C00485CE9 /* tasbihApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasbihApp.swift; sourceTree = "<group>"; };
@@ -24,7 +23,7 @@
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20A1E63C2D495841007250AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		20B1C0882CC139A8008E5462 /* HelperKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HelperKit; sourceTree = "<group>"; };
+		20A1E6402D495D8F007250AF /* HelperKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HelperKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,9 +41,8 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
-				2033D37F2CC27CDE00909E05 /* AppUIKit */,
+				20A1E6402D495D8F007250AF /* HelperKit */,
 				2033D37C2CC27A9100909E05 /* ZikrKit */,
-				20B1C0882CC139A8008E5462 /* HelperKit */,
 				2033E46329505D1C00485CE9 /* tasbih */,
 				20B1C08A2CC13BDB008E5462 /* Frameworks */,
 				2033E46229505D1C00485CE9 /* Products */,

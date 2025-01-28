@@ -1,5 +1,5 @@
 //
-//  ShapeStyle+extension.swift
+//  ShapeStyle+Extension.swift
 //  tasbih
 //
 //  Created by Khalil Sabirov on 18.06.2024.

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AppUIKit
+import HelperKit
 
 struct FooterView: View {
 
