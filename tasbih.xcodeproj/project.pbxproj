@@ -7,22 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		201BC73B2CB2FC0B004225D9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201BC73A2CB2FC0B004225D9 /* MainTabView.swift */; };
-		20246B9A2CD6270C006AA96D /* DuaKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20246B992CD6270C006AA96D /* DuaKit */; };
-		2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2033D37A2CC24C3300909E05 /* SalahKit */; };
 		2033D37E2CC27AF700909E05 /* ZikrKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2033D37D2CC27AF700909E05 /* ZikrKit */; };
 		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
-		20A1E60B2D43BD97007250AF /* AppUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20A1E60A2D43BD97007250AF /* AppUIKit */; };
-		20A1E60D2D43BD97007250AF /* HelperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20A1E60C2D43BD97007250AF /* HelperKit */; };
-		20E275AF2CE1041A005BDFB3 /* SettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20E275AE2CE1041A005BDFB3 /* SettingsKit */; };
+		20A1E63D2D495841007250AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A1E63C2D495841007250AF /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		201BC73A2CB2FC0B004225D9 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		20246B982CD626F2006AA96D /* DuaKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DuaKit; sourceTree = "<group>"; };
-		2033D3792CC23FCA00909E05 /* SalahKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SalahKit; sourceTree = "<group>"; };
 		2033D37C2CC27A9100909E05 /* ZikrKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ZikrKit; sourceTree = "<group>"; };
 		2033D37F2CC27CDE00909E05 /* AppUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AppUIKit; sourceTree = "<group>"; };
 		2033D3802CC5468600909E05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -31,8 +23,8 @@
 		2033E46829505D1E00485CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		20A1E63C2D495841007250AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		20B1C0882CC139A8008E5462 /* HelperKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = HelperKit; sourceTree = "<group>"; };
-		20E275AD2CE103A5005BDFB3 /* SettingsKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SettingsKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,12 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20E275AF2CE1041A005BDFB3 /* SettingsKit in Frameworks */,
 				2033D37E2CC27AF700909E05 /* ZikrKit in Frameworks */,
-				20246B9A2CD6270C006AA96D /* DuaKit in Frameworks */,
-				20A1E60D2D43BD97007250AF /* HelperKit in Frameworks */,
-				2033D37B2CC24C3300909E05 /* SalahKit in Frameworks */,
-				20A1E60B2D43BD97007250AF /* AppUIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,11 +42,8 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
-				20E275AD2CE103A5005BDFB3 /* SettingsKit */,
-				20246B982CD626F2006AA96D /* DuaKit */,
 				2033D37F2CC27CDE00909E05 /* AppUIKit */,
 				2033D37C2CC27A9100909E05 /* ZikrKit */,
-				2033D3792CC23FCA00909E05 /* SalahKit */,
 				20B1C0882CC139A8008E5462 /* HelperKit */,
 				2033E46329505D1C00485CE9 /* tasbih */,
 				20B1C08A2CC13BDB008E5462 /* Frameworks */,
@@ -81,7 +65,7 @@
 				2033D3802CC5468600909E05 /* Info.plist */,
 				2033E46A29505D1E00485CE9 /* tasbih.entitlements */,
 				2033E46429505D1C00485CE9 /* tasbihApp.swift */,
-				201BC73A2CB2FC0B004225D9 /* MainTabView.swift */,
+				20A1E63C2D495841007250AF /* ContentView.swift */,
 				2033E46829505D1E00485CE9 /* Assets.xcassets */,
 				2033E46B29505D1E00485CE9 /* Preview Content */,
 			);
@@ -173,8 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A1E63D2D495841007250AF /* ContentView.swift in Sources */,
 				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
-				201BC73B2CB2FC0B004225D9 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,29 +396,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		20246B992CD6270C006AA96D /* DuaKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = DuaKit;
-		};
-		2033D37A2CC24C3300909E05 /* SalahKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SalahKit;
-		};
 		2033D37D2CC27AF700909E05 /* ZikrKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ZikrKit;
-		};
-		20A1E60A2D43BD97007250AF /* AppUIKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUIKit;
-		};
-		20A1E60C2D43BD97007250AF /* HelperKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = HelperKit;
-		};
-		20E275AE2CE1041A005BDFB3 /* SettingsKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SettingsKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
