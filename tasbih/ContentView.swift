@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ZikrKit
+import Module
 
 struct ContentView: View {
     var body: some View {

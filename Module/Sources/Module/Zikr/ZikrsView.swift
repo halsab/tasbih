@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-import HelperKit
+import Helper
 
 struct ZikrsView: View {
     

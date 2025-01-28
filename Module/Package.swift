@@ -4,22 +4,27 @@
 import PackageDescription
 
 let package = Package(
-    name: "HelperKit",
+    name: "Module",
     platforms: [.iOS(.v18)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "HelperKit",
-            targets: ["HelperKit"]),
+            name: "Module",
+            targets: ["Module"]),
+    ],
+    dependencies: [
+        .package(path: "../Helper"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "HelperKit"),
+            name: "Module",
+            dependencies: ["Helper"]
+        ),
         .testTarget(
-            name: "HelperKitTests",
-            dependencies: ["HelperKit"]
+            name: "ModuleTests",
+            dependencies: ["Module"]
         ),
     ]
 )
