@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import Helper
+import ViewUI
 
 struct ZikrsView: View {
     
@@ -37,7 +38,7 @@ struct ZikrsView: View {
                     } label: {
                         Text(String.text.button.create.uppercased())
                     }
-                    .buttonStyle(CustomButtonStyle())
+                    .buttonStyle(TextButtonStyle())
                 }
                 
                 ToolbarItem(placement: .principal) {

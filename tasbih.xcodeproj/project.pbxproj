@@ -24,7 +24,7 @@
 		20A1E63C2D495841007250AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		20A1E6412D495EA6007250AF /* Module */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Module; sourceTree = "<group>"; };
 		20A1E6422D495EBA007250AF /* Helper */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Helper; sourceTree = "<group>"; };
-		20A1E6432D495ED1007250AF /* UI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UI; sourceTree = "<group>"; };
+		20A1E6462D496175007250AF /* ViewUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ViewUI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,7 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
-				20A1E6432D495ED1007250AF /* UI */,
+				20A1E6462D496175007250AF /* ViewUI */,
 				20A1E6422D495EBA007250AF /* Helper */,
 				20A1E6412D495EA6007250AF /* Module */,
 				2033E46329505D1C00485CE9 /* tasbih */,

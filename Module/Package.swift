@@ -14,13 +14,14 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../Helper"),
+        .package(path: "../ViewUI"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "Module",
-            dependencies: ["Helper"]
+            dependencies: ["Helper", "ViewUI"]
         ),
         .testTarget(
             name: "ModuleTests",

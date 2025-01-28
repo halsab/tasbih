@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Helper
 
 public struct CapsuleButtonStyle: ButtonStyle {
     

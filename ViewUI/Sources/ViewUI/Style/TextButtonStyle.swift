@@ -1,13 +1,14 @@
 //
-//  CustomButtonStyle.swift
+//  TextButtonStyle.swift
 //  tasbih
 //
 //  Created by Khalil Sabirov on 10.11.2023.
 //
 
 import SwiftUI
+import Helper
 
-public struct CustomButtonStyle: ButtonStyle {
+public struct TextButtonStyle: ButtonStyle {
     
     public init() {}
     

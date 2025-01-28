@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Helper
+import ViewUI
 
 struct FooterView: View {
 
@@ -24,7 +25,7 @@ struct FooterView: View {
                 Text(String.text.button.reset.uppercased())
             }
             .padding()
-            .buttonStyle(CustomButtonStyle())
+            .buttonStyle(TextButtonStyle())
             .simultaneousGesture(
                 LongPressGesture()
                     .onEnded { _ in
@@ -73,7 +74,7 @@ struct FooterView: View {
                 Text(String.text.button.undo.uppercased())
             }
             .padding()
-            .buttonStyle(CustomButtonStyle())
+            .buttonStyle(TextButtonStyle())
         }
         .sheet(isPresented: $showZikrs) {
             ZikrsView()
