@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ViewUI
 
 struct ZikrScreen: View {
     
@@ -56,7 +57,20 @@ private struct Content: View {
                     count += 1
                 }
             )
-            Footer()
+            Footer(
+                undoAction: {
+                    
+                },
+                resetPrimaryAction: {
+                    
+                },
+                resetSecondaryAction: {
+                    
+                },
+                sheetAction: {
+                    
+                }
+            )
         }
     }
 }
@@ -123,8 +137,64 @@ private struct Central: View {
 }
 
 private struct Footer: View {
+    let undoAction: () -> Void
+    let resetPrimaryAction: () -> Void
+    let resetSecondaryAction: () -> Void
+    let sheetAction: () -> Void
+    
+    @State private var showResetAllAlert = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            ResetButton(action: resetPrimaryAction)
+            Spacer()
+            SheetButton(action: sheetAction)
+            Spacer()
+            UndoButton(action: undoAction)
+        }
+        .alert(String.text.alert.resetZikrCompletely, isPresented: $showResetAllAlert) {
+            Button(String.text.button.reset, role: .destructive, action: resetSecondaryAction)
+            Button(String.text.button.cancel, role: .cancel) {}
+        }
+    }
+    
+    @ViewBuilder
+    private func ResetButton(action: @escaping () -> Void) -> some View {
+        Button(action: {}) {
+            Text(String.text.button.reset.uppercased())
+        }
+        .buttonStyle(TextButtonStyle())
+        .simultaneousGesture(
+            LongPressGesture()
+                .onEnded { _ in
+                    showResetAllAlert.toggle()
+                }
+        )
+        .highPriorityGesture(
+            TapGesture()
+                .onEnded {
+                    action()
+                }
+        )
+    }
+    
+    @ViewBuilder
+    private func UndoButton(action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(String.text.button.undo.uppercased())
+        }
+        .buttonStyle(TextButtonStyle())
+    }
+    
+    @ViewBuilder
+    private func SheetButton(action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image.app.icon.list
+                .font(.title)
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(Color.shape(.app.tint))
+            
+        }
     }
 }
 
