@@ -17,11 +17,11 @@ struct PulsedHeartView: View {
             .foregroundStyle(Color.shape(.app.tint))
             .scaleEffect(startAnimation ? 4 : 1)
             .opacity(startAnimation ? 0 : 0.7)
-            .onAppear(perform: {
+            .onAppear {
                 withAnimation(.linear(duration: 3)) {
                     startAnimation = true
                 }
-            })
+            }
     }
 }
 

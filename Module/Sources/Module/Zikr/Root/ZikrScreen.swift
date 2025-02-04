@@ -50,7 +50,12 @@ private struct Content: View {
                 zikrName: zikrName,
                 loopSize: $loopSize
             )
-            Central()
+            Central(
+                count: $count,
+                action: {
+                    count += 1
+                }
+            )
             Footer()
         }
     }
@@ -99,8 +104,21 @@ private struct Header: View {
 }
 
 private struct Central: View {
+    @Binding var count: Int
+    let action: () -> Void
+    
+    @State private var tapTrigger = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            CentralAnimation(animationTrigger: $tapTrigger)
+            CentralImage(value: count)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onTapGesture {
+            action()
+            tapTrigger.toggle()
+        }
     }
 }
 
@@ -149,6 +167,59 @@ private struct HeaderFull: View {
                 Spacer()
                 LoopSizeSelectionView(loopSize: $loopSize)
             }
+        }
+    }
+}
+
+private struct CentralImage<U: Equatable>: View {
+    let value: U
+    var body: some View {
+        Image.app.button.count
+            .font(.system(size: 100))
+            .foregroundStyle(Color.shape(.app.tint))
+            .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: value)
+    }
+}
+
+private struct CentralAnimation: View {
+    @Binding var animationTrigger: Bool
+    
+    @State private var pulsedHearts: [HeartParticleModel] = []
+    
+    var body: some View {
+        TimelineView(.animation(minimumInterval: 0.5, paused: false)) { _ in
+            Canvas { context, size in
+                handleCanvas(context: context, size: size)
+            } symbols: {
+                CanvasSymbols()
+            }
+        }
+        .blur(radius: 15)
+        .onChange(of: animationTrigger) {
+            addPulsedHeart()
+        }
+    }
+    
+    @ViewBuilder
+    private func CanvasSymbols() -> some View {
+        ForEach(pulsedHearts) {
+            PulsedHeartView()
+                .id($0.id)
+        }
+    }
+    
+    private func handleCanvas(context: GraphicsContext, size: CGSize) {
+        pulsedHearts
+            .compactMap { context.resolveSymbol(id: $0.id) }
+            .forEach { context.draw($0, at: .init(x: size.width / 2, y: size.height / 2)) }
+    }
+    
+    private func addPulsedHeart() {
+        let pulsedHeart = HeartParticleModel()
+        pulsedHearts.append(pulsedHeart)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            pulsedHearts.removeAll(where: { $0.id == pulsedHeart.id })
         }
     }
 }
