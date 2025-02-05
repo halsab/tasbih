@@ -22,7 +22,12 @@ struct ZikrScreen: View {
             loopsCount: loopsCount,
             zikrName: zikrName,
             count: $count,
-            loopSize: $loopSize
+            loopSize: $loopSize,
+            countAction: {},
+            undoAction: {},
+            resetAction: {},
+            resetAllAction: {},
+            showZikrsAction: {}
         )
         .safeAreaPadding()
     }
@@ -41,6 +46,11 @@ private struct Content: View {
     let zikrName: String
     @Binding var count: Int
     @Binding var loopSize: LoopSize
+    let countAction: () -> Void
+    let undoAction: () -> Void
+    let resetAction: () -> Void
+    let resetAllAction: () -> Void
+    let showZikrsAction: () -> Void
     
     var body: some View {
         VStack {
@@ -53,23 +63,13 @@ private struct Content: View {
             )
             Central(
                 count: $count,
-                action: {
-                    count += 1
-                }
+                action: countAction
             )
             Footer(
-                undoAction: {
-                    
-                },
-                resetPrimaryAction: {
-                    
-                },
-                resetSecondaryAction: {
-                    
-                },
-                sheetAction: {
-                    
-                }
+                undoAction: undoAction,
+                resetPrimaryAction: resetAction,
+                resetSecondaryAction: resetAllAction,
+                sheetAction: showZikrsAction
             )
         }
     }
