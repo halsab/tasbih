@@ -12,29 +12,52 @@ import SwiftData
 public struct ZikrScreen: View {
     
     @Environment(\.modelContext) private var modelContext
-    @State private var countController = CountController()
+    @State private var countController: CountController?
     @State private var showZikrs = false
+    
+    private var count: Binding<Int> {
+        Binding<Int>(
+            get: { countController?.count ?? 0 },
+            set: { newValue in countController?.count = newValue }
+        )
+    }
+    private var loopSize: Binding<LoopSize> {
+        Binding<LoopSize>(
+            get: { countController?.loopSize ?? .s },
+            set: { newValue in countController?.loopSize = newValue }
+        )
+    }
     
     public init() {}
     
     public var body: some View {
-        Content(
-            isZikrsExist: countController.isZikrsExist,
-            currentLoopCount: countController.currentLoopCount,
-            loopsCount: countController.loopsCount,
-            zikrName: countController.selectedZikrName,
-            count: $countController.count,
-            loopSize: $countController.loopSize,
-            countAction: countController.increment,
-            undoAction: countController.decrement,
-            resetAction: countController.reset,
-            resetAllAction: countController.resetCompletly,
-            showZikrsAction: { showZikrs.toggle() },
-            createZikrAction: countController.createZikr
-        )
+        Group {
+            if let countController {
+                Content(
+                    isZikrsExist: countController.isZikrsExist,
+                    currentLoopCount: countController.currentLoopCount,
+                    loopsCount: countController.loopsCount,
+                    zikrName: countController.selectedZikrName,
+                    count: count,
+                    loopSize: loopSize,
+                    countAction: countController.increment,
+                    undoAction: countController.decrement,
+                    resetAction: countController.reset,
+                    resetAllAction: countController.resetCompletly,
+                    showZikrsAction: { showZikrs.toggle() },
+                    createZikrAction: countController.createZikr
+                )
+            } else {
+                Text("Loading...")
+            }
+        }
         .safeAreaPadding()
         .sheet(isPresented: $showZikrs) {
             ZikrsView()
+        }
+        .onAppear {
+            guard countController == nil else { return }
+            countController = CountController(modelContext: modelContext)
         }
     }
 }

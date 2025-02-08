@@ -22,19 +22,25 @@ final class CountController {
         !zikrs.isEmpty
     }
 
+    private var modelContext: ModelContext
     private var selectedZikr: ZikrModel?
     private var zikrs: [ZikrModel] = []
     
-    init() {
-        
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        fetchZikrs()
     }
     
     func increment() {
-        
+        selectedZikr?.count += 1
+        selectedZikr?.date = .now
+        saveContext()
     }
     
     func decrement() {
-        
+        selectedZikr?.count -= 1
+        selectedZikr?.date = .now
+        saveContext()
     }
     
     func reset() {
@@ -46,6 +52,30 @@ final class CountController {
     }
     
     func createZikr(name: String) {
-        
+        let zikr = ZikrModel(name: name)
+        zikrs.forEach {
+            $0.isSelected = false
+        }
+        modelContext.insert(zikr)
+        saveContext()
+        fetchZikrs()
+    }
+    
+    private func fetchZikrs() {
+        do {
+            let fetchDescriptor = FetchDescriptor<ZikrModel>(sortBy: [SortDescriptor(\.name)])
+            zikrs = try modelContext.fetch(fetchDescriptor)
+            selectedZikr = zikrs.filter(\.isSelected).first
+        } catch {
+            print("Failed to fetch zikrs: \(error)")
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save context: \(error)")
+        }
     }
 }
