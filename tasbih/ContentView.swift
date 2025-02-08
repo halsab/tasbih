@@ -10,7 +10,7 @@ import Module
 
 struct ContentView: View {
     var body: some View {
-        CountScreen()
+        ZikrScreen()
             .modelContainer(for: ZikrModel.self)
             .statusBar(hidden: true)
     }

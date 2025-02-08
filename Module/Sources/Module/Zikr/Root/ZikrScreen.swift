@@ -7,40 +7,41 @@
 
 import SwiftUI
 import ViewUI
+import SwiftData
 
-struct ZikrScreen: View {
+public struct ZikrScreen: View {
     
-    @State private var count: Int = 0
-    @State private var loopSize: LoopSize = .infinity
-    @State private var currentLoopCount = 0
-    @State private var loopsCount = 0
-    @State private var zikrName = "ZikrName"
+    @Environment(\.modelContext) private var modelContext
+    @State private var countController = CountController()
+    @State private var showZikrs = false
     
-    var body: some View {
+    public init() {}
+    
+    public var body: some View {
         Content(
-            currentLoopCount: currentLoopCount,
-            loopsCount: loopsCount,
-            zikrName: zikrName,
-            count: $count,
-            loopSize: $loopSize,
-            countAction: {},
-            undoAction: {},
-            resetAction: {},
-            resetAllAction: {},
-            showZikrsAction: {}
+            isZikrsExist: countController.isZikrsExist,
+            currentLoopCount: countController.currentLoopCount,
+            loopsCount: countController.loopsCount,
+            zikrName: countController.selectedZikrName,
+            count: $countController.count,
+            loopSize: $countController.loopSize,
+            countAction: countController.increment,
+            undoAction: countController.decrement,
+            resetAction: countController.reset,
+            resetAllAction: countController.resetCompletly,
+            showZikrsAction: { showZikrs.toggle() },
+            createZikrAction: countController.createZikr
         )
         .safeAreaPadding()
-    }
-}
-
-#Preview {
-    NavigationStack {
-        ZikrScreen()
+        .sheet(isPresented: $showZikrs) {
+            ZikrsView()
+        }
     }
 }
 
 private struct Content: View {
     
+    let isZikrsExist: Bool
     let currentLoopCount: Int
     let loopsCount: Int
     let zikrName: String
@@ -51,26 +52,58 @@ private struct Content: View {
     let resetAction: () -> Void
     let resetAllAction: () -> Void
     let showZikrsAction: () -> Void
+    let createZikrAction: (String) -> Void
     
     var body: some View {
-        VStack {
-            Header(
-                count: count,
-                currentLoopCount: currentLoopCount,
-                loopsCount: loopsCount,
-                zikrName: zikrName,
-                loopSize: $loopSize
-            )
-            Central(
-                count: $count,
-                action: countAction
-            )
-            Footer(
-                undoAction: undoAction,
-                resetPrimaryAction: resetAction,
-                resetSecondaryAction: resetAllAction,
-                sheetAction: showZikrsAction
-            )
+        if isZikrsExist {
+            VStack {
+                Header(
+                    count: count,
+                    currentLoopCount: currentLoopCount,
+                    loopsCount: loopsCount,
+                    zikrName: zikrName,
+                    loopSize: $loopSize
+                )
+                Central(
+                    count: $count,
+                    action: countAction
+                )
+                Footer(
+                    undoAction: undoAction,
+                    resetPrimaryAction: resetAction,
+                    resetSecondaryAction: resetAllAction,
+                    sheetAction: showZikrsAction
+                )
+            }
+        } else {
+            FirstZikrCreation(action: createZikrAction)
+        }
+    }
+}
+
+private struct FirstZikrCreation: View {
+    let action: (String) -> Void
+
+    @State private var showAlert = false
+    @State private var text = ""
+
+    var body: some View {
+        Button {
+            showAlert.toggle()
+        } label: {
+            Label {
+                Text(String.text.button.createFirstZikr)
+            } icon: {
+                Image.app.icon.plus
+            }
+        }
+        .buttonStyle(CapsuleButtonStyle())
+        .alert(String.text.alert.createFirstZikr, isPresented: $showAlert) {
+            TextField(String.text.textField.placeholder.zikrName, text: $text)
+            Button(String.text.button.create, action: { action(text) })
+            Button(String.text.button.cancel, role: .cancel) {
+                text = ""
+            }
         }
     }
 }
