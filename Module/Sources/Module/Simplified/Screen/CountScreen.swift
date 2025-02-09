@@ -15,6 +15,9 @@ public struct CountScreen: View {
     public var body: some View {
         ContentView(viewModel: viewModel)
             .safeAreaPadding()
+            .sheet(isPresented: $viewModel.showZikrsSheet) {
+                ZikrsView()
+            }
     }
     
     public init(modelContext: ModelContext) {
@@ -255,7 +258,7 @@ private extension CountScreen {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .onTapGesture {
-                    zikr.count += 1
+                    viewModel.increment(zikr: zikr)
                 }
             } else {
                 EmptyView()
@@ -314,27 +317,31 @@ private extension CountScreen {
         @Bindable var viewModel: ViewModel
         
         var body: some View {
-            HStack {
-                TextButtonView(text: .text.button.reset.uppercased()) {
+            if let zikr = viewModel.selectedZikr {
+                HStack {
+                    TextButtonView(text: .text.button.reset.uppercased()) {
+                        viewModel.reset(zikr: zikr)
+                    }
                     
-                }
-                
-                Spacer()
-                
-                Button {
+                    Spacer()
                     
-                } label: {
-                    Image.app.icon.list
-                        .font(.title)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(Color.shape(.app.tint))
-                }
-                
-                Spacer()
-                
-                TextButtonView(text: .text.button.undo.uppercased()) {
+                    Button {
+                        viewModel.showZikrsSheet.toggle()
+                    } label: {
+                        Image.app.icon.list
+                            .font(.title)
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(Color.shape(.app.tint))
+                    }
                     
+                    Spacer()
+                    
+                    TextButtonView(text: .text.button.undo.uppercased()) {
+                        viewModel.decrement(zikr: zikr)
+                    }
                 }
+            } else {
+                EmptyView()
             }
         }
     }

@@ -17,6 +17,7 @@ extension CountScreen {
         var contentState: ContentState = .empty
         var headerState: HeaderState = .compact
         var loopSize: LoopSize = .s
+        var showZikrsSheet = false
         
         @ObservationIgnored
         private var modelContext: ModelContext
@@ -35,6 +36,22 @@ extension CountScreen.ViewModel {
     func createZikr(name: String) {
         
     }
+    
+    func increment(zikr: ZikrModel) {
+        zikr.count += 1
+        saveContext()
+    }
+    
+    func decrement(zikr: ZikrModel) {
+        guard zikr.count > 0 else { return }
+        zikr.count -= 1
+        saveContext()
+    }
+    
+    func reset(zikr: ZikrModel) {
+        zikr.count = 0
+        saveContext()
+    }
 }
 
 // MARK: - Helpers
@@ -47,6 +64,14 @@ private extension CountScreen.ViewModel {
             selectedZikr = zikrs.first(where: \.isSelected)
         } catch {
             print("Fetch failed: \(error.localizedDescription)")
+        }
+    }
+    
+    func saveContext() {
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save contxt: \(error.localizedDescription)")
         }
     }
 }
