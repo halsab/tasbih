@@ -317,11 +317,13 @@ private extension CountScreen {
     struct FooterView: View {
         @Bindable var viewModel: ViewModel
         
+        @State private var showResetAlert = false
+        
         var body: some View {
             if let zikr = viewModel.selectedZikr {
                 HStack {
                     TextButtonView(text: .text.button.reset.uppercased()) {
-                        viewModel.reset(zikr: zikr)
+                        showResetAlert.toggle()
                     }
                     
                     Spacer()
@@ -340,6 +342,12 @@ private extension CountScreen {
                     TextButtonView(text: .text.button.undo.uppercased()) {
                         viewModel.decrement(zikr: zikr)
                     }
+                }
+                .alert(String.text.alert.resetZikrCompletely, isPresented: $showResetAlert) {
+                    Button(String.text.button.yes, role: .destructive) {
+                        viewModel.reset(zikr: zikr)
+                    }
+                    Button(String.text.button.no, role: .cancel) {}
                 }
             } else {
                 EmptyView()

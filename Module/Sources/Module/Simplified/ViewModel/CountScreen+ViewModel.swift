@@ -27,7 +27,7 @@ extension CountScreen {
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
             fetchData()
-            contentState = zikrs.isEmpty ? .empty : .main
+            updateContentState()
         }
     }
 }
@@ -36,7 +36,20 @@ extension CountScreen {
 
 extension CountScreen.ViewModel {
     func createZikr(name: String) {
-        
+        let zikr = ZikrModel(name: name)
+        zikrs.forEach {
+            $0.isSelected = false
+        }
+        modelContext.insert(zikr)
+        saveContext()
+        fetchData()
+    }
+    
+    func deleteZikr(zikr: ZikrModel) {
+        modelContext.delete(zikr)
+        saveContext()
+        fetchData()
+        updateContentState()
     }
     
     func increment(zikr: ZikrModel) {
@@ -85,6 +98,10 @@ private extension CountScreen.ViewModel {
         
         selectedZikr?.loopSize = loopSize
         saveContext()
+    }
+    
+    func updateContentState() {
+        contentState = zikrs.isEmpty ? .empty : .main
     }
 }
 

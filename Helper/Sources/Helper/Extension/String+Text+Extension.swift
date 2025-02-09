@@ -19,6 +19,8 @@ public extension String {
             public static let select = "Выбрать"//"Select"
             public static let delete = "Удалить"//"Delete"
             public static let add = "Добавить"//"Add"
+            public static let yes = "Да"//"Yes"
+            public static let no = "Нет"//"No"
             public static let createFirstZikr = "Создать первый зикр"//"Create first zikr"
         }
 
