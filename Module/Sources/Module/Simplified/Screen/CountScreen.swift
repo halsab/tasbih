@@ -151,6 +151,7 @@ private extension CountScreen {
                             .contentTransition(.numericText())
                         Spacer()
                         Text("x\(zikr.loopsCount)")
+                            .contentTransition(.numericText())
                     }
                     .font(.app.font(.m))
                     .foregroundStyle(Color.app.tint)
@@ -235,6 +236,7 @@ private extension CountScreen {
                 .contentTransition(.numericText())
                 .font(.app.font(.xxxl, .bold))
                 .foregroundStyle(Color.app.tint)
+                .animation(.easeInOut, value: count)
         }
     }
 }
