@@ -9,12 +9,12 @@ import SwiftUI
 
 extension CountScreen {
     struct FooterView: View {
-        @Bindable var viewModel: ViewModel
+        @Bindable var countService: CountService
         
         @State private var showResetAlert = false
         
         var body: some View {
-            if let zikr = viewModel.selectedZikr {
+            if let zikr = countService.selectedZikr {
                 HStack {
                     TextButtonView(text: .text.button.reset.uppercased()) {
                         showResetAlert.toggle()
@@ -23,7 +23,7 @@ extension CountScreen {
                     Spacer()
                     
                     Button {
-                        viewModel.showZikrsSheet.toggle()
+                        countService.showZikrsSheet.toggle()
                     } label: {
                         Image.app.icon.list
                             .font(.title)
@@ -34,12 +34,12 @@ extension CountScreen {
                     Spacer()
                     
                     TextButtonView(text: .text.button.undo.uppercased()) {
-                        viewModel.decrement(zikr: zikr)
+                        countService.decrement(zikr: zikr)
                     }
                 }
                 .alert(String.text.alert.resetZikrCompletely, isPresented: $showResetAlert) {
                     Button(String.text.button.yes, role: .destructive) {
-                        viewModel.reset(zikr: zikr)
+                        countService.reset(zikr: zikr)
                     }
                     Button(String.text.button.no, role: .cancel) {}
                 }

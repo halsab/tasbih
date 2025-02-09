@@ -9,19 +9,19 @@ import SwiftUI
 import SwiftData
 
 struct CountScreen: View {
-    @State private var viewModel: ViewModel
+    @State private var countService: CountService
     
     var body: some View {
-        ContentView(viewModel: viewModel)
+        ContentView(countService: countService)
             .safeAreaPadding()
-            .sheet(isPresented: $viewModel.showZikrsSheet) {
-                Text("Zikrs")
+            .sheet(isPresented: $countService.showZikrsSheet) {
+                ZikrsScreen(countService: countService)
             }
     }
     
     init(modelContext: ModelContext) {
-        let viewModel = ViewModel(modelContext: modelContext)
-        _viewModel = State(initialValue: viewModel)
+        let countService = CountService(modelContext: modelContext)
+        _countService = State(initialValue: countService)
     }
 }
 

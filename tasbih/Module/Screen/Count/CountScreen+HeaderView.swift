@@ -9,13 +9,13 @@ import SwiftUI
 
 extension CountScreen {
     struct HeaderView: View {
-        @Bindable var viewModel: ViewModel
+        @Bindable var countService: CountService
         
         var body: some View {
-            if let zikr = viewModel.selectedZikr {
-                switch viewModel.headerState {
-                case .compact: CompactMainStateHeaderView(viewModel: viewModel, zikr: zikr)
-                case .full: FullMainStateHeaderView(viewModel: viewModel, zikr: zikr)
+            if let zikr = countService.selectedZikr {
+                switch countService.headerState {
+                case .compact: CompactMainStateHeaderView(countService: countService, zikr: zikr)
+                case .full: FullMainStateHeaderView(countService: countService, zikr: zikr)
                 }
             } else {
                 EmptyView()
@@ -23,7 +23,7 @@ extension CountScreen {
         }
         
         struct CompactMainStateHeaderView: View {
-            @Bindable var viewModel: ViewModel
+            @Bindable var countService: CountService
             @Bindable var zikr: ZikrModel
             
             var body: some View {
@@ -31,7 +31,7 @@ extension CountScreen {
                     HStack {
                         CountValueView(count: zikr.count)
                         Spacer()
-                        LoopSizeSelectionView(viewModel: viewModel)
+                        LoopSizeSelectionView(countService: countService)
                     }
                     ZikrNameView(name: zikr.name)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -40,7 +40,7 @@ extension CountScreen {
         }
         
         struct FullMainStateHeaderView: View {
-            @Bindable var viewModel: ViewModel
+            @Bindable var countService: CountService
             @Bindable var zikr: ZikrModel
             
             var body: some View {
@@ -50,7 +50,7 @@ extension CountScreen {
                     HStack {
                         CountValueView(count: zikr.count)
                         Spacer()
-                        LoopSizeSelectionView(viewModel: viewModel)
+                        LoopSizeSelectionView(countService: countService)
                     }
                 }
             }

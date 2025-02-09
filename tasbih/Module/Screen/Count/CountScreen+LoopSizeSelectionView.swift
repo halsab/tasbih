@@ -9,7 +9,7 @@ import SwiftUI
 
 extension CountScreen {
     struct LoopSizeSelectionView: View {
-        @Bindable var viewModel: ViewModel
+        @Bindable var countService: CountService
         
         var body: some View {
             Menu {
@@ -25,20 +25,20 @@ extension CountScreen {
         func MenuButton(loopSize selectedLoopSize: LoopSize) -> some View {
             Button {
                 withAnimation {
-                    viewModel.loopSize = selectedLoopSize
+                    countService.loopSize = selectedLoopSize
                 }
             } label: {
                 Label {
                     Text(selectedLoopSize.title)
                 } icon: {
-                    viewModel.loopSize == selectedLoopSize ? Image.app.selection.on : Image.app.selection.off
+                    countService.loopSize == selectedLoopSize ? Image.app.selection.on : Image.app.selection.off
                 }
             }
         }
         
         @ViewBuilder
         func MenuLabel() -> some View {
-            Text(viewModel.loopSize.shortTitle)
+            Text(countService.loopSize.shortTitle)
                 .foregroundStyle(Color.app.tint.primary)
                 .font(.app.font(.m, .bold))
                 .frame(width: 64, height: 32)

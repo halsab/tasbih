@@ -9,13 +9,13 @@ import SwiftUI
 
 extension CountScreen {
     struct ContentView: View {
-        @Bindable var viewModel: ViewModel
+        @Bindable var countService: CountService
         
         @State private var showFirstZikrCreationAlert = false
         @State private var firstZikrName = ""
         
         var body: some View {
-            switch viewModel.contentState {
+            switch countService.contentState {
             case .empty: EmptyState()
             case .main: MainState()
             }
@@ -45,9 +45,9 @@ extension CountScreen {
         @ViewBuilder
         func MainState() -> some View {
             VStack {
-                HeaderView(viewModel: viewModel)
-                CentralView(viewModel: viewModel)
-                FooterView(viewModel: viewModel)
+                HeaderView(countService: countService)
+                CentralView(countService: countService)
+                FooterView(countService: countService)
             }
         }
         
@@ -55,7 +55,7 @@ extension CountScreen {
         func FirstZikrCreationAlert() -> some View {
             TextField(String.text.textField.placeholder.zikrName, text: $firstZikrName)
             Button(String.text.button.create) {
-                viewModel.createZikr(name: firstZikrName)
+                countService.createZikr(name: firstZikrName)
                 firstZikrName = ""
             }
             Button(String.text.button.cancel, role: .cancel) {

@@ -1,5 +1,5 @@
 //
-//  CountScreen+ViewModel.swift
+//  CountService.swift
 //  Module
 //
 //  Created by Khalil Sabirov on 09.02.2025.
@@ -8,33 +8,31 @@
 import SwiftUI
 import SwiftData
 
-extension CountScreen {
-    @Observable
-    final class ViewModel {
-        
-        var zikrs = [ZikrModel]()
-        var selectedZikr: ZikrModel?
-        var contentState: ContentState = .empty
-        var headerState: HeaderState = .full
-        var loopSize: LoopSize = .s {
-            didSet { handle(new: loopSize) }
-        }
-        var showZikrsSheet = false
-        
-        @ObservationIgnored
-        private var modelContext: ModelContext
-        
-        init(modelContext: ModelContext) {
-            self.modelContext = modelContext
-            fetchData()
-            updateContentState()
-        }
+@Observable
+final class CountService {
+    
+    var zikrs = [ZikrModel]()
+    var selectedZikr: ZikrModel?
+    var contentState: ContentState = .empty
+    var headerState: HeaderState = .full
+    var loopSize: LoopSize = .s {
+        didSet { handle(new: loopSize) }
+    }
+    var showZikrsSheet = false
+    
+    @ObservationIgnored
+    private var modelContext: ModelContext
+    
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        fetchData()
+        updateContentState()
     }
 }
 
 // MARK: - Actions
 
-extension CountScreen.ViewModel {
+extension CountService {
     func createZikr(name: String) {
         let zikr = ZikrModel(name: name)
         zikrs.forEach {
@@ -71,7 +69,7 @@ extension CountScreen.ViewModel {
 
 // MARK: - Helpers
 
-private extension CountScreen.ViewModel {
+private extension CountService {
     func fetchData() {
         do {
             let descriptor = FetchDescriptor<ZikrModel>(sortBy: [SortDescriptor(\.name)])
@@ -107,7 +105,7 @@ private extension CountScreen.ViewModel {
 
 // MARK: - ContentState
 
-extension CountScreen.ViewModel {
+extension CountService {
     enum ContentState {
         case empty, main
     }
@@ -115,7 +113,7 @@ extension CountScreen.ViewModel {
 
 // MARK: - HeaderState
 
-extension CountScreen.ViewModel {
+extension CountService {
     enum HeaderState {
         case compact, full
     }

@@ -9,10 +9,10 @@ import SwiftUI
 
 extension CountScreen {
     struct CentralView: View {
-        @Bindable var viewModel: ViewModel
+        @Bindable var countService: CountService
         
         var body: some View {
-            if let zikr = viewModel.selectedZikr {
+            if let zikr = countService.selectedZikr {
                 ZStack {
                     AnimationView(zikr: zikr)
                     
@@ -23,7 +23,7 @@ extension CountScreen {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .onTapGesture {
-                    viewModel.increment(zikr: zikr)
+                    countService.increment(zikr: zikr)
                 }
             } else {
                 EmptyView()
