@@ -12,11 +12,7 @@ public struct CountScreen: View {
     @State private var viewModel: ViewModel
     
     public var body: some View {
-        VStack {
-            List(viewModel.zikrs) {
-                Text($0.name)
-            }
-        }
+        ContentView()
     }
     
     public init(modelContext: ModelContext) {
@@ -27,4 +23,18 @@ public struct CountScreen: View {
 
 #Preview {
     CountScreen(modelContext: ZikrModel.previewContainer.mainContext)
+}
+
+// MARK: - ContentView
+
+private extension CountScreen {
+    @ViewBuilder
+    func ContentView() -> some View {
+        switch viewModel.contentState {
+        case .empty:
+            Text("empty")
+        case .main:
+            Text("main")
+        }
+    }
 }

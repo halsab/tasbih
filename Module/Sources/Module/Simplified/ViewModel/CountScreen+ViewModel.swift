@@ -13,6 +13,7 @@ extension CountScreen {
     final class ViewModel {
         
         var zikrs = [ZikrModel]()
+        var contentState: ContentState = .empty
         
         @ObservationIgnored
         private var modelContext: ModelContext
@@ -20,6 +21,7 @@ extension CountScreen {
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
             fetchData()
+            contentState = zikrs.isEmpty ? .empty : .main
         }
     }
 }
@@ -34,5 +36,13 @@ private extension CountScreen.ViewModel {
         } catch {
             print("Fetch failed: \(error.localizedDescription)")
         }
+    }
+}
+
+// MARK: - ContentState
+
+extension CountScreen.ViewModel {
+    enum ContentState {
+        case empty, main
     }
 }
