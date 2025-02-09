@@ -10,7 +10,7 @@ import SwiftData
 import Helper
 import ViewUI
 
-public struct CountScreen: View {
+public struct CountScreen2: View {
 
     @Environment(\.modelContext) private var modelContext
     @Query private var zikrs: [ZikrModel]
@@ -63,6 +63,6 @@ public struct CountScreen: View {
 }
 
 #Preview {
-    CountScreen()
+    CountScreen2()
         .preferredColorScheme(.dark)
 }

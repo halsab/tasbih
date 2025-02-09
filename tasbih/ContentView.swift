@@ -6,13 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 import Module
 
 struct ContentView: View {
+    private let container: ModelContainer
+    
     var body: some View {
-        ZikrScreen()
-            .modelContainer(for: ZikrModel.self)
+        CountScreen(modelContext: container.mainContext)
+            .modelContainer(container)
             .statusBar(hidden: true)
+    }
+    
+    init() {
+        do {
+            container = try ModelContainer(for: ZikrModel.self)
+        } catch {
+            fatalError("Failed to create ModelContainer for Movie.")
+        }
     }
 }
 
