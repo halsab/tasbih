@@ -11,14 +11,9 @@ import Helper
 
 public struct CountScreen: View {
     @State private var viewModel: ViewModel
-    @State private var showFirstZikrCreationAlert = false
-    @State private var firstZikrName = ""
     
     public var body: some View {
-        ContentView()
-            .alert(String.text.alert.createFirstZikr, isPresented: $showFirstZikrCreationAlert) {
-                FirstZikrCreationAlert()
-            }
+        ContentView(viewModel: viewModel)
     }
     
     public init(modelContext: ModelContext) {
@@ -34,48 +29,177 @@ public struct CountScreen: View {
 // MARK: - ContentView
 
 private extension CountScreen {
-    @ViewBuilder
-    func ContentView() -> some View {
-        switch viewModel.contentState {
-        case .empty: EmptyStateView()
-        case .main: MainStateView()
-        }
-    }
-    
-    @ViewBuilder
-    func EmptyStateView() -> some View {
-        Button {
-            showFirstZikrCreationAlert.toggle()
-        } label: {
-            Label {
-                Text(String.text.button.createFirstZikr)
-            } icon: {
-                Image.app.icon.plus
+    struct ContentView: View {
+        @Bindable var viewModel: ViewModel
+        
+        @State private var showFirstZikrCreationAlert = false
+        @State private var firstZikrName = ""
+        
+        var body: some View {
+            switch viewModel.contentState {
+            case .empty: EmptyState()
+            case .main: MainState()
             }
         }
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.capsule)
-        .controlSize(.extraLarge)
-    }
-    
-    @ViewBuilder
-    func MainStateView() -> some View {
-        Text("main")
+        
+        @ViewBuilder
+        func EmptyState() -> some View {
+            Button {
+                showFirstZikrCreationAlert.toggle()
+            } label: {
+                Label {
+                    Text(String.text.button.createFirstZikr)
+                } icon: {
+                    Image.app.icon.plus
+                }
+                .font(.app.font(.m, .semibold))
+            }
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.capsule)
+            .controlSize(.extraLarge)
+            .tint(.app.tint)
+            .alert(String.text.alert.createFirstZikr, isPresented: $showFirstZikrCreationAlert) {
+                FirstZikrCreationAlert()
+            }
+        }
+        
+        @ViewBuilder
+        func MainState() -> some View {
+            VStack {
+                MainStateHeaderView(viewModel: viewModel)
+                //                    MainStateCentralView()
+                //                    MainStateFooterView()
+            }
+        }
+        
+        @ViewBuilder
+        func FirstZikrCreationAlert() -> some View {
+            TextField(String.text.textField.placeholder.zikrName, text: $firstZikrName)
+            Button(String.text.button.create) {
+                viewModel.createZikr(name: firstZikrName)
+                firstZikrName = ""
+            }
+            Button(String.text.button.cancel, role: .cancel) {
+                firstZikrName = ""
+            }
+        }
     }
 }
 
-// MARK: - FirstZikrCreationAlert
+private extension CountScreen {
+    struct MainStateHeaderView: View {
+        @Bindable var viewModel: ViewModel
+        
+        var body: some View {
+            if let zikr = viewModel.selectedZikr {
+                switch viewModel.headerState {
+                case .compact: CompactMainStateHeaderView(viewModel: viewModel, zikr: zikr)
+                case .full: FullMainStateHeaderView(zikr: zikr)
+                }
+            } else {
+                EmptyView()
+            }
+        }
+        
+        struct CompactMainStateHeaderView: View {
+            @Bindable var viewModel: ViewModel
+            @Bindable var zikr: ZikrModel
+            
+            var body: some View {
+                VStack(spacing: 6) {
+                    HStack {
+                        CountValue(count: zikr.count)
+                        Spacer()
+                        LoopSizeSelection(viewModel: viewModel)
+                    }
+                    ZikrNameView(name: zikr.name)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+        }
+        
+        struct FullMainStateHeaderView: View {
+            @Bindable var zikr: ZikrModel
+            
+            var body: some View {
+                VStack(spacing: 6) {
+
+                }
+            }
+        }
+    }
+}
+
+// MARK: - LoopSizeSelection
 
 private extension CountScreen {
-    @ViewBuilder
-    func FirstZikrCreationAlert() -> some View {
-        TextField(String.text.textField.placeholder.zikrName, text: $firstZikrName)
-        Button(String.text.button.create) {
-            viewModel.createZikr(name: firstZikrName)
-            firstZikrName = ""
+    struct LoopSizeSelection: View {
+        @Bindable var viewModel: ViewModel
+        
+        var body: some View {
+            Menu {
+                ForEach(LoopSize.allCases, id: \.self) { selectedLoopSize in
+                    MenuButton(loopSize: selectedLoopSize)
+                }
+            } label: {
+                MenuLabel()
+            }
         }
-        Button(String.text.button.cancel, role: .cancel) {
-            firstZikrName = ""
+        
+        @ViewBuilder
+        func MenuButton(loopSize selectedLoopSize: LoopSize) -> some View {
+            Button {
+                withAnimation {
+                    viewModel.loopSize = selectedLoopSize
+                }
+            } label: {
+                Label {
+                    Text(selectedLoopSize.title)
+                } icon: {
+                    viewModel.loopSize == selectedLoopSize ? Image.app.selection.on : Image.app.selection.off
+                }
+            }
+        }
+        
+        @ViewBuilder
+        func MenuLabel() -> some View {
+            Text(viewModel.loopSize.shortTitle)
+                .foregroundStyle(Color.app.tint)
+                .font(.app.font(.m, .bold))
+                .padding(.vertical, 6)
+                .padding(.horizontal, 12)
+                .background(.ultraThinMaterial)
+                .clipShape(.capsule)
+        }
+    }
+}
+
+// MARK: - ZikrName
+
+private extension CountScreen {
+    struct ZikrName: View {
+        let name: String
+        
+        var body: some View {
+            Text(name)
+                .font(.app.font(.m, .bold))
+                .foregroundStyle(Color.secondary)
+                .lineLimit(1)
+        }
+    }
+}
+
+// MARK: - CountValue
+
+private extension CountScreen {
+    struct CountValue: View {
+        let count: Int
+        
+        var body: some View {
+            Text(String(count))
+                .contentTransition(.numericText())
+                .font(.app.font(.xxxl, .bold))
+                .foregroundStyle(Color.app.tint)
         }
     }
 }

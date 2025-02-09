@@ -13,7 +13,10 @@ extension CountScreen {
     final class ViewModel {
         
         var zikrs = [ZikrModel]()
+        var selectedZikr: ZikrModel?
         var contentState: ContentState = .empty
+        var headerState: HeaderState = .compact
+        var loopSize: LoopSize = .s
         
         @ObservationIgnored
         private var modelContext: ModelContext
@@ -21,7 +24,7 @@ extension CountScreen {
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
             fetchData()
-//            contentState = zikrs.isEmpty ? .empty : .main
+            contentState = zikrs.isEmpty ? .empty : .main
         }
     }
 }
@@ -41,6 +44,7 @@ private extension CountScreen.ViewModel {
         do {
             let descriptor = FetchDescriptor<ZikrModel>(sortBy: [SortDescriptor(\.name)])
             zikrs = try modelContext.fetch(descriptor)
+            selectedZikr = zikrs.first(where: \.isSelected)
         } catch {
             print("Fetch failed: \(error.localizedDescription)")
         }
@@ -52,5 +56,13 @@ private extension CountScreen.ViewModel {
 extension CountScreen.ViewModel {
     enum ContentState {
         case empty, main
+    }
+}
+
+// MARK: - HeaderState
+
+extension CountScreen.ViewModel {
+    enum HeaderState {
+        case compact, full
     }
 }

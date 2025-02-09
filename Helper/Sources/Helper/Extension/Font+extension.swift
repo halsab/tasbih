@@ -28,12 +28,13 @@ public extension Font {
         }
         
         public enum WeightType {
-            case regular, bold
+            case regular, bold, semibold
             
             var wight: Font.Weight {
                 switch self {
                 case .regular: return .regular
                 case .bold: return .bold
+                case .semibold: return .semibold
                 }
             }
         }
