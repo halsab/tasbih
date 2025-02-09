@@ -12,7 +12,11 @@ public struct CountScreen: View {
     @State private var viewModel: ViewModel
     
     public var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List(viewModel.zikrs) {
+                Text($0.name)
+            }
+        }
     }
     
     public init(modelContext: ModelContext) {
@@ -21,6 +25,6 @@ public struct CountScreen: View {
     }
 }
 
-//#Preview {
-//    CountScreen()
-//}
+#Preview {
+    CountScreen(modelContext: ZikrModel.previewContainer.mainContext)
+}

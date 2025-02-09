@@ -14,7 +14,6 @@ struct ContentView: View {
     
     var body: some View {
         CountScreen(modelContext: container.mainContext)
-            .modelContainer(container)
             .statusBar(hidden: true)
     }
     

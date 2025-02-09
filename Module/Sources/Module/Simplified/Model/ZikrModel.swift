@@ -37,3 +37,21 @@ final public class ZikrModel: Identifiable {
         self.isSelected = true
     }
 }
+
+@MainActor
+extension ZikrModel {
+    static let previewContainer: ModelContainer = {
+        do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: true)
+            let container = try ModelContainer(for: ZikrModel.self, configurations: config)
+            
+            for i in 0..<5 {
+                let zikr = ZikrModel(name: "Zikr \(i)")
+                container.mainContext.insert(zikr)
+            }
+            return container
+        } catch {
+            fatalError("Failed to create model container for previewing: \(error.localizedDescription)")
+        }
+    }()
+}
