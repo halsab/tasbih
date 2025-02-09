@@ -15,7 +15,9 @@ struct CountScreen: View {
         ContentView(countService: countService)
             .safeAreaPadding()
             .sheet(isPresented: $countService.showZikrsSheet) {
-                ZikrsScreen(countService: countService)
+                NavigationStack {
+                    ZikrsScreen(countService: countService)
+                }
             }
     }
     

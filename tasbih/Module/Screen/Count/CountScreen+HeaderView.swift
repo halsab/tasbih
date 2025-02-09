@@ -63,13 +63,12 @@ extension CountScreen {
                 ) {
                     HStack {
                         Text("\(zikr.currentLoopCount)")
-                            .contentTransition(.numericText())
                         Spacer()
                         Text("x\(zikr.loopsCount)")
-                            .contentTransition(.numericText())
                     }
+                    .contentTransition(.numericText())
                     .font(.app.font(.m))
-                    .foregroundStyle(Color.app.tint.primary)
+                    .foregroundStyle(Color.secondary)
                     .monospaced()
                     .overlay(alignment: .centerFirstTextBaseline) {
                         ZikrNameView(name: zikr.name)
