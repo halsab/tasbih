@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import Module
 
 struct ContentView: View {
     private let container: ModelContainer

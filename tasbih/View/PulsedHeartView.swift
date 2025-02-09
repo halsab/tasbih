@@ -2,13 +2,13 @@
 //  PulsedHeartView.swift
 //  tasbih
 //
-//  Created by Khalil Sabirov on 25.09.2023.
+//  Created by Khalil Sabirov on 09.02.2025.
 //
 
 import SwiftUI
 
 struct PulsedHeartView: View {
-
+    
     @State private var startAnimation = false
     
     var body: some View {

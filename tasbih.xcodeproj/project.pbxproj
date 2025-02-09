@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,6 @@
 		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
 		20A1E63D2D495841007250AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A1E63C2D495841007250AF /* ContentView.swift */; };
-		20A1E6452D495F3F007250AF /* Module in Frameworks */ = {isa = PBXBuildFile; productRef = 20A1E6442D495F3F007250AF /* Module */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,17 +21,23 @@
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20A1E63C2D495841007250AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		20A1E6412D495EA6007250AF /* Module */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Module; sourceTree = "<group>"; };
-		20A1E6422D495EBA007250AF /* Helper */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Helper; sourceTree = "<group>"; };
-		20A1E6462D496175007250AF /* ViewUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ViewUI; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		206F97CF2D5932040008061E /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
+		206F97D02D5932070008061E /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
+		206F97D12D5932340008061E /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
+		206F97D22D5932390008061E /* Screen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screen; sourceTree = "<group>"; };
+		206F97D32D59323E0008061E /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
+		206F97E12D5932890008061E /* Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extension; sourceTree = "<group>"; };
+		206F97E22D59328D0008061E /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2033E45E29505D1C00485CE9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A1E6452D495F3F007250AF /* Module in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,9 +47,6 @@
 		2033E45829505D1C00485CE9 = {
 			isa = PBXGroup;
 			children = (
-				20A1E6462D496175007250AF /* ViewUI */,
-				20A1E6422D495EBA007250AF /* Helper */,
-				20A1E6412D495EA6007250AF /* Module */,
 				2033E46329505D1C00485CE9 /* tasbih */,
 				20B1C08A2CC13BDB008E5462 /* Frameworks */,
 				2033E46229505D1C00485CE9 /* Products */,
@@ -62,6 +64,13 @@
 		2033E46329505D1C00485CE9 /* tasbih */ = {
 			isa = PBXGroup;
 			children = (
+				206F97E22D59328D0008061E /* Assets */,
+				206F97E12D5932890008061E /* Extension */,
+				206F97D32D59323E0008061E /* ViewModel */,
+				206F97D22D5932390008061E /* Screen */,
+				206F97D12D5932340008061E /* View */,
+				206F97D02D5932070008061E /* Model */,
+				206F97CF2D5932040008061E /* App */,
 				2033D3802CC5468600909E05 /* Info.plist */,
 				2033E46A29505D1E00485CE9 /* tasbih.entitlements */,
 				2033E46429505D1C00485CE9 /* tasbihApp.swift */,
@@ -101,6 +110,15 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				206F97CF2D5932040008061E /* App */,
+				206F97D02D5932070008061E /* Model */,
+				206F97D12D5932340008061E /* View */,
+				206F97D22D5932390008061E /* Screen */,
+				206F97D32D59323E0008061E /* ViewModel */,
+				206F97E12D5932890008061E /* Extension */,
+				206F97E22D59328D0008061E /* Assets */,
 			);
 			name = tasbih;
 			productName = tasbih;
@@ -394,13 +412,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		20A1E6442D495F3F007250AF /* Module */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Module;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2033E45929505D1C00485CE9 /* Project object */;
 }

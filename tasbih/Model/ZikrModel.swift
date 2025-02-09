@@ -9,9 +9,9 @@ import Foundation
 import SwiftData
 
 @Model
-final public class ZikrModel: Identifiable {
+final class ZikrModel: Identifiable {
     @Attribute(.unique)
-    public var id: UUID
+    var id: UUID
     @Attribute(.unique)
     var name: String
     var count: Int

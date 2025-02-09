@@ -7,20 +7,19 @@
 
 import SwiftUI
 import SwiftData
-import Helper
 
-public struct CountScreen: View {
+struct CountScreen: View {
     @State private var viewModel: ViewModel
     
-    public var body: some View {
+    var body: some View {
         ContentView(viewModel: viewModel)
             .safeAreaPadding()
             .sheet(isPresented: $viewModel.showZikrsSheet) {
-                ZikrsView()
+                Text("Zikrs")
             }
     }
     
-    public init(modelContext: ModelContext) {
+    init(modelContext: ModelContext) {
         let viewModel = ViewModel(modelContext: modelContext)
         _viewModel = State(initialValue: viewModel)
     }

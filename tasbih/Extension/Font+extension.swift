@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-public extension Font {
+extension Font {
     enum app {
-        public enum SizeType {
+        enum SizeType {
             case xxxs, xxs, xs, s, m, l, xl, xxl, xxxl
             
             var size: Font.TextStyle {
@@ -27,7 +27,7 @@ public extension Font {
             }
         }
         
-        public enum WeightType {
+        enum WeightType {
             case regular, bold, semibold
             
             var wight: Font.Weight {
@@ -39,7 +39,7 @@ public extension Font {
             }
         }
         
-        public static func font(_ sizeType: SizeType, _ weightType: WeightType = .regular) -> Font {
+        static func font(_ sizeType: SizeType, _ weightType: WeightType = .regular) -> Font {
             .system(sizeType.size, design: .rounded, weight: weightType.wight)
         }
     }
