@@ -94,7 +94,7 @@ private extension CountScreen {
             if let zikr = viewModel.selectedZikr {
                 switch viewModel.headerState {
                 case .compact: CompactMainStateHeaderView(viewModel: viewModel, zikr: zikr)
-                case .full: FullMainStateHeaderView(zikr: zikr)
+                case .full: FullMainStateHeaderView(viewModel: viewModel, zikr: zikr)
                 }
             } else {
                 EmptyView()
@@ -108,9 +108,9 @@ private extension CountScreen {
             var body: some View {
                 VStack(spacing: 6) {
                     HStack {
-                        CountValue(count: zikr.count)
+                        CountValueView(count: zikr.count)
                         Spacer()
-                        LoopSizeSelection(viewModel: viewModel)
+                        LoopSizeSelectionView(viewModel: viewModel)
                     }
                     ZikrNameView(name: zikr.name)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -119,12 +119,42 @@ private extension CountScreen {
         }
         
         struct FullMainStateHeaderView: View {
+            @Bindable var viewModel: ViewModel
             @Bindable var zikr: ZikrModel
             
             var body: some View {
                 VStack(spacing: 6) {
-
+                    CountProgress()
+                    
+                    HStack {
+                        CountValueView(count: zikr.count)
+                        Spacer()
+                        LoopSizeSelectionView(viewModel: viewModel)
+                    }
                 }
+            }
+            
+            @ViewBuilder
+            private func CountProgress() -> some View {
+                Gauge(
+                    value: Double(zikr.currentLoopCount),
+                    in: 0...Double(zikr.loopSize.rawValue)
+                ) {
+                    HStack {
+                        Text("\(zikr.currentLoopCount)")
+                            .contentTransition(.numericText())
+                        Spacer()
+                        Text("x\(zikr.loopsCount)")
+                    }
+                    .font(.app.font(.m))
+                    .foregroundStyle(Color.app.tint)
+                    .monospaced()
+                    .overlay(alignment: .centerFirstTextBaseline) {
+                        ZikrNameView(name: zikr.name)
+                    }
+                }
+                .tint(.app.tint)
+                .animation(.easeInOut, value: zikr.currentLoopCount)
             }
         }
     }
@@ -133,7 +163,7 @@ private extension CountScreen {
 // MARK: - LoopSizeSelection
 
 private extension CountScreen {
-    struct LoopSizeSelection: View {
+    struct LoopSizeSelectionView: View {
         @Bindable var viewModel: ViewModel
         
         var body: some View {
@@ -177,7 +207,7 @@ private extension CountScreen {
 // MARK: - ZikrName
 
 private extension CountScreen {
-    struct ZikrName: View {
+    struct ZikrNameView: View {
         let name: String
         
         var body: some View {
@@ -192,7 +222,7 @@ private extension CountScreen {
 // MARK: - CountValue
 
 private extension CountScreen {
-    struct CountValue: View {
+    struct CountValueView: View {
         let count: Int
         
         var body: some View {
