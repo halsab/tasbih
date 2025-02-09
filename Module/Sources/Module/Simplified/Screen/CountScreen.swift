@@ -166,7 +166,7 @@ private extension CountScreen {
     }
 }
 
-// MARK: - LoopSizeSelection
+// MARK: - LoopSizeSelectionView
 
 private extension CountScreen {
     struct LoopSizeSelectionView: View {
@@ -202,15 +202,14 @@ private extension CountScreen {
             Text(viewModel.loopSize.shortTitle)
                 .foregroundStyle(Color.app.tint)
                 .font(.app.font(.m, .bold))
-                .padding(.vertical, 6)
-                .padding(.horizontal, 12)
+                .frame(width: 64, height: 32)
                 .background(.ultraThinMaterial)
                 .clipShape(.capsule)
         }
     }
 }
 
-// MARK: - ZikrName
+// MARK: - ZikrNameView
 
 private extension CountScreen {
     struct ZikrNameView: View {
@@ -225,7 +224,7 @@ private extension CountScreen {
     }
 }
 
-// MARK: - CountValue
+// MARK: - CountValueView
 
 private extension CountScreen {
     struct CountValueView: View {

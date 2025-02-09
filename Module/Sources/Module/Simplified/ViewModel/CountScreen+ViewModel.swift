@@ -16,7 +16,7 @@ extension CountScreen {
         var selectedZikr: ZikrModel?
         var contentState: ContentState = .empty
         var headerState: HeaderState = .compact
-        var loopSize: LoopSize = .s
+        var loopSize: LoopSize = .l
         var showZikrsSheet = false
         
         @ObservationIgnored
