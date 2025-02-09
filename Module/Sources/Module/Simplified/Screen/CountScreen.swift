@@ -67,9 +67,9 @@ private extension CountScreen {
         @ViewBuilder
         func MainState() -> some View {
             VStack {
-                MainStateHeaderView(viewModel: viewModel)
-                MainStateCentralView(viewModel: viewModel)
-                //                    MainStateFooterView()
+                HeaderView(viewModel: viewModel)
+                CentralView(viewModel: viewModel)
+                FooterView(viewModel: viewModel)
             }
         }
         
@@ -87,10 +87,10 @@ private extension CountScreen {
     }
 }
 
-// MARK: - MainStateHeaderView
+// MARK: - HeaderView
 
 private extension CountScreen {
-    struct MainStateHeaderView: View {
+    struct HeaderView: View {
         @Bindable var viewModel: ViewModel
         
         var body: some View {
@@ -237,10 +237,10 @@ private extension CountScreen {
     }
 }
 
-// MARK: - MainStateCentralView
+// MARK: - CentralView
 
 private extension CountScreen {
-    private struct MainStateCentralView: View {
+    private struct CentralView: View {
         @Bindable var viewModel: ViewModel
         
         var body: some View {
@@ -303,6 +303,18 @@ private extension CountScreen {
                     pulsedHearts.removeAll(where: { $0.id == pulsedHeart.id })
                 }
             }
+        }
+    }
+}
+
+// MARK: - FooterView
+
+private extension CountScreen {
+    struct FooterView: View {
+        @Bindable var viewModel: ViewModel
+        
+        var body: some View {
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
         }
     }
 }
