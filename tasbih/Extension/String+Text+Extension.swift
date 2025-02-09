@@ -29,8 +29,8 @@ extension String {
         }
         
         enum alert {
-            static let createFirstZikr = "Создать ваш первый зикр"//"Create your first zikr"
-            static let createNewZikr = "Создать ваш новый зикр"//"Create your new zikr"
+            static let createFirstZikr = "Создайте ваш первый зикр"//"Create your first zikr"
+            static let createNewZikr = "Создайте ваш новый зикр"//"Create your new zikr"
             static let resetZikrCompletely = "Сбросить зикр полностью?"//"Reset this zikr completely?"
             static let delelteZikr = "Удилть зикр"//"Delete zikr"
         }

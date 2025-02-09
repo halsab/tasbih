@@ -65,6 +65,10 @@ extension CountService {
         zikr.count = 0
         saveContext()
     }
+    
+    func isZikrExist(withName name: String) -> Bool {
+        zikrs.contains(where: { $0.name == name })
+    }
 }
 
 // MARK: - Helpers
