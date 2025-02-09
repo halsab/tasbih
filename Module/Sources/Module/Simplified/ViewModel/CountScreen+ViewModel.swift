@@ -21,8 +21,16 @@ extension CountScreen {
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
             fetchData()
-            contentState = zikrs.isEmpty ? .empty : .main
+//            contentState = zikrs.isEmpty ? .empty : .main
         }
+    }
+}
+
+// MARK: - Actions
+
+extension CountScreen.ViewModel {
+    func createZikr(name: String) {
+        
     }
 }
 
