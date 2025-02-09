@@ -314,7 +314,28 @@ private extension CountScreen {
         @Bindable var viewModel: ViewModel
         
         var body: some View {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            HStack {
+                TextButtonView(text: .text.button.reset.uppercased()) {
+                    
+                }
+                
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Image.app.icon.list
+                        .font(.title)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(Color.shape(.app.tint))
+                }
+                
+                Spacer()
+                
+                TextButtonView(text: .text.button.undo.uppercased()) {
+                    
+                }
+            }
         }
     }
 }
