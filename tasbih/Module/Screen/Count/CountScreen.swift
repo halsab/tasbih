@@ -60,7 +60,7 @@ private extension CountScreen {
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
             .controlSize(.extraLarge)
-            .tint(.app.tint)
+            .tint(.app.tint.primary)
             .alert(String.text.alert.createFirstZikr, isPresented: $showFirstZikrCreationAlert) {
                 FirstZikrCreationAlert()
             }
@@ -153,13 +153,13 @@ private extension CountScreen {
                             .contentTransition(.numericText())
                     }
                     .font(.app.font(.m))
-                    .foregroundStyle(Color.app.tint)
+                    .foregroundStyle(Color.app.tint.primary)
                     .monospaced()
                     .overlay(alignment: .centerFirstTextBaseline) {
                         ZikrNameView(name: zikr.name)
                     }
                 }
-                .tint(.app.tint)
+                .tint(.app.tint.primary)
                 .animation(.easeInOut, value: zikr.currentLoopCount)
             }
         }
@@ -200,7 +200,7 @@ private extension CountScreen {
         @ViewBuilder
         func MenuLabel() -> some View {
             Text(viewModel.loopSize.shortTitle)
-                .foregroundStyle(Color.app.tint)
+                .foregroundStyle(Color.app.tint.primary)
                 .font(.app.font(.m, .bold))
                 .frame(width: 64, height: 32)
                 .background(.ultraThinMaterial)
@@ -234,7 +234,7 @@ private extension CountScreen {
             Text(String(count))
                 .contentTransition(.numericText())
                 .font(.app.font(.xxxl, .bold))
-                .foregroundStyle(Color.app.tint)
+                .foregroundStyle(Color.app.tint.secondary)
                 .animation(.easeInOut, value: count)
         }
     }
@@ -253,7 +253,7 @@ private extension CountScreen {
                     
                     Image.app.button.count
                         .font(.system(size: 100))
-                        .foregroundStyle(Color.shape(.app.tint))
+                        .foregroundStyle(Color.shape(.app.tint.primary))
                         .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: zikr.count)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -333,7 +333,7 @@ private extension CountScreen {
                         Image.app.icon.list
                             .font(.title)
                             .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(Color.shape(.app.tint))
+                            .foregroundStyle(Color.shape(.app.tint.primary))
                     }
                     
                     Spacer()

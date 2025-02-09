@@ -7,30 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2033E46429505D1C00485CE9 /* tasbihApp.swift */; };
-		2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46829505D1E00485CE9 /* Assets.xcassets */; };
 		2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */; };
-		20A1E63D2D495841007250AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A1E63C2D495841007250AF /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2033D3802CC5468600909E05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2033D3802CC5468600909E05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2033E46129505D1C00485CE9 /* tasbih.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tasbih.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2033E46429505D1C00485CE9 /* tasbihApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tasbihApp.swift; sourceTree = "<group>"; };
-		2033E46829505D1E00485CE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2033E46A29505D1E00485CE9 /* tasbih.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tasbih.entitlements; sourceTree = "<group>"; };
 		2033E46C29505D1E00485CE9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		20A1E63C2D495841007250AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		206F97CF2D5932040008061E /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
-		206F97D02D5932070008061E /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
-		206F97D12D5932340008061E /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
-		206F97D22D5932390008061E /* Screen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screen; sourceTree = "<group>"; };
-		206F97D32D59323E0008061E /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
 		206F97E12D5932890008061E /* Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extension; sourceTree = "<group>"; };
-		206F97E22D59328D0008061E /* Assets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Assets; sourceTree = "<group>"; };
+		206F97E22D59328D0008061E /* Resource */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resource; sourceTree = "<group>"; };
+		206F97F52D5935750008061E /* Module */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Module; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,18 +55,12 @@
 		2033E46329505D1C00485CE9 /* tasbih */ = {
 			isa = PBXGroup;
 			children = (
-				206F97E22D59328D0008061E /* Assets */,
-				206F97E12D5932890008061E /* Extension */,
-				206F97D32D59323E0008061E /* ViewModel */,
-				206F97D22D5932390008061E /* Screen */,
-				206F97D12D5932340008061E /* View */,
-				206F97D02D5932070008061E /* Model */,
 				206F97CF2D5932040008061E /* App */,
+				206F97F52D5935750008061E /* Module */,
+				206F97E12D5932890008061E /* Extension */,
+				206F97E22D59328D0008061E /* Resource */,
 				2033D3802CC5468600909E05 /* Info.plist */,
 				2033E46A29505D1E00485CE9 /* tasbih.entitlements */,
-				2033E46429505D1C00485CE9 /* tasbihApp.swift */,
-				20A1E63C2D495841007250AF /* ContentView.swift */,
-				2033E46829505D1E00485CE9 /* Assets.xcassets */,
 				2033E46B29505D1E00485CE9 /* Preview Content */,
 			);
 			path = tasbih;
@@ -113,12 +98,9 @@
 			);
 			fileSystemSynchronizedGroups = (
 				206F97CF2D5932040008061E /* App */,
-				206F97D02D5932070008061E /* Model */,
-				206F97D12D5932340008061E /* View */,
-				206F97D22D5932390008061E /* Screen */,
-				206F97D32D59323E0008061E /* ViewModel */,
 				206F97E12D5932890008061E /* Extension */,
-				206F97E22D59328D0008061E /* Assets */,
+				206F97E22D59328D0008061E /* Resource */,
+				206F97F52D5935750008061E /* Module */,
 			);
 			name = tasbih;
 			productName = tasbih;
@@ -164,7 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2033E46D29505D1E00485CE9 /* Preview Assets.xcassets in Resources */,
-				2033E46929505D1E00485CE9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,8 +156,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A1E63D2D495841007250AF /* ContentView.swift in Sources */,
-				2033E46529505D1C00485CE9 /* tasbihApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

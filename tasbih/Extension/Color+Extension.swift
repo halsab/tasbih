@@ -9,8 +9,10 @@ import SwiftUI
 
 extension Color {
     enum app {
-        static let tint = Color("tint")
-        static let highlight = Color("highlight")
+        enum tint {
+            static let primary = Color("colors/tint/primary")
+            static let secondary = Color("colors/tint/secondary")
+        }
     }
     
     enum system {

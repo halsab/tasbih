@@ -14,7 +14,7 @@ struct TextButtonView: View {
     var body: some View {
         Button(action: action) {
             Text(text)
-                .foregroundStyle(Color.shape(.app.tint).gradient)
+                .foregroundStyle(Color.shape(.app.tint.primary).gradient)
                 .font(.app.font(.m, .bold))
         }
     }
