@@ -14,19 +14,15 @@ extension ZikrsScreen {
         @State private var showZikrCreationAlert = false
         @State private var newZikrName = ""
         
-        private var isNewZikrNameInvalid: Bool {
-            newZikrName.isEmpty || countService.isZikrExist(withName: newZikrName)
-        }
-        
         var body: some View {
-            ScrollView {
-                VStack(spacing: 12) {
-                    ForEach(countService.zikrs) { zikr in
-                        RowView(zikr: zikr)
-                    }
-                }
-                .safeAreaPadding()
+            List(countService.zikrs) {
+                Row(title: $0.name, subtitle: $0.date.formatted(date: .numeric, time: .shortened))
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(.init(top: 4, leading: 0, bottom: 4, trailing: 0))
+                    .safeAreaPadding(.horizontal)
             }
+            .listStyle(.plain)
+            .listRowSpacing(0)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
@@ -37,15 +33,11 @@ extension ZikrsScreen {
                 }
             }
             .alert(String.text.alert.createNewZikr, isPresented: $showZikrCreationAlert) {
-                TextField(String.text.textField.placeholder.zikrName, text: $newZikrName)
-                Button(String.text.button.create) {
+                ZikrCreationAlertView(name: $newZikrName, isValid: {
+                    countService.isNewZikrNameValid(newZikrName)
+                }, action: {
                     countService.createZikr(name: newZikrName)
-                    newZikrName = ""
-                }
-                .disabled(isNewZikrNameInvalid)
-                Button(String.text.button.cancel, role: .cancel) {
-                    newZikrName = ""
-                }
+                })
             }
         }
         
@@ -62,6 +54,25 @@ extension ZikrsScreen {
             TextButtonView(text: String.text.button.create.uppercased()) {
                 showZikrCreationAlert.toggle()
             }
+        }
+        
+        @ViewBuilder
+        private func Row(
+            title: String,
+            subtitle: String
+        ) -> some View {
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.app.font(.m, .semibold))
+                    .foregroundStyle(.primary)
+                Text(subtitle)
+                    .font(.app.font(.s, .regular))
+                    .foregroundStyle(.secondary)
+            }
+            .padding(8)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(.tertiary)
+            .clipShape(.rect(cornerRadius: 8))
         }
     }
 }

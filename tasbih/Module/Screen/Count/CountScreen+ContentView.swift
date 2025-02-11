@@ -38,7 +38,11 @@ extension CountScreen {
             .controlSize(.extraLarge)
             .tint(.app.tint.primary)
             .alert(String.text.alert.createFirstZikr, isPresented: $showFirstZikrCreationAlert) {
-                FirstZikrCreationAlert()
+                ZikrCreationAlertView(name: $firstZikrName, isValid: {
+                    countService.isNewZikrNameValid(firstZikrName)
+                }, action: {
+                    countService.createZikr(name: firstZikrName)
+                })
             }
         }
         
@@ -48,18 +52,6 @@ extension CountScreen {
                 HeaderView(countService: countService)
                 CentralView(countService: countService)
                 FooterView(countService: countService)
-            }
-        }
-        
-        @ViewBuilder
-        func FirstZikrCreationAlert() -> some View {
-            TextField(String.text.textField.placeholder.zikrName, text: $firstZikrName)
-            Button(String.text.button.create) {
-                countService.createZikr(name: firstZikrName)
-                firstZikrName = ""
-            }
-            Button(String.text.button.cancel, role: .cancel) {
-                firstZikrName = ""
             }
         }
     }

@@ -66,8 +66,8 @@ extension CountService {
         saveContext()
     }
     
-    func isZikrExist(withName name: String) -> Bool {
-        zikrs.contains(where: { $0.name == name })
+    func isNewZikrNameValid(_ name: String) -> Bool {
+        !(name.isEmptyCompletely || isZikrExist(withName: name))
     }
 }
 
@@ -104,6 +104,10 @@ private extension CountService {
     
     func updateContentState() {
         contentState = zikrs.isEmpty ? .empty : .main
+    }
+    
+    func isZikrExist(withName name: String) -> Bool {
+        zikrs.contains(where: { $0.name.same(as: name) })
     }
 }
 
