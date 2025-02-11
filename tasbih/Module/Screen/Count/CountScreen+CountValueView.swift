@@ -15,6 +15,7 @@ extension CountScreen {
             Text(String(count))
                 .contentTransition(.numericText())
                 .font(.app.font(.xxl, weight: .bold))
+                .monospaced()
                 .foregroundStyle(Color.app.tint.secondary)
                 .animation(.easeInOut, value: count)
         }

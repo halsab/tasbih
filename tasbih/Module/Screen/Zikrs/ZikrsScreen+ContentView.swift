@@ -27,9 +27,9 @@ extension ZikrsScreen {
                 }
                 Section {
                     ForEach(countService.zikrs) {
-                        Row(title: $0.name, subtitle: $0.date.formatted(date: .numeric, time: .shortened))
+                        Row(zikr: $0)
                             .listRowSeparator(.hidden)
-                            .listRowInsets(.init(top: 4, leading: 16, bottom: 4, trailing: 16))
+                            .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
                     }
                 }
             }
@@ -60,21 +60,38 @@ extension ZikrsScreen {
         }
         
         @ViewBuilder
-        private func Row(
-            title: String,
-            subtitle: String
-        ) -> some View {
+        private func Row(zikr: ZikrModel) -> some View {
             HStack {
-                VStack(alignment: .leading) {
-                    Text(title)
-                        .font(.app.font(.m, weight: .semibold))
-                        .foregroundStyle(.primary)
-                    Text(subtitle)
-                        .font(.app.font(.s))
-                        .foregroundStyle(.secondary)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(zikr.name)
+                            .font(.app.font(.m, weight: .semibold))
+                            .foregroundStyle(.primary)
+                        Text(zikr.date.formatted(date: .numeric, time: .shortened))
+                            .font(.app.font(.s))
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.leading, 16)
+                    
+                    Spacer()
+                    
+                    CountScreen.CountValueView(count: zikr.count)
                 }
+                .padding(.vertical, 8)
+                
+                Image(systemName: "plus.circle")
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(Color.shape(.white), Color.shape(.app.tint.primary))
+                    .font(.app.font(.xxl))
+                    .padding(.horizontal, 8)
+                    .frame(maxHeight: .infinity)
+                    .background(.background.secondary)
+                    .onTapGesture {
+                        countService.increment(zikr: zikr)
+                    }
+                
             }
-            .padding(8)
+            .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.background.tertiary)
             .clipShape(.rect(cornerRadius: 8))
