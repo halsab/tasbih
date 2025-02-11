@@ -17,7 +17,7 @@ extension String {
     }
     
     /// Compare lowercased without witespaces
-    func same(as text: String) -> Bool {
-        self.withoutWhitespaces.lowercased() == text.withoutWhitespaces.lowercased()
+    func like(string: String) -> Bool {
+        self.withoutWhitespaces.lowercased() == string.withoutWhitespaces.lowercased()
     }
 }
