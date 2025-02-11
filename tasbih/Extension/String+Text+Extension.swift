@@ -49,5 +49,9 @@ extension String {
             static let zikr = "Зикр"//"Zikr"
             static let salah = "Намаз"//"Salah"
         }
+        
+        enum info {
+            static let zikrsHeader = "Управляйте своими зикрами. Создавайте и удаляйте, отслеживайте прогресс."
+        }
     }
 }

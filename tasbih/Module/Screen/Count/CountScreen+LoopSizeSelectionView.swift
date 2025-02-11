@@ -40,7 +40,7 @@ extension CountScreen {
         func MenuLabel() -> some View {
             Text(countService.loopSize.shortTitle)
                 .foregroundStyle(Color.app.tint.primary)
-                .font(.app.font(.m, .bold))
+                .font(.app.font(.m, weight: .bold))
                 .frame(width: 64, height: 32)
                 .background(.ultraThinMaterial)
                 .clipShape(.capsule)

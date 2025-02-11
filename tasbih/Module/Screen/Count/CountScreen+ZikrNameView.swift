@@ -13,7 +13,7 @@ extension CountScreen {
         
         var body: some View {
             Text(name)
-                .font(.app.font(.m, .bold))
+                .font(.app.font(.m, weight: .bold))
                 .foregroundStyle(Color.secondary)
                 .lineLimit(1)
         }

@@ -38,5 +38,9 @@ extension Image {
             static let zikr = Image(systemName: "aqi.medium")
             static let salah = Image(systemName: "moon")
         }
+        
+        enum infoHeader {
+            static let zikrs = Image(systemName: "heart.square.fill")
+        }
     }
 }

@@ -9,17 +9,33 @@ import SwiftUI
 
 struct TextButtonView: View {
     let text: String
+    let alignment: HorizontalAlignment
     let action: () -> Void
+    
+    init(text: String, alignment: HorizontalAlignment = .center, action: @escaping () -> Void) {
+        self.text = text
+        self.alignment = alignment
+        self.action = action
+    }
     
     var body: some View {
         Button(action: action) {
-            Text(text)
-                .foregroundStyle(Color.shape(.app.tint.primary).gradient)
-                .font(.app.font(.m, .bold))
+            HStack(spacing: 0) {
+                if alignment == .trailing {
+                    Spacer(minLength: 0)
+                }
+                Text(text)
+                    .foregroundStyle(Color.shape(.app.tint.primary).gradient)
+                    .font(.app.font(.m, weight: .bold))
+                    .lineLimit(1)
+                if alignment == .leading {
+                    Spacer(minLength: 0)
+                }
+            }
         }
     }
 }
 
 #Preview {
-    TextButtonView(text: "Button", action: {})
+    TextButtonView(text: "Button".uppercased(), action: {})
 }

@@ -15,11 +15,23 @@ extension ZikrsScreen {
         @State private var newZikrName = ""
         
         var body: some View {
-            List(countService.zikrs) {
-                Row(title: $0.name, subtitle: $0.date.formatted(date: .numeric, time: .shortened))
+            List {
+                Section {
+                    InfoHeaderView(
+                        image: Image(systemName: "heart.square.fill"),
+                        title: String.text.title.zikrs,
+                        description: String.text.info.zikrsHeader
+                    )
                     .listRowSeparator(.hidden)
-                    .listRowInsets(.init(top: 4, leading: 0, bottom: 4, trailing: 0))
-                    .safeAreaPadding(.horizontal)
+                    .listRowInsets(.init(top: 16, leading: 16, bottom: 16, trailing: 16))
+                }
+                Section {
+                    ForEach(countService.zikrs) {
+                        Row(title: $0.name, subtitle: $0.date.formatted(date: .numeric, time: .shortened))
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(.init(top: 4, leading: 16, bottom: 4, trailing: 16))
+                    }
+                }
             }
             .listStyle(.plain)
             .listRowSpacing(0)
@@ -27,9 +39,6 @@ extension ZikrsScreen {
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
                     BottomToolbar()
-                }
-                ToolbarItem(placement: .principal) {
-                    TopToolbar()
                 }
             }
             .alert(String.text.alert.createNewZikr, isPresented: $showZikrCreationAlert) {
@@ -39,12 +48,6 @@ extension ZikrsScreen {
                     countService.createZikr(name: newZikrName)
                 })
             }
-        }
-        
-        @ViewBuilder
-        private func TopToolbar() -> some View {
-            Text(String.text.title.zikrs)
-                .font(.app.font(.m, .bold))
         }
         
         @ViewBuilder
@@ -61,17 +64,19 @@ extension ZikrsScreen {
             title: String,
             subtitle: String
         ) -> some View {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.app.font(.m, .semibold))
-                    .foregroundStyle(.primary)
-                Text(subtitle)
-                    .font(.app.font(.s, .regular))
-                    .foregroundStyle(.secondary)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.app.font(.m, weight: .semibold))
+                        .foregroundStyle(.primary)
+                    Text(subtitle)
+                        .font(.app.font(.s))
+                        .foregroundStyle(.secondary)
+                }
             }
             .padding(8)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(.tertiary)
+            .background(.background.tertiary)
             .clipShape(.rect(cornerRadius: 8))
         }
     }

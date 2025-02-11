@@ -13,12 +13,15 @@ extension CountScreen {
         
         @State private var showResetAlert = false
         
+        private let textButtonWidth: CGFloat = 80
+        
         var body: some View {
             if let zikr = countService.selectedZikr {
                 HStack {
-                    TextButtonView(text: .text.button.reset.uppercased()) {
+                    TextButtonView(text: .text.button.reset.uppercased(), alignment: .leading) {
                         showResetAlert.toggle()
                     }
+                    .frame(width: textButtonWidth)
                     
                     Spacer()
                     
@@ -33,9 +36,10 @@ extension CountScreen {
                     
                     Spacer()
                     
-                    TextButtonView(text: .text.button.undo.uppercased()) {
+                    TextButtonView(text: .text.button.undo.uppercased(), alignment: .trailing) {
                         countService.decrement(zikr: zikr)
                     }
+                    .frame(width: textButtonWidth)
                 }
                 .alert(String.text.alert.resetZikrCompletely, isPresented: $showResetAlert) {
                     Button(String.text.button.yes, role: .destructive) {

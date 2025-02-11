@@ -14,7 +14,7 @@ extension CountScreen {
         var body: some View {
             Text(String(count))
                 .contentTransition(.numericText())
-                .font(.app.font(.xxxl, .bold))
+                .font(.app.font(.xxl, weight: .bold))
                 .foregroundStyle(Color.app.tint.secondary)
                 .animation(.easeInOut, value: count)
         }

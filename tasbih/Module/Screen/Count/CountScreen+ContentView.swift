@@ -31,7 +31,7 @@ extension CountScreen {
                 } icon: {
                     Image.app.icon.plus
                 }
-                .font(.app.font(.m, .semibold))
+                .font(.app.font(.m, weight: .semibold))
             }
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
