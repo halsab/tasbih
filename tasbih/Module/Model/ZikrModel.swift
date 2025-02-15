@@ -45,7 +45,7 @@ extension ZikrModel {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(for: ZikrModel.self, configurations: config)
             
-            for i in 0..<5 {
+            for i in 0..<10 {
                 let zikr = ZikrModel(name: "Zikr \(i)")
                 container.mainContext.insert(zikr)
             }

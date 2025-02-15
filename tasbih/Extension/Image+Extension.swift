@@ -19,6 +19,7 @@ extension Image {
             static let increase = Image(systemName: "plus")
             static let decrease = Image(systemName: "minus")
             static let book = Image(systemName: "book")
+            static let create = Image(systemName: "plus.circle.fill")
         }
 
         enum icon {

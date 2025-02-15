@@ -36,10 +36,8 @@ extension ZikrsScreen {
             .listStyle(.plain)
             .listRowSpacing(0)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    BottomToolbar()
-                }
+            .safeAreaInset(edge: .bottom) {
+                BottomToolbar()
             }
             .alert(String.text.alert.createNewZikr, isPresented: $showZikrCreationAlert) {
                 ZikrCreationAlertView(name: $newZikrName, isValid: {
@@ -52,11 +50,19 @@ extension ZikrsScreen {
         
         @ViewBuilder
         private func BottomToolbar() -> some View {
-            Spacer()
-            
-            TextButtonView(text: String.text.button.create.uppercased()) {
+            Button {
                 showZikrCreationAlert.toggle()
+            } label: {
+                Image.app.button.create
+                    .symbolRenderingMode(.palette)
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundStyle(Color.shape(.white), Color.shape(.app.tint.primary))
+                    .bold()
+                    .shadow(color: .white.opacity(0.5), radius: 4, x: 0, y: 0)
             }
+            .frame(height: 64)
+            .padding(.top)
         }
         
         @ViewBuilder
