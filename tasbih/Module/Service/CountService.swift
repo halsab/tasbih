@@ -51,6 +51,7 @@ extension CountService {
         modelContext.insert(zikr)
         saveContext()
         fetchData()
+        updateContentState()
         positiveFeedback()
     }
     
@@ -128,7 +129,9 @@ private extension CountService {
     }
     
     func updateContentState() {
-        contentState = zikrs.isEmpty ? .empty : .main
+        withAnimation {
+            contentState = zikrs.isEmpty ? .empty : .main
+        }
     }
     
     func isZikrExistWithName(like name: String) -> Bool {
