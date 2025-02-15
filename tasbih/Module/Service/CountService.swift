@@ -24,8 +24,6 @@ final class CountService {
     @ObservationIgnored
     private var modelContext: ModelContext
     
-    private var i = 0
-    
     private let neutralHapticGenerator: UIImpactFeedbackGenerator
     private let positiveHapticGenerator: UINotificationFeedbackGenerator
     private let negativeHapticGenerator: UINotificationFeedbackGenerator
@@ -40,7 +38,7 @@ final class CountService {
     }
 }
 
-// MARK: - Actions
+// MARK: - Internal methods
 
 extension CountService {
     func createZikr(name: String) {
@@ -66,14 +64,14 @@ extension CountService {
     func increment(zikr: ZikrModel) {
         zikr.count += 1
         saveContext()
-        neutralFeedback()
+        countChangeFeedback()
     }
     
     func decrement(zikr: ZikrModel) {
         guard zikr.count > 0 else { return }
         zikr.count -= 1
         saveContext()
-        neutralFeedback()
+        countChangeFeedback()
     }
     
     func reset(zikr: ZikrModel) {
@@ -94,6 +92,10 @@ extension CountService {
     
     func isNewZikrNameValid(_ name: String) -> Bool {
         !(name.isEmptyCompletely || isZikrExistWithName(like: name))
+    }
+    
+    func hapticFeedback() {
+        neutralFeedback()
     }
 }
 
@@ -139,19 +141,27 @@ private extension CountService {
     }
 }
 
-// MARK: - Feedback Actions
+// MARK: - Haptic Feedback
 
-extension CountService {
-    private func positiveFeedback() {
+private extension CountService {
+    func positiveFeedback() {
         positiveHapticGenerator.notificationOccurred(.success)
     }
     
-    private func negativeFeedback() {
+    func negativeFeedback() {
         negativeHapticGenerator.notificationOccurred(.error)
     }
     
     func neutralFeedback() {
         neutralHapticGenerator.impactOccurred()
+    }
+    
+    func countChangeFeedback() {
+        if selectedZikr?.currentLoopCount == 0 {
+            positiveFeedback()
+        } else {
+            neutralFeedback()
+        }
     }
 }
 
