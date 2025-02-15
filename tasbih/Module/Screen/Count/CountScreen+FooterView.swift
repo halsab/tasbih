@@ -19,6 +19,7 @@ extension CountScreen {
             if let zikr = countService.selectedZikr {
                 HStack {
                     TextButtonView(text: .text.button.reset.uppercased(), alignment: .leading) {
+                        countService.neutralFeedback()
                         showResetAlert.toggle()
                     }
                     .frame(width: textButtonWidth)

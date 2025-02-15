@@ -62,6 +62,7 @@ extension ZikrsScreen {
         @ViewBuilder
         private func BottomToolbar() -> some View {
             Button {
+                countService.neutralFeedback()
                 showZikrCreationAlert.toggle()
             } label: {
                 Image.app.button.create
