@@ -81,7 +81,7 @@ extension ZikrsScreen {
                     
                     Spacer()
                     
-                    CountScreen.CountValueView(count: zikr.count)
+                    CountValueView(count: zikr.count)
                 }
                 .padding(.vertical, 8)
                 
