@@ -16,8 +16,7 @@ extension Image {
 
         enum button {
             static let count = Image(systemName: "suit.heart.fill")
-            static let increase = Image(systemName: "plus")
-            static let decrease = Image(systemName: "minus")
+            static let increase = Image(systemName: "plus.circle")
             static let book = Image(systemName: "book")
             static let create = Image(systemName: "plus.circle.fill")
         }

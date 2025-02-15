@@ -18,7 +18,7 @@ extension ZikrsScreen {
             List {
                 Section {
                     InfoHeaderView(
-                        image: Image(systemName: "heart.square.fill"),
+                        image: Image.app.infoHeader.zikrs,
                         title: String.text.title.zikrs,
                         description: String.text.info.zikrsHeader
                     )
@@ -59,7 +59,7 @@ extension ZikrsScreen {
                     .scaledToFit()
                     .foregroundStyle(Color.shape(.white), Color.shape(.app.tint.primary))
                     .bold()
-                    .shadow(color: .white.opacity(0.5), radius: 4, x: 0, y: 0)
+                    .shadow(color: .primary, radius: 4, x: 0, y: 0)
             }
             .frame(height: 64)
             .padding(.top)
@@ -85,7 +85,7 @@ extension ZikrsScreen {
                 }
                 .padding(.vertical, 8)
                 
-                Image(systemName: "plus.circle")
+                Image.app.button.increase
                     .symbolRenderingMode(.palette)
                     .foregroundStyle(Color.shape(.white), Color.shape(.app.tint.primary))
                     .font(.app.font(.xxl))
