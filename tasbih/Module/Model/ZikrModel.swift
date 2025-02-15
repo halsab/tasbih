@@ -55,4 +55,6 @@ extension ZikrModel {
             fatalError("Failed to create model container for previewing: \(error.localizedDescription)")
         }
     }()
+    
+    static let previewModel: ZikrModel = .init(name: "Preview Zikr")
 }
