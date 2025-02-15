@@ -34,7 +34,7 @@ final class CountService {
         self.positiveHapticGenerator = UINotificationFeedbackGenerator()
         self.negativeHapticGenerator = UINotificationFeedbackGenerator()
         fetchData()
-        updateContentState()
+        updateUIState()
     }
 }
 
@@ -49,7 +49,7 @@ extension CountService {
         modelContext.insert(zikr)
         saveContext()
         fetchData()
-        updateContentState()
+        updateUIState()
         positiveFeedback()
     }
     
@@ -57,7 +57,7 @@ extension CountService {
         modelContext.delete(zikr)
         saveContext()
         fetchData()
-        updateContentState()
+        updateUIState()
         negativeFeedback()
     }
     
@@ -130,9 +130,10 @@ private extension CountService {
         saveContext()
     }
     
-    func updateContentState() {
+    func updateUIState() {
         withAnimation {
             contentState = zikrs.isEmpty ? .empty : .main
+            loopSize = selectedZikr?.loopSize ?? .s
         }
     }
     
