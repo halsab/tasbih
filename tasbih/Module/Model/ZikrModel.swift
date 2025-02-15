@@ -47,6 +47,7 @@ extension ZikrModel {
             
             for i in 0..<10 {
                 let zikr = ZikrModel(name: "Zikr \(i)")
+                zikr.isSelected = i == 0
                 container.mainContext.insert(zikr)
             }
             return container

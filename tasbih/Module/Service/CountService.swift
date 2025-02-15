@@ -66,6 +66,14 @@ extension CountService {
         saveContext()
     }
     
+    func select(zikr: ZikrModel) {
+        zikrs.forEach {
+            $0.isSelected = false
+        }
+        zikr.isSelected = true
+        saveContext()
+    }
+    
     func isNewZikrNameValid(_ name: String) -> Bool {
         !(name.isEmptyCompletely || isZikrExistWithName(like: name))
     }

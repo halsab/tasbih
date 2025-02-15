@@ -20,6 +20,11 @@ extension Image {
             static let book = Image(systemName: "book")
             static let create = Image(systemName: "plus.circle.fill")
         }
+        
+        enum swipe {
+            static let delete = Image(systemName: "trash.fill")
+            static let select = Image(systemName: "checkmark.circle.fill")
+        }
 
         enum icon {
             static let selected = Image(systemName: "checkmark")

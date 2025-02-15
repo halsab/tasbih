@@ -26,10 +26,21 @@ extension ZikrsScreen {
                     .listRowInsets(.init(top: 16, leading: 16, bottom: 16, trailing: 16))
                 }
                 Section {
-                    ForEach(countService.zikrs) {
-                        Row(zikr: $0)
+                    ForEach(countService.zikrs) { zikr in
+                        Row(zikr: zikr)
                             .listRowSeparator(.hidden)
                             .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    countService.deleteZikr(zikr: zikr)
+                                } label: {
+                                    Image.app.swipe.delete
+                                }
+                                .tint(.clear)
+                            }
+                            .onTapGesture {
+                                countService.select(zikr: zikr)
+                            }
                     }
                 }
             }
@@ -67,7 +78,7 @@ extension ZikrsScreen {
         
         @ViewBuilder
         private func Row(zikr: ZikrModel) -> some View {
-            HStack {
+            HStack(spacing: 0) {
                 HStack {
                     VStack(alignment: .leading) {
                         Text(zikr.name)
@@ -84,6 +95,20 @@ extension ZikrsScreen {
                     CountValueView(count: zikr.count)
                 }
                 .padding(.vertical, 8)
+                .padding(.trailing, 8)
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(
+                            colors: [
+                                zikr.isSelected ? .app.tint.secondary.opacity(0.6) : .clear,
+                                .clear
+                            ]
+                        ),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                    .animation(.easeInOut, value: zikr.isSelected)
+                )
                 
                 Image.app.button.increase
                     .symbolRenderingMode(.palette)
