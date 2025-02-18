@@ -52,18 +52,18 @@ struct IntroScreen: View {
 
                 VStack(spacing: 4) {
                     Text("السلام عليكم")
-                        .fontWeight(.semibold)
+                        .font(.app.font(.l))
                         .foregroundStyle(.white.secondary)
                         .blurOpacityEffect(initialAnimation)
                     
                     Text("Tasbih App")
-                        .font(.largeTitle.bold())
+                        .font(.app.font(.xxl).bold())
                         .foregroundStyle(.white)
                         .blurOpacityEffect(initialAnimation)
                         .padding(.bottom, 12)
                     
                     Text("Пусть это приложение станет вашим верным спутником в стремлении укрепить связь со Всевышним, ведь зикр – это свет для сердца и души каждого мусульманина.")
-                        .font(.callout)
+                        .font(.app.font(.m))
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.white.secondary)
                         .blurOpacityEffect(initialAnimation)
@@ -73,7 +73,7 @@ struct IntroScreen: View {
                     timer.upstream.connect().cancel()
                 } label: {
                     Text("Создать зикр")
-                        .fontWeight(.semibold)
+                        .font(.app.font(.m).weight(.semibold))
                         .foregroundStyle(.black)
                         .padding(.horizontal, 25)
                         .padding(.vertical, 12)
@@ -145,10 +145,11 @@ struct IntroScreen: View {
                     
                     Spacer()
                     Text(card.description)
-                        .font(.callout)
+                        .font(.app.font(.m))
+                        .lineSpacing(8)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.white.secondary)
-                        .padding()
+                        .padding(.vertical, 8)
                         .frame(maxWidth: .infinity)
                         .background(.ultraThinMaterial)
                 }
