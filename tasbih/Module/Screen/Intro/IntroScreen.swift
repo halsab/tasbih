@@ -62,7 +62,7 @@ struct IntroScreen: View {
                         .blurOpacityEffect(initialAnimation)
                         .padding(.bottom, 12)
                     
-                    Text("Create beautiful invitations for all your events.\nAnyone can receive invitations. Sending included\nwith iCloud+.")
+                    Text("Пусть это приложение станет вашим верным спутником в стремлении укрепить связь со Всевышним, ведь зикр – это свет для сердца и души каждого мусульманина.")
                         .font(.callout)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.white.secondary)
@@ -72,7 +72,7 @@ struct IntroScreen: View {
                 Button {
                     timer.upstream.connect().cancel()
                 } label: {
-                    Text("Create Event")
+                    Text("Создать зикр")
                         .fontWeight(.semibold)
                         .foregroundStyle(.black)
                         .padding(.horizontal, 25)
@@ -84,8 +84,8 @@ struct IntroScreen: View {
             .safeAreaPadding(15)
         }
         .onReceive(timer) { _ in
-//            currentScrollOffset += 0.35
-//            scrollPosition.scrollTo(x: currentScrollOffset)
+            currentScrollOffset += 0.35
+            scrollPosition.scrollTo(x: currentScrollOffset)
         }
         .task {
             try? await Task.sleep(for: .seconds(0.35))
@@ -148,8 +148,10 @@ struct IntroScreen: View {
                         .font(.callout)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.white.secondary)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(.ultraThinMaterial)
                 }
-                .padding()
                 .frame(width: 220)
             }
             .frame(width: size.width, height: size.height)
