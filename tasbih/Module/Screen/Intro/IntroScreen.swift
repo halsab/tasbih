@@ -51,12 +51,12 @@ struct IntroScreen: View {
                 }
 
                 VStack(spacing: 4) {
-                    Text("Welcome to")
+                    Text("السلام عليكم")
                         .fontWeight(.semibold)
                         .foregroundStyle(.white.secondary)
                         .blurOpacityEffect(initialAnimation)
                     
-                    Text("Apple Invites")
+                    Text("Tasbih App")
                         .font(.largeTitle.bold())
                         .foregroundStyle(.white)
                         .blurOpacityEffect(initialAnimation)
@@ -84,8 +84,8 @@ struct IntroScreen: View {
             .safeAreaPadding(15)
         }
         .onReceive(timer) { _ in
-            currentScrollOffset += 0.35
-            scrollPosition.scrollTo(x: currentScrollOffset)
+//            currentScrollOffset += 0.35
+//            scrollPosition.scrollTo(x: currentScrollOffset)
         }
         .task {
             try? await Task.sleep(for: .seconds(0.35))
@@ -126,12 +126,34 @@ struct IntroScreen: View {
         GeometryReader {
             let size = $0.size
             
-            Image(card.image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: size.width, height: size.height)
-                .clipShape(.rect(cornerRadius: 20))
-                .shadow(color: .black.opacity(0.4), radius: 10, x: 1, y: 0)
+            ZStack {
+                Image(card.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .shadow(color: .black.opacity(0.4), radius: 10, x: 1, y: 0)
+             
+                VStack {
+                    Spacer()
+                    Text(card.title)
+                        .font(.system(size: 54, weight: .bold, design: .rounded))
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.white)
+                        .padding()
+                        .background {
+                            Color.black.blur(radius: 60, opaque: false)
+                        }
+                    
+                    Spacer()
+                    Text(card.description)
+                        .font(.callout)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.white.secondary)
+                }
+                .padding()
+                .frame(width: 220)
+            }
+            .frame(width: size.width, height: size.height)
+            .clipShape(.rect(cornerRadius: 20))
         }
         .frame(width: 220)
         .scrollTransition(.interactive.threshold(.centered), axis: .horizontal) { content, phase in
