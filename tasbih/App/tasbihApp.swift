@@ -11,7 +11,8 @@ import SwiftUI
 struct tasbihApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            IntroScreen()
                 .preferredColorScheme(.dark)
         }
     }
