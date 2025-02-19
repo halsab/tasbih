@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct CountScreen: View {
-    @State private var countService: CountService
+    @Bindable var countService: CountService
     
     var body: some View {
         ContentView(countService: countService)
@@ -20,13 +19,8 @@ struct CountScreen: View {
                 }
             }
     }
-    
-    init(modelContext: ModelContext) {
-        let countService = CountService(modelContext: modelContext)
-        _countService = State(initialValue: countService)
-    }
 }
 
 #Preview {
-    CountScreen(modelContext: ZikrModel.previewContainer.mainContext)
+    CountScreen(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext))
 }

@@ -9,22 +9,19 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    private let container: ModelContainer
+    @Bindable var countService: CountService
     
     var body: some View {
-        CountScreen(modelContext: container.mainContext)
-            .statusBar(hidden: true)
-    }
-    
-    init() {
-        do {
-            container = try ModelContainer(for: ZikrModel.self)
-        } catch {
-            fatalError("Failed to create ModelContainer for Movie.")
+        Group {
+            switch countService.contentState {
+            case .empty: IntroScreen(countService: countService)
+            case .main: CountScreen(countService: countService)
+            }
         }
+        .statusBar(hidden: true)
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext))
 }

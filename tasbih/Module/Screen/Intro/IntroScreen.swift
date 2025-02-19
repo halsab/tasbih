@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct IntroScreen: View {
+    @Bindable var countService: CountService
+    
     @State private var activeCard: IntroCard? = .cards.first
     @State private var scrollPosition: ScrollPosition = .init()
     @State private var currentScrollOffset: CGFloat = 0
     @State private var timer = Timer.publish(every: 0.01, on: .current, in: .default).autoconnect()
     @State private var initialAnimation = false
     @State private var scrollPhase: ScrollPhase = .idle
+    @State private var showFirstZikrCreationAlert = false
+    @State private var firstZikrName = ""
     
     var body: some View {
         ZStack {
@@ -26,7 +30,7 @@ struct IntroScreen: View {
                 TextSection()
                 
                 ActionView {
-                    
+                    showFirstZikrCreationAlert.toggle()
                 }
             }
             .safeAreaPadding(15)
@@ -42,12 +46,19 @@ struct IntroScreen: View {
                 initialAnimation = true
             }
         }
+        .alert(String.text.alert.createFirstZikr, isPresented: $showFirstZikrCreationAlert) {
+            ZikrCreationAlertView(name: $firstZikrName, isValid: {
+                countService.isNewZikrNameValid(firstZikrName)
+            }, action: {
+                timer.upstream.connect().cancel()
+                countService.createZikr(name: firstZikrName)
+            })
+        }
     }
     
     @ViewBuilder
     private func ActionView(action: @escaping () -> Void) -> some View {
         Button {
-            timer.upstream.connect().cancel()
             action()
         } label: {
             Text(String.text.intro.startButtonTitle)
@@ -187,7 +198,7 @@ struct IntroScreen: View {
 }
 
 #Preview {
-    IntroScreen()
+    IntroScreen(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext))
 }
 
 extension View {
