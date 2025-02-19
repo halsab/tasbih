@@ -53,5 +53,12 @@ extension String {
         enum info {
             static let zikrsHeader = "Управляйте своими зикрами. Выбирайте активный. Создавайте и удаляйте, отслеживайте прогресс."
         }
+        
+        enum intro {
+            static let appName = "Tasbih App"
+            static let welcome = "السلام عليكم"
+            static let description = "7:205\n\"Поминай Аллаха с покорностью и страхом\nпро себя и не громко\nпо утрам и перед закатом\nи не будь одним из беспечных невежд.\""
+            static let startButtonTitle = "Создать зикр"
+        }
     }
 }

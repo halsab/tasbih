@@ -21,65 +21,13 @@ struct IntroScreen: View {
                 .animation(.easeInOut(duration: 1), value: activeCard)
             
             VStack(spacing: 40) {
-                InfiniteScrollView {
-                    ForEach(IntroCard.cards) { card in
-                        CarouselCardView(card)
-                    }
-                }
-                .scrollIndicators(.hidden)
-                .scrollPosition($scrollPosition)
-                .scrollClipDisabled()
-                .containerRelativeFrame(.vertical) { value, _ in
-                    value * 0.45
-                }
-                .onScrollPhaseChange { oldPhase, newPhase in
-                    scrollPhase = newPhase
-                }
-                .onScrollGeometryChange(for: CGFloat.self) {
-                    $0.contentOffset.x + $0.contentInsets.leading
-                } action: { oldValue, newValue in
-                    currentScrollOffset = newValue
-                    
-                    if scrollPhase != .decelerating || scrollPhase != .animating {
-                        let activeIndex = Int((currentScrollOffset / 220).rounded()) % IntroCard.cards.count
-                        activeCard = IntroCard.cards[activeIndex]
-                    }
-                }
-                .visualEffect { [initialAnimation] content, proxy in
-                    content
-                        .offset(y: !initialAnimation ? -(proxy.size.height + 200) : 0)
-                }
+                CarouselCardsView()
 
-                VStack(spacing: 4) {
-                    Text("السلام عليكم")
-                        .font(.app.font(.l))
-                        .foregroundStyle(.white.secondary)
-                        .blurOpacityEffect(initialAnimation)
-                    
-                    Text("Tasbih App")
-                        .font(.app.font(.xxl).bold())
-                        .foregroundStyle(.white)
-                        .blurOpacityEffect(initialAnimation)
-                        .padding(.bottom, 12)
-                    
-                    Text("Пусть это приложение станет вашим верным спутником в стремлении укрепить связь со Всевышним, ведь зикр – это свет для сердца и души каждого мусульманина.")
-                        .font(.app.font(.m))
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.white.secondary)
-                        .blurOpacityEffect(initialAnimation)
-                }
+                TextSection()
                 
-                Button {
-                    timer.upstream.connect().cancel()
-                } label: {
-                    Text("Создать зикр")
-                        .font(.app.font(.m).weight(.semibold))
-                        .foregroundStyle(.black)
-                        .padding(.horizontal, 25)
-                        .padding(.vertical, 12)
-                        .background(.white, in: .capsule)
+                ActionView {
+                    
                 }
-                .blurOpacityEffect(initialAnimation)
             }
             .safeAreaPadding(15)
         }
@@ -93,6 +41,77 @@ struct IntroScreen: View {
             withAnimation(.smooth(duration: 0.75, extraBounce: 0)) {
                 initialAnimation = true
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func ActionView(action: @escaping () -> Void) -> some View {
+        Button {
+            timer.upstream.connect().cancel()
+            action()
+        } label: {
+            Text(String.text.intro.startButtonTitle)
+                .font(.app.font(.m).weight(.semibold))
+                .foregroundStyle(.black)
+                .padding(.horizontal, 25)
+                .padding(.vertical, 12)
+                .background(.white, in: .capsule)
+        }
+        .blurOpacityEffect(initialAnimation)
+    }
+    
+    @ViewBuilder
+    private func TextSection() -> some View {
+        VStack(spacing: 4) {
+            Text(String.text.intro.welcome)
+                .font(.app.font(.l))
+                .foregroundStyle(.white.secondary)
+                .blurOpacityEffect(initialAnimation)
+            
+            Text(String.text.intro.appName)
+                .font(.app.font(.xxl).bold())
+                .foregroundStyle(.white)
+                .blurOpacityEffect(initialAnimation)
+                .padding(.bottom, 12)
+            
+            Text(String.text.intro.description)
+                .font(.app.font(.m))
+                .multilineTextAlignment(.center)
+                .lineSpacing(4)
+                .foregroundStyle(.white.secondary)
+                .blurOpacityEffect(initialAnimation)
+        }
+    }
+    
+    @ViewBuilder
+    private func CarouselCardsView() -> some View {
+        InfiniteScrollView {
+            ForEach(IntroCard.cards) { card in
+                CarouselCardView(card)
+            }
+        }
+        .scrollIndicators(.hidden)
+        .scrollPosition($scrollPosition)
+        .scrollClipDisabled()
+        .containerRelativeFrame(.vertical) { value, _ in
+            value * 0.45
+        }
+        .onScrollPhaseChange { oldPhase, newPhase in
+            scrollPhase = newPhase
+        }
+        .onScrollGeometryChange(for: CGFloat.self) {
+            $0.contentOffset.x + $0.contentInsets.leading
+        } action: { oldValue, newValue in
+            currentScrollOffset = newValue
+            
+            if scrollPhase != .decelerating || scrollPhase != .animating {
+                let activeIndex = Int((currentScrollOffset / 220).rounded()) % IntroCard.cards.count
+                activeCard = IntroCard.cards[activeIndex]
+            }
+        }
+        .visualEffect { [initialAnimation] content, proxy in
+            content
+                .offset(y: !initialAnimation ? -(proxy.size.height + 200) : 0)
         }
     }
     
@@ -135,7 +154,7 @@ struct IntroScreen: View {
                 VStack {
                     Spacer()
                     Text(card.title)
-                        .font(.system(size: 54, weight: .bold, design: .rounded))
+                        .font(.system(size: 54, weight: .medium, design: .rounded))
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.white)
                         .padding()
@@ -146,7 +165,7 @@ struct IntroScreen: View {
                     Spacer()
                     Text(card.description)
                         .font(.app.font(.m))
-                        .lineSpacing(8)
+                        .lineSpacing(6)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.white.secondary)
                         .padding(.vertical, 8)
