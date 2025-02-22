@@ -10,6 +10,7 @@ import SwiftUI
 extension ZikrsScreen {
     struct ContentView: View {
         @Bindable var countService: CountService
+        @Environment(\.dismiss) var dismiss
         
         @State private var showZikrCreationAlert = false
         @State private var newZikrName = ""
@@ -65,6 +66,7 @@ extension ZikrsScreen {
                     }
                     .onTapGesture {
                         countService.select(zikr: zikr)
+                        dismiss()
                     }
             }
         }

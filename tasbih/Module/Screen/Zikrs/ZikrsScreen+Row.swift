@@ -25,7 +25,7 @@ extension ZikrsScreen {
                 .padding(.vertical, 8)
                 .padding(.trailing, 8)
                 .background(
-                    GradientView()
+                    BackgroundView()
                 )
                 
                 IncreaseButton()
@@ -63,7 +63,7 @@ extension ZikrsScreen {
         }
         
         @ViewBuilder
-        private func GradientView() -> some View {
+        private func BackgroundView() -> some View {
             LinearGradient(
                 gradient: Gradient(
                     colors: [
