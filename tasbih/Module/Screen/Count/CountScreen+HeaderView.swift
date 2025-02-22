@@ -14,15 +14,15 @@ extension CountScreen {
         var body: some View {
             if let zikr = countService.selectedZikr {
                 switch countService.headerState {
-                case .compact: CompactMainStateHeaderView(countService: countService, zikr: zikr)
-                case .full: FullMainStateHeaderView(countService: countService, zikr: zikr)
+                case .compact: CompactHeaderView(countService: countService, zikr: zikr)
+                case .full: FullHeaderView(countService: countService, zikr: zikr)
                 }
             } else {
                 EmptyView()
             }
         }
         
-        struct CompactMainStateHeaderView: View {
+        struct CompactHeaderView: View {
             @Bindable var countService: CountService
             @Bindable var zikr: ZikrModel
             
@@ -39,7 +39,7 @@ extension CountScreen {
             }
         }
         
-        struct FullMainStateHeaderView: View {
+        struct FullHeaderView: View {
             @Bindable var countService: CountService
             @Bindable var zikr: ZikrModel
             
@@ -63,16 +63,16 @@ extension CountScreen {
                 ) {
                     HStack {
                         Text("\(zikr.currentLoopCount)")
+                            .monospaced()
+                        Spacer()
+                        ZikrNameView(name: zikr.name)
                         Spacer()
                         Text("x\(zikr.loopsCount)")
+                            .monospaced()
                     }
                     .contentTransition(.numericText())
                     .font(.app.font(.m))
                     .foregroundStyle(Color.secondary)
-                    .monospaced()
-                    .overlay(alignment: .centerFirstTextBaseline) {
-                        ZikrNameView(name: zikr.name)
-                    }
                 }
                 .tint(.app.tint.primary)
                 .animation(.easeInOut, value: zikr.currentLoopCount)
