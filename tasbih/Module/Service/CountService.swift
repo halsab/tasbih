@@ -63,6 +63,7 @@ extension CountService {
     
     func increment(zikr: ZikrModel) {
         zikr.count += 1
+        zikr.date = .now
         saveContext()
         countChangeFeedback()
     }
@@ -70,12 +71,14 @@ extension CountService {
     func decrement(zikr: ZikrModel) {
         guard zikr.count > 0 else { return }
         zikr.count -= 1
+        zikr.date = .now
         saveContext()
         countChangeFeedback()
     }
     
     func reset(zikr: ZikrModel) {
         zikr.count = 0
+        zikr.date = .now
         saveContext()
         negativeFeedback()
     }

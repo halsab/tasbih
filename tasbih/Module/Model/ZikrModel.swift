@@ -12,7 +12,6 @@ import SwiftData
 final class ZikrModel: Identifiable {
     @Attribute(.unique)
     var id: UUID
-    @Attribute(.unique)
     var name: String
     var count: Int
     var loopSize: LoopSize
