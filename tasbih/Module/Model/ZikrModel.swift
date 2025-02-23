@@ -47,43 +47,54 @@ final class ZikrModel: Identifiable {
         self.dailyCounts = [.init(value: 0, date: .now)]
         self.periodCount = 0
     }
-    
+}
+
+// MARK: - Methods
+
+extension ZikrModel {
     func increment() {
-        setDailyCountValue(dailyCounts[0].value + 1)
-        setPeriodCountValue(periodCount + 1)
+        let date = dailyCounts[0].date
+        setDailyCountValue(dailyCounts[0].value + 1, date: date)
+        setPeriodCountValue(periodCount + 1, date: date)
     }
     
     func decrement() {
-        setDailyCountValue(dailyCounts[0].value - 1)
-        setPeriodCountValue(periodCount - 1)
+        let date = dailyCounts[0].date
+        setDailyCountValue(dailyCounts[0].value - 1, date: date)
+        setPeriodCountValue(periodCount - 1, date: date)
     }
     
     func reset() {
-        setDailyCountValue(0)
-        setPeriodCountValue(0)
+        let date = dailyCounts[0].date
+        setDailyCountValue(0, date: date)
+        setPeriodCountValue(0, date: date)
     }
     
     func refresh() {
-        setDailyCountValue(dailyCounts[0].value)
-        setPeriodCountValue(periodCount)
+        let date = dailyCounts[0].date
+        setDailyCountValue(dailyCounts[0].value, date: date)
+        setPeriodCountValue(periodCount, date: date)
     }
-    
-    private func setDailyCountValue(_ value: UInt) {
-        if dailyCounts[0].date.isToday {
+}
+
+// MARK: - Helpers
+
+private extension ZikrModel {
+    func setDailyCountValue(_ value: UInt, date: Date) {
+        if date.isToday {
             dailyCounts[0].value = value
         } else {
-            let newCount = Count(value: 0, date: Date())
+            let newCount = Count(value: 0, date: .now)
             dailyCounts.insert(newCount, at: 0)
         }
     }
     
-    private func setPeriodCountValue(_ value: UInt) {
-        let lastCountDate = dailyCounts[0].date
+    func setPeriodCountValue(_ value: UInt, date: Date) {
         let isCurrentPeriod = switch resetPeriod {
-        case .day: lastCountDate.isToday
-        case .week: lastCountDate.isInThisWeek
-        case .month: lastCountDate.isInThisMonth
-        case .year: lastCountDate.isInThisYear
+        case .day: date.isToday
+        case .week: date.isInThisWeek
+        case .month: date.isInThisMonth
+        case .year: date.isInThisYear
         case .infinity: true
         }
         if isCurrentPeriod {
@@ -93,6 +104,8 @@ final class ZikrModel: Identifiable {
         }
     }
 }
+
+// MARK: - Static
 
 @MainActor
 extension ZikrModel {

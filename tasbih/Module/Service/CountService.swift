@@ -93,6 +93,7 @@ extension CountService {
         zikrs.forEach {
             $0.refresh()
         }
+        saveContext()
     }
     
     func isNewZikrNameValid(_ name: String) -> Bool {
