@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CountValueView: View {
-    let count: Int
+    let count: UInt
     
     var body: some View {
         Text(String(count))

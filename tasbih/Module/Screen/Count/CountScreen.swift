@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CountScreen: View {
     @Bindable var countService: CountService
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         ContentView(countService: countService)
@@ -16,6 +17,11 @@ struct CountScreen: View {
             .sheet(isPresented: $countService.showZikrsSheet) {
                 NavigationStack {
                     ZikrsScreen(countService: countService)
+                }
+            }
+            .onChange(of: scenePhase) { _, newValue in
+                if newValue == .active {
+                    countService.refreshZikrs()
                 }
             }
     }

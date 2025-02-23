@@ -8,6 +8,6 @@
 import Foundation
 
 struct Count: Codable {
-    var value: Int
+    var value: UInt
     var date: Date
 }

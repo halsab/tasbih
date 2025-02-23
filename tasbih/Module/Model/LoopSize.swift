@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum LoopSize: Int, CaseIterable, Codable {
+enum LoopSize: UInt, CaseIterable, Codable {
     case xs = 7
     case s = 33
     case m = 100

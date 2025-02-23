@@ -42,7 +42,7 @@ final class CountService {
 
 extension CountService {
     func createZikr(name: String) {
-        let zikr = ZikrModel(name: name)
+        let zikr = ZikrModel(name: name, resetPeriod: .day)
         zikrs.forEach {
             $0.isSelected = false
         }
@@ -62,23 +62,19 @@ extension CountService {
     }
     
     func increment(zikr: ZikrModel) {
-        zikr.count += 1
-        zikr.date = .now
+        zikr.increment()
         saveContext()
         countChangeFeedback()
     }
     
     func decrement(zikr: ZikrModel) {
-        guard zikr.count > 0 else { return }
-        zikr.count -= 1
-        zikr.date = .now
+        zikr.decrement()
         saveContext()
         countChangeFeedback()
     }
     
     func reset(zikr: ZikrModel) {
-        zikr.count = 0
-        zikr.date = .now
+        zikr.reset()
         saveContext()
         negativeFeedback()
     }
@@ -91,6 +87,12 @@ extension CountService {
         selectedZikr = zikr
         saveContext()
         neutralFeedback()
+    }
+    
+    func refreshZikrs() {
+        zikrs.forEach {
+            $0.refresh()
+        }
     }
     
     func isNewZikrNameValid(_ name: String) -> Bool {
