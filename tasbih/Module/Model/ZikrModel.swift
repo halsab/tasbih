@@ -13,11 +13,29 @@ final class ZikrModel: Identifiable {
     @Attribute(.unique)
     var id: UUID
     var name: String
-    var count: Int
     var loopSize: LoopSize
     var date: Date
     var isSelected: Bool
     var resetPeriod: ResetPeriod
+    var counts: [Count]
+    
+    @Transient
+    var count: Int {
+        get {
+            if counts.isEmpty {
+                0
+            } else {
+                counts[0].value
+            }
+        } set {
+            if !counts.isEmpty, counts[0].date.isToday {
+                counts[0].value = newValue
+            } else {
+                let newCount = Count(value: newValue, date: Date())
+                counts.insert(newCount, at: 0)
+            }
+        }
+    }
     
     @Transient
     var currentLoopCount: Int {
@@ -31,11 +49,11 @@ final class ZikrModel: Identifiable {
     init(name: String) {
         self.id = UUID()
         self.name = name
-        self.count = 0
         self.loopSize = .s
         self.date = .now
         self.isSelected = true
         self.resetPeriod = .day
+        self.counts = []
     }
 }
 
