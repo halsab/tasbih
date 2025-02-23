@@ -41,8 +41,8 @@ final class CountService {
 // MARK: - Internal methods
 
 extension CountService {
-    func createZikr(name: String) {
-        let zikr = ZikrModel(name: name, resetPeriod: .day)
+    func createZikr(name: String, resetPeriod: ResetPeriod = .day) {
+        let zikr = ZikrModel(name: name, resetPeriod: resetPeriod)
         zikrs.forEach {
             $0.isSelected = false
         }

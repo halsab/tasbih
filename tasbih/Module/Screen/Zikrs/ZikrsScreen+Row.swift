@@ -78,7 +78,7 @@ extension ZikrsScreen {
         @ViewBuilder
         private func PeriodView() -> some View {
             HStack {
-                Text(zikr.resetPeriod.rawValue.uppercased())
+                Text(zikr.resetPeriod.name.uppercased())
                     .font(.app.font(.xs, weight: .semibold))
                     .padding(.horizontal , 6)
                     .padding(.vertical , 2)
