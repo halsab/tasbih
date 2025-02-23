@@ -112,5 +112,5 @@ extension ZikrModel {
         }
     }()
     
-    static let previewModel: ZikrModel = .init(name: "Preview Zikr", resetPeriod: .infinity)
+    static let previewModel: ZikrModel = .init(name: "Preview Zikr", resetPeriod: .day)
 }

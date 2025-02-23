@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ResetPeriod: Codable, CaseIterable {
+enum ResetPeriod: String, Codable, CaseIterable {
     case day
     case week
     case month

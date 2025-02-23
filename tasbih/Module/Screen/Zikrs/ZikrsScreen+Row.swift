@@ -38,13 +38,11 @@ extension ZikrsScreen {
         
         @ViewBuilder
         private func TextContent() -> some View {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(zikr.name)
                     .font(.app.font(.m, weight: .semibold))
                     .foregroundStyle(.primary)
-                Text(zikr.date.formatted(date: .numeric, time: .shortened))
-                    .font(.app.font(.s))
-                    .foregroundStyle(.secondary)
+                PeriodView()
             }
         }
         
@@ -75,6 +73,30 @@ extension ZikrsScreen {
                 endPoint: .trailing
             )
             .animation(.easeInOut, value: zikr.isSelected)
+        }
+        
+        @ViewBuilder
+        private func PeriodView() -> some View {
+            HStack {
+                Text(zikr.resetPeriod.rawValue.uppercased())
+                    .font(.app.font(.xs, weight: .semibold))
+                    .padding(.horizontal , 6)
+                    .padding(.vertical , 2)
+                    .background(Color.app.tint.secondary.opacity(0.6))
+                    .clipShape(.rect(cornerRadius: 4))
+                
+                let date = Date.now
+                let dateText: String = switch zikr.resetPeriod {
+                case .day: String(date.dayNumber)
+                case .week: String(date.weekNumber)
+                case .month: date.monthName
+                case .year: String(date.yearNumber)
+                case .infinity: ""
+                }
+                
+                Text(dateText)
+                    .font(.app.font(.s, weight: .semibold))
+            }
         }
     }
 }
