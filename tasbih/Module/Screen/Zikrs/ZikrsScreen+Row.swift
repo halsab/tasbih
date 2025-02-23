@@ -82,7 +82,7 @@ extension ZikrsScreen {
                     .font(.app.font(.xs, weight: .semibold))
                     .padding(.horizontal , 6)
                     .padding(.vertical , 2)
-                    .background(Color.app.tint.secondary.opacity(0.6))
+                    .background(Color.system.gray3)
                     .clipShape(.rect(cornerRadius: 4))
                 
                 let date = Date.now

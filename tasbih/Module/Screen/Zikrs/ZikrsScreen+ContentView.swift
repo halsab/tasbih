@@ -83,7 +83,7 @@ extension ZikrsScreen {
                     .scaledToFit()
                     .foregroundStyle(Color.shape(.white), Color.shape(.app.tint.primary))
                     .bold()
-                    .shadow(color: .primary.opacity(0.4), radius: 10, x: 0, y: 0)
+                    .shadow(color: .system.gray3, radius: 10, x: 0, y: 0)
             }
             .frame(height: 64)
             .padding(.vertical)

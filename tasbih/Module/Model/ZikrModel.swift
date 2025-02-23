@@ -102,7 +102,8 @@ extension ZikrModel {
             let container = try ModelContainer(for: ZikrModel.self, configurations: config)
             
             for i in 0..<10 {
-                let zikr = ZikrModel(name: "Zikr \(i)", resetPeriod: .infinity)
+                let zikr = ZikrModel(name: "Zikr \(i)",
+                                     resetPeriod: [.day, .month, .week, .year, .infinity].randomElement()!)
                 zikr.isSelected = i == 0
                 container.mainContext.insert(zikr)
             }
