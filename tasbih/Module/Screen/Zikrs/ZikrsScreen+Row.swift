@@ -97,6 +97,7 @@ extension ZikrsScreen {
                 Text(dateText)
                     .font(.app.font(.s, weight: .semibold))
             }
+            .foregroundStyle(.primary)
         }
     }
 }
