@@ -9,19 +9,12 @@ import Foundation
 
 extension String {
     enum text {
-        static let empty = ""
-        
         enum button {
-            static let undo = "Отмена"//"Undo"
-            static let reset = "Сброс"//"Reset"
-            static let create = "Создать"//"Create"
-            static let cancel = "Отменить"//"Cancel"
-            static let select = "Выбрать"//"Select"
-            static let delete = "Удалить"//"Delete"
-            static let add = "Добавить"//"Add"
-            static let yes = "Да"//"Yes"
-            static let no = "Нет"//"No"
-            static let createFirstZikr = "Создать первый зикр"//"Create first zikr"
+            static let undo = "Отмена"
+            static let reset = "Сброс"
+            static let create = "Создать"
+            static let yes = "Да"
+            static let no = "Нет"
         }
 
         enum icon {
@@ -29,25 +22,11 @@ extension String {
         }
         
         enum alert {
-            static let createFirstZikr = "Создайте ваш первый зикр"//"Create your first zikr"
-            static let createNewZikr = "Создайте ваш новый зикр"//"Create your new zikr"
-            static let resetZikrCompletely = "Сбросить зикр полностью?"//"Reset this zikr completely?"
-            static let delelteZikr = "Удилть зикр"//"Delete zikr"
-        }
-        
-        enum textField {
-            enum placeholder {
-                static let zikrName = "Название зикра"//"Zikr name"
-            }
+            static let resetZikrCompletely = "Сбросить зикр полностью?"
         }
         
         enum title {
-            static let zikrs = "Зикры"//"Zikrs"
-        }
-        
-        enum tab {
-            static let zikr = "Зикр"//"Zikr"
-            static let salah = "Намаз"//"Salah"
+            static let zikrs = "Зикры"
         }
         
         enum info {
@@ -59,6 +38,21 @@ extension String {
             static let welcome = "السلام عليكم"
             static let description = "7:205\n\"Поминай Аллаха с покорностью и страхом\nпро себя и не громко\nпо утрам и перед закатом\nи не будь одним из беспечных невежд.\""
             static let startButtonTitle = "Создать зикр"
+        }
+        
+        enum zikrCreation {
+            static let title = "Создайте зикр"
+            
+            enum nameSection {
+                static let header = "Название зикра"
+                static let footer = "Имя зикра не должно совподать с уже существующими"
+                static let placeholder = "Название зикра"
+            }
+            
+            enum periodSection {
+                static let title = "Периодичность зикра"
+                static let footer = "Зикр будет сбрасываться в ноль в начале каждого выбранного периода. Ежедневно, еженедельно и т.д."
+            }
         }
     }
 }

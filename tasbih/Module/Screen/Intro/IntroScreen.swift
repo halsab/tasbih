@@ -16,8 +16,7 @@ struct IntroScreen: View {
     @State private var timer = Timer.publish(every: 0.01, on: .current, in: .default).autoconnect()
     @State private var initialAnimation = false
     @State private var scrollPhase: ScrollPhase = .idle
-    @State private var showFirstZikrCreationAlert = false
-    @State private var firstZikrName = ""
+    @State private var showFirstZikrCreation = false
     
     var body: some View {
         ZStack {
@@ -30,7 +29,7 @@ struct IntroScreen: View {
                 TextSection()
                 
                 ActionView {
-                    showFirstZikrCreationAlert.toggle()
+                    showFirstZikrCreation.toggle()
                 }
             }
             .safeAreaPadding(15)
@@ -46,13 +45,11 @@ struct IntroScreen: View {
                 initialAnimation = true
             }
         }
-        .alert(String.text.alert.createFirstZikr, isPresented: $showFirstZikrCreationAlert) {
-            ZikrCreationAlertView(name: $firstZikrName, isValid: {
-                countService.isNewZikrNameValid(firstZikrName)
-            }, action: {
-                timer.upstream.connect().cancel()
-                countService.createZikr(name: firstZikrName)
-            })
+        .sheet(isPresented: $showFirstZikrCreation) {
+            NavigationStack {
+                NewZikrCreationView(countService: countService)
+            }
+            .presentationDetents([.medium, .large])
         }
     }
     

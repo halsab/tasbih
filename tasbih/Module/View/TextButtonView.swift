@@ -12,6 +12,8 @@ struct TextButtonView: View {
     let alignment: HorizontalAlignment
     let action: () -> Void
     
+    @Environment(\.isEnabled) private var isEnabled
+    
     init(text: String, alignment: HorizontalAlignment = .center, action: @escaping () -> Void) {
         self.text = text
         self.alignment = alignment
@@ -25,7 +27,9 @@ struct TextButtonView: View {
                     Spacer(minLength: 0)
                 }
                 Text(text)
-                    .foregroundStyle(Color.shape(.app.tint.primary).gradient)
+                    .foregroundStyle(
+                        Color.shape(isEnabled ? .app.tint.primary : .secondary).gradient
+                    )
                     .font(.app.font(.m, weight: .bold))
                     .lineLimit(1)
                 if alignment == .leading {

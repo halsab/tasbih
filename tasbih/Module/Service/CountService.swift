@@ -34,6 +34,9 @@ final class CountService {
         self.positiveHapticGenerator = UINotificationFeedbackGenerator()
         self.negativeHapticGenerator = UINotificationFeedbackGenerator()
         fetchData()
+        if selectedZikr == nil {
+            selectFirstZikr()
+        }
         updateUIState()
     }
 }
@@ -55,6 +58,10 @@ extension CountService {
     
     func deleteZikr(zikr: ZikrModel) {
         modelContext.delete(zikr)
+        zikrs.removeAll(where: { $0.id == zikr.id })
+        if zikr.isSelected {
+            selectFirstZikr()
+        }
         saveContext()
         fetchData()
         updateUIState()
@@ -145,6 +152,11 @@ private extension CountService {
     
     func isZikrExistWithName(like name: String) -> Bool {
         zikrs.contains(where: { $0.name.like(string: name) })
+    }
+    
+    func selectFirstZikr() {
+        selectedZikr = zikrs.first
+        zikrs.first(where: { $0.id == selectedZikr?.id })?.isSelected = true
     }
 }
 

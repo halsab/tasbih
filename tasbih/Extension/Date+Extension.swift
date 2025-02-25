@@ -13,15 +13,15 @@ extension Date {
     }
     
     var isInThisWeek: Bool {
-        Calendar.current.isDate(self, equalTo: Date(), toGranularity: .weekOfYear)
+        Calendar.current.isDate(self, equalTo: .now, toGranularity: .weekOfYear)
     }
     
     var isInThisMonth: Bool {
-        Calendar.current.isDate(self, equalTo: Date(), toGranularity: .month)
+        Calendar.current.isDate(self, equalTo: .now, toGranularity: .month)
     }
     
     var isInThisYear: Bool {
-        Calendar.current.isDate(self, equalTo: Date(), toGranularity: .year)
+        Calendar.current.isDate(self, equalTo: .now, toGranularity: .year)
     }
     
     var dayNumber: Int {

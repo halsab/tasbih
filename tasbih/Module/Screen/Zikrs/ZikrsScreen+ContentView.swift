@@ -10,10 +10,9 @@ import SwiftUI
 extension ZikrsScreen {
     struct ContentView: View {
         @Bindable var countService: CountService
-        @Environment(\.dismiss) var dismiss
+        @Binding var addNewZikr: Bool
         
-        @State private var showZikrCreationAlert = false
-        @State private var newZikrName = ""
+        @Environment(\.dismiss) private var dismiss
         
         var body: some View {
             List {
@@ -29,13 +28,6 @@ extension ZikrsScreen {
             .navigationBarTitleDisplayMode(.inline)
             .safeAreaInset(edge: .bottom) {
                 BottomToolbar()
-            }
-            .alert(String.text.alert.createNewZikr, isPresented: $showZikrCreationAlert) {
-                ZikrCreationAlertView(name: $newZikrName, isValid: {
-                    countService.isNewZikrNameValid(newZikrName)
-                }, action: {
-                    countService.createZikr(name: newZikrName)
-                })
             }
         }
         
@@ -75,7 +67,7 @@ extension ZikrsScreen {
         private func BottomToolbar() -> some View {
             Button {
                 countService.hapticFeedback()
-                showZikrCreationAlert.toggle()
+                addNewZikr.toggle()
             } label: {
                 Image.app.button.create
                     .symbolRenderingMode(.palette)
@@ -92,7 +84,11 @@ extension ZikrsScreen {
 }
 
 #Preview {
+    @Previewable @State var addNewZikr = false
     NavigationStack {
-        ZikrsScreen.ContentView(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext))
+        ZikrsScreen.ContentView(
+            countService: CountService(modelContext: ZikrModel.previewContainer.mainContext),
+            addNewZikr: $addNewZikr
+        )
     }
 }
