@@ -124,11 +124,11 @@
 			};
 			buildConfigurationList = 2033E45C29505D1C00485CE9 /* Build configuration list for PBXProject "tasbih" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ru,
 			);
 			mainGroup = 2033E45829505D1C00485CE9;
 			packageReferences = (
