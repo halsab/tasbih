@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Count: Codable {
+struct Count: Codable, Hashable {
+    var id = UUID()
     var value: UInt
-    var date: Date
+    let date: Date
 }

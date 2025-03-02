@@ -37,6 +37,23 @@ final class ZikrModel: Identifiable {
     var count: UInt {
         periodCount
     }
+    @Transient
+    var lastCounts: [Count] {
+        let countsToCheck = dailyCounts.prefix(14)
+        return (0..<7)
+            .compactMap {
+                Calendar.current.date(byAdding: .day, value: -$0, to: .now)
+            }
+            .map { date in
+                let value = countsToCheck
+                    .filter { Calendar.current.isDate($0.date, equalTo: date, toGranularity: .day) }
+                    .reduce(into: UInt(0)) { result, count in
+                        result += count.value
+                    }
+                return .init(value: value, date: date)
+            }
+            .reversed()
+    }
     
     init(name: String, resetPeriod: ResetPeriod) {
         self.id = UUID()
@@ -46,6 +63,16 @@ final class ZikrModel: Identifiable {
         self.resetPeriod = resetPeriod
         self.dailyCounts = [.init(value: 0, date: .now)]
         self.periodCount = 0
+    }
+    
+    fileprivate init(name: String, periodCount: UInt, dailyCounts: [Count]) {
+        self.id = UUID()
+        self.name = name
+        self.loopSize = ._33
+        self.isSelected = true
+        self.resetPeriod = .day
+        self.dailyCounts = dailyCounts
+        self.periodCount = periodCount
     }
 }
 
@@ -126,5 +153,15 @@ extension ZikrModel {
         }
     }()
     
-    static let previewModel: ZikrModel = .init(name: "Preview Zikr", resetPeriod: .day)
+    static let previewModel: ZikrModel = .init(
+        name: "Preview Zikr",
+        periodCount: (0..<1000).randomElement()!,
+        dailyCounts: (0..<7)
+            .compactMap {
+                Calendar.current.date(byAdding: .day, value: -$0, to: .now)
+            }
+            .map {
+                .init(value: (0..<1000).randomElement()!, date: $0)
+            }
+    )
 }

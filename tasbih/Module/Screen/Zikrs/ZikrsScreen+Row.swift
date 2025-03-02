@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 extension ZikrsScreen {
     struct Row: View {
@@ -14,15 +15,20 @@ extension ZikrsScreen {
         
         var body: some View {
             HStack(spacing: 0) {
-                HStack {
-                    TextContent()
-                        .padding(.leading, 16)
-                    
-                    Spacer()
-                    
-                    CountValueView(count: zikr.count)
+                VStack(spacing: 4) {
+                    HStack {
+                        TextContent()
+                            .padding(.leading, 16)
+                        
+                        Spacer()
+                        
+                        CountValueView(count: zikr.count)
+                    }
+                    ChartView()
+                        .padding(.leading, 17)
+                        .padding(.trailing, 9)
                 }
-                .padding(.vertical, 8)
+                .padding(.top, 8)
                 .padding(.trailing, 8)
                 .background(
                     BackgroundView()
@@ -89,6 +95,29 @@ extension ZikrsScreen {
                     .background(.background.secondary)
                     .clipShape(.rect(cornerRadius: 4))
             }
+        }
+        
+        @ViewBuilder
+        private func ChartView() -> some View {
+            let data = zikr.lastCounts
+            let totalCounts = data.reduce(into: 0) { result, count in result += count.value }
+            Chart {
+                ForEach(data.indices, id: \.self) { index in
+                    BarMark(
+                        x: .value("Day", index),
+                        y: .value("Distance", data[index].value),
+                        width: .fixed(34)
+                    )
+                    .foregroundStyle(Color.app.tint.primary)
+                }
+            }
+            .chartYAxis(.hidden)
+            .chartXAxis(.hidden)
+            .chartLegend(.hidden)
+            .chartBackground { _ in
+                Color.clear
+            }
+            .frame(height: totalCounts == 0 ? 4 : 24)
         }
     }
 }
