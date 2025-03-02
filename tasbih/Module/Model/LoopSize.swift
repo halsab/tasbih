@@ -8,15 +8,17 @@
 import SwiftUI
 
 enum LoopSize: UInt, CaseIterable, Codable {
-    case xs = 7
-    case s = 33
-    case m = 100
-    case l = 1000
-    case infinity = 999999
+    case _7 = 7
+    case _10 = 10
+    case _33 = 33
+    case _40 = 40
+    case _100 = 100
+    case _1000 = 1000
+    case inf = 999999
 
     var title: String {
         switch self {
-        case .infinity:
+        case .inf:
             "Mode " + .text.icon.infinity
         default:
             "Mode \(rawValue)"
@@ -25,7 +27,7 @@ enum LoopSize: UInt, CaseIterable, Codable {
 
     var shortTitle: String {
         switch self {
-        case .infinity:
+        case .inf:
             .text.icon.infinity
         default:
             "\(rawValue)"

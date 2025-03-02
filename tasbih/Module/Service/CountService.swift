@@ -16,7 +16,7 @@ final class CountService {
     var selectedZikr: ZikrModel?
     var contentState: ContentState = .empty
     var headerState: HeaderState = .full
-    var loopSize: LoopSize = .s {
+    var loopSize: LoopSize = ._33 {
         didSet { handle(new: loopSize) }
     }
     var showZikrsSheet = false
@@ -93,6 +93,7 @@ extension CountService {
         zikr.isSelected = true
         selectedZikr = zikr
         saveContext()
+        updateUIState()
         neutralFeedback()
     }
     
@@ -135,7 +136,7 @@ private extension CountService {
     
     func handle(new loopSize: LoopSize) {
         headerState = switch loopSize {
-        case .infinity: .compact
+        case .inf: .compact
         default: .full
         }
         
@@ -146,7 +147,7 @@ private extension CountService {
     func updateUIState() {
         withAnimation {
             contentState = zikrs.isEmpty ? .empty : .main
-            loopSize = selectedZikr?.loopSize ?? .s
+            loopSize = selectedZikr?.loopSize ?? ._33
         }
     }
     

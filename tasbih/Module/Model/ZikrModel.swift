@@ -41,7 +41,7 @@ final class ZikrModel: Identifiable {
     init(name: String, resetPeriod: ResetPeriod) {
         self.id = UUID()
         self.name = name
-        self.loopSize = .s
+        self.loopSize = ._33
         self.isSelected = true
         self.resetPeriod = resetPeriod
         self.dailyCounts = [.init(value: 0, date: .now)]
