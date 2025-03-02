@@ -16,11 +16,11 @@ enum ResetPeriod: Codable, CaseIterable {
     
     var name: String {
         switch self {
-        case .day: "День"
-        case .week: "Неделя"
-        case .month: "Месяц"
-        case .year: "Год"
-        case .infinity: "Бесконечно"
+        case .day: "Ежедневный"
+        case .week: "Еженедельный"
+        case .month: "Ежемесячный"
+        case .year: "Ежегодный"
+        case .infinity: "Без сброса"
         }
     }
 }

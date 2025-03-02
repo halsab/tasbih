@@ -20,4 +20,8 @@ extension String {
     func like(string: String) -> Bool {
         self.withoutWhitespaces.lowercased() == string.withoutWhitespaces.lowercased()
     }
+    
+    var uppercasedFirst: String {
+        prefix(1).uppercased() + dropFirst()
+    }
 }
