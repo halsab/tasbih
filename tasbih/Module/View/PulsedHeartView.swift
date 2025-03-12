@@ -14,7 +14,7 @@ struct PulsedHeartView: View {
     var body: some View {
         Image.app.button.count
             .font(.system(size: 100))
-            .foregroundStyle(Color.shape(.app.tint.primary))
+            .foregroundStyle(Color.shape(.app.tint.tertiary))
             .scaleEffect(startAnimation ? 4 : 1)
             .opacity(startAnimation ? 0 : 0.7)
             .onAppear {

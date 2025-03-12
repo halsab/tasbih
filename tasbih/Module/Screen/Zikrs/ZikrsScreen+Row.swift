@@ -108,7 +108,7 @@ extension ZikrsScreen {
                         y: .value("Distance", data[index].value),
                         width: .fixed(34)
                     )
-                    .foregroundStyle(Color.app.tint.primary)
+                    .foregroundStyle(Color.system.gray2)
                 }
             }
             .chartYAxis(.hidden)

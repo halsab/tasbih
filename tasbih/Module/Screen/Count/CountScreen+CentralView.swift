@@ -18,7 +18,7 @@ extension CountScreen {
                     
                     Image.app.button.count
                         .font(.system(size: 100))
-                        .foregroundStyle(Color.shape(.app.tint.primary))
+                        .foregroundStyle(Color.shape(.app.tint.tertiary))
                         .symbolEffect(.bounce, options: .nonRepeating.speed(2), value: zikr.count)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -43,7 +43,6 @@ extension CountScreen {
                         CanvasSymbols()
                     }
                 }
-                .blur(radius: 15)
                 .onChange(of: zikr.count) {
                     addPulsedHeart()
                 }

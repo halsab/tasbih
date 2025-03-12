@@ -12,6 +12,7 @@ extension Color {
         enum tint {
             static let primary = Color("colors/tint/primary")
             static let secondary = Color("colors/tint/secondary")
+            static let tertiary = Color("colors/tint/tertiary")
         }
     }
     

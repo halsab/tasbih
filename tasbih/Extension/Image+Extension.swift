@@ -28,20 +28,13 @@ extension Image {
 
         enum icon {
             static let selected = Image(systemName: "checkmark")
-            static let list = Image(systemName: "list.bullet.circle")
+            static let list = Image(systemName: "list.bullet.below.rectangle")
             static let plus = Image(systemName: "plus")
-            static let location = Image(systemName: "location.circle")
-            static let settings = Image(systemName: "gearshape")
         }
         
         enum selection {
             static let on = Image(systemName: "checkmark.circle.fill")
             static let off = Image(systemName: "circle")
-        }
-        
-        enum tab {
-            static let zikr = Image(systemName: "aqi.medium")
-            static let salah = Image(systemName: "moon")
         }
         
         enum infoHeader {

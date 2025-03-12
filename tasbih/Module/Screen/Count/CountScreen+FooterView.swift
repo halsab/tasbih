@@ -31,7 +31,6 @@ extension CountScreen {
                     } label: {
                         Image.app.icon.list
                             .font(.title)
-                            .symbolRenderingMode(.hierarchical)
                             .foregroundStyle(Color.shape(.app.tint.primary))
                     }
                     
