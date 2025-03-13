@@ -87,8 +87,12 @@ extension ZikrModel {
     
     func decrement() {
         let date = dailyCounts[0].date
-        setDailyCountValue(dailyCounts[0].value - 1, date: date)
-        setPeriodCountValue(periodCount - 1, date: date)
+        if let index = dailyCounts.firstIndex(where: { $0.value > 0 }) {
+            dailyCounts[index].value -= 1
+        }
+        if periodCount > 0 {
+            setPeriodCountValue(periodCount - 1, date: date)
+        }
     }
     
     func reset() {
@@ -161,7 +165,7 @@ extension ZikrModel {
                 Calendar.current.date(byAdding: .day, value: -$0, to: .now)
             }
             .map {
-                .init(value: (0..<1000).randomElement()!, date: $0)
+                .init(value: (0..<2000).randomElement()!, date: $0)
             }
     )
 }

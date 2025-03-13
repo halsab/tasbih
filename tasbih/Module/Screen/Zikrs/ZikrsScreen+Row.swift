@@ -109,6 +109,11 @@ extension ZikrsScreen {
                         width: .fixed(34)
                     )
                     .foregroundStyle(Color.system.gray2)
+                    .annotation(position: .overlay, alignment: .bottom) {
+                        Text("\(data[index].value)")
+                            .font(.app.font(.xxs).width(.compressed))
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
             .chartYAxis(.hidden)

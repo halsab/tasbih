@@ -10,10 +10,11 @@ import SwiftUI
 extension Font {
     enum app {
         enum SizeType {
-            case xs, s, m, l, xl, xxl
+            case xxs, xs, s, m, l, xl, xxl
             
             var size: Font.TextStyle {
                 switch self {
+                case .xxs: .caption2
                 case .xs: .caption
                 case .s: .subheadline
                 case .m: .body
@@ -37,7 +38,10 @@ extension Font {
         }
         
         static func font(_ sizeType: SizeType, weight: WeightType = .regular) -> Font {
-            .system(sizeType.size, design: .rounded, weight: weight.value)
+            switch sizeType {
+            case .xxs: .system(size: 14, weight: weight.value)
+            default: .system(sizeType.size, design: .rounded, weight: weight.value)
+            }
         }
     }
 }
