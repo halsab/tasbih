@@ -10,13 +10,17 @@ import SwiftUI
 struct IntroScreen: View {
     @Bindable var countService: CountService
     
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var activeCard: IntroCard? = .cards.first
     @State private var scrollPosition: ScrollPosition = .init()
     @State private var currentScrollOffset: CGFloat = 0
     @State private var timer = Timer.publish(every: 0.01, on: .current, in: .default).autoconnect()
     @State private var initialAnimation = false
     @State private var scrollPhase: ScrollPhase = .idle
-    @State private var showFirstZikrCreation = false
+    @State private var showNewZikrCreation = false
+    @State private var showZikrPresets = false
+    @State private var newZikrName = ""
     
     var body: some View {
         ZStack {
@@ -29,8 +33,11 @@ struct IntroScreen: View {
                 TextSection()
                 
                 ActionView {
-                    showFirstZikrCreation.toggle()
+                    showZikrPresets.toggle()
+                } newAction: {
+                    showNewZikrCreation.toggle()
                 }
+
             }
             .safeAreaPadding(15)
         }
@@ -45,25 +52,63 @@ struct IntroScreen: View {
                 initialAnimation = true
             }
         }
-        .sheet(isPresented: $showFirstZikrCreation) {
+        .sheet(isPresented: $showNewZikrCreation) {
             NavigationStack {
-                NewZikrCreationView(countService: countService)
+                NewZikrCreationScreen(
+                    countService: countService,
+                    name: newZikrName
+                ) {
+                    dismiss()
+                }
             }
             .presentationDetents([.medium, .large])
+        }
+        .sheet(isPresented: $showZikrPresets) {
+            NavigationStack {
+                ZikrPresetsScreen(
+                    countService: countService,
+                    name: $newZikrName
+                ) {
+                    showNewZikrCreation.toggle()
+                }
+            }
+            .presentationDetents([.large])
         }
     }
     
     @ViewBuilder
-    private func ActionView(action: @escaping () -> Void) -> some View {
-        Button {
-            action()
-        } label: {
-            Text(String.text.intro.startButtonTitle)
-                .font(.app.font(.m).weight(.semibold))
-                .foregroundStyle(.black)
-                .padding(.horizontal, 25)
-                .padding(.vertical, 12)
-                .background(.white, in: .capsule)
+    private func ActionView(
+        presetAction: @escaping () -> Void,
+        newAction: @escaping () -> Void
+    ) -> some View {
+        HStack {
+            Spacer()
+            
+            Button {
+                presetAction()
+            } label: {
+                Text(String.text.intro.presetButtonTitle)
+                    .font(.app.font(.m).weight(.semibold))
+                    .foregroundStyle(.black)
+                    .padding(.horizontal, 25)
+                    .padding(.vertical, 12)
+                    .background(.white, in: .capsule)
+            }
+            
+            Spacer()
+            
+            Button {
+                newAction()
+            } label: {
+                Text(String.text.intro.newButtonTitle)
+                    .font(.app.font(.m).weight(.semibold))
+                    .foregroundStyle(.black)
+                    .padding(.horizontal, 25)
+                    .padding(.vertical, 12)
+                    .background(.white, in: .capsule)
+            }
+            
+            Spacer()
         }
         .blurOpacityEffect(initialAnimation)
     }

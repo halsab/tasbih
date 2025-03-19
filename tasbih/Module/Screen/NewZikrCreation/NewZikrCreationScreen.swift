@@ -1,5 +1,5 @@
 //
-//  NewZikrCreationView.swift
+//  NewZikrCreationScreen.swift
 //  tasbih
 //
 //  Created by Khalil Sabirov on 23.02.2025.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct NewZikrCreationView: View {
+struct NewZikrCreationScreen: View {
     @Bindable var countService: CountService
+    let onDismiss: () -> Void
     
     @Environment(\.dismiss) private var dismiss
     
@@ -18,6 +19,16 @@ struct NewZikrCreationView: View {
     
     enum FocusedField {
         case zikrName
+    }
+    
+    init(
+        countService: CountService,
+        name: String = "",
+        onDismiss: @escaping () -> Void
+    ) {
+        self.countService = countService
+        self.name = name
+        self.onDismiss = onDismiss
     }
     
     var body: some View {
@@ -45,6 +56,7 @@ struct NewZikrCreationView: View {
         .safeAreaInset(edge: .bottom) {
             TextButtonView(text: String.text.button.create.uppercased()) {
                 countService.createZikr(name: name, resetPeriod: resetPeriod)
+                onDismiss()
                 dismiss()
             }
             .disabled(!countService.isNewZikrNameValid(name))
@@ -61,6 +73,6 @@ struct NewZikrCreationView: View {
 
 #Preview {
     NavigationStack {
-        NewZikrCreationView(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext))
+        NewZikrCreationScreen(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext)) {}
     }
 }

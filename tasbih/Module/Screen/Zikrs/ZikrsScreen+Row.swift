@@ -24,11 +24,11 @@ extension ZikrsScreen {
                         
                         CountValueView(count: zikr.count)
                     }
-                    ChartView()
-                        .padding(.leading, 17)
-                        .padding(.trailing, 9)
+//                    ChartView()
+//                        .padding(.leading, 17)
+//                        .padding(.trailing, 9)
                 }
-                .padding(.top, 8)
+                .padding(.vertical, 8)
                 .padding(.trailing, 8)
                 .background(
                     BackgroundView()

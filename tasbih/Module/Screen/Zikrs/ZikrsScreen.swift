@@ -16,9 +16,9 @@ struct ZikrsScreen: View {
         ContentView(countService: countService, addNewZikr: $showNewZikrCreationSheet)
             .sheet(isPresented: $showNewZikrCreationSheet) {
                 NavigationStack {
-                    NewZikrCreationView(countService: countService)
+                    IntroScreen(countService: countService)
                 }
-                .presentationDetents([.medium, .large])
+                .presentationDetents([.large])
             }
     }
 }

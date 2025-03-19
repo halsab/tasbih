@@ -39,6 +39,7 @@ extension Image {
         
         enum infoHeader {
             static let zikrs = Image(systemName: "heart.square.fill")
+            static let presets = Image(systemName: "star.square.fill")
         }
     }
 }

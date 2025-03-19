@@ -31,13 +31,15 @@ extension String {
         
         enum info {
             static let zikrsHeader = "Управляйте своими зикрами. Выбирайте активный. Создавайте и удаляйте, отслеживайте прогресс."
+            static let presetsHeader = "Сдесь представлены наиболее значимые зикры. Выберити из списка понравившийся и начните восхвалять Всевышнего"
         }
         
         enum intro {
             static let appName = "Tasbih App"
             static let welcome = "السلام عليكم"
             static let description = "7:205\n\"Поминай Аллаха с покорностью и страхом\nпро себя и не громко\nпо утрам и перед закатом\nи не будь одним из беспечных невежд.\""
-            static let startButtonTitle = "Создать зикр"
+            static let presetButtonTitle = "Выбрать"
+            static let newButtonTitle = "Создать"
         }
         
         enum zikrCreation {
@@ -53,6 +55,10 @@ extension String {
                 static let title = "Периодичность зикра"
                 static let footer = "Зикр будет сбрасываться в ноль в начале каждого выбранного периода. Ежедневно, еженедельно и т.д."
             }
+        }
+        
+        enum presets {
+            static let honorsTitle = "Достоинства"
         }
     }
 }
