@@ -15,16 +15,28 @@ extension ZikrsScreen {
         @Environment(\.dismiss) private var dismiss
         
         var body: some View {
-            List {
-                Section {
-                    HeaderSection()
+            ScrollViewReader { proxy in
+                List {
+                    Section {
+                        HeaderSection()
+                    }
+                    Section {
+                        ZikrsSection()
+                    }
                 }
-                Section {
-                    ZikrsSection()
+                .listStyle(.plain)
+                .listRowSpacing(0)
+                .onAppear {
+                    guard let id = countService.selectedZikr?.id else { return }
+                    proxy.scrollTo(id, anchor: .center)
+                }
+                .onChange(of: addNewZikr) { newValue, _ in
+                    guard newValue == false, let id = countService.selectedZikr?.id else { return }
+                    withAnimation {
+                        proxy.scrollTo(id, anchor: .center)
+                    }
                 }
             }
-            .listStyle(.plain)
-            .listRowSpacing(0)
             .navigationBarTitleDisplayMode(.inline)
             .safeAreaInset(edge: .bottom) {
                 BottomToolbar()
@@ -48,6 +60,7 @@ extension ZikrsScreen {
                 Row(countService: countService, zikr: zikr)
                     .listRowSeparator(.hidden)
                     .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
+                    .id(zikr.id)
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button(role: .destructive) {
                             countService.deleteZikr(zikr: zikr)
