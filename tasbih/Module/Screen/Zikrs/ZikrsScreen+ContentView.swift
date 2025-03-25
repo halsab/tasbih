@@ -59,7 +59,7 @@ extension ZikrsScreen {
             ForEach(countService.zikrs) { zikr in
                 Row(countService: countService, zikr: zikr)
                     .listRowSeparator(.hidden)
-                    .listRowInsets(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
+                    .listRowInsets(.init(top: 4, leading: 16, bottom: 4, trailing: 16))
                     .id(zikr.id)
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button(role: .destructive) {

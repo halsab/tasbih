@@ -26,12 +26,14 @@ struct ZikrPresetsScreen: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 8) {
                 InfoHeaderView(
                     image: .app.infoHeader.presets,
                     title: .text.title.zikrs,
                     description: .text.info.presetsHeader
                 )
+                .padding(.bottom, 8)
+                
                 ForEach(PresetZikr.presets) { preset in
                     Row(model: preset)
                         .onTapGesture {

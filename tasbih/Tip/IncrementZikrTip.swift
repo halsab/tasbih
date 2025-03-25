@@ -21,7 +21,7 @@ struct IncrementZikrTip: Tip {
     static let zikrsOpenedCount = Event(id: "zikrsOpenedCount")
     
     var rules: [Rule] = [
-        #Rule(Self.zikrsOpenedCount) { $0.donations.count > 0 }
+        #Rule(Self.zikrsOpenedCount) { $0.donations.count > 4 }
     ]
     
     var options: [Option] {
