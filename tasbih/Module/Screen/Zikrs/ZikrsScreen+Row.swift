@@ -35,6 +35,7 @@ extension ZikrsScreen {
                 )
                 
                 IncreaseButton()
+                    .popoverTip(IncrementZikrTip())
             }
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)

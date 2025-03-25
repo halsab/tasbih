@@ -60,5 +60,37 @@ extension String {
         enum presets {
             static let honorsTitle = "Достоинства"
         }
+        
+        enum tip {
+            enum loopSize {
+                static let title = "Выбор размера круга"
+                static let message = "Выберите удобный для вас размер круга. По завершении круга вы почувствуюте усиленный виброотклик."
+            }
+            
+            enum undo {
+                static let title = "Отмена последнего действия"
+                static let message = "При случайном нажатии, вы можете сделать зикр -1"
+            }
+            
+            enum currentLoopCount {
+                static let title = "Значение круга"
+                static let message = "Здесь отображается количество зикров в текущем круге. Обнуляется по завершении круга."
+            }
+            
+            enum loopsCount {
+                static let title = "Количество кругов"
+                static let message = "Здесь отображается количество кругов зикров."
+            }
+            
+            enum newZikrButton {
+                static let title = "Создание зикра"
+                static let message = "Создайте новый зикр, чтобы начать поминать Всевышнего."
+            }
+            
+            enum incrementZikr {
+                static let title = "Инремент зикра"
+                static let message = "Вы можете отмечать зикры не выходя на главный экран."
+            }
+        }
     }
 }

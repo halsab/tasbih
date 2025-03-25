@@ -22,6 +22,7 @@
 		206F97E12D5932890008061E /* Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extension; sourceTree = "<group>"; };
 		206F97E22D59328D0008061E /* Resource */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resource; sourceTree = "<group>"; };
 		206F97F52D5935750008061E /* Module */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Module; sourceTree = "<group>"; };
+		20F0A8642D92BB5C00557BBA /* Tip */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tip; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 			children = (
 				206F97CF2D5932040008061E /* App */,
 				206F97F52D5935750008061E /* Module */,
+				20F0A8642D92BB5C00557BBA /* Tip */,
 				206F97E12D5932890008061E /* Extension */,
 				206F97E22D59328D0008061E /* Resource */,
 				2033D3802CC5468600909E05 /* Info.plist */,
@@ -101,6 +103,7 @@
 				206F97E12D5932890008061E /* Extension */,
 				206F97E22D59328D0008061E /* Resource */,
 				206F97F52D5935750008061E /* Module */,
+				20F0A8642D92BB5C00557BBA /* Tip */,
 			);
 			name = tasbih;
 			productName = tasbih;

@@ -19,6 +19,7 @@ extension CountScreen {
             } label: {
                 MenuLabel()
             }
+            .popoverTip(LoopSizeTip())
         }
         
         @ViewBuilder

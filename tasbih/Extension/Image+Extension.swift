@@ -41,5 +41,10 @@ extension Image {
             static let zikrs = Image(systemName: "heart.square.fill")
             static let presets = Image(systemName: "star.square.fill")
         }
+        
+        enum tip {
+            static let loopSize = Image(systemName: "point.forward.to.point.capsulepath")
+            static let newZikrButton = Image(systemName: "suit.heart")
+        }
     }
 }

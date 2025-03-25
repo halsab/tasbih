@@ -92,6 +92,7 @@ extension ZikrsScreen {
             }
             .frame(height: 64)
             .padding(.vertical)
+            .popoverTip(NewZikrButtonTip())
         }
     }
 }

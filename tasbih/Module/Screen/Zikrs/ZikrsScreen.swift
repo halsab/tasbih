@@ -20,6 +20,9 @@ struct ZikrsScreen: View {
                 }
                 .presentationDetents([.large])
             }
+            .task {
+                await NewZikrButtonTip.zikrsOpenedCount.donate()
+            }
     }
 }
 

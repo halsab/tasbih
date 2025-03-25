@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct ContentView: View {
     @Bindable var countService: CountService
@@ -24,4 +25,15 @@ struct ContentView: View {
 
 #Preview {
     ContentView(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext))
+        .task {
+            
+            // Cбрасываем хранилище
+            try? Tips.resetDatastore()
+            
+            // Конфигурируем
+            try? Tips.configure([
+                .displayFrequency(.immediate),
+                .datastoreLocation(.applicationDefault)
+            ])
+        }
 }

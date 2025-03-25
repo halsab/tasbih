@@ -40,6 +40,7 @@ extension CountScreen {
                         countService.decrement(zikr: zikr)
                     }
                     .frame(width: textButtonWidth)
+                    .popoverTip(UndoTip())
                 }
                 .alert(String.text.alert.resetZikrCompletely, isPresented: $showResetAlert) {
                     Button(String.text.button.yes, role: .destructive) {

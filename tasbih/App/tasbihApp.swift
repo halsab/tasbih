@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 @main
 struct tasbihApp: App {
@@ -18,6 +19,15 @@ struct tasbihApp: App {
         WindowGroup {
             ContentView(countService: countService)
                 .preferredColorScheme(.dark)
+                .task {
+                    try? Tips.configure([
+                        .displayFrequency(.daily),
+                        .datastoreLocation(.applicationDefault)
+                    ])
+                }
+                .task {
+                    await LoopSizeTip.appOpenedCount.donate()
+                }
         }
     }
     
@@ -29,6 +39,5 @@ struct tasbihApp: App {
         } catch {
             fatalError("Failed to create ModelContainer for Movie.")
         }
-        
     }
 }
