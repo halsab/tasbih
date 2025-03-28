@@ -17,20 +17,13 @@ enum LoopSize: UInt, CaseIterable, Codable {
     case inf = 999999
 
     var title: String {
-        switch self {
-        case .inf:
-            "Mode " + .text.icon.infinity
-        default:
-            "Mode \(rawValue)"
-        }
+        shortTitle
     }
 
     var shortTitle: String {
         switch self {
-        case .inf:
-            .text.icon.infinity
-        default:
-            "\(rawValue)"
+        case .inf: String.text.icon.infinity
+        default: String(rawValue)
         }
     }
 
