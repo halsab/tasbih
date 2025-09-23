@@ -15,7 +15,7 @@ extension Image {
         }
 
         enum button {
-            static let count = Image(systemName: "suit.heart.fill")
+            static let count = Image(systemName: "dot.circle.fill")
             static let increase = Image(systemName: "plus.circle")
             static let book = Image(systemName: "book")
             static let create = Image(systemName: "plus.circle.fill")
@@ -30,6 +30,7 @@ extension Image {
             static let selected = Image(systemName: "checkmark")
             static let list = Image(systemName: "list.bullet.below.rectangle")
             static let plus = Image(systemName: "plus")
+            static let more = Image(systemName: "ellipsis.circle")
         }
         
         enum selection {

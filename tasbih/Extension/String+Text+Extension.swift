@@ -15,6 +15,9 @@ extension String {
             static let create = "Создать"
             static let yes = "Да"
             static let no = "Нет"
+            static let more = "Еще"
+            static let hadj = "Хадж"
+            static let namaz = "Намаз"
         }
 
         enum icon {

@@ -18,11 +18,23 @@ extension CountScreen {
         var body: some View {
             if let zikr = countService.selectedZikr {
                 HStack {
-                    TextButtonView(text: .text.button.reset.uppercased(), alignment: .leading) {
-                        countService.hapticFeedback()
-                        showResetAlert.toggle()
+                    Menu {
+                        Button {
+                            
+                        } label: {
+                            Text(String.text.button.namaz)
+                        }
+                        Button {
+                            
+                        } label: {
+                            Text(String.text.button.hadj)
+                        }
+                    } label: {
+                        Image.app.icon.more
+                            .font(.title)
+                            .foregroundStyle(Color.shape(.app.tint.primary))
                     }
-                    .frame(width: textButtonWidth)
+                    .frame(width: textButtonWidth, alignment: .leading)
                     
                     Spacer()
                     
@@ -38,9 +50,12 @@ extension CountScreen {
                     
                     TextButtonView(text: .text.button.undo.uppercased(), alignment: .trailing) {
                         countService.decrement(zikr: zikr)
+                    } longPressAction: {
+                        countService.hapticFeedback()
+                        showResetAlert.toggle()
                     }
                     .frame(width: textButtonWidth)
-                    .popoverTip(UndoTip())
+                    .popoverTip(UndoTip()) // TODO: update tip to say about long tap
                 }
                 .alert(String.text.alert.resetZikrCompletely, isPresented: $showResetAlert) {
                     Button(String.text.button.yes, role: .destructive) {

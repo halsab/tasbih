@@ -11,13 +11,20 @@ struct TextButtonView: View {
     let text: String
     let alignment: HorizontalAlignment
     let action: () -> Void
+    let longPressAction: (() -> Void)?
     
     @Environment(\.isEnabled) private var isEnabled
     
-    init(text: String, alignment: HorizontalAlignment = .center, action: @escaping () -> Void) {
+    init(
+        text: String,
+        alignment: HorizontalAlignment = .center,
+        action: @escaping () -> Void,
+        longPressAction: (() -> Void)? = nil
+    ) {
         self.text = text
         self.alignment = alignment
         self.action = action
+        self.longPressAction = longPressAction
     }
     
     var body: some View {
@@ -28,7 +35,7 @@ struct TextButtonView: View {
                 }
                 Text(text)
                     .foregroundStyle(
-                        Color.shape(isEnabled ? .app.tint.primary : .secondary).gradient
+                        Color.shape(isEnabled ? .app.tint.primary : .secondary)
                     )
                     .font(.app.font(.m, weight: .bold))
                     .lineLimit(1)
@@ -37,6 +44,12 @@ struct TextButtonView: View {
                 }
             }
         }
+        .simultaneousGesture(
+            LongPressGesture(minimumDuration: 0.5)
+                .onEnded { _ in
+                    longPressAction?()
+                }
+        )
     }
 }
 
