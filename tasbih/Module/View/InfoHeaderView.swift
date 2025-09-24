@@ -37,7 +37,7 @@ struct InfoHeaderView: View {
         .padding()
         .frame(maxWidth: .infinity)
         .background(.background.secondary)
-        .clipShape(.rect(cornerRadius: 8))
+        .clipShape(.rect(cornerRadius: 24))
     }
 }
 

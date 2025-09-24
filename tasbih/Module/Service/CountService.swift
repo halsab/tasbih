@@ -24,14 +24,16 @@ final class CountService {
     @ObservationIgnored
     private var modelContext: ModelContext
     
-    private let neutralHapticGenerator: UIImpactFeedbackGenerator
-    private let positiveHapticGenerator: UINotificationFeedbackGenerator
+    private let lightHapticGenerator: UIImpactFeedbackGenerator
+    private let mediumHapticGenerator: UIImpactFeedbackGenerator
+    private let heavyHapticGenerator: UIImpactFeedbackGenerator
     private let negativeHapticGenerator: UINotificationFeedbackGenerator
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
-        self.neutralHapticGenerator = UIImpactFeedbackGenerator(style: .light)
-        self.positiveHapticGenerator = UINotificationFeedbackGenerator()
+        self.lightHapticGenerator = UIImpactFeedbackGenerator(style: .light)
+        self.mediumHapticGenerator = UIImpactFeedbackGenerator(style: .medium)
+        self.heavyHapticGenerator = UIImpactFeedbackGenerator(style: .heavy)
         self.negativeHapticGenerator = UINotificationFeedbackGenerator()
         fetchData()
         if selectedZikr == nil {
@@ -165,7 +167,19 @@ private extension CountService {
 
 private extension CountService {
     func positiveFeedback() {
-        positiveHapticGenerator.notificationOccurred(.success)
+        Task { @MainActor in
+            heavyHapticGenerator.impactOccurred()
+            try? await Task.sleep(for: .milliseconds(20))
+            heavyHapticGenerator.impactOccurred()
+            try? await Task.sleep(for: .milliseconds(20))
+            mediumHapticGenerator.impactOccurred()
+            try? await Task.sleep(for: .milliseconds(20))
+            mediumHapticGenerator.impactOccurred()
+            try? await Task.sleep(for: .milliseconds(20))
+            heavyHapticGenerator.impactOccurred()
+            try? await Task.sleep(for: .milliseconds(20))
+            heavyHapticGenerator.impactOccurred()
+        }
     }
     
     func negativeFeedback() {
@@ -173,7 +187,7 @@ private extension CountService {
     }
     
     func neutralFeedback() {
-        neutralHapticGenerator.impactOccurred()
+        lightHapticGenerator.impactOccurred()
     }
     
     func countChangeFeedback() {

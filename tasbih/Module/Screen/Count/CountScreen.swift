@@ -12,18 +12,20 @@ struct CountScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
-        ContentView(countService: countService)
-            .safeAreaPadding()
-            .sheet(isPresented: $countService.showZikrsSheet) {
-                NavigationStack {
-                    ZikrsScreen(countService: countService)
+        NavigationStack {
+            ContentView(countService: countService)
+                .safeAreaPadding()
+                .sheet(isPresented: $countService.showZikrsSheet) {
+                    NavigationStack {
+                        ZikrsScreen(countService: countService)
+                    }
                 }
-            }
-            .onChange(of: scenePhase) { _, newValue in
-                if newValue == .active {
-                    countService.refreshZikrs()
+                .onChange(of: scenePhase) { _, newValue in
+                    if newValue == .active {
+                        countService.refreshZikrs()
+                    }
                 }
-            }
+        }
     }
 }
 

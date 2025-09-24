@@ -19,14 +19,10 @@ extension CountScreen {
             if let zikr = countService.selectedZikr {
                 HStack {
                     Menu {
-                        Button {
-                            
-                        } label: {
+                        NavigationLink(destination: NamazScreen()) {
                             Text(String.text.button.namaz)
                         }
-                        Button {
-                            
-                        } label: {
+                        NavigationLink(destination: HadjScreen()) {
                             Text(String.text.button.hadj)
                         }
                     } label: {
