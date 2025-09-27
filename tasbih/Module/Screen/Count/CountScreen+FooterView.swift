@@ -18,19 +18,25 @@ extension CountScreen {
         var body: some View {
             if let zikr = countService.selectedZikr {
                 HStack {
-                    Menu {
-                        NavigationLink(destination: NamazScreen()) {
-                            Text(String.text.button.namaz)
-                        }
-                        NavigationLink(destination: HajjScreen()) {
-                            Text(String.text.button.hadj)
-                        }
-                    } label: {
-                        Image.app.icon.more
-                            .font(.title)
-                            .foregroundStyle(Color.shape(.app.tint.primary))
+//                    Menu {
+//                        NavigationLink(destination: NamazScreen()) {
+//                            Text(String.text.button.namaz)
+//                        }
+//                        NavigationLink(destination: HajjScreen()) {
+//                            Text(String.text.button.hadj)
+//                        }
+//                    } label: {
+//                        Image.app.icon.more
+//                            .font(.title)
+//                            .foregroundStyle(Color.shape(.app.tint.primary))
+//                    }
+//                    .frame(width: textButtonWidth, alignment: .leading)
+                    
+                    TextButtonView(text: .text.button.reset.uppercased(), alignment: .leading) {
+                        countService.hapticFeedback()
+                        showResetAlert.toggle()
                     }
-                    .frame(width: textButtonWidth, alignment: .leading)
+                    .frame(width: textButtonWidth)
                     
                     Spacer()
                     
@@ -46,12 +52,18 @@ extension CountScreen {
                     
                     TextButtonView(text: .text.button.undo.uppercased(), alignment: .trailing) {
                         countService.decrement(zikr: zikr)
-                    } longPressAction: {
-                        countService.hapticFeedback()
-                        showResetAlert.toggle()
                     }
                     .frame(width: textButtonWidth)
-                    .popoverTip(UndoTip()) // TODO: update tip to say about long tap
+                    .popoverTip(UndoTip())
+                    
+//                    TextButtonView(text: .text.button.undo.uppercased(), alignment: .trailing) {
+//                        countService.decrement(zikr: zikr)
+//                    } longPressAction: {
+//                        countService.hapticFeedback()
+//                        showResetAlert.toggle()
+//                    }
+//                    .frame(width: textButtonWidth)
+//                    .popoverTip(UndoTip()) // TODO: update tip to say about long tap
                 }
                 .alert(String.text.alert.resetZikrCompletely, isPresented: $showResetAlert) {
                     Button(String.text.button.yes, role: .destructive) {
