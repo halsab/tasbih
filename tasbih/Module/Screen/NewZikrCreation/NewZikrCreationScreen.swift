@@ -34,16 +34,6 @@ struct NewZikrCreationScreen: View {
     var body: some View {
         Form {
             Section {
-                TextField(String.text.zikrCreation.nameSection.placeholder, text: $name)
-                    .focused($focusedField, equals: .zikrName)
-                    .tint(Color.app.tint.primary)
-            } header: {
-                Text(String.text.zikrCreation.nameSection.header)
-            } footer: {
-                Text(String.text.zikrCreation.nameSection.footer)
-            }
-            
-            Section {
                 Picker(String.text.zikrCreation.periodSection.title, selection: $resetPeriod) {
                     ForEach(ResetPeriod.allCases, id: \.self) {
                         Text($0.name)
@@ -52,7 +42,15 @@ struct NewZikrCreationScreen: View {
             } footer: {
                 Text(String.text.zikrCreation.periodSection.footer)
             }
+            
+            Section {
+                TextField(String.text.zikrCreation.nameSection.placeholder, text: $name)
+                    .focused($focusedField, equals: .zikrName)
+            } footer: {
+                Text(String.text.zikrCreation.nameSection.footer)
+            }
         }
+        .tint(Color.app.tint.primary)
         .safeAreaInset(edge: .bottom) {
             TextButtonView(text: String.text.button.create.uppercased()) {
                 countService.createZikr(name: name, resetPeriod: resetPeriod)

@@ -55,7 +55,7 @@ extension String {
             }
             
             enum periodSection {
-                static let title = "Периодичность зикра"
+                static let title = "Периодичность"
                 static let footer = "Количество зикров будет обнуляться в начале каждого выбранного периода — ежедневно, еженедельно и так далее."
             }
         }

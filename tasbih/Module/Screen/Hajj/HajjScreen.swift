@@ -1,5 +1,5 @@
 //
-//  HadjScreen.swift
+//  HajjScreen.swift
 //  tasbih
 //
 //  Created by Khalil Sabirov on 23.09.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HadjScreen: View {
+struct HajjScreen: View {
     var body: some View {
         VStack {
             
@@ -15,7 +15,7 @@ struct HadjScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                NavigationLink(destination: HadjMapScreen()) {
+                NavigationLink(destination: HajjMapScreen()) {
                     Image(systemName: "map")
                 }
             }
@@ -24,5 +24,5 @@ struct HadjScreen: View {
 }
 
 #Preview {
-    HadjScreen()
+    HajjScreen()
 }

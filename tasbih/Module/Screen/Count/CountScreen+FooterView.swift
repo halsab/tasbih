@@ -22,7 +22,7 @@ extension CountScreen {
                         NavigationLink(destination: NamazScreen()) {
                             Text(String.text.button.namaz)
                         }
-                        NavigationLink(destination: HadjScreen()) {
+                        NavigationLink(destination: HajjScreen()) {
                             Text(String.text.button.hadj)
                         }
                     } label: {

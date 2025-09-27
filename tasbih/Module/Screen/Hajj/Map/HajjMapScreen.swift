@@ -1,5 +1,5 @@
 //
-//  HadjMapScreen.swift
+//  HajjMapScreen.swift
 //  tasbih
 //
 //  Created by Khalil Sabirov on 23.09.2025.
@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct HadjMapScreen: View {
+struct HajjMapScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var cameraPosition: MapCameraPosition = .region(
@@ -42,5 +42,5 @@ struct HadjMapScreen: View {
 }
 
 #Preview {
-    HadjMapScreen()
+    HajjMapScreen()
 }
