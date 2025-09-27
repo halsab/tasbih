@@ -26,7 +26,6 @@ struct ContentView: View {
 #Preview {
     ContentView(countService: CountService(modelContext: ZikrModel.previewContainer.mainContext))
         .task {
-            
             // Cбрасываем хранилище
             try? Tips.resetDatastore()
             

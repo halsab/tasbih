@@ -14,33 +14,33 @@ extension ZikrsScreen {
         @Bindable var zikr: ZikrModel
         
         var body: some View {
-            HStack(spacing: 0) {
-                VStack(spacing: 4) {
-                    HStack {
-                        TextContent()
-                            .padding(.leading, 16)
-                        
-                        Spacer()
-                        
-                        CountValueView(count: zikr.count)
-                    }
-//                    ChartView()
-//                        .padding(.leading, 17)
-//                        .padding(.trailing, 9)
+            VStack(spacing: 12) {
+                HStack {
+                    TextContent()
+                    
+                    Spacer()
+                    
+                    CountValueView(count: zikr.count)
                 }
-                .padding(.vertical, 8)
-                .padding(.trailing, 8)
-                .background(
-                    BackgroundView()
-                )
                 
-                IncreaseButton()
-                    .popoverTip(IncrementZikrTip())
+                if isAnyZikrOnLastDays {
+                    StatView()
+                }
             }
+            .padding(.horizontal)
+            .padding(.top)
+            .padding(.bottom, 12)
+            .background(
+                BackgroundView()
+            )
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.background.secondary)
             .clipShape(.rect(cornerRadius: 8))
+        }
+        
+        private var isAnyZikrOnLastDays: Bool {
+            zikr.lastCounts.map(\.value).max() ?? 0 > 0
         }
         
         @ViewBuilder
@@ -51,20 +51,6 @@ extension ZikrsScreen {
                     .foregroundStyle(.primary)
                 PeriodView()
             }
-        }
-        
-        @ViewBuilder
-        private func IncreaseButton() -> some View {
-            Image.app.button.increase
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(Color.shape(.system.secondaryLabel), Color.shape(.app.tint.primary))
-                .font(.app.font(.xxl))
-                .padding(.horizontal, 8)
-                .frame(maxHeight: .infinity)
-                .background(Color.system.quaternaryFill)
-                .onTapGesture {
-                    countService.increment(zikr: zikr)
-                }
         }
         
         @ViewBuilder
@@ -99,31 +85,91 @@ extension ZikrsScreen {
         }
         
         @ViewBuilder
-        private func ChartView() -> some View {
-            let data = zikr.lastCounts
-            let totalCounts = data.reduce(into: 0) { result, count in result += count.value }
+        private func StatView() -> some View {
+            // Подготовка данных
+            let values: [Double] = zikr.lastCounts.map { Double($0.value) }
+            
+            // X-домен: для одной точки даем диапазон 0...1, чтобы был видимый график
+            let xUpper = Double(max(values.count - 1, 1))
+            
+            // Y-домен с паддингом
+            let minY = values.min() ?? 0
+            let maxY = values.max() ?? 0
+            let span = max(maxY - minY, 0)
+            // Небольшой запас, чтобы подписи не упирались в край
+            let padYInDomain = max(1.0, span) * 0.15 + 6
+            let paddedMin = minY - padYInDomain
+            let paddedMax = maxY + padYInDomain
+            
+            // Равномерный внутренний отступ сверху/снизу в области графика
+            let yPlotPadding: CGFloat = 10
+            
+            // Динамическая высота графика от разброса значений
+            // expectedSpanForMaxHeight — при таком разбросе высота достигнет maxChartHeight
+            let minChartHeight: CGFloat = 24
+            let maxChartHeight: CGFloat = 64
+            let expectedSpanForMaxHeight: CGFloat = 50
+            let normalized = min(max(CGFloat(span) / expectedSpanForMaxHeight, 0), 1)
+            let chartHeight: CGFloat = minChartHeight + (maxChartHeight - minChartHeight) * normalized
+            
             Chart {
-                ForEach(data.indices, id: \.self) { index in
-                    BarMark(
-                        x: .value("Day", index),
-                        y: .value("Distance", data[index].value),
-                        width: .fixed(34)
+                // Линия + точки + аннотации значений
+                ForEach(values.indices, id: \.self) { i in
+                    let current = values[i]
+                    let slope: Double = {
+                        if i < values.count - 1 { return values[i + 1] - current }
+                        else if i > 0 { return current - values[i - 1] }
+                        else { return 0 }
+                    }()
+                    
+                    let horizontalAlignment: Alignment = {
+                        if i == 0 { return .leading }
+                        if i == values.count - 1 { return .trailing }
+                        return .center
+                    }()
+                    
+                    LineMark(
+                        x: .value("Day", i),
+                        y: .value("Value", current)
                     )
-                    .foregroundStyle(Color.system.gray2)
-                    .annotation(position: .overlay, alignment: .bottom) {
-                        Text("\(data[index].value)")
-                            .font(.app.font(.xxs).width(.compressed))
+                    .interpolationMethod(.cardinal)
+                    .lineStyle(.init(lineWidth: 2, lineCap: .round))
+                    .foregroundStyle(Color.shape(.app.tint.secondary))
+                    .zIndex(1)
+                    
+                    PointMark(
+                        x: .value("Day", i),
+                        y: .value("Value", current)
+                    )
+                    .symbol(.circle)
+                    .symbolSize(30)
+                    .foregroundStyle(Color.shape(.app.tint.secondary))
+                    .zIndex(2)
+                    .annotation(
+                        position: slope >= 0 ? .top : .bottom,
+                        alignment: horizontalAlignment
+                    ) {
+                        Text("\(Int(current))")
+                            .font(.app.font(.xs))
                             .foregroundStyle(.secondary)
                     }
                 }
             }
-            .chartYAxis(.hidden)
             .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
             .chartLegend(.hidden)
-            .chartBackground { _ in
-                Color.clear
+            .chartXScale(
+                domain: 0...xUpper,
+                range: .plotDimension(padding: 4)
+            )
+            .chartYScale(
+                domain: paddedMin...paddedMax,
+                range: .plotDimension(padding: yPlotPadding)
+            )
+            .chartPlotStyle { plot in
+                plot.background(.clear)
             }
-            .frame(height: totalCounts == 0 ? 4 : 24)
+            .frame(height: chartHeight) // динамическая высота вместо фиксированной
         }
     }
 }
