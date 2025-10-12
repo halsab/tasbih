@@ -86,7 +86,6 @@ extension ZikrsScreen {
         
         @ViewBuilder
         private func StatView() -> some View {
-            // Подготовка данных
             let values: [Double] = zikr.lastCounts.map { Double($0.value) }
             
             // X-домен: для одной точки даем диапазон 0...1, чтобы был видимый график
@@ -113,7 +112,6 @@ extension ZikrsScreen {
             let chartHeight: CGFloat = minChartHeight + (maxChartHeight - minChartHeight) * normalized
             
             Chart {
-                // Линия + точки + аннотации значений
                 ForEach(values.indices, id: \.self) { i in
                     let current = values[i]
                     let slope: Double = {
@@ -142,8 +140,8 @@ extension ZikrsScreen {
                         y: .value("Value", current)
                     )
                     .symbol(.circle)
-                    .symbolSize(30)
-                    .foregroundStyle(Color.shape(.app.tint.secondary))
+                    .symbolSize(values.count - 1 == i ? 60 : 30)
+                    .foregroundStyle(Color.shape(values.count - 1 == i ? .app.tint.primary : .app.tint.secondary))
                     .zIndex(2)
                     .annotation(
                         position: slope >= 0 ? .top : .bottom,
@@ -169,7 +167,7 @@ extension ZikrsScreen {
             .chartPlotStyle { plot in
                 plot.background(.clear)
             }
-            .frame(height: chartHeight) // динамическая высота вместо фиксированной
+            .frame(height: chartHeight)
         }
     }
 }
