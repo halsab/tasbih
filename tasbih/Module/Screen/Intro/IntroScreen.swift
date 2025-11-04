@@ -22,13 +22,18 @@ struct IntroScreen: View {
     @State private var showZikrPresets = false
     @State private var newZikrName = ""
     
+    private var isAnimationsEnabled: Bool { !showNewZikrCreation }
+    
     var body: some View {
         ZStack {
             AmbientBG()
                 .animation(.easeInOut(duration: 1), value: activeCard)
             
-            VStack(spacing: 40) {
+            VStack {
                 CarouselCardsView()
+                    .padding(.vertical, 32)
+                
+                Spacer(minLength: 0)
 
                 TextSection()
                 
@@ -37,11 +42,12 @@ struct IntroScreen: View {
                 } newAction: {
                     showNewZikrCreation.toggle()
                 }
-
+                .padding(.vertical, 16)
             }
-            .safeAreaPadding(15)
+            .safeAreaPadding(16)
         }
         .onReceive(timer) { _ in
+            guard isAnimationsEnabled else { return }
             currentScrollOffset += 0.35
             scrollPosition.scrollTo(x: currentScrollOffset)
         }
@@ -61,7 +67,7 @@ struct IntroScreen: View {
                     dismiss()
                 }
             }
-            .presentationDetents([.medium, .large])
+            .presentationDetents([.large])
         }
         .sheet(isPresented: $showZikrPresets) {
             NavigationStack {

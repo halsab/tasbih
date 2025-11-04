@@ -23,4 +23,14 @@ enum ResetPeriod: Codable, CaseIterable {
         case .infinity: "Без сброса"
         }
     }
+    
+    var period: String {
+        switch self {
+        case .day: "день"
+        case .week: "неделя"
+        case .month: "месяц"
+        case .year: "год"
+        case .infinity: "∞"
+        }
+    }
 }

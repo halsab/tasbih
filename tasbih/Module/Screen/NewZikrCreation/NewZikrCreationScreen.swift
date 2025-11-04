@@ -27,27 +27,32 @@ struct NewZikrCreationScreen: View {
         onDismiss: @escaping () -> Void
     ) {
         self.countService = countService
-        self.name = name
+        self._name = .init(initialValue: name)
         self.onDismiss = onDismiss
     }
     
     var body: some View {
         Form {
             Section {
-                Picker(String.text.zikrCreation.periodSection.title, selection: $resetPeriod) {
-                    ForEach(ResetPeriod.allCases, id: \.self) {
-                        Text($0.name)
-                    }
-                }
+                TextField(String.text.zikrCreation.nameSection.placeholder, text: $name)
+                    .focused($focusedField, equals: .zikrName)
+            } header: {
+                Text(String.text.zikrCreation.nameSection.header)
             } footer: {
-                Text(String.text.zikrCreation.periodSection.footer)
+                Text(String.text.zikrCreation.nameSection.footer)
             }
             
             Section {
-                TextField(String.text.zikrCreation.nameSection.placeholder, text: $name)
-                    .focused($focusedField, equals: .zikrName)
+                Picker(String.text.zikrCreation.periodSection.header, selection: $resetPeriod) {
+                    ForEach(ResetPeriod.allCases, id: \.self) {
+                        Text($0.period)
+                    }
+                }
+                .pickerStyle(.segmented)
+            } header: {
+                Text(String.text.zikrCreation.periodSection.header)
             } footer: {
-                Text(String.text.zikrCreation.nameSection.footer)
+                Text(String.text.zikrCreation.periodSection.footer)
             }
         }
         .tint(Color.app.tint.primary)
@@ -65,7 +70,6 @@ struct NewZikrCreationScreen: View {
         .onAppear {
             focusedField = .zikrName
         }
-        
     }
 }
 
