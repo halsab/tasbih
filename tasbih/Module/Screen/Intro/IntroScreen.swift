@@ -9,34 +9,46 @@ import SwiftUI
 
 struct IntroScreen: View {
     @Bindable var countService: CountService
-    
+
     @Environment(\.dismiss) private var dismiss
-    
+    @Environment(\.scenePhase) private var scenePhase
+
     @State private var activeCard: IntroCard? = .cards.first
     @State private var scrollPosition: ScrollPosition = .init()
     @State private var currentScrollOffset: CGFloat = 0
-    @State private var timer = Timer.publish(every: 0.01, on: .current, in: .default).autoconnect()
+    @State private var isAutoScrollEnabled = true
     @State private var initialAnimation = false
     @State private var scrollPhase: ScrollPhase = .idle
     @State private var showNewZikrCreation = false
     @State private var showZikrPresets = false
     @State private var newZikrName = ""
-    
-    private var isAnimationsEnabled: Bool { !showNewZikrCreation }
-    
+
+    private let autoScrollTimer = Timer.publish(every: 1.0 / 30.0, on: .main, in: .common).autoconnect()
+    private let autoScrollStep: CGFloat = 35.0 / 30.0
+    private let carouselSpacing: CGFloat = 10
+    private let carouselCardStep: CGFloat = 230
+
+    private var isAnimationsEnabled: Bool {
+        isAutoScrollEnabled
+        && scenePhase == .active
+        && scrollPhase == .idle
+        && !showNewZikrCreation
+        && !showZikrPresets
+    }
+
     var body: some View {
         ZStack {
             AmbientBG()
                 .animation(.easeInOut(duration: 1), value: activeCard)
-            
+
             VStack {
                 CarouselCardsView()
                     .padding(.vertical, 32)
-                
+
                 Spacer(minLength: 0)
 
                 TextSection()
-                
+
                 ActionView {
                     showZikrPresets.toggle()
                 } newAction: {
@@ -46,14 +58,20 @@ struct IntroScreen: View {
             }
             .safeAreaPadding(16)
         }
-        .onReceive(timer) { _ in
+        .onReceive(autoScrollTimer) { _ in
             guard isAnimationsEnabled else { return }
-            currentScrollOffset += 0.35
+            currentScrollOffset += autoScrollStep
             scrollPosition.scrollTo(x: currentScrollOffset)
+        }
+        .onAppear {
+            isAutoScrollEnabled = true
+        }
+        .onDisappear {
+            isAutoScrollEnabled = false
         }
         .task {
             try? await Task.sleep(for: .seconds(0.35))
-            
+
             withAnimation(.smooth(duration: 0.75, extraBounce: 0)) {
                 initialAnimation = true
             }
@@ -81,7 +99,7 @@ struct IntroScreen: View {
             .presentationDetents([.large])
         }
     }
-    
+
     @ViewBuilder
     private func ActionView(
         presetAction: @escaping () -> Void,
@@ -89,7 +107,7 @@ struct IntroScreen: View {
     ) -> some View {
         HStack {
             Spacer()
-            
+
             Button {
                 presetAction()
             } label: {
@@ -100,9 +118,9 @@ struct IntroScreen: View {
                     .padding(.vertical, 12)
                     .background(.white, in: .capsule)
             }
-            
+
             Spacer()
-            
+
             Button {
                 newAction()
             } label: {
@@ -113,12 +131,12 @@ struct IntroScreen: View {
                     .padding(.vertical, 12)
                     .background(.white, in: .capsule)
             }
-            
+
             Spacer()
         }
         .blurOpacityEffect(initialAnimation)
     }
-    
+
     @ViewBuilder
     private func TextSection() -> some View {
         VStack(spacing: 4) {
@@ -126,13 +144,13 @@ struct IntroScreen: View {
                 .font(.app.font(.l))
                 .foregroundStyle(.white.secondary)
                 .blurOpacityEffect(initialAnimation)
-            
+
             Text(String.text.intro.appName)
                 .font(.app.font(.xxl).bold())
                 .foregroundStyle(.white)
                 .blurOpacityEffect(initialAnimation)
                 .padding(.bottom, 12)
-            
+
             Text(String.text.intro.description)
                 .font(.app.font(.m))
                 .multilineTextAlignment(.center)
@@ -141,10 +159,10 @@ struct IntroScreen: View {
                 .blurOpacityEffect(initialAnimation)
         }
     }
-    
+
     @ViewBuilder
     private func CarouselCardsView() -> some View {
-        InfiniteScrollView {
+        InfiniteScrollView(spacing: carouselSpacing) {
             ForEach(IntroCard.cards) { card in
                 CarouselCardView(card)
             }
@@ -155,17 +173,20 @@ struct IntroScreen: View {
         .containerRelativeFrame(.vertical) { value, _ in
             value * 0.45
         }
-        .onScrollPhaseChange { oldPhase, newPhase in
+        .onScrollPhaseChange { _, newPhase in
             scrollPhase = newPhase
+
+            if newPhase == .idle {
+                updateActiveCard(for: currentScrollOffset)
+            }
         }
         .onScrollGeometryChange(for: CGFloat.self) {
             $0.contentOffset.x + $0.contentInsets.leading
-        } action: { oldValue, newValue in
+        } action: { _, newValue in
             currentScrollOffset = newValue
-            
-            if scrollPhase != .decelerating || scrollPhase != .animating {
-                let activeIndex = Int((currentScrollOffset / 220).rounded()) % IntroCard.cards.count
-                activeCard = IntroCard.cards[activeIndex]
+
+            if scrollPhase == .idle {
+                updateActiveCard(for: newValue)
             }
         }
         .visualEffect { [initialAnimation] content, proxy in
@@ -173,43 +194,52 @@ struct IntroScreen: View {
                 .offset(y: !initialAnimation ? -(proxy.size.height + 200) : 0)
         }
     }
-    
+
+    private func updateActiveCard(for offset: CGFloat) {
+        let cardsCount = IntroCard.cards.count
+        guard cardsCount > 0 else { return }
+
+        let rawIndex = Int((offset / carouselCardStep).rounded())
+        let activeIndex = ((rawIndex % cardsCount) + cardsCount) % cardsCount
+        activeCard = IntroCard.cards[activeIndex]
+    }
+
     @ViewBuilder
     private func AmbientBG() -> some View {
         GeometryReader {
             let size = $0.size
-            
+
             ZStack {
-                ForEach(IntroCard.cards) { card in
-                    Image(card.image)
+                if let activeCard {
+                    Image(activeCard.image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: size.width, height: size.height)
                         .ignoresSafeArea()
-                        .opacity(activeCard?.id == card.id ? 1 : 0)
+                        .transition(.opacity)
                 }
-                
+
                 Rectangle()
                     .fill(.black.opacity(0.4))
                     .ignoresSafeArea()
             }
             .compositingGroup()
-            .blur(radius: 90, opaque: true)
+            .blur(radius: 60, opaque: true)
             .ignoresSafeArea()
         }
     }
-    
+
     @ViewBuilder
     private func CarouselCardView(_ card: IntroCard) -> some View {
         GeometryReader {
             let size = $0.size
-            
+
             ZStack {
                 Image(card.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .shadow(color: .black.opacity(0.4), radius: 10, x: 1, y: 0)
-             
+
                 VStack {
                     Spacer()
                     Text(card.title)
@@ -220,7 +250,7 @@ struct IntroScreen: View {
                         .background {
                             Color.black.blur(radius: 60, opaque: false)
                         }
-                    
+
                     Spacer()
                     Text(card.description)
                         .font(.app.font(.m))

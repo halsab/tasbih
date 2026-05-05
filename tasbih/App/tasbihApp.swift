@@ -11,13 +11,24 @@ import TipKit
 
 @main
 struct tasbihApp: App {
-    @State private var countService: CountService
+    @State private var countService: CountService?
     
-    private let container: ModelContainer
+    private let container: ModelContainer?
+    private let launchErrorMessage: String?
     
     var body: some Scene {
         WindowGroup {
-            ContentView(countService: countService)
+            Group {
+                if let countService {
+                    ContentView(countService: countService)
+                } else {
+                    ContentUnavailableView(
+                        String.text.error.storageTitle,
+                        systemImage: "exclamationmark.triangle",
+                        description: Text(launchErrorMessage ?? String.text.error.storageMessage)
+                    )
+                }
+            }
                 .preferredColorScheme(.dark)
                 .task {
                     try? Tips.configure([
@@ -33,11 +44,15 @@ struct tasbihApp: App {
     
     init() {
         do {
-            container = try ModelContainer(for: ZikrModel.self)
-            let countService = CountService(modelContext: container.mainContext)
+            let modelContainer = try ModelContainer(for: ZikrModel.self)
+            container = modelContainer
+            let countService = CountService(modelContext: modelContainer.mainContext)
             _countService = State(initialValue: countService)
+            launchErrorMessage = nil
         } catch {
-            fatalError("Failed to create ModelContainer for Movie.")
+            container = nil
+            _countService = State(initialValue: nil)
+            launchErrorMessage = error.localizedDescription
         }
     }
 }

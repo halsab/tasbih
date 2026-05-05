@@ -23,20 +23,25 @@ extension String {
         enum icon {
             static let infinity = "∞"
         }
-        
+
         enum alert {
             static let resetZikrCompletely = "Сбросить зикр полностью?"
         }
-        
+
         enum title {
             static let zikrs = "Зикры"
         }
-        
+
+        enum error {
+            static let storageTitle = "Не удалось открыть данные"
+            static let storageMessage = "Перезапустите приложение или попробуйте обновить его позже."
+        }
+
         enum info {
             static let zikrsHeader = "Управляйте своими зикрами, выбирайте активный, создавайте и удаляйте их, отслеживайте свой прогресс."
             static let presetsHeader = "Здесь вы найдете самые значимые зикры. Выберите тот, что вам по душе, и начните восхвалять Всевышнего."
         }
-        
+
         enum intro {
             static let appName = "Tasbih App"
             static let welcome = "السلام عليكم"
@@ -44,52 +49,52 @@ extension String {
             static let presetButtonTitle = "Выбрать"
             static let newButtonTitle = "Создать"
         }
-        
+
         enum zikrCreation {
             static let title = "Создайте зикр"
-            
+
             enum nameSection {
                 static let header = "Название зикра"
                 static let footer = "Имя зикра не должно совпадать с уже существующими."
                 static let placeholder = "Название зикра"
             }
-            
+
             enum periodSection {
                 static let header = "Период сброса зикра"
                 static let footer = "Количество зикров будет обнуляться в начале каждого выбранного периода — ежедневно, еженедельно и так далее."
             }
         }
-        
+
         enum presets {
             static let honorsTitle = "Достоинства"
         }
-        
+
         enum tip {
             enum loopSize {
                 static let title = "Выбор размера круга"
                 static let message = "Выберите удобный для вас размер круга. Когда вы закончите круг, то ощутите более сильный виброотклик."
             }
-            
+
             enum undo {
                 static let title = "Отмена последнего действия"
                 static let message = "В случае непреднамеренного нажатия, вы сможете отменить зикр."
             }
-            
+
             enum currentLoopCount {
                 static let title = "Значение круга"
                 static let message = "В этом месте вы можете увидеть, сколько раз вы совершили зикр в текущем круге. После окончания круга счётчик будет сброшен на ноль."
             }
-            
+
             enum loopsCount {
                 static let title = "Количество кругов"
                 static let message = "Здесь отображается количество кругов зикров."
             }
-            
+
             enum newZikrButton {
                 static let title = "Создание зикра"
                 static let message = "Создайте новый зикр, чтобы начать поминать Всевышнего."
             }
-            
+
             enum incrementZikr {
                 static let title = "Увеличение количества зикра"
                 static let message = "Вы можете отмечать зикры, не переходя на главный экран."

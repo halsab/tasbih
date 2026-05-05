@@ -20,7 +20,7 @@ final class ZikrModel: Identifiable {
     private(set) var resetPeriod: ResetPeriod
     private(set) var dailyCounts: [Count]
     private(set) var periodCount: UInt
-    
+
     @Transient
     var currentLoopCount: UInt {
         periodCount % loopSize.rawValue
@@ -31,7 +31,7 @@ final class ZikrModel: Identifiable {
     }
     @Transient
     var date: Date {
-        dailyCounts[0].date
+        dailyCounts.first?.date ?? .now
     }
     @Transient
     var count: UInt {
@@ -39,7 +39,7 @@ final class ZikrModel: Identifiable {
     }
     @Transient
     var lastCounts: [Count] {
-        let countsToCheck = dailyCounts.prefix(14)
+        let countsToCheck = dailyCounts.sorted { $0.date > $1.date }.prefix(14)
         return (0..<7)
             .compactMap {
                 Calendar.current.date(byAdding: .day, value: -$0, to: .now)
@@ -54,7 +54,7 @@ final class ZikrModel: Identifiable {
             }
             .reversed()
     }
-    
+
     init(name: String, resetPeriod: ResetPeriod) {
         self.id = UUID()
         self.name = name
@@ -64,7 +64,7 @@ final class ZikrModel: Identifiable {
         self.dailyCounts = [.init(value: 0, date: .now)]
         self.periodCount = 0
     }
-    
+
     fileprivate init(name: String, periodCount: UInt, dailyCounts: [Count]) {
         self.id = UUID()
         self.name = name
@@ -80,47 +80,58 @@ final class ZikrModel: Identifiable {
 
 extension ZikrModel {
     func increment() {
-        let date = dailyCounts[0].date
-        setDailyCountValue(dailyCounts[0].value + 1, date: date)
-        setPeriodCountValue(periodCount + 1, date: date)
+        normalizeCountsForCurrentDate()
+        dailyCounts[0].value += 1
+        periodCount += 1
     }
-    
+
     func decrement() {
-        let date = dailyCounts[0].date
-        if let index = dailyCounts.firstIndex(where: { $0.value > 0 }) {
-            dailyCounts[index].value -= 1
-        }
-        if periodCount > 0 {
-            setPeriodCountValue(periodCount - 1, date: date)
-        }
+        normalizeCountsForCurrentDate()
+        guard dailyCounts[0].value > 0, periodCount > 0 else { return }
+        dailyCounts[0].value -= 1
+        periodCount -= 1
     }
-    
+
     func reset() {
-        let date = dailyCounts[0].date
-        setDailyCountValue(0, date: date)
-        setPeriodCountValue(0, date: date)
+        normalizeCountsForCurrentDate()
+        dailyCounts[0].value = 0
+        periodCount = 0
     }
-    
+
     func refresh() {
-        let date = dailyCounts[0].date
-        setDailyCountValue(dailyCounts[0].value, date: date)
-        setPeriodCountValue(periodCount, date: date)
+        normalizeCountsForCurrentDate()
     }
 }
 
 // MARK: - Helpers
 
 private extension ZikrModel {
-    func setDailyCountValue(_ value: UInt, date: Date) {
-        if date.isToday {
-            dailyCounts[0].value = value
-        } else {
-            let newCount = Count(value: 0, date: .now)
-            dailyCounts.insert(newCount, at: 0)
+    // Приводим историю к текущей дате до любых изменений счетчика.
+    func normalizeCountsForCurrentDate() {
+        dailyCounts.sort { $0.date > $1.date }
+
+        if shouldResetPeriod(after: dailyCounts.first?.date) {
+            periodCount = 0
         }
+
+        moveTodayCountToFrontOrCreate()
     }
-    
-    func setPeriodCountValue(_ value: UInt, date: Date) {
+
+    func moveTodayCountToFrontOrCreate() {
+        guard let todayIndex = dailyCounts.firstIndex(where: { $0.date.isToday }) else {
+            dailyCounts.insert(.init(value: 0, date: .now), at: 0)
+            return
+        }
+
+        guard todayIndex != 0 else { return }
+
+        let todayCount = dailyCounts.remove(at: todayIndex)
+        dailyCounts.insert(todayCount, at: 0)
+    }
+
+    func shouldResetPeriod(after date: Date?) -> Bool {
+        guard let date else { return true }
+
         let isCurrentPeriod = switch resetPeriod {
         case .day: date.isToday
         case .week: date.isInThisWeek
@@ -128,11 +139,8 @@ private extension ZikrModel {
         case .year: date.isInThisYear
         case .infinity: true
         }
-        if isCurrentPeriod {
-            periodCount = value
-        } else {
-            periodCount = 0
-        }
+
+        return !isCurrentPeriod
     }
 }
 
@@ -144,7 +152,7 @@ extension ZikrModel {
         do {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
             let container = try ModelContainer(for: ZikrModel.self, configurations: config)
-            
+
             for i in 0..<10 {
                 let zikr = ZikrModel(name: "Zikr \(i)",
                                      resetPeriod: [.day, .month, .week, .year, .infinity].randomElement()!)
@@ -156,7 +164,7 @@ extension ZikrModel {
             fatalError("Failed to create model container for previewing: \(error.localizedDescription)")
         }
     }()
-    
+
     static let previewModel: ZikrModel = .init(
         name: "Preview Zikr",
         periodCount: (0..<1000).randomElement()!,
